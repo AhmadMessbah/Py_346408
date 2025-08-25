@@ -1,0 +1,1 @@
+print("salam parsa fallah hastam")
