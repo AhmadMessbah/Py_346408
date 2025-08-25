@@ -1,0 +1,1 @@
+print("salam, man aidin imani hastm")
