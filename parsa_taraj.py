@@ -1,1 +1,1 @@
-print("Hello")
+print("salam, man parsa taraj hastam.")
