@@ -1,0 +1,1 @@
+print("salam man ali zabihian hastm")
