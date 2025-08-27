@@ -1,2 +1,2 @@
 print("salam fatemeh ahang hastam")
-print(new)
+print("new")
