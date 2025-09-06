@@ -28,3 +28,22 @@ def all_total(total, address):
 
 for address in result:
     print("price")
+
+6
+------------------------------------------------------
+
+
+
+
+
+create table products
+(
+    id       integer primary key autoincrement,
+    address     text,
+    area      integer,
+    price    integer
+);
+
+insert into products (id, address, area, price) values (1, 'tehran', 3,1000,3000);
+insert into products (id, address, area, price) values (2, 'zanjan', 4,2000,8000);
+tlt
