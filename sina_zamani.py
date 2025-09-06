@@ -47,3 +47,4 @@ create table products
 insert into products (id, address, area, price) values (1, 'tehran', 3,1000,3000);
 insert into products (id, address, area, price) values (2, 'zanjan', 4,2000,8000);
 tlt
+-------
