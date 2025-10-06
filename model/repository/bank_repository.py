@@ -12,7 +12,7 @@ class BankRepository:
 
     def save(self, bank):
         self.connect()
-        self.cursor.execute("insert into bank (balance,) values (?,?,?,?,?)",
+        self.cursor.execute("insert into bank (name,account,balance,decription) values (?,?,?,?)",
                             [bank.name,bank.account,bank.balance,bank.description])
 
         self.connection.commit()
@@ -22,7 +22,7 @@ class BankRepository:
     def update(self, bank):
         self.connect()
 
-        self.cursor.execute("update bank set balance= ?, id where id=?",
+        self.cursor.execute("update bank set balance= ?,name=?,account=?,description=?, id where id=?",
                             [bank.balance, bank.id, bank.name,bank.account,bank.description])
         self.connection.commit()
 
