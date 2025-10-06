@@ -5,28 +5,11 @@ class CustomerService:
     def __init__(self):
         self.repository = CustomerRepository()
 
-    def save(self, customer_id,
-             first_name,
-             last_name,
-             phone_number,
-             address):
-        self.repository.save(customer_id,
-                             first_name,
-                             last_name,
-                             phone_number,
-                             address)
+    def save(self, customer):
+        self.repository.save(customer)
 
-    def update(self,
-               customer_id,
-               first_name,
-               last_name,
-               phone_number,
-               address):
-        self.repository.update(customer_id,
-                               first_name,
-                               last_name,
-                               phone_number,
-                               address)
+    def update(self,customer):
+        self.repository.update(customer)
 
     def delete(self, customer_id):
         self.repository.delete(customer_id)

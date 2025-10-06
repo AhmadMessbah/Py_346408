@@ -5,40 +5,11 @@ class EmployeeService:
     def __init__(self):
         self.repository = EmployeeRepository()
 
-    def save(self, employee_id,
-             first_name,
-             last_name,
-             salary,
-             occupation,
-             phone_number,
-             username,
-             password):
-        self.repository.save(employee_id,
-                             first_name,
-                             last_name,
-                             salary,
-                             occupation,
-                             phone_number,
-                             username,
-                             password)
+    def save(self, employee):
+        self.repository.save(employee)
 
-    def update(self,
-               employee_id,
-               first_name,
-               last_name,
-               salary,
-               occupation,
-               phone_number,
-               username,
-               password):
-        self.repository.update(employee_id,
-                               first_name,
-                               last_name,
-                               salary,
-                               occupation,
-                               phone_number,
-                               username,
-                               password)
+    def update(self, employee):
+        self.repository.update(employee)
 
     def delete(self, employee_id):
         self.repository.delete(employee_id)

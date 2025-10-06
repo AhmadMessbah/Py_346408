@@ -5,40 +5,11 @@ class PaymentService:
     def __init__(self):
         self.repository = PaymentRepository()
 
-    def save(self, payment_id,
-             document_type,
-             transaction_type,
-             date_time,
-             customer_id,
-             total_amount,
-             items_list,
-             description):
-        self.repository.save(payment_id,
-                             document_type,
-                             transaction_type,
-                             date_time,
-                             customer_id,
-                             total_amount,
-                             items_list,
-                             description)
+    def save(self, payment):
+        self.repository.save(payment)
 
-    def update(self,
-               payment_id,
-               document_type,
-               transaction_type,
-               date_time,
-               customer_id,
-               total_amount,
-               items_list,
-               description):
-        self.repository.update(payment_id,
-                               document_type,
-                               transaction_type,
-                               date_time,
-                               customer_id,
-                               total_amount,
-                               items_list,
-                               description)
+    def update(self, payment):
+        self.repository.update(payment)
 
     def delete(self, payment_id):
         self.repository.delete(payment_id)

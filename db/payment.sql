@@ -1,5 +1,5 @@
 create table if not exists payments(
-    payment_id integer primary key autoincrement,
+     id integer primary key autoincrement,
     document_type text,
     transaction_type text,
     date_time text,
