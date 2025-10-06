@@ -1,7 +1,7 @@
 class Bank:
-    def __init__(self,balance, code, name, account, description, bank_number=None):
+    def __init__(self,balance, id, name, account, description, bank_number=None):
         self.balance = balance
-        self.code = code
+        self.id = id
         self.name = name
         self.account = account
         self.description = description
