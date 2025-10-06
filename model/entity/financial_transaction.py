@@ -1,11 +1,13 @@
 class FinancialTransaction:
-    def __init__(self, customer , employee, amount, date,description,transaction_type):
-        self.customer = customer
-        self.employee = employee
+    def __init__(self,id,transaction_type, customer_id , employee_id, amount, date_time,payment_id,description):
+        self.id = id
+        self.transaction_type = transaction_type        # فروش / خرید / هزینه / حقوق
+        self.customer_id = customer_id
+        self.employee_id = employee_id
         self.amount = amount
-        self.date = date
+        self.date_time = date_time
+        self.payment_id = payment_id
         self.description = description
-        self.transaction_type = transaction_type
 
     def __repr__(self):
         return f"{self.__dict__}"
