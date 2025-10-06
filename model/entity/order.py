@@ -1,13 +1,19 @@
-# total_amount    discount     tax    final_amount    payment_method    payment_status    order_status
-# delivery_date     delivery_address    notes     (customer_id , employee_id)
-
 class Order:
-    def __init__(self, id, customer,employee, order_item_list, date_time):
+    def __init__(self, id, order_type, customer_id, employee_id, order_item_list, date_time,
+                 payment_id, warehouse_transaction_id, tax=None, total_discount=None,
+                 total_amount=None):
+
         self.id = id
-        self.customer = customer
-        self.employee = employee
+        self.order_type = order_type
+        self.customer_id = customer_id
+        self.employee_id = employee_id
         self.order_item_list = order_item_list
         self.date_time = date_time
+        self.payment_id = payment_id
+        self.warehouse_transaction_id = warehouse_transaction_id
+        self.tax = tax
+        self.total_discount = total_discount
+        self.total_amount = total_amount
 
     def __repr__(self):
         return f"{self.__dict__}"
