@@ -13,7 +13,7 @@ def quantity_validator(quantity):
         return quantity
 
 def price_validator(price):
-    if not (type(price) == int or type(price) == int) and re.match(r"^[0-9.]{5,20}$", price):
+    if not (type(price) == int or type(price) == float) and re.match(r"^[0-9.]{5,20}$", price):
         raise ValueError(f"{price} is not a valid number for price")
     else:
         return price
