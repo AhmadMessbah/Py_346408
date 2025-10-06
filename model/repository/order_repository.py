@@ -39,6 +39,6 @@ class OrderRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from orders where id = ?", [id])
-        order_list = [Order(*order) for order in self.cursor.fetchall()]
+        found_id = Order(*self.cursor.fetchone())
         self.disconnect()
-        return order_list
+        return found_id
