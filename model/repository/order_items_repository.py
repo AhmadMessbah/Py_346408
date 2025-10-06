@@ -1,5 +1,5 @@
 import sqlite3
-from model.entity.order_item import OrderItems
+from model.entity.order_items import OrderItems
 
 
 class OrderItemsRepository:
@@ -39,6 +39,6 @@ class OrderItemsRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from orders where id = ?", [id])
-        order_items_list = [OrderItems(*order_items) for order_items in self.cursor.fetchall()]
+        found_id = OrderItems(*self.cursor.fetchone())
         self.disconnect()
-        return order_items_list
+        return found_id
