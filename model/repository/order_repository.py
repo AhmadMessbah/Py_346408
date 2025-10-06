@@ -13,13 +13,14 @@ class OrderRepository:
 
     def save(self, order):
         self.connect()
-        self.cursor.execute("insert into orders (id) values (?)" , [order.id])
+        self.cursor.execute("insert into orders (customer, employee, order_item_list, order_status, payment_method, payment_status, date_time)) values (?,?,?,?)" ,
+                            [order.product, order.unit_price, order.quantity, order.total_price])
         self.connection.commit()
         self.disconnect()
 
     def update(self, order):
         self.connect()
-        self.cursor.execute("update orders set price = ? where id = ?" , [order.price, order.id])
+        self.cursor.execute("update orders set unit_price = ? where id = ?" , [order.unit_price, order.id])
         self.connection.commit()
         self.disconnect()
 

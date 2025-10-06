@@ -19,7 +19,7 @@ class OrderItemsRepository:
 
     def update(self, order_items):
         self.connect()
-        self.cursor.execute("update orders set price = ? where id = ?" , [order_items.price, order_items.id])
+        self.cursor.execute("update orders set unit_price = ? where id = ?" , [order_items.unit_price, order_items.id])
         self.connection.commit()
         self.disconnect()
 
