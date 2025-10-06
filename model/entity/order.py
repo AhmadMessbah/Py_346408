@@ -3,6 +3,7 @@ class Order:
                  payment_id, warehouse_transaction_id, tax=None, total_discount=None,
                  total_amount=None):
 
+
         self.id = id
         self.order_type = order_type
         self.customer_id = customer_id
