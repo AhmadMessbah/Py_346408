@@ -1,1 +1,0 @@
-print("salam man farjad hastam")

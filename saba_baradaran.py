@@ -1,1 +1,0 @@
-print("Salam, Man saba baradaran hastam.")

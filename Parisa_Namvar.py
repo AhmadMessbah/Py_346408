@@ -1,2 +1,0 @@
-print('salam , man parisa hastam')
-
