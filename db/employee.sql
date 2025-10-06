@@ -1,5 +1,5 @@
 create table if not exists employees(
-     id integer primary key autoincrement,
+    id integer primary key autoincrement,
     first_name text,
     last_name text,
     salary text,

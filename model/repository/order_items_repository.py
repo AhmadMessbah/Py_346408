@@ -4,7 +4,7 @@ from model.entity.order_items import OrderItems
 
 class OrderItemsRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling.db")
+        self.connection = sqlite3.connect("./db/bank.db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
@@ -19,7 +19,7 @@ class OrderItemsRepository:
 
     def update(self, order_items):
         self.connect()
-        self.cursor.execute("update orders set price = ? where id = ?" , [order_items.price, order_items.id])
+        self.cursor.execute("update orders set unit_price = ? where id = ?" , [order_items.unit_price, order_items.id])
         self.connection.commit()
         self.disconnect()
 
