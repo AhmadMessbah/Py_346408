@@ -13,7 +13,7 @@ class OrderRepository:
 
     def save(self, order):
         self.connect()
-        self.cursor.execute("insert into orders (product , unit_price, quantity, total_price) values (?,?,?,?)" ,
+        self.cursor.execute("insert into orders (customer, employee, order_item_list, order_status, payment_method, payment_status, date_time)) values (?,?,?,?)" ,
                             [order.product, order.unit_price, order.quantity, order.total_price])
         self.connection.commit()
         self.disconnect()
