@@ -1,5 +1,5 @@
 create table if not exists products(
-    product_id integer primary key autoincrement,
+    id integer primary key autoincrement,
     product_name text,
     product_type text,
     expiration_date text,

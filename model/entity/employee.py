@@ -1,6 +1,6 @@
 class Employee:
-    def __init__(self, id_code, first_name, last_name, salary, occupation, phone_number, username ,password):
-        self.id_code = id_code
+    def __init__(self, id, first_name, last_name, salary, occupation, phone_number, username ,password):
+        self.id = id
         self.first_name = first_name
         self.last_name = last_name
         self.salary = salary
