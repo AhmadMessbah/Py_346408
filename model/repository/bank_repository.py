@@ -13,7 +13,7 @@ class BankRepository:
     def save(self, bank):
         self.connect()
         self.cursor.execute("insert into bank (balance,) values (?,?,?,?,?)",
-                            [bank.balance, bank.name,bank.account,bank.description])
+                            [bank.name,bank.account,bank.balance,bank.description])
 
         self.connection.commit()
 
