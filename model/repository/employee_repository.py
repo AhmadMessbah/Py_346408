@@ -1,5 +1,7 @@
 import sqlite3
 
+from model.entity.employee import Employee
+
 
 class EmployeeRepository:
     def connect(self):
@@ -12,43 +14,19 @@ class EmployeeRepository:
 
     def save(self, employee):
         self.connect()
-        self.cursor.execute("INSERT INTO employees (id,"
-                            "first_name,"
-                            "last_name,"
-                            "salary,"
-                            "occupation,"
-                            "phone_number,"
-                            "username,"
-                            "password) VALUES(?,?)",
-                            [employee.id,
-                             employee.first_name,
-                             employee.last_name,
-                             employee.salary,
-                             employee.occupation,
-                             employee.phone_number,
-                             employee.username,
-                             employee.password])
+        self.cursor.execute(
+            "insert into employees (id, first_name, last_name, salary, occupation, phone_number, username, password) values (?,?,?,?,?,?,?,?)",
+            [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
+             employee.username, employee.password, employee.id])
         self.connection.commit()
         self.disconnect()
 
     def update(self, employee):
         self.connect()
-        self.cursor.execute("update employees set id=?,"
-                            "first_name=?,"
-                            "last_name=?,"
-                            "salary=?,"
-                            "occuption=?,"
-                            "phone_number=?,"
-                            "username=?,"
-                            "password where id=?",
-                            [employee.id,
-                             employee.first_name,
-                             employee.last_name,
-                             employee.salary,
-                             employee.occupation,
-                             employee.phone_number,
-                             employee.username,
-                             employee.password])
+        self.cursor.execute(
+            "update employees set id=?, first_name=?, last_name=?, salary=?, occuption=?, phone_number=?, username=?, password where id=?",
+            [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
+             employee.username, employee.password, employee.id])
         self.connection.commit()
         self.disconnect()
 
@@ -62,13 +40,13 @@ class EmployeeRepository:
     def find_all(self):
         self.connect()
         self.cursor.execute("select * from employees")
-        customer_list = [employee(*employee) for employee in self.cursor.fetchall()]
+        customer_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return customer_list
 
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from employees where id=?", [id])
-        employee_list = [employee(*employee) for employee in self.cursor.fetchall()]
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
