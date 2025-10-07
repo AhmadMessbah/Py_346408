@@ -12,16 +12,30 @@ class CustomerRepository:
 
     def save(self, customer):
         self.connect()
-        self.cursor.execute("INSERT INTO customers (id,first_name,last_name,phone_number,address) VALUES(?,?,?,?,?)",
-                            [customer.id, customer.first_name, customer.last_name, customer.phone_number,
+        self.cursor.execute("INSERT INTO customers (id,"
+                            "first_name,"
+                            "last_name,"
+                            "phone_number,"
+                            "address) VALUES(?,?,?,?,?)",
+                            [customer.id,
+                             customer.first_name,
+                             customer.last_name,
+                             customer.phone_number,
                              customer.address])
         self.connection.commit()
         self.disconnect()
 
     def update(self, customer):
         self.connect()
-        self.cursor.execute("update customers set id=?,first_name=?,last_name=?,phone_number=?,address=? where id=?",
-                            [customer.id, customer.first_name, customer.last_name, customer.phone_number,
+        self.cursor.execute("update customers set id=?,"
+                            "first_name=?,"
+                            "last_name=?,"
+                            "phone_number=?,"
+                            "address=? where id=?",
+                            [customer.id,
+                             customer.first_name,
+                             customer.last_name,
+                             customer.phone_number,
                              customer.address])
         self.connection.commit()
         self.disconnect()
