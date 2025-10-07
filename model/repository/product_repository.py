@@ -1,5 +1,6 @@
 import sqlite3
 
+
 class ProductRepository:
     def connect(self):
         self.connection = sqlite3.connect("./db/selling.db")
@@ -11,16 +12,43 @@ class ProductRepository:
 
     def save(self, product):
         self.connect()
-        self.cursor.execute("INSERT INTO products (product_id,product_name,product_type,expiration_date,warehouse_code,unit_price,stock_quantity) VALUES(?,?)",
-                           [ product.product_id, product.product_name, product.product_type,product.expiration_date, product.warehouse_code, product.unit_price, product.stock_quantity ])
+        self.cursor.execute("INSERT INTO products (id, "
+                            "name, "
+                            "brand, "
+                            "model, "
+                            "serial, "
+                            "category, "
+                            "unit, "
+                            "expiration_date) VALUES(?,?)",
+                            [product.id,
+                             product.name,
+                             product.brand,
+                             product.model,
+                             product.serial,
+                             product.category,
+                             product.unit,
+                             product.expiration_date])
         self.connection.commit()
         self.disconnect()
 
-
     def update(self, product):
         self.connect()
-        self.cursor.execute("update products set product_id=?,product_name=?,product_type=?,expiration_date=?,warehouse_code=?,unit_price=?,stock_quantity=? where id=?",
-                            [product.product_id, product.product_name, product.type, product.expiration_date, product.warehouse_code, product.unit_price, product.stock_quantity])
+        self.cursor.execute("update products set id=?,"
+                            "name=?,"
+                            "brand=?,"
+                            "model=?,"
+                            "serial=?,"
+                            "category=?,"
+                            "unit=?,"
+                            "expiration_date=?  where id=?",
+                            [product.id,
+                             product.name,
+                             product.brand,
+                             product.model,
+                             product.serial,
+                             product.category,
+                             product.unit,
+                             product.expiration_date])
         self.connection.commit()
         self.disconnect()
 
