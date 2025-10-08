@@ -1,10 +1,13 @@
 create table if not exists orders (
     id integer primary key autoincrement ,
-    customer text ,
-    employee text ,
+    order_type text,
+    customer_id text ,
+    employee_id text ,
     order_item_list text ,
-    order_status text,
-    payment_method text,
-    payment_status text,
-    datetime text
+    datetime text,
+    payment_id text,
+    warehouse_transaction_id text,
+    tax real,
+    total_discount real,
+    total_amount real
 ) ;
