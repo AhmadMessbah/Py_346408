@@ -1,8 +1,8 @@
 class Order:
+
     def __init__(self, id, order_type, customer_id, employee_id, order_item_list, date_time,
                  payment_id, warehouse_transaction_id, tax=None, total_discount=None,
                  total_amount=None):
-
 
         self.id = id
         self.order_type = order_type
