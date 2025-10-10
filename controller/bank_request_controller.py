@@ -5,16 +5,16 @@ class BankRequest :
 
         def craete_table () :
             connection = sqlite3.connect( "db/bank.db" )
-            connection.cursor().execute( "CREATE TABLE "reports" IF NOT EXISTS (
-                                "id"	INTEGER NOT NULL,
-                                "price"	TEXT NOT NULL,
-                                "call_back_url"	TEXT NOT NULL,
-                                "message"	TEXT NOT NULL,
-                                "error"	INTEGER NOT NULL,
-                                "order_id"	INTEGER NOT NULL,
-                                "payment_id"	INTEGER NOT NULL,
-                                "debit_card_number"	TEXT NOT NULL,
-                                PRIMARY KEY("id" AUTOINCREMENT);
+            connection.cursor().execute( '''CREATE TABLE reports IF NOT EXISTS (
+                                'id'	INTEGER NOT NULL,
+                                'price'	TEXT NOT NULL,
+                                'call_back_url'	TEXT NOT NULL,
+                                'message'	TEXT NOT NULL,
+                                'error'	INTEGER NOT NULL,
+                                'order_id'	INTEGER NOT NULL,
+                                'payment_id'	INTEGER NOT NULL,
+                                'debit_card_number'	TEXT NOT NULL,
+                                PRIMARY KEY( 'id' AUTOINCREMENT );'''
                             )
             
             connection.commit()
