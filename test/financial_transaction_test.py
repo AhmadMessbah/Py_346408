@@ -6,7 +6,7 @@ financial_transaction=FinancialTransaction("debtor",20,10,1000,"20/10/1404",1,"e
 service = FinancialTransactionService()
 
 # test passed
-# service.save(financial_transaction)
+service.save(financial_transaction)
 
 # test passed
 # service.update(financial_transaction)
