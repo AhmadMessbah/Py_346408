@@ -2,5 +2,14 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$PROJECT_DIR$/db/bank.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/customer.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/employee.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/order.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/order_items.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/payment.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/product.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/sample.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/warehouse.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
+    <file url="file://$PROJECT_DIR$/db/warehouse_transaction.sql" value="6c6fba26-f8ff-4d13-9aa9-3af004f28bdd" />
   </component>
 </project>
