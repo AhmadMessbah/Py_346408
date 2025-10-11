@@ -3,14 +3,14 @@ from model.entity.financial_transaction import FinancialTransaction
 
 class FinancialTransactionRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/financial_transactions.db")
+        self.connection = sqlite3.connect("./db/selling.db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
         self.cursor.close()
         self.connection.close()
 
-    def save(self, transaction:FinancialTransaction):
+    def save(self, selling):
         self.connect()
         self.cursor.execute("""insert into financial_transactions 
             (id,transaction_type,customer_id,employee_id,amount,date_time,payment_id,description) values (?,?,?,?,?,?,?,?)""",
