@@ -2,7 +2,7 @@ from model.entity.warehouse import Warehouse
 from model.service.warehouse_service import WarehouseService
 
 
-warehouse = Warehouse(id, 123, 2)
+warehouse = Warehouse(None, 123, 2)
 
 warehouse_service = WarehouseService()
 warehouse_service.save(warehouse)
