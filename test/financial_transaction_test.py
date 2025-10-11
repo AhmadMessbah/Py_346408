@@ -1,7 +1,7 @@
 from model.entity.bank import Bank
 from model.service.bank_service import BankService
 
-financial_transaction=FinancialTransaction(1, "saderat", "15000", 2500, "tozih jadid")
+financial_transaction=FinancialTransaction()
 
 service = FinancialTransactionService()
 
