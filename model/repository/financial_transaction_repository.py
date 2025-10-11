@@ -22,8 +22,8 @@ class FinancialTransactionRepository:
 
     def update(self, transaction):
         self.connect()
-        self.cursor.execute("update transactions
-            set transaction_type=?,customer_id=?,employee_id=?,amount=?,date_time=?,payment_id=?,description=? where id=?",
+        self.cursor.execute("""update transactions
+            set transaction_type=?,customer_id=?,employee_id=?,amount=?,date_time=?,payment_id=?,description=? where id=?""",
             [transaction.transaction_type, transaction.customer_id, transaction.employee_id,
             transaction.amount,transaction.date_time, transaction.payment_id,
             transaction.description, transaction.id])
