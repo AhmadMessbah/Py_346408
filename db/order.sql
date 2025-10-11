@@ -3,7 +3,6 @@ create table if not exists orders (
     order_type text,
     customer_id text ,
     employee_id text ,
-    order_item_list text ,
     datetime text,
     payment_id text,
     warehouse_transaction_id text,
