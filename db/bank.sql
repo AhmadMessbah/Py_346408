@@ -3,6 +3,5 @@ create table if not exists banks(
     name text,
     account text,
     balance integer,
-    balance text,
     description text
 );

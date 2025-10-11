@@ -2,9 +2,9 @@ create table if not exists employees(
     id integer primary key autoincrement,
     first_name text,
     last_name text,
-    salary text,
+    salary integer,
     occupation text,
-    phone_number integer,
+    phone_number text,
     username text,
     password text
 );

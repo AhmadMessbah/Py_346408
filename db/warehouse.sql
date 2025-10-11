@@ -1,7 +1,6 @@
-create table if not exit warehouse_transactions (
+create table if not exists warehouse_transactions (
     id integer primary key autoincrement,
-    product_name text,
-    warehouse_id integer,
-    quantity real,
+    product_id integer,
+    quantity integer
 );
 

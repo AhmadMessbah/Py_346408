@@ -1,10 +1,10 @@
-create table if not exists payments(
+create table if not exists financial_transactions(
     id integer primary key autoincrement,
     transaction_type text,
-    payment_type text,
-    date_time text,
     customer_id integer,
-    total_amount integer,
     employee_id integer,
+    amount integer,
+    date_time text,
+    payment_id integer,
     description text
 );

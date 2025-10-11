@@ -5,7 +5,7 @@ from model.entity.sample import Sample
 
 class SampleRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling.db")
+        self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):

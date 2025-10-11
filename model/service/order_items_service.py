@@ -5,11 +5,11 @@ class OrderItemsService:
     def __init__(self):
         self.repository = OrderItemsRepository()
 
-    def save(self, order_items):
-        self.repository.save(order_items)
+    def save(self, order_item):
+        self.repository.save(order_item)
 
-    def update(self, order_items):
-        self.repository.update(order_items)
+    def update(self, order_item):
+        self.repository.update(order_item)
 
     def delete(self,id):
         self.repository.delete(id)

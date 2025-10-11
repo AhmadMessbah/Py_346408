@@ -1,8 +1,9 @@
 create table if not exists order_items (
     id integer primary key autoincrement ,
-    product_id text,
+    order_id integer,
+    product_id integer,
     quantity integer,
-    price real,
-    discount real,
+    price integer,
+    discount integer,
     description text
 ) ;

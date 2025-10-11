@@ -4,7 +4,7 @@ from model.entity.order import Order
 
 class OrderRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling.db")
+        self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
@@ -14,26 +14,26 @@ class OrderRepository:
     def save(self, order):
         self.connect()
         self.cursor.execute("insert into orders (order_type, customer_id, employee_id,"
-                            " order_item_list, date_time, payment_id, warehouse_transaction_id,"
-                            " tax, total_discount, total_amount)) values (?,?,?,?,?,?,?,?,?,?)" ,
+                            "date_time, payment_id, warehouse_transaction_id,"
+                            " tax, total_discount, total_amount) values (?,?,?,?,?,?,?,?,?)",
                             [order.order_type, order.customer_id, order.employee_id,
-                             order.order_item_list, order.date_time, order.payment_id,
-                             order.warehouse_transaction_id, order.tax, order.total_discount, order.total_amount])
+                             order.date_time, order.payment_id, order.warehouse_transaction_id,
+                             order.tax, order.total_discount, order.total_amount])
         self.connection.commit()
         self.disconnect()
 
     def update(self, order):
         self.connect()
         self.cursor.execute("update orders set order_type=?, customer_id=?, employee_id=?,"
-                            " order_item_list=?, date_time=?, payment_id=?, warehouse_transaction_id=?,"
-                            " tax=?, total_discount=?, total_amount=? where id=?" ,
+                            " date_time=?, payment_id=?, warehouse_transaction_id=?,"
+                            " tax=?, total_discount=?, total_amount=? where id=?",
                             [order.order_type, order.customer_id, order.employee_id,
-                             order.order_item_list, order.date_time, order.payment_id, order.warehouse_transaction_id,
+                             order.date_time, order.payment_id, order.warehouse_transaction_id,
                              order.tax, order.total_discount, order.total_amount, order.id])
         self.connection.commit()
         self.disconnect()
 
-    def delete(self,id):
+    def delete(self, id):
         self.connect()
         self.cursor.execute("delete from orders where id=?", [id])
         self.connection.commit()
