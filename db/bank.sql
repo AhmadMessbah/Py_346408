@@ -1,6 +1,7 @@
-create table if not exists samples(
+create table if not exists banks(
     id integer primary key autoincrement,
-    title text,
-    branch text,
+    name text,
+    account text,
+    balance text,
     description text
 );
