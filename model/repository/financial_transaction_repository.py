@@ -3,26 +3,26 @@ from model.entity.financial_transaction import FinancialTransaction
 
 class FinancialTransactionRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling.db")
+        self.connection = sqlite3.connect("./db/financial_transactions.db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
         self.cursor.close()
         self.connection.close()
 
-    def save(self, selling):
+    def save(self, transaction:FinancialTransaction):
         self.connect()
-        self.cursor.execute("""insert into selling
+        self.cursor.execute("""insert into financial_transactions 
             (id,transaction_type,customer_id,employee_id,amount,date_time,payment_id,description) values (?,?,?,?,?,?,?,?)""",
-            [selling.id, selling.transaction_type, selling.customer_id,
-            selling.employee_id, selling.amount, selling.date_time,
-            selling.payment_id, selling.description])
+            [transaction.id, transaction.transaction_type, transaction.customer_id,
+            transaction.employee_id, transaction.amount, transaction.date_time,
+            transaction.payment_id, transaction.description])
         self.connection.commit()
         self.disconnect()
 
-    def update(self, selling):
+    def update(self, transaction: FinancialTransaction):
         self.connect()
-        self.cursor.execute("""update selling
+        self.cursor.execute("""update financial_transactions
             set transaction_type=?,customer_id=?,employee_id=?,amount=?,date_time=?,payment_id=?,description=? where id=?""",
             [selling.transaction_type, selling.customer_id, selling.employee_id,
             selling.amount,selling.date_time, selling.payment_id,
@@ -32,7 +32,7 @@ class FinancialTransactionRepository:
 
     def delete(self, transaction_id):
         self.connect()
-        self.cursor.execute("delete from financial_transactions where id=?", [transaction_id])
+        self.cursor.execute("delete from transactions where id=?", [transaction_id])
         self.connection.commit()
         self.disconnect()
 
@@ -44,7 +44,7 @@ class FinancialTransactionRepository:
     #     return transactions
     def find_all(self):
         self.connect()
-        self.cursor.execute("select * from selling")
+        self.cursor.execute("select * from financial_transactions")
         transaction_list =  [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
         return transaction_list

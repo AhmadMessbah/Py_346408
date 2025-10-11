@@ -11,7 +11,8 @@ service = BankService()
 # test passed
 # service.update(bank)
 
-service.delete(1)
+# test passed
+# service.delete(id)
 
 # test passed
 # print(service.find_all())
