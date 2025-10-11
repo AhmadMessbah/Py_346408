@@ -14,10 +14,10 @@ class BankController:
         except:
             return False, "Save Error"
 
-    def update(self ,id, name, account, balance, description):
+    def update(self , name, account, balance, description):
         try:
-            #id None?
-            bank = Bank(id, name, account, balance, description)
+            #id
+            bank = Bank( name, account, balance, description)
             service = BankService()
             service.update(bank)
             return True, "Updated Successfully"
@@ -49,4 +49,4 @@ class BankController:
              bank = service.find_by_id(id)
              return True, bank
          except:
-                return False, "Find By ID Error"
+             return False, "Find By ID Error"
