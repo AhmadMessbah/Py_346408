@@ -1,4 +1,4 @@
-create table if not exit warehouse_transactions (
+create table if not exists warehouse_transactions (
     id integer primary key autoincrement,
     product_name text,
     warehouse_id integer,
@@ -6,5 +6,5 @@ create table if not exit warehouse_transactions (
     transaction_date text,
     transaction_type text,
     sender text,
-    receiver text,
+    receiver text
 );
