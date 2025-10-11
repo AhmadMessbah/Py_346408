@@ -1,2 +1,1 @@
 from test import bank_test
-from test import financial_transaction_test
