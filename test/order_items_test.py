@@ -6,7 +6,6 @@ order_item = OrderItems(None,None,10,500000,None,None,"test")
 
 
 order_item1 = OrderItemsService()
-
 order_item1.save(order_item)
 
 #order_item1.update(order_item)

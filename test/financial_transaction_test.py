@@ -1,5 +1,5 @@
-from model.entity.bank import Bank
-from model.service.bank_service import BankService
+from model.entity.financial_transaction import FinancialTransaction
+from model.service.financial_transaction_service import FinancialTransactionService
 
 financial_transaction=FinancialTransaction("debtor",20,10,1000,"20/10/1404",1,"episode")
 
