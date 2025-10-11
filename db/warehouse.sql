@@ -4,3 +4,4 @@ create table if not exit warehouse_transactions (
     warehouse_id integer,
     quantity real,
 );
+
