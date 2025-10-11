@@ -1,5 +1,8 @@
 import sqlite3
 
+from model.entity.payment import Payment
+
+
 class PaymentRepository:
     def connect(self):
         self.connection = sqlite3.connect("./db/selling.db")
@@ -11,18 +14,21 @@ class PaymentRepository:
 
     def save(self, payment):
         self.connect()
-        self.cursor.execute("INSERT INTO peyments (peyment_id,document_type,transaction_type,date_time,customer_id,total_amount,items_list,description) VALUES(?,?)",
-                           [ payment.peyment_id, payment.document_type, payment.transaction_type, payment.date_time, payment.customer_id, payment.total_amount, payment.items_list, payment.description])
+        self.cursor.execute(
+            "insert into peyments (id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description) values (?,?,?,?,?,?,?,?)",
+            [payment.transaction_type, payment.payment_type, payment.date_time, payment.customer_id,
+             payment.total_amount, payment.employee_id, payment.description, payment.id])
         self.connection.commit()
         self.disconnect()
 
     def update(self, payment):
         self.connect()
-        self.cursor.execute("update payments set peyment_id=?,document_type=?,transaction_type=?,date_time=?,customer_id=?,total_amount=?,items_list=?,description=? where id=?",
-                            [payment.payment_id, payment.document_type, payment.transaction_type, payment.date_time, payment.customer_id, payment.total_amount, payment.items_list, payment.description])
+        self.cursor.execute(
+            "update payments set id=?, transaction_type=?, payment_type=?, date_time=?, customer_id=?, total_amount=?, employee_id=?, description=? where id=?",
+            [payment.transaction_type, payment.payment_type, payment.date_time, payment.customer_id,
+             payment.total_amount, payment.employee_id, payment.description, payment.id])
         self.connection.commit()
         self.disconnect()
-
 
     def delete(self, id):
         self.connect()
@@ -34,13 +40,13 @@ class PaymentRepository:
     def find_all(self):
         self.connect()
         self.cursor.execute("select * from payments")
-        customer_list = [payment(*payment) for payment in self.cursor.fetchall()]
+        customer_list = [Payment(*payment) for payment in self.cursor.fetchall()]
         self.disconnect()
         return customer_list
 
     def find_by_id(self, id):
         self.connect()
-        self.cursor.execute("select * from payment where id=?",[id])
-        payment_list = [payment(*payment) for payment in self.cursor.fetchall()]
+        self.cursor.execute("select * from payments where id=?", [id])
+        payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
         self.disconnect()
         return payment_list
