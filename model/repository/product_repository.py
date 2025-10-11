@@ -5,7 +5,7 @@ from model.entity.product import Product
 
 class ProductRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling.db")
+        self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
@@ -15,16 +15,16 @@ class ProductRepository:
     def save(self, product):
         self.connect()
         self.cursor.execute(
-            "insert into products (id, name, brand, model, serial, category, unit, expiration_date) values (?,?,?,?,?,?,?,?)",
+            "insert into products (name, brand, model, serial, category, unit, expiration_date) values (?,?,?,?,?,?,?)",
             [product.name, product.brand, product.model, product.serial, product.category, product.unit,
-             product.expiration_date, product.id])
+             product.expiration_date])
         self.connection.commit()
         self.disconnect()
 
     def update(self, product):
         self.connect()
         self.cursor.execute(
-            "update products set id=?, name=?, brand=?, model=?, serial=?, category=?, unit=?, expiration_date=? where id=?",
+            "update products set name=?, brand=?, model=?, serial=?, category=?, unit=?, expiration_date=? where id=?",
             [product.name, product.brand, product.model, product.serial, product.category, product.unit,
              product.expiration_date, product.id])
         self.connection.commit()

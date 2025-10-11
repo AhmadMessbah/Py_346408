@@ -5,7 +5,7 @@ from model.entity.employee import Employee
 
 class EmployeeRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling.db")
+        self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
@@ -15,16 +15,16 @@ class EmployeeRepository:
     def save(self, employee):
         self.connect()
         self.cursor.execute(
-            "insert into employees (id, first_name, last_name, salary, occupation, phone_number, username, password) values (?,?,?,?,?,?,?,?)",
+            "insert into employees (first_name, last_name, salary, occupation, phone_number, username, password) values (?,?,?,?,?,?,?)",
             [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
-             employee.username, employee.password, employee.id])
+             employee.username, employee.password])
         self.connection.commit()
         self.disconnect()
 
     def update(self, employee):
         self.connect()
         self.cursor.execute(
-            "update employees set id=?, first_name=?, last_name=?, salary=?, occuption=?, phone_number=?, username=?, password where id=?",
+            "update employees set first_name=?, last_name=?, salary=?, occuption=?, phone_number=?, username=?, password=? where id=?",
             [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
              employee.username, employee.password, employee.id])
         self.connection.commit()
