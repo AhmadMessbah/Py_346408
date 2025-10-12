@@ -5,7 +5,7 @@ from tkinter.ttk import Combobox
 
 from view.component.label_with_entry import LabelWithEntry
 
-from tools.order_validator import *
+from tools.order_validator import datetime_validator
 
 def reset_form():
     id.clear()
@@ -20,8 +20,7 @@ def reset_form():
 
 def save_click():
     try:
-        date_validator(date_time.get())
-        time_validator(date_time.get())
+        datetime_validator(date_time.get())
 
         order = (id.get(), customer_id.get(), employee_id.get(), date_time.get(),
                   payment_id.get(), warehouse_transaction_id.get(), tax.get(),

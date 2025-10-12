@@ -31,4 +31,11 @@ def time_validator(date_time):
     else:
         raise ValueError('time is invalid!!')
 
+def datetime_validator(date_time):
+    if datetime.strptime(date_time, "%Y-%m-%d %H:%M"):
+        return date_time
+    else:
+        raise ValueError('date or time is invalid!!')
+
+
 
