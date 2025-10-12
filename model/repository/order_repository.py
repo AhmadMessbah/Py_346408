@@ -4,7 +4,7 @@ from model.entity.order import Order
 
 class OrderRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling_db.db")
+        self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
