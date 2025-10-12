@@ -3,9 +3,9 @@ from model.service.sample_service import SampleService
 
 
 class SampleController:
-    def save(self, name,description):
+    def save(self, name, description):
         try:
-            sample = Sample(None, name,description)
+            sample = Sample(None, name, description)
             print("Ali darkhaste zakhire kard, ok")
             service = SampleService()
             service.save(sample)

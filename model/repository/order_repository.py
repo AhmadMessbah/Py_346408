@@ -13,27 +13,19 @@ class OrderRepository:
 
     def save(self, order):
         self.connect()
-        self.cursor.execute("insert into orders (order_type, customer_id, employee_id,"
-                            "date_time, payment_id, warehouse_transaction_id,"
-                            " tax, total_discount, total_amount) values (?,?,?,?,?,?,?,?,?)",
-                            [order.order_type, order.customer_id, order.employee_id,
-                             order.date_time, order.payment_id, order.warehouse_transaction_id,
-                             order.tax, order.total_discount, order.total_amount])
+        self.cursor.execute("insert into orders (order_type, customer_id, employee_id, order_item_list, date_time, payment_id, warehouse_transaction_id, tax, total_discount, total_amount)) values (?,?,?,?,?,?,?,?,?,?)" ,
+                            [order.order_type, order.customer_id, order.employee_id, order.order_item_list, order.date_time, order.payment_id, order.warehouse_transaction_id, order.tax, order.total_discount, order.total_amount])
         self.connection.commit()
         self.disconnect()
 
     def update(self, order):
         self.connect()
-        self.cursor.execute("update orders set order_type=?, customer_id=?, employee_id=?,"
-                            " date_time=?, payment_id=?, warehouse_transaction_id=?,"
-                            " tax=?, total_discount=?, total_amount=? where id=?",
-                            [order.order_type, order.customer_id, order.employee_id,
-                             order.date_time, order.payment_id, order.warehouse_transaction_id,
-                             order.tax, order.total_discount, order.total_amount, order.id])
+        self.cursor.execute("update orders set order_type=?, customer_id=?, employee_id=?, order_item_list=?, date_time=?, payment_id=?, warehouse_transaction_id=?, tax=?, total_discount=?, total_amount=? where id=?" ,
+                            [order.order_type, order.customer_id, order.employee_id, order.order_item_list, order.date_time, order.payment_id, order.warehouse_transaction_id, order.tax, order.total_discount, order.total_amount, order.id])
         self.connection.commit()
         self.disconnect()
 
-    def delete(self, id):
+    def delete(self,id):
         self.connect()
         self.cursor.execute("delete from orders where id=?", [id])
         self.connection.commit()
@@ -49,6 +41,8 @@ class OrderRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from orders where id=?", [id])
-        found_id = Order(*self.cursor.fetchone())
+        order_list = [Order(*order) for order in self.cursor.fetchall()]
         self.disconnect()
-        return found_id
+        return order_list
+
+
