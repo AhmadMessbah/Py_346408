@@ -34,29 +34,29 @@ win.geometry("900x400")
 
 
 # ID
-id = LabelWithEntry(win, "ID", 20,20)
+id = LabelWithEntry(win, "ID:", 20,20)
 
 # Order ID
-order_id = LabelWithEntry(win, "Order ID", 20,60)
+order_id = LabelWithEntry(win, "Order ID:", 20,60)
 
 # Product ID
-product_id = LabelWithEntry(win, "Product ID", 20,100)
+product_id = LabelWithEntry(win, "Product ID:", 20,100)
 
 # Quantity
-quantity = LabelWithEntry(win, "Quantity", 20,140)
+quantity = LabelWithEntry(win, "Quantity:", 20,140)
 
 # Price
-price = LabelWithEntry(win, "Price", 20,180)
+price = LabelWithEntry(win, "Price:", 20,180)
 
 # Discount
-discount = LabelWithEntry(win, "Discount", 20,220)
+discount = LabelWithEntry(win, "Discount:", 20,220)
 
 # Description
-description = LabelWithEntry(win, "Description", 20,260, data_type=StringVar)
+description = LabelWithEntry(win, "Description:", 20,260, data_type=StringVar)
 
 # Table
 table = ttk.Treeview(win,columns=[1,2,3,4,5,6,7],show="headings")
-table.place(x=250,y=20)
+table.place(x=300,y=20)
 
 table.heading(1,text="ID")
 table.heading(2,text="Order ID")
