@@ -40,4 +40,3 @@ class Table:
         widths = [40, 60, 70, 60, 90, 60, 140]
         for i, width in enumerate(widths):
             self.table.column(i, width=width)
-
