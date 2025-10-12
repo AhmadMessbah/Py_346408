@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/db/bank.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/customer.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/employee.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/financial_transaction.sql" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/db/order.sql" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/db/order_items.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/payment.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/product.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/sample.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/warehouse.sql" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/db/warehouse_transaction.sql" dialect="SQLite" />
   </component>
 </project>

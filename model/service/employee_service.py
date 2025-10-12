@@ -11,11 +11,11 @@ class EmployeeService:
     def update(self, employee):
         self.repository.update(employee)
 
-    def delete(self, employee_id):
-        self.repository.delete(employee_id)
+    def delete(self, id):
+        self.repository.delete(id)
 
     def find_all(self):
         return self.repository.find_all()
 
-    def find_by_id(self, employee_id):
-        return self.repository.find_by_id(employee_id)
+    def find_by_id(self, id):
+        return self.repository.find_by_id(id)

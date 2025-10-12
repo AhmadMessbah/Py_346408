@@ -5,7 +5,7 @@ from model.entity.customer import Customer
 
 class CustomerRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling.db")
+        self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
@@ -15,15 +15,15 @@ class CustomerRepository:
     def save(self, customer):
         self.connect()
         self.cursor.execute(
-            "insert into customers (id, first_name, last_name, phone_number, address) values (?,?,?,?,?)",
-            [customer.first_name, customer.last_name, customer.phone_number, customer.address, customer.id])
+            "insert into customers (first_name, last_name, phone_number, address) values (?,?,?,?)",
+            [customer.first_name, customer.last_name, customer.phone_number, customer.address])
         self.connection.commit()
         self.disconnect()
 
     def update(self, customer):
         self.connect()
         self.cursor.execute(
-            "update customers set id=?, first_name=?, last_name=?, phone_number=?, address=? where id=?",
+            "update customers set first_name=?, last_name=?, phone_number=?, address=? where id=?",
             [customer.first_name, customer.last_name, customer.phone_number, customer.address, customer.id])
         self.connection.commit()
         self.disconnect()

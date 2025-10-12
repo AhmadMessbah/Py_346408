@@ -9,7 +9,7 @@ def customer_validator(customer):
 
 def employee_validator(employee):
     if not (type(employee) == str and re.match(r"^[a-zA-Z\s]{3,30}$", employee)):
-        raise ValueError(f"Customer {employee} is not a valid customer name")
+        raise ValueError(f"Employee {employee} is not a valid employee name")
     else:
         return employee
 
