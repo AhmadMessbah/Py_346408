@@ -1,3 +1,2 @@
-from test import warehouse_test
-
+from test.warehouse_test import *
 
