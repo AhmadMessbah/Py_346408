@@ -41,6 +41,7 @@ class OrderItemRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from order_items where id=?", [id])
-        found_id = OrderItem(*self.cursor.fetchone())
+        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
         self.disconnect()
-        return found_id
+        return order_item_list
+
