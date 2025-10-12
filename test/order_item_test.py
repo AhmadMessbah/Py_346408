@@ -1,8 +1,9 @@
 from model.entity.order_item import OrderItem
 from model.service.order_item_service import OrderItemService
 
-order_item = OrderItem(2)
+# order_item = OrderItem(None, 899, 2456, 45, 120000)
 order_item_service = OrderItemService()
+
 # order_item_service.save(order_item)
 # Save Successful!
 
@@ -10,9 +11,10 @@ order_item_service = OrderItemService()
 # Update Successful!!
 
 # order_item_service.delete(id)
+# Delete Successful!!
 
 # print(order_item_service.find_all())
 # Find All Successful!!
 
-print(order_item_service.find_by_id(id))
-
+# print(order_item_service.find_by_id(id))
+# Find by id Successful!!
