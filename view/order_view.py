@@ -20,8 +20,8 @@ def reset_form():
 
 def save_click():
     try:
-        # datetime_validator(date_time.get())
-        datetime_parser(date_time.get())
+        datetime_validator(date_time.get())
+        # datetime_parser(date_time.get())
 
         order = (id.get(), customer_id.get(), employee_id.get(), date_time.get(),
                   payment_id.get(), warehouse_transaction_id.get(), tax.get(),
@@ -35,6 +35,7 @@ def save_click():
 
         messagebox.showinfo("Save", "Order has been saved")
         reset_form()
+        order_type.set("Basket")
     except Exception as e:
         messagebox.showerror("Error", f"{e}")
 
@@ -73,9 +74,9 @@ total_discount = LabelWithEntry(win, "Total Discount:", 20,310)
 total_amount = LabelWithEntry(win, "Total Amount:", 20,350)
 
 # Order Type
-type_order = StringVar(value="Basket")
 Label(win, text="Order Type:").place(x=20,y=390)
-order_type = Combobox(win, values=["Basket","Income","Outgoing"], textvariable=type_order, state="readonly")
+order_type = Combobox(win, values=["Basket","Income","Outgoing"], width=17, state="readonly")
+order_type.set("Basket")
 order_type.place(x=110,y=390)
 
 # Table
