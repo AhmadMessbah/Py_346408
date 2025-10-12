@@ -1,6 +1,6 @@
 import re
 from datetime import datetime
-from dateutil import parser
+
 
 def customer_validator(customer):
     if not (type(customer) == str and re.match(r"^[a-zA-Z\s]{3,30}$", customer)):
