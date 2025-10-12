@@ -1,4 +1,4 @@
-class OrderItems:
+class OrderItem:
 
     def __init__(self, id, product_id, quantity, price, discount=None, description=None):
         self.id = id

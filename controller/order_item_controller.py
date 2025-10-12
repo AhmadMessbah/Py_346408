@@ -1,20 +1,20 @@
-from model.entity.order_items import OrderItems
-from model.service.order_items_service import OrderItemsService
+from model.entity.order_item import OrderItems
+from model.service.order_item_service import OrderItemsService
 
 
-class OrderItemsController:
+class OrderItemController:
 
     def save(self, product_id, quantity, price, discount, description):
         try:
-            order_items = OrderItems(None, product_id, quantity, price, discount, description)
+            order_item = OrderItem(None, product_id, quantity, price, discount, description)
             print("Save requested, ok")
-            service = OrderItemsService()
-            service.save(order_items)
+            service = OrderItemService()
+            service.save(order_item)
             return True, "Saved"
         except:
             return False, "Save Error"
 
-    def update(self, order_items):
+    def update(self, order_item):
         pass
 
     def delete(self, id):
