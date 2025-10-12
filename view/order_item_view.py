@@ -5,7 +5,6 @@ from tkinter import messagebox
 from view.component.label_with_entry import LabelWithEntry
 
 def reset_form():
-    id.clear()
     order_id.clear()
     product_id.clear()
     quantity.clear()
@@ -14,7 +13,7 @@ def reset_form():
     description.clear()
 
 def save_click():
-    order_item = (id.get(), order_id.get(), product_id.get(), quantity.get(),
+    order_item = (order_id.get(), product_id.get(), quantity.get(),
                   price.get(), discount.get(), description.get())
 
     table.insert(
