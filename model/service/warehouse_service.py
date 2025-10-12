@@ -6,6 +6,7 @@ class WarehouseService:
 
     def save(self, warehouse):
         self.repository.save(warehouse)
+        return print("save was succesfull")
     
     def update(self, warehouse):
         self.repository.update(warehouse)
