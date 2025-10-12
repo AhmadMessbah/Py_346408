@@ -1,5 +1,5 @@
-from model.entity.order_item import OrderItems
-from model.service.order_item_service import OrderItemsService
+from model.entity.order_item import OrderItem
+from model.service.order_item_service import OrderItemService
 
 
 class OrderItemController:
