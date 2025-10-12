@@ -1,16 +1,48 @@
 from model.entity.order import Order
 from model.service.order_service import OrderService
 
-order = Order(1,"sell",2134654,6469185,"04/07/19",
-              152648,12654,20)
+order = Order(None, "Ali", "Tozihat")
 
-order_service1 = OrderService()
-order_service1.save(order)
+order_service = OrderService()
+order_service.save(order)
 
-# order_service1.update(order)
+order_service.update(order)
 
-# order_service1.delete(1)
+order_service.delete(id)
 
-#print(order_service1.find_all())
+print(order_service.find_all())
 
-#print(order_service1.find_by_id(1))
+print(order_service.find_by_id(id))
+
+from model.entity.order import Order
+from model.service.order_service import OrderService
+
+order = Order(None, "Ali", "Tozihat")
+
+order_service = OrderService()
+order_service.save(order)
+
+order_service.update(order)
+
+order_service.delete(id)
+
+print(order_service.find_all())
+
+print(order_service.find_by_id(id))
+
+from model.entity.order import Order
+from model.service.order_service import OrderService
+
+order = Order(None, "Ali", "Tozihat")
+
+order_service = OrderService()
+order_service.save(order)
+
+order_service.update(order)
+
+order_service.delete(id)
+
+print(order_service.find_all())
+
+print(order_service.find_by_id(id))
+
