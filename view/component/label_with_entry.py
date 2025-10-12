@@ -36,6 +36,7 @@ class Table:
         headings = ["ID", "Order ID", "Product ID", "Quantity", "Price", "Discount", "Description"]
         for i, heading in enumerate(headings):
             self.table.heading(i, text=heading)
+
     def set_column_widths(self):
         widths = [40, 60, 70, 60, 90, 60, 140]
         for i, width in enumerate(widths):
