@@ -1,99 +1,67 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox as msg
+from view.component.lable_with_entry import LabelWithEntry
 
 
-win=Tk()
-win.title("Employee")
-win.geometry("1000x1000")
-win.configure(bg="#FFF8F0")
+window=Tk()
+window.title("Employee")
+window.geometry("1000x400")
+
 
 #functions
 
 def save():
-    employee=(id.get(),first_name.get(),last_name.get(),salary.get(),occupation.get(),phone_number.get(),username.get(),password.get())
-    table.insert("",END,values=employee)
-    msg.showinfo("saved","employee saved")
-    reset_form()
+    pass
 def update():
-    employee=(id.set(id.get()),first_name.set(first_name.get()),last_name.set(last_name.get()),salary.set(salary.get()),occupation.set(occupation.get()),phone_number.set(phone_number.get()),username.set(username.get()),password.set(password.get()))
-    table.insert("",END,values=employee)
-    reset_form()
+    pass
 def delete():
     pass
 
-def reset_form():
-  id.set(0) 
-  first_name.set(" ") 
-  last_name.set(" ") 
-  salary.set(0)
-  occupation.set(" ")
-  phone_number.set(" ")
-  username.set(" ")
-  password.set(" ")
-  
-    
-#class 
-class LabelwithEntry:
-    def __init__(self,master,label_text,color,x,y,data_type=StringVar,distance=110,height_difference=0):
-        Label(master,text=label_text,bg=(color)).place(x=x,y=y)
-        self.variable=data_type()
-        Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
-    
-    def get(self):
-        return self.variable.get()
-    
-    def set(self,value):
-        return self.variable.set(value)
     
 
-Label(win,text="Employee Management System",bg=("#F18284"),font=("Arial",18,"italic")).place(x=400,y=20)
 
-#id
-id=LabelwithEntry(win,"id:","#FFFFFF",10,100,IntVar,100)
-#first_name
-first_name=LabelwithEntry(win,"first_name:","#FFFFFF",10,130,StringVar,100)
-#last_name
-last_name=LabelwithEntry(win,"last_name:","#FFFFFF",10,160,StringVar,100)
-#salary
-salary=LabelwithEntry(win,"salary:","#FFFFFF",10,190,IntVar,100)
-#occupation
-occupation=LabelwithEntry(win,"occupation:","#FFFFFF",10,220,StringVar,100)
-#phone_number
+#id        master, label_text, x, y, distance=90, data_type=StringVa
 
-phone_number=LabelwithEntry(win,"phone_number:","#FFFFFF",10,250,IntVar,100)
-#username
-username=LabelwithEntry(win,"username:","#FFFFFF",10,280,StringVar,100)
-#password
-password=LabelwithEntry(win,"password:","#FFFFFF",10,310,StringVar,100)
+
+id= LabelWithEntry(window,"Id",20,20, data_type=IntVar)
+first_name= LabelWithEntry(window, "FirstName", 20,60)
+last_name= LabelWithEntry(window, "LastName", 20,100)
+salary = LabelWithEntry(window, "Salary", 20,140,data_type= IntVar)
+occupation= LabelWithEntry(window, "Occupation", 20,180)
+phone_number= LabelWithEntry(window, "PhoneNumber", 20,220)
+username= LabelWithEntry(window, "Username", 20,260)
+password = LabelWithEntry(window, "Password", 20,300)
 
 
 
+table = ttk.Treeview(window,columns=[1,2,3,4,5,6,7,8],show="headings", height=16)
+table.place(x=270,y=20)
 
+table.heading(1, text="ID")
+table.heading(2, text="FirstName")
+table.heading(3, text="LastName")
+table.heading(4, text="Salary")
+table.heading(5, text="Occupation")
+table.heading(6, text="PhoneNumber")
+table.heading(7, text="Username")
+table.heading(8, text="Password")
 
-#Button
-Button(win,text="save",bg="#A7C7E7",width=10, command=save).place(x=10,y=350)
-Button(win,text="update",bg="#BAFEC4",width=10, command=update).place(x=110,y=350)
+table.column(1, width=40)
+table.column(2, width=100)
+table.column(3, width=100)
+table.column(4, width=60)
+table.column(5, width=100)
+table.column(6, width=100)
+table.column(7, width=100)
+table.column(8, width=100)
 
-id=LabelwithEntry(win,"id:","#FFFFFF",10,430,IntVar,100)
-
-Button(win,text="delete",bg="#FFBAC3",width=10, command=delete).place(x=10,y=470)
-Button(win,text="find",bg="#FBF17E",width=10).place(x=110,y=470)
-
-#table
-table=ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8],show="headings")
-table.place(x=400,y=100)
-
-columns=["id","first_name","last_name","salary","occupation","phone_number","username","expiration_date"]
-
-i=1
-for col in columns:
-    table.heading(i,text=col)
-    table.column(i,width=100)
-    i+=1
+Button(window, text="Save", width=8).place(x=20,y=340)
+Button(window, text="Edit", width=8).place(x=100,y=340)
+Button(window, text="Delete", width=8).place(x=180, y=340)
 
 
 
 
 
-win.mainloop()
+
+window.mainloop()
