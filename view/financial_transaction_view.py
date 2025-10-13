@@ -4,26 +4,38 @@ from view.component.lable_with_entry import *
 
 
 window=Tk()
+window.geometry("700x400")
+window.title("Financial transaction")
+
 id= LabelWithEntry(window, "ID:", 20,20)
-
-transaction_type= LabelWithEntry(window, "transaction", 20,60)
-
+transaction_type= LabelWithEntry(window, "Transaction", 20,60)
 customer_id= LabelWithEntry(window, "CustomerID", 20,100)
-
 employee_id= LabelWithEntry(window, "EmployeeID", 20,140)
-
 amount= LabelWithEntry(window, "Amount", 20,180)
-
-
 date_and_time= LabelWithEntry(window, "Date&Time", 20,220)
-
-
 payment_id= LabelWithEntry(window, "PaymentID", 20,260)
-
-
 description= LabelWithEntry(window, "Description", 20,300)
 
-Button(window, text="Save", width=12).place(x=50, y=350)
+table = ttk.Treeview(window,columns=[1,2,3,4,5,6,7,8],show="headings", height=12)
+table.place(x=270,y=20)
 
-Button(window, text="Delete", width=12).place(x=350, y=350)
-window.mainioop()
+table.heading(1, text="ID")
+table.heading(2, text="Transaction")
+table.heading(3, text="CustomerID")
+table.heading(4, text="EmployeeID")
+table.heading(5, text="Amount")
+table.heading(6, text="Date&Time")
+table.heading(7, text="PaymentID")
+table.heading(8, text="Description")
+
+table.column(1, width=40)
+table.column(2, width=100)
+table.column(3, width=100)
+table.column(4, width=60)
+table.column(5, width=100)
+
+Button(window, text="Save", width=7).place(x=20,y=260)
+Button(window, text="Edit", width=7).place(x=100,y=260)
+Button(window, text="Delete", width=7).place(x=180, y=260)
+
+window.mainloop()

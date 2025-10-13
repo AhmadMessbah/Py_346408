@@ -1,106 +1,43 @@
-'''from controller.payment_controller import PaymentController
-
-name = input("Enter name : ")
-description = input("Enter description : ")
- 
-payment_controller = PaymentController()
-payment_controller.save(name, description)
-'''
 from tkinter import *
-import tkinter.ttk as ttk
-from tkinter import messagebox as msg
+from tkinter import ttk
+from view.component.lable_with_entry import LabelWithEntry
 
+window = Tk()
+window.geometry("1050x420")
+window.title("Payment")
 
-win=Tk()
-win.title=("Payment")
-win.geometry="1000x1000"
-win.configure(bg="#FFF8F0")
+id = LabelWithEntry(window, "Id", 20,20, data_type=IntVar)
+transaction_type= LabelWithEntry(window, "TransactType", 20,60)
+payment_type= LabelWithEntry(window, "PaymentType", 20,100)
+date_time = LabelWithEntry(window, "DateTime", 20,140)
+customer_id= LabelWithEntry(window, "CustomerId", 20,180, data_type=IntVar)
+total_amount = LabelWithEntry(window, "TotalAmount", 20,220, data_type=IntVar)
+employee_id = LabelWithEntry(window, "EmployeeId", 20,260, data_type=IntVar)
+description= LabelWithEntry(window, "Description", 20,300)
 
-#class 
-class LabelwithEntry:
-    def __init__(self,master,label_text,color,x,y,data_type=StringVar,distance=110,height_difference=0):
-        Label(master,text=label_text,bg=(color)).place(x=x,y=y)
-        self.variable=data_type()
-        Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
-    
-    def get(self):
-        return self.variable.get()
-    
-    def set(self,value):
-        return self.variable.set(value)
-    
-        
-def save():
-    
-    payment=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())
-    table.insert("",END,values=payment)
-    
-    msg.showinfo("saved","payment saved")
-    reset_form()
+table = ttk.Treeview(window,columns=[1,2,3,4,5,6,7,8],show="headings", height=17)
+table.place(x=270,y=20)
 
-def update():
-    payment=(id.set(id.get()),transaction_type.set(transaction_type.get()),payment_type.set(payment_type.get()),date_time.set(date_time.get()),customer_id.set(customer_id.get()))
-    table.insert("",END,values=payment)   
-    reset_form()
-def delete():
-    pass
+table.heading(1, text="ID")
+table.heading(2, text="Transaction Type")
+table.heading(3, text="Payment Type")
+table.heading(4, text="Date Time")
+table.heading(5, text="Customer Id")
+table.heading(6, text="Total Amount")
+table.heading(7, text="Employee Id")
+table.heading(8, text="Description")
 
-def reset_form():
-  id.set(0) 
-  transaction_type.set(" ") 
-  payment_type.set(" ") 
-  date_time.set(" ")
-  customer_id.set(" ")
-  
-  
-    
+table.column(1, width=40)
+table.column(2, width=100)
+table.column(3, width=100)
+table.column(4, width=100)
+table.column(5, width=100)
+table.column(6, width=100)
+table.column(7, width=100)
+table.column(8, width=100)
 
-Label(win,text="Payment Management System",bg=("#F18284"),font=("Arial",18,"italic")).place(x=400,y=20)
+Button(window, text="Save", width=7).place(x=20,y=360)
+Button(window, text="Edit", width=7).place(x=100,y=360)
+Button(window, text="Delete", width=7).place(x=180, y=360)
 
-id=LabelwithEntry(win,"id:","#FFFFFF",10,100,IntVar,100)
-id.set("")
-transaction_type=StringVar()
-Label(win,text="transaction_type",bg='#FFFFFF').place(x=10,y=130)
-Radiobutton(win,text="payment",variable=transaction_type,value="payment",bg="#FFFFFF").place(x=110,y=130)
-Radiobutton(win,text="reception",variable=transaction_type,value="reception",bg="#FFFFFF",font=('Arial',10)).place(x=180,y=130)
-
-
-payment_type=StringVar()
-Label(win,text="payment_type",bg='#FFFFFF').place(x=10,y=160)
-ttk.Combobox(win,values=["debit card","check","cash","credit"],width=17,textvariable="payment_type",state="readonly").place(x=110,y=160)
-
-
-date_time=StringVar()
-date_time=LabelwithEntry(win,"date_time:","#FFFFFF",10,190,StringVar,100)
-
-customer_id=StringVar()
-customer_id=LabelwithEntry(win,"customer_id:","#FFFFFF",10,220,StringVar,100)
-
-
-
-Button(win,text="save",bg="#A7C7E7",width=10).place(x=10,y=250)
-
-Button(win,text="update",bg="#BAFEC4",width=10).place(x=110,y=250)
-
-
-
-id=LabelwithEntry(win,"id:","#FFFFFF",10,330,IntVar,100)
-
-Button(win,text="delete",bg="#FFD6A5",width=10).place(x=10,y=370)
-Button(win,text="find",bg="#FBF17E",width=10).place(x=110,y=370)
-
-#table
-table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
-table.place(x=400,y=100)
-
-
-
-columns=["id","transaction_type","payment_type","date_time","customer_id"]
-
-i=1
-for col in columns:
-    table.heading(i,text=col)
-    table.column(i,width=100)
-    i+=1
-
-win.mainloop()
+window.mainloop()
