@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import Combobox
-from view.component.heading import HeadingWithWidth
+from view.component.heading_with_width import HeadingWithWidth
 from view.component.lable_with_entry import LabelWithEntry
 from tools.order_validator import datetime_validator,datetime_parser
 
@@ -26,6 +26,8 @@ def save_click():
         order = (id.get(), customer_id.get(), employee_id.get(), date_time.get(),
                   payment_id.get(), warehouse_transaction_id.get(), tax.get(),
                   total_discount.get(), total_amount.get(), order_type.get())
+
+# todo *** نباید آبجکت ساخته بشه؟؟ *** الان تاپل است
 
         table.insert(
                 "",
@@ -84,11 +86,6 @@ Combobox(
     values=order_type_list,
     width=17, state="readonly"
 ).place(x=110,y=390)
-
-
-
-
-
 
 
 # Table
