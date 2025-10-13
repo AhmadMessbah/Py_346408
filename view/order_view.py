@@ -39,6 +39,7 @@ def save_click():
     except Exception as e:
         messagebox.showerror("Error", f"{e}")
 
+# todo *** اتصال به دیتابیس و سیو شی
 
 
 win = Tk()
@@ -78,11 +79,17 @@ total_amount = LabelWithEntry(win, "Total Amount:", 20,350)
 order_type_list=["Basket","Income","Outgoing"]
 order_type = StringVar(value="Basket")
 Label(win, text="Order Type:").place(x=20,y=390)
-ttk.Combobox(
+Combobox(
     win,
     values=order_type_list,
     width=17, state="readonly"
 ).place(x=110,y=390)
+
+
+
+
+
+
 
 # Table
 table = ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8,9,10],show="headings")

@@ -26,6 +26,9 @@ def save_click():
     messagebox.showinfo("Save", "Order item has been saved")
     reset_form()
 
+# todo *** اتصال به دیتابیس و سیو شی
+
+
 def update_click():
     pass
 
@@ -53,6 +56,11 @@ discount = LabelWithEntry(win, "Discount:", 20,220)
 
 # Description
 description = LabelWithEntry(win, "Description:", 20,260, data_type=StringVar)
+
+
+
+
+
 
 # Table
 table = ttk.Treeview(win,columns=[1,2,3,4,5,6,7],show="headings")
