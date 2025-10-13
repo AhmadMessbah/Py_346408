@@ -16,8 +16,9 @@ order_item_service1 = OrderItemService()
 
 #############################################################
 
-# ***BUT Doesn't Raise Error if ID doesn't exist????******
-# ***AND Autoincrement ID is NOT RESET?????*******
+# todo *** BUT Doesn't Raise Error if ID doesn't exist????******
+# todo *** AND Autoincrement ID is NOT RESET?????*******
+# todo *** order_id set null????******
 
 #############################################################
 
@@ -26,5 +27,3 @@ order_item_service1 = OrderItemService()
 
 # test passed
 # print(order_item_service1.find_by_id(10))
-
-
