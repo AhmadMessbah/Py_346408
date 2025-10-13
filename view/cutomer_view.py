@@ -26,7 +26,7 @@ class LabelwithEntry:
 
 def save():
     customer=(id.get(),first_name.get(),last_name.get(),phone_number.get(),address.get())
-    table.insert(" ",END,values=customer)
+    table.insert("",END,values=customer)
     
 
 def update():

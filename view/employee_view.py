@@ -12,7 +12,7 @@ win.configure(bg="lightblue")
 
 def save():
     employee=(id.variable.get(),first_name.variable.get(),last_name.variable.get(),salary.variable.get(),occupation.variable.get(),phone_number.variable.get(),username.variable.get(),password.variable.get())
-    table.insert(" ",END,values=employee)
+    table.insert("",END,values=employee)
     
 
 def update():

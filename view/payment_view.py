@@ -37,7 +37,7 @@ def save():
 
 def update():
     payment=(id.set(id.get()),transaction_type.set(transaction_type.get()),payment_type.set(payment_type.get()),date_time.set(date_time.get()),customer_id.set(customer_id.get()))
-    table.insert(" ",END,values=payment)   
+    table.insert("",END,values=payment)   
     
 def delete():
     pass
