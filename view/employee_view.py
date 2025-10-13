@@ -9,7 +9,9 @@ win.geometry="1000x1000"
 win.configure(bg="lightblue")
 
 def save():
-    pass
+    customer=(id.get(),first_name.get(),last_name.get(),salary.get(),occupation.get(),phone_number.get(),username.get(),password.get())
+    table.insert(" ",END,values=customer)
+    
 
 def update():
     pass
