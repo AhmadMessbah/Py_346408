@@ -69,11 +69,15 @@ class OrderView(Frame):
 
     def edit_click(self):
         pass
+
     def delete_click(self):
         pass
+
     def reset_form(self):
         pass
+
     def refresh_table(self):
         pass
+
     def select_from_table(self, event):
         pass
