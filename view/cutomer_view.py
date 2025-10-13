@@ -52,7 +52,7 @@ address=LabelwithEntry(win,"address:","DodgerBlue3",10,220,StringVar,100)
 
 
     
-Button(win,text="save",bg="DodgerBlue2",command=save_click,width=10).place(x=10,y=250)
+Button(win,text="save",bg="DodgerBlue2",command=save,width=10).place(x=10,y=250)
 
 
 Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=250)
