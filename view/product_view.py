@@ -35,7 +35,7 @@ class LabelwithEntry:
         
 def save():
     product=(id.get(),name.get(),brand.get(),model.get(),serial.get(),category.get(),unit.get(),expiration_date.get())
-    table.insert(" ",END,values=product)
+    table.insert("",END,values=product)
     
 
 def update():
@@ -99,15 +99,6 @@ Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=470)
 #table
 table=ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8],show="headings")
 table.place(x=400,y=100)
-
-table.heading(1, text="id")
-table.heading(2, text="name")
-table.heading(3, text="brand")
-table.heading(4, text="model")
-table.heading(5, text="serial")
-table.heading(6, text="category")
-table.heading(7, text="unit")
-table.heading(8, text="expiration_date")
 
 
 columns=["id","name","brand","model","serial","category","unit","expiration_date"]
