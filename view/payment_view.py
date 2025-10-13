@@ -7,7 +7,7 @@ window.geometry("1050x420")
 window.title("Payment")
 
 id = LabelWithEntry(window, "Id", 20,20, data_type=IntVar)
-transaction_type= LabelWithEntry(window, "TransactionType", 20,60)
+transaction_type= LabelWithEntry(window, "TransactType", 20,60)
 payment_type= LabelWithEntry(window, "PaymentType", 20,100)
 date_time = LabelWithEntry(window, "DateTime", 20,140)
 customer_id= LabelWithEntry(window, "CustomerId", 20,180, data_type=IntVar)
