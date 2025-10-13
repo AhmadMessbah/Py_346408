@@ -8,7 +8,14 @@ win.title=("Employee")
 win.geometry="1000x1000"
 win.configure(bg="lightblue")
 
+def save():
+    pass
 
+def update():
+    pass
+
+def delete():
+    pass
 
 
 class LabelwithEntry:
@@ -37,14 +44,14 @@ username=LabelwithEntry(win,"username:","DodgerBlue3",10,280,StringVar,100)
 
 password=LabelwithEntry(win,"password:","DodgerBlue3",10,310,StringVar,100)
 
-Button(win,text="save",bg="DodgerBlue2",width=10).place(x=10,y=350)
-Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=350)
+Button(win,text="save",bg="DodgerBlue2",width=10, command=save).place(x=10,y=350)
+Button(win,text="update",bg="DodgerBlue2",width=10, command=update).place(x=110,y=350)
 
 
 
 id=LabelwithEntry(win,"id:","DodgerBlue3",10,430,IntVar,100)
 
-Button(win,text="delete",bg="DodgerBlue2",width=10).place(x=10,y=470)
+Button(win,text="delete",bg="DodgerBlue2",width=10, command=delete).place(x=10,y=470)
 Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=470)
 
 #table
