@@ -1,6 +1,4 @@
-from tkinter import *
-from tkinter import ttk
-from view.component.lable_with_entry import LabelWithEntry
+from view import *
 
 
 window = Tk()
@@ -8,7 +6,7 @@ window.title("Order Item")
 window.geometry("850x360")
 
 
-id = LabelWithEntry(window, "ID", 20,20, data_type=IntVar)
+id = LabelWithEntry(window, "ID", 20,20, data_type=IntVar, state="readonly")
 order_id = LabelWithEntry(window, "Order ID", 20,60, data_type=IntVar)
 product_id = LabelWithEntry(window, "Product ID", 20,100, data_type=IntVar)
 quantity = LabelWithEntry(window, "Quantity", 20,140, data_type=IntVar)

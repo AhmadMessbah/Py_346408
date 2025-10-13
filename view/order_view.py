@@ -1,7 +1,5 @@
-from tkinter import *
-from tkinter import ttk
+from view import *
 from tkinter.ttk import Combobox
-from view.component.lable_with_entry import LabelWithEntry
 
 
 window = Tk()
@@ -9,7 +7,7 @@ window.title("Order View")
 window.geometry("1250x510")
 
 
-id = LabelWithEntry(window, "ID", 20, 20, data_type=IntVar)
+id = LabelWithEntry(window, "ID", 20, 20, data_type=IntVar, state="readonly")
 customer_id = LabelWithEntry(window, "Customer ID", 20,60, data_type=IntVar)
 employee_id = LabelWithEntry(window, "Employee ID", 20,100, data_type=IntVar)
 date_time = LabelWithEntry(window, "Date & Time", 20,140)
