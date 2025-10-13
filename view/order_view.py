@@ -87,7 +87,12 @@ class OrderView(Frame):
             messagebox.showerror("Order Update Error", message)
 
     def delete_click(self):
-        pass
+        status, message = self.order_controller.delete(self.id.get())
+        if status:
+            messagebox.showinfo("Order Delete", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Order Delete Error", message)
 
     def reset_form(self):
         pass
