@@ -18,7 +18,6 @@ order_item_service1 = OrderItemService()
 
 # todo *** BUT Doesn't Raise Error if ID doesn't exist????******
 # todo *** AND Autoincrement ID is NOT RESET?????*******
-# todo *** order_id set null????******
 
 #############################################################
 
