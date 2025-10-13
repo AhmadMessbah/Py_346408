@@ -17,21 +17,35 @@ class LabelwithEntry:
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
         
     
-
+#title
 Label(win,text="customer Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
-
+#id
 id=LabelwithEntry(win,"id:","DodgerBlue3",10,100,IntVar,100)
 
+#first_name
 first_name=LabelwithEntry(win,"first_name:","DodgerBlue3",10,130,StringVar,100)
 
+#last_name
 last_name=LabelwithEntry(win,"last_name:","DodgerBlue3",10,160,StringVar,100)
 
+#phone_number
 phone_number=LabelwithEntry(win,"phone_number:","DodgerBlue3",10,190,IntVar,100)
 
+
+#address
 address=LabelwithEntry(win,"address:","DodgerBlue3",10,220,StringVar,100)
 
+#save
+def save_click():
+    customer=(id.get(),first_name.get(),last_name.get(),phone_number.get(),address.get())
+    table.insert(" ",END,values=customer)
+    
 
-Button(win,text="save",bg="DodgerBlue2",width=10).place(x=10,y=250)
+
+    
+Button(win,text="save",bg="DodgerBlue2",command=save_click,width=10).place(x=10,y=250)
+
+
 Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=250)
 
 
@@ -46,10 +60,10 @@ table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
 table.place(x=400,y=100)
 
 table.heading(1, text="id")
-table.heading(1, text="first_name")
-table.heading(1, text="last_name")
-table.heading(1, text="phone_number")
-table.heading(1, text="address")
+table.heading(2, text="first_name")
+table.heading(3, text="last_name")
+table.heading(4, text="phone_number")
+table.heading(5, text="address")
 
 
 table.column(1,width=100)
@@ -59,8 +73,12 @@ table.column(4,width=100)
 table.column(5,width=100)
 
 
-
-
+'''def reseT_form():
+    id.set(0)
+    first_name.set(" ")
+    last_name.set(" ")
+    phone_number.set(0)
+    address.set(" ")'''
 
 
 
