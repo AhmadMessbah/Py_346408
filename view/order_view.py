@@ -33,9 +33,8 @@ def save_click():
                 "",
                 END,
                 values = order,
+                tags = order_type.get()
                 )
-
-# todo *** tags=order_type ?????? ****
 
         messagebox.showinfo("Save", "Order has been saved")
         reset_form()
