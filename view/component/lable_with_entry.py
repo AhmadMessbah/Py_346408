@@ -1,8 +1,8 @@
 from tkinter import *
-from tkinter.ttk import Treeview
 
 class LabelWithEntry:
     def __init__(self, master, label_text, x, y, distance=90, data_type=IntVar):
+        self.data_type = data_type
         self.variable = data_type()
         Label(master, text=label_text).place(x=x, y=y)
         Entry(master, textvariable=self.variable).place(x=x + distance, y=y)

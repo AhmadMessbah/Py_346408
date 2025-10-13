@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
-from view.component.heading import HeadingWithWidth
+from view.component.heading_with_width import HeadingWithWidth
 from view.component.lable_with_entry import LabelWithEntry
 
 def reset_form():
@@ -17,6 +17,8 @@ def save_click():
     order_item = (id.get(), order_id.get(), product_id.get(), quantity.get(),
                   price.get(), discount.get(), description.get())
 
+# todo *** نباید آبجکت ساخته بشه؟؟ *** الان تاپل است
+
     table.insert(
         "",
         END,
@@ -27,7 +29,6 @@ def save_click():
     reset_form()
 
 # todo *** اتصال به دیتابیس و سیو شی
-
 
 def update_click():
     pass
@@ -56,10 +57,6 @@ discount = LabelWithEntry(win, "Discount:", 20,220)
 
 # Description
 description = LabelWithEntry(win, "Description:", 20,260, data_type=StringVar)
-
-
-
-
 
 
 # Table
