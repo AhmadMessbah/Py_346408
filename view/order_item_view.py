@@ -37,7 +37,7 @@ table.column(6, width=60)
 table.column(7, width=140)
 
 Button(window, text="Save", width=7).place(x=20,y=300)
-Button(window, text="Edit", width=7).place(x=100,y=300)
-Button(window, text="Delete", width=7).place(x=180,y=300)
+Button(window, text="Edit", width=7).place(x=97,y=300)
+Button(window, text="Delete", width=7).place(x=175,y=300)
 
 window.mainloop()

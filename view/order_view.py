@@ -61,8 +61,8 @@ table.column(10, width=120)
 
 
 Button(window, text="Save", width=7).place(x=20,y=440)
-Button(window, text="Edit", width=7).place(x=90,y=440)
-Button(window, text="Delete", width=7).place(x=160,y=440)
+Button(window, text="Edit", width=7).place(x=97,y=440)
+Button(window, text="Delete", width=7).place(x=175,y=440)
 
 
 window.mainloop()
