@@ -83,18 +83,14 @@ Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=370)
 table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
 table.place(x=400,y=100)
 
-table.heading(1, text="id")
-table.heading(2, text="transaction_type")
-table.heading(3, text="payment_type")
-table.heading(4, text="date_time")
-table.heading(5, text="customer_id")
 
 
-table.column(1,width=100)
-table.column(2,width=100)
-table.column(3,width=100)
-table.column(4,width=100)
-table.column(5,width=100)
+columns=["id","transaction_type","payment_type","date_time","customer_id"]
 
+i=1
+for col in columns:
+    table.heading(i,text=col)
+    table.column(i,width=100)
+    i+=1
 
 win.mainloop()

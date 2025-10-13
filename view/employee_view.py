@@ -83,15 +83,13 @@ table.heading(7, text="username")
 table.heading(8, text="password")
 
 
-table.column(1,width=100)
-table.column(2,width=100)
-table.column(3,width=100)
-table.column(4,width=100)
-table.column(5,width=100)
-table.column(6,width=100)
-table.column(7,width=100)
-table.column(8,width=100)
+columns=["id","first_name","last_name","salary","occupation","phone_number","username","password"]
 
+i=1
+for col in columns:
+    table.heading(i,text=col)
+    table.column(i,width=100)
+    i+=1
 
 
 

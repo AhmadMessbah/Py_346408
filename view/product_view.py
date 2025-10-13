@@ -103,15 +103,13 @@ table.heading(7, text="unit")
 table.heading(8, text="expiration_date")
 
 
-table.column(1,width=100)
-table.column(2,width=100)
-table.column(3,width=100)
-table.column(4,width=100)
-table.column(5,width=100)
-table.column(6,width=100)
-table.column(7,width=100)
-table.column(8,width=100)
+columns=["id","name","brand","model","serial","category","unit","expiration_date"]
 
+i=1
+for col in columns:
+    table.heading(i,text=col)
+    table.column(i,width=100)
+    i+=1
 
 
 
