@@ -16,13 +16,32 @@ def edit():
     sub = Button(win, text="submit")
     sub.pack()
 
+def add():
+    win = Tk()
+    win.title("Add")
+    win.geometry("200x200")
+    l = Label(win, text="enter product id")
+    l.pack()
+    entry = Entry(win)
+    entry.pack()
+    l = Label(win, text="enter product name")
+    l.pack()
+    entry = Entry(win)
+    entry.pack()
+    l = Label(win, text="enter product type")
+    l.pack()
+    entry = Entry(win)
+    entry.pack()
+    sub = Button(win, text="submit")
+    sub.pack()
+
 
 
 
 # ADD-SECTION
 add_label = Label(root, text="Add product to warehouse")
 add_label.pack()
-add_btn = Button(root, text="Add product", bg="red")
+add_btn = Button(root, text="Add product", bg="red", command=add)
 add_btn.pack(pady=5)
 
 # EDIT-SECTION
