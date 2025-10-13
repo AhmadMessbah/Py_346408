@@ -1,11 +1,11 @@
 from tkinter import *
 
 class LabelWithEntry:
-    def __init__(self, master, label_text, x, y, distance=90, data_type=StringVar):
+    def __init__(self, master, label_text, x, y, distance=90, data_type=StringVar, state="normal"):
         self.data_type = data_type
         self.variable = data_type()
         Label(master, text=label_text).place(x=x, y=y)
-        Entry(master, textvariable=self.variable).place(x=x + distance, y=y)
+        Entry(master, textvariable=self.variable, state=state).place(x=x + distance, y=y)
 
     def get(self):
         return self.variable.get()
