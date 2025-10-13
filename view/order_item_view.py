@@ -17,7 +17,7 @@ def save_click():
     order_item = (id.get(), order_id.get(), product_id.get(), quantity.get(),
                   price.get(), discount.get(), description.get())
 
-# todo *** نباید آبجکت ساخته بشه؟؟ *** الان تاپل است
+# todo *** should not create object ?? *** used tuple instead object ***
 
     table.insert(
         "",
@@ -28,7 +28,7 @@ def save_click():
     messagebox.showinfo("Save", "Order item has been saved")
     reset_form()
 
-# todo *** اتصال به دیتابیس و سیو شی
+# todo *** database connection / save object
 
 def update_click():
     pass
