@@ -25,7 +25,7 @@ total_amount = LabelWithEntry(window, "Total Amount", 20,350, data_type=IntVar)
 # Order Type
 order_type_list=["Basket","Sell","Buy"]
 order_type = StringVar(value="Basket")
-Label(window, text="Order Type:").place(x=20,y=390)
+Label(window, text="Order Type").place(x=20,y=390)
 Combobox(
     window,
     values=order_type_list,
