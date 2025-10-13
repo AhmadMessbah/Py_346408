@@ -5,76 +5,27 @@ from tools.financial_trancaction_veiw_tools import *
 from view.bank_view import window
 
 
-#  توابع
-def save_click():
-    messagebox.showinfo("Save", "Transaction  saved")
-#  پنجره
-win = Tk()
-win.title("Financial Transaction")
-win.geometry("500x450")
+window=Tk()
+id= LabelWithEntry(window, "ID:", 20,20)
 
-#  فیلدها
-Label(win, text="ID:").place(x=20, y=20)
-id_entry = Entry(win, width=40)
-id_entry.place(x=150, y=20)
+transaction_type= LabelWithEntry(window, "transaction",, 20,60)
 
-Label(win, text="Transaction Type:").place(x=20, y=60)
-transaction_type_combo = ttk.Combobox(win, values=["Income", "Outgoing"], state="readonly", width=37)
-transaction_type_combo.place(x=150, y=60)
-transaction_type_combo.set("Income")
+customer_id= LabelWithEntry(window, "CustomerID", 20,100)
 
-Label(win, text="Customer ID:").place(x=20, y=100)
-customer_id_entry = Entry(win, width=40)
-customer_id_entry.place(x=150, y=100)
+employee_id= LabelWithEntry(window, "EmployeeID", 20,140)
 
-Label(win, text="Employee ID:").place(x=20, y=140)
-employee_id_entry = Entry(win, width=40)
-employee_id_entry.place(x=150, y=140)
+amount= LabelWithEntry(window, "Amount", 20,180)
 
-Label(win, text="Amount:").place(x=20, y=180)
-amount_entry = Entry(win, width=40)
-amount_entry.place(x=150, y=180)
 
-Label(win, text="Date & Time:").place(x=20, y=220)
-date_time_entry = Entry(win, width=40)
-date_time_entry.place(x=150, y=220)
+date_and_time= LabelWithEntry(window, "Date&Time", 20,220)
 
-Label(win, text="Payment ID:").place(x=20, y=260)
-payment_id_entry = Entry(win, width=40)
-payment_id_entry.place(x=150, y=260)
 
-Label(win, text="Description:").place(x=20, y=300)
-description_entry = Entry(win, width=40)
-description_entry.place(x=150, y=300)
+payment_id= LabelWithEntry(window, "PaymentID", 20,260)
 
-#  دکمه‌ها
-Button(win, text="Save", width=12, command=save_click).place(x=50, y=350)
 
-Button(win, text="Delete", width=12).place(x=350, y=350)  # فعلاً بدون عملکرد
+description= LabelWithEntry(window, "Description", 20,300, data_type=StringVar)
 
-win.mainloop()
-# window=TrancactionGui()
-# # ID
-# id= LabelWithEntry(window, "ID:", 20,20)
-# # Transaction Type
-# transaction_type= LabelWithEntry(window, ":",width=37, 20,60)
-# # Customer ID
-# customer_id= LabelWithEntry(window, "Customer ID:", 20,100)
-# # Employee ID
-# employee_id= LabelWithEntry(window, "Employee ID:", 20,140)
-# # Amount
-# amount= LabelWithEntry(window, "Amount:", 20,180)
-#
-# # Date & Time
-# date_and_time= LabelWithEntry(window, "Date & Time:", 20,220)
-#
-# # Payment ID
-# payment_id= LabelWithEntry(window, "Payment ID:", 20,260)
-#
-# # Description
-# description= LabelWithEntry(window, "Description:", 20,300, data_type=StringVar)
-#
-# Button(win, text="Save", width=12, command=save_click).place(x=50, y=350)
-#
-# Button(win, text="Delete", width=12,command=reset_form).place(x=350, y=350)  # فعلاً بدون عملکرد
-# window.mainioop()
+Button(window, text="Save", width=12, command=save_click).place(x=50, y=350)
+
+Button(window, text="Delete", width=12,command=reset_form).place(x=350, y=350)  # فعلاً بدون عملکرد
+window.mainioop()
