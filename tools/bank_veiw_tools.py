@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from model.repository.bank_repository import BankRepository
 from tools import bank_validator
 from model.entity.bank import Bank
 from tools.bank_validator import name_validator, description_validator, balance_validator, account_validator
@@ -16,14 +17,14 @@ def to_tuple(self):
     return tuple(self.name,self.account,self.balance,self.description)
 
 
-def reset_form():
+def reset_form(name,account,balance,description):
     name.clear()
     account.clear()
     balance.clear()
     description.clear()
 
 
-def save_click():
+def save_click(name,account,balance,description):
     try:
 
         name_validator(name.get())
@@ -53,12 +54,12 @@ class LabelWithEntry:
     def get(self):
         return self.variable.get()
 
-    def set(self, value):
-        self.variable.set(value)
 
     def clear(self):
         if self.data_type == StringVar:
             self.variable.set("")
+        elif self.data_type==IntVar:
+            self.variable.set(0)
         else:
             raise ValueError("Invalid Type")
 
