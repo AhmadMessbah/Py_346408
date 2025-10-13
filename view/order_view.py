@@ -1,3 +1,4 @@
+from test.order_test import order
 from view import *
 from tkinter.ttk import Combobox
 
@@ -108,8 +109,24 @@ class OrderView(Frame):
         status, order_list = self.order_controller.find_all()
         self.refresh_table(order_list)
 
-    def refresh_table(self):
-        pass
+    def refresh_table(self, order_list):
+        for item in self.table.get_children():
+            self.table.delete(item)
+
+        for order in order_list:
+            order_tuple = tuple(order.__dict__.values())
+            self.table.insert("", END, values=order_tuple)
 
     def select_from_table(self, event):
-        pass
+        selected_order = self.table.item(self.table.focus())["values"]
+        self.id.set(order.id)
+        self.order_type.set(order.order_type)
+        self.customer_id.set(order.customer_id)
+        self.employee_id.set(order.employee_id)
+        self.date_time.set(order.date_time.get())
+        self.payment_id.set(order.payment_id)
+        self.warehouse_transaction_id.set(order.warehouse_transaction_id)
+        self.tax.set(order.tax.get())
+        self.total_discount.set(order.total_discount.get())
+        self.total_amount.set(order.total_amount.get())
+
