@@ -1,8 +1,8 @@
 import sqlite3
-from model.entity.order_items import OrderItems
+from model.entity.order_item import OrderItem
 
 
-class OrderItemsRepository:
+class OrderItemRepository:
     def connect(self):
         self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
@@ -34,13 +34,14 @@ class OrderItemsRepository:
     def find_all(self):
         self.connect()
         self.cursor.execute("select * from order_items")
-        order_items_list = [OrderItems(*order_items) for order_items in self.cursor.fetchall()]
+        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
         self.disconnect()
-        return order_items_list
+        return order_item_list
 
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from order_items where id=?", [id])
-        found_id = OrderItems(*self.cursor.fetchone())
+        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
         self.disconnect()
-        return found_id
+        return order_item_list
+

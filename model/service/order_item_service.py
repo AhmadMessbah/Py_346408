@@ -1,9 +1,9 @@
-from model.repository.order_items_repository  import OrderItemsRepository
+from model.repository.order_item_repository  import OrderItemRepository
 
 
-class OrderItemsService:
+class OrderItemService:
     def __init__(self):
-        self.repository = OrderItemsRepository()
+        self.repository = OrderItemRepository()
 
     def save(self, order_item):
         self.repository.save(order_item)

@@ -1,5 +1,7 @@
 import re
 from datetime import datetime
+from dateutil import parser
+
 
 def customer_validator(customer):
     if not (type(customer) == str and re.match(r"^[a-zA-Z\s]{3,30}$", customer)):
@@ -31,4 +33,15 @@ def time_validator(date_time):
     else:
         raise ValueError('time is invalid!!')
 
+def datetime_validator(date_time):
+    if datetime.strptime(date_time, "%Y-%m-%d %H:%M"):
+        return date_time
+    else:
+        raise ValueError('date or time is invalid!!')
+
+def datetime_parser(date_time):
+    if parser.parse(date_time):
+        return date_time
+    else:
+        raise ValueError('date or time is invalid!!')
 

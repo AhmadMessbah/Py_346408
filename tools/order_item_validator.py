@@ -17,3 +17,9 @@ def price_validator(price):
         raise ValueError(f"{price} is not a valid number for price")
     else:
         return price
+
+def datetime_validator(date_time):
+    if not type(date_time) == str  and re.match(r"^[a-zA-Z]{5,20}$", date_time):
+        raise ValueError(f"{date_time} is not a date for today")
+    else:
+        return date_time

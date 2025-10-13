@@ -1,6 +1,6 @@
 from model.entity.bank import Bank
 from model.service.bank_service import BankService
-
+from view.bank_view import *
 bank = Bank(1, "saderat", "15000", 2500, "tozih jadid")
 
 service = BankService()
@@ -18,4 +18,5 @@ service = BankService()
 # print(service.find_all())
 
 # test passed
-# print(service.find_by_id(10))
+# print(service.find_by_id())
+
