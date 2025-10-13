@@ -74,26 +74,16 @@ Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=370)
 table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
 table.place(x=400,y=100)
 
-table.heading(1, text="id")
-table.heading(2, text="first_name")
-table.heading(3, text="last_name")
-table.heading(4, text="phone_number")
-table.heading(5, text="address")
 
 
-table.column(1,width=100)
-table.column(2,width=100)
-table.column(3,width=100)
-table.column(4,width=100)
-table.column(5,width=100)
+columns=["id","first_name","last_name","phone_number","address"]
 
+i=1
+for col in columns:
+    table.heading(i,text=col)
+    table.heading(i,width=100)
+    i+=1
 
-'''def reseT_form():
-    id.set(0)
-    first_name.set(" ")
-    last_name.set(" ")
-    phone_number.set(0)
-    address.set(" ")'''
 
 
 
