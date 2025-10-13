@@ -36,6 +36,17 @@ def add():
     sub.pack()
 
 
+def find():
+    win = Tk()
+    win.title("Find")
+    win.geometry("200x200")
+    l = Label(win, text="enter product id")
+    l.pack()
+    entry = Entry(win)
+    entry.pack()
+    sub = Button(win, text="submit")
+    sub.pack()
+
 
 
 # ADD-SECTION
@@ -53,7 +64,7 @@ edit_btn.pack(pady=5)
 # FIND-SECTION
 find_label = Label(root, text="Find product in warehouse")
 find_label.pack(pady=10)
-find_btn = Button(root, text="Find product", bg="green")
+find_btn = Button(root, text="Find product", bg="green", command=find)
 find_btn.pack(pady=5)
 
 root.mainloop()
