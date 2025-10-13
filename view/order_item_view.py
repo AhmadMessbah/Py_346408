@@ -17,7 +17,7 @@ def save_click():
     order_item = (id.get(), order_id.get(), product_id.get(), quantity.get(),
                   price.get(), discount.get(), description.get())
 
-# todo *** نباید آبجکت ساخته بشه؟؟ *** الان تاپل است
+# todo *** should not create object ?? *** used tuple instead object ***
 
     table.insert(
         "",
@@ -28,8 +28,10 @@ def save_click():
     messagebox.showinfo("Save", "Order item has been saved")
     reset_form()
 
-# todo *** اتصال به دیتابیس و سیو شی
+# todo *** database connection / save object
 
+
+# todo *** complete update_click ***
 def update_click():
     pass
 
@@ -74,7 +76,6 @@ table_description = HeadingWithWidth(table,7, "Description", 140)
 
 Button(win, text="Save", width=12, command=save_click).place(x=80,y=300)
 Button(win, text="Update", width=12, command=update_click).place(x=80,y=340)
-
 
 
 win.mainloop()

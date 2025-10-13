@@ -11,6 +11,7 @@ class LabelWithEntry:
         return self.variable.get()
 
     def set(self, value):
+        # todo *** validation
         self.variable.set(value)
 
     def clear(self):

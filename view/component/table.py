@@ -1,5 +1,7 @@
 from tkinter import ttk
 
+# todo *** not used !!!!
+
 class Table:
     def __init__(self, parent):
         self.table = ttk.Treeview(parent, columns=[1, 2, 3, 4, 5, 6, 7], show="headings")

@@ -27,7 +27,7 @@ def save_click():
                   payment_id.get(), warehouse_transaction_id.get(), tax.get(),
                   total_discount.get(), total_amount.get(), order_type.get())
 
-# todo *** نباید آبجکت ساخته بشه؟؟ *** الان تاپل است
+# todo *** should not create object ?? *** used tuple instead object ***
 
         table.insert(
                 "",
@@ -42,7 +42,7 @@ def save_click():
     except Exception as e:
         messagebox.showerror("Error", f"{e}")
 
-# todo *** اتصال به دیتابیس و سیو شی
+# todo *** database connection / save object
 
 
 win = Tk()
@@ -111,5 +111,7 @@ table.tag_configure("Outgoing", background="light red" )
 
 
 Button(win, text="Save", width=12, command=save_click).place(x=80,y=440)
+# todo *** add update button ***
+
 
 win.mainloop()
