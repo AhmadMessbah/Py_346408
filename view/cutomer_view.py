@@ -28,13 +28,15 @@ def save():
     customer=(id.get(),first_name.get(),last_name.get(),phone_number.get(),address.get())
     table.insert("",END,values=customer)
     msg.showinfo("saved","customer saved")
-
+    reset_form()
+    
 def update():
     customer=(id.set(id.get()),first_name.set(first_name.get()),last_name.set(last_name.get()),phone_number.set(phone_number.get()),address.set(address.get()))
-
+    reset_form()
+    
 def delete():
     pass
-  
+    
 def reset_form():
   id.set(0) 
   first_name.set(" ") 
