@@ -66,7 +66,14 @@ class OrderView(Frame):
         self.window.mainloop()
 
     def save_click(self):
-        pass
+        status, message = self.order_controller.save(self.order_type.get(), self.customer_id, self.employee_id.get(),
+                                                     self.date_time.get(),self.payment_id.get(),
+                                                     self.warehouse_transaction_id.get(), self.tax.get())
+        if status:
+            messagebox.showinfo("Order Save", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Order Save Error", message)
 
     def edit_click(self):
         pass
