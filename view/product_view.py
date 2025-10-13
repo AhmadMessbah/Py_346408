@@ -36,7 +36,7 @@ class LabelwithEntry:
 def save():
     product=(id.get(),name.get(),brand.get(),model.get(),serial.get(),category.get(),unit.get(),expiration_date.get())
     table.insert("",END,values=product)
-    
+    msg.showinfo("saved","product saved")
 
 def update():
     product=(id.set(id.get()),name.set(name.get()),brand.set(brand.get()),model.set(model.get()),serial.set(serial.get()),category.set(category.get()),unit.set(unit.get()),expiration_date.set(expiration_date.get()))

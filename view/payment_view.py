@@ -31,9 +31,12 @@ class LabelwithEntry:
     
         
 def save():
+    
     payment=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())
     table.insert(" ",END,values=payment)
     
+    msg.showinfo("saved","payment saved")
+    reset_form()
 
 def update():
     payment=(id.set(id.get()),transaction_type.set(transaction_type.get()),payment_type.set(payment_type.get()),date_time.set(date_time.get()),customer_id.set(customer_id.get()))
@@ -55,7 +58,7 @@ def reset_form():
 Label(win,text="Payment Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
 
 id=LabelwithEntry(win,"id:","DodgerBlue3",10,100,IntVar,100)
-
+id.set("")
 transaction_type=StringVar()
 Label(win,text="transaction_type",bg='DodgerBlue3').place(x=10,y=130)
 Radiobutton(win,text="payment",variable=transaction_type,value="payment",bg="lightblue").place(x=110,y=130)
