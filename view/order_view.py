@@ -95,7 +95,18 @@ class OrderView(Frame):
             messagebox.showerror("Order Delete Error", message)
 
     def reset_form(self):
-        pass
+        self.id.clear()
+        self.order_type_list.clear()
+        self.customer_id.clear()
+        self.employee_id.clear()
+        self.date_time.clear()
+        self.payment_id.clear()
+        self.warehouse_transaction_id.clear()
+        self.tax.clear()
+        self.total_discount.clear()
+        self.total_amount.clear()
+        status, order_list = self.order_controller.find_all()
+        self.refresh_table(order_list)
 
     def refresh_table(self):
         pass
