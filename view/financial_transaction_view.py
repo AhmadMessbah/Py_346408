@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from tools.financial_trancaction_veiw_tools import *
+from view.bank_view import window
+
 
 #  توابع
 def save_click():
@@ -51,3 +53,28 @@ Button(win, text="Save", width=12, command=save_click).place(x=50, y=350)
 Button(win, text="Delete", width=12).place(x=350, y=350)  # فعلاً بدون عملکرد
 
 win.mainloop()
+# window=TrancactionGui()
+# # ID
+# id= LabelWithEntry(window, "ID:", 20,20)
+# # Transaction Type
+# transaction_type= LabelWithEntry(window, ":",width=37, 20,60)
+# # Customer ID
+# customer_id= LabelWithEntry(window, "Customer ID:", 20,100)
+# # Employee ID
+# employee_id= LabelWithEntry(window, "Employee ID:", 20,140)
+# # Amount
+# amount= LabelWithEntry(window, "Amount:", 20,180)
+#
+# # Date & Time
+# date_and_time= LabelWithEntry(window, "Date & Time:", 20,220)
+#
+# # Payment ID
+# payment_id= LabelWithEntry(window, "Payment ID:", 20,260)
+#
+# # Description
+# description= LabelWithEntry(window, "Description:", 20,300, data_type=StringVar)
+#
+# Button(win, text="Save", width=12, command=save_click).place(x=50, y=350)
+#
+# Button(win, text="Delete", width=12,command=reset_form).place(x=350, y=350)  # فعلاً بدون عملکرد
+# window.mainioop()
