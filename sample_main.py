@@ -1,8 +1,2 @@
-# view
-name = "ali"
-description = "This is the description"
-
-
-
-# controller
-sam = Sample(name,description)
+# from test.sample_test import *
+# from view.sample_view import *

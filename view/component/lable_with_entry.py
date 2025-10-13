@@ -1,7 +1,7 @@
 from tkinter import *
 
 class LabelWithEntry:
-    def __init__(self, master, label_text, x, y, distance=90, data_type=IntVar):
+    def __init__(self, master, label_text, x, y, distance=90, data_type=StringVar):
         self.data_type = data_type
         self.variable = data_type()
         Label(master, text=label_text).place(x=x, y=y)
@@ -11,7 +11,6 @@ class LabelWithEntry:
         return self.variable.get()
 
     def set(self, value):
-        # todo *** validation
         self.variable.set(value)
 
     def clear(self):
