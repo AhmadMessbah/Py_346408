@@ -1,6 +1,6 @@
 from view import *
 from tkinter.ttk import Combobox
-
+from model.entity.order import Order
 from controller.order_controller import OrderController
 
 class OrderView(Frame):
