@@ -11,13 +11,13 @@ win.configure(bg="lightblue")
 #functions
 
 def save():
-    employee=(id.variable.get(),first_name.variable.get(),last_name.variable.get(),salary.variable.get(),occupation.variable.get(),phone_number.variable.get(),username.variable.get(),password.variable.get())
+    employee=(id.get(),first_name.get(),last_name.get(),salary.get(),occupation.get(),phone_number.get(),username.get(),password.get())
     table.insert("",END,values=employee)
     msg.showinfo("saved","employee saved")
     reset_form()
 def update():
     employee=(id.set(id.get()),first_name.set(first_name.get()),last_name.set(last_name.get()),salary.set(salary.get()),occupation.set(occupation.get()),phone_number.set(phone_number.get()),username.set(username.get()),password.set(password.get()))
-    table.insert(" ",END,values=employee)
+    table.insert("",END,values=employee)
     reset_form()
 def delete():
     pass
@@ -60,7 +60,7 @@ salary=LabelwithEntry(win,"salary:","DodgerBlue3",10,190,IntVar,100)
 #occupation
 occupation=LabelwithEntry(win,"occupation:","DodgerBlue3",10,220,StringVar,100)
 #phone_number
-phone_number=IntVar("")
+
 phone_number=LabelwithEntry(win,"phone_number:","DodgerBlue3",10,250,IntVar,100)
 #username
 username=LabelwithEntry(win,"username:","DodgerBlue3",10,280,StringVar,100)
