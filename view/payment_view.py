@@ -59,12 +59,12 @@ id=LabelwithEntry(win,"id:","DodgerBlue3",10,100,IntVar,100)
 transaction_type=StringVar()
 Label(win,text="transaction_type",bg='DodgerBlue3').place(x=10,y=130)
 Radiobutton(win,text="payment",variable=transaction_type,value="payment",bg="lightblue").place(x=110,y=130)
-Radiobutton(win,text="reception",variable=transaction_type,value="reception",bg="lightblue").place(x=180,y=130)
+Radiobutton(win,text="reception",variable=transaction_type,value="reception",bg="lightblue",font=('Arial',10)).place(x=180,y=130)
 
 
 payment_type=StringVar()
 Label(win,text="payment_type",bg='DodgerBlue3').place(x=10,y=160)
-ttk.Combobox(win,values=[],width=17,textvariable="payment_type",state="readonly").place(x=110,y=160)
+ttk.Combobox(win,values=["debit card","check","cash","credit"],width=17,textvariable="payment_type",state="readonly").place(x=110,y=160)
 
 
 date_time=StringVar()
