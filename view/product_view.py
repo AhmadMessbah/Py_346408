@@ -5,12 +5,11 @@ description = input("Enter description : ")
 
 product_controller = ProductController()
 product_controller.save(name, description)
-
- id, name, brand, model, serial, category, unit, expiration_date=None'''
+'''
  
 from tkinter import *
 import tkinter.ttk as ttk
-import tkinter.messagebox as msg
+from tkinter import messagebox as msg
 
 win=Tk()
 win.title=("Product")
@@ -20,11 +19,19 @@ win.configure(bg="lightblue")
 
 
 
+#class 
 class LabelwithEntry:
     def __init__(self,master,label_text,color,x,y,data_type=StringVar,distance=110,height_difference=0):
         Label(master,text=label_text,bg=(color)).place(x=x,y=y)
         self.variable=data_type()
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
+    
+    def get(self):
+        return self.variable.get()
+    
+    def set(self,value):
+        return self.variable.set(value)
+    
         
 def save():
     product=(id.get(),name.get(),brand.get(),model.get(),serial.get(),category.get(),unit.get(),expiration_date.get())

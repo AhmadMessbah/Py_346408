@@ -8,7 +8,7 @@ payment_controller.save(name, description)
 '''
 from tkinter import *
 import tkinter.ttk as ttk
-import tkinter.messagebox as msg
+from tkinter import messagebox as msg
 
 
 win=Tk()
@@ -16,12 +16,19 @@ win.title=("Payment")
 win.geometry="1000x1000"
 win.configure(bg="lightblue")
 
-
+#class 
 class LabelwithEntry:
     def __init__(self,master,label_text,color,x,y,data_type=StringVar,distance=110,height_difference=0):
         Label(master,text=label_text,bg=(color)).place(x=x,y=y)
         self.variable=data_type()
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
+    
+    def get(self):
+        return self.variable.get()
+    
+    def set(self,value):
+        return self.variable.set(value)
+    
         
 def save():
     payment=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())

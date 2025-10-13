@@ -1,16 +1,18 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox
+from tkinter import messagebox as msg
 
 
 win=Tk()
-win.title=("Employee")
-win.geometry="1000x1000"
+win.title("Employee")
+win.geometry("1000x1000")
 win.configure(bg="lightblue")
 
+#functions
+
 def save():
-    customer=(id.get(),first_name.get(),last_name.get(),salary.get(),occupation.get(),phone_number.get(),username.get(),password.get())
-    table.insert(" ",END,values=customer)
+    employee=(id.variable.get(),first_name.variable.get(),last_name.variable.get(),salary.variable.get(),occupation.variable.get(),phone_number.variable.get(),username.variable.get(),password.variable.get())
+    table.insert(" ",END,values=employee)
     
 
 def update():
@@ -31,38 +33,46 @@ def reset_form():
   password.set(" ")
   
     
-    
-    
+#class 
 class LabelwithEntry:
     def __init__(self,master,label_text,color,x,y,data_type=StringVar,distance=110,height_difference=0):
         Label(master,text=label_text,bg=(color)).place(x=x,y=y)
         self.variable=data_type()
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
-        
+    
+    def get(self):
+        return self.variable.get()
+    
+    def set(self,value):
+        return self.variable.set(value)
     
 
 Label(win,text="Employee Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
 
+#id
 id=LabelwithEntry(win,"id:","DodgerBlue3",10,100,IntVar,100)
-
+#first_name
 first_name=LabelwithEntry(win,"first_name:","DodgerBlue3",10,130,StringVar,100)
-
+#last_name
 last_name=LabelwithEntry(win,"last_name:","DodgerBlue3",10,160,StringVar,100)
-
+#salary
 salary=LabelwithEntry(win,"salary:","DodgerBlue3",10,190,IntVar,100)
-
+#occupation
 occupation=LabelwithEntry(win,"occupation:","DodgerBlue3",10,220,StringVar,100)
-
+#phone_number
 phone_number=LabelwithEntry(win,"phone_number:","DodgerBlue3",10,250,IntVar,100)
-
+#username
 username=LabelwithEntry(win,"username:","DodgerBlue3",10,280,StringVar,100)
-
+#password
 password=LabelwithEntry(win,"password:","DodgerBlue3",10,310,StringVar,100)
 
+
+
+
+
+#Button
 Button(win,text="save",bg="DodgerBlue2",width=10, command=save).place(x=10,y=350)
 Button(win,text="update",bg="DodgerBlue2",width=10, command=update).place(x=110,y=350)
-
-
 
 id=LabelwithEntry(win,"id:","DodgerBlue3",10,430,IntVar,100)
 
@@ -83,7 +93,7 @@ table.heading(7, text="username")
 table.heading(8, text="password")
 
 
-columns=["id","first_name","last_name","salary","occupation","phone_number","username","password"]
+columns=["id","first_name","last_name","salary","occupation","phone_number","username","expiration_date"]
 
 i=1
 for col in columns:
