@@ -4,7 +4,7 @@ from view.component.lable_with_entry import *
 
 
 window=Tk()
-window.geometry("700x320")
+window.geometry("700x400")
 window.title("Financial transaction")
 
 id= LabelWithEntry(window, "ID:", 20,20)
