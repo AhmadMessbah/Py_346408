@@ -32,8 +32,10 @@ def save_click():
         table.insert(
                 "",
                 END,
-                values=order
+                values = order,
                 )
+
+# todo *** tags=order_type ?????? ****
 
         messagebox.showinfo("Save", "Order has been saved")
         reset_form()
@@ -102,6 +104,11 @@ table_tax = HeadingWithWidth(table,7,"Tax")
 table_total_discount = HeadingWithWidth(table,8,"Total Discount", 90)
 table_total_amount = HeadingWithWidth(table,9,"Total Amount", 90)
 table_order_type = HeadingWithWidth(table,10,"Order Type", 120)
+
+# tags
+table.tag_configure("Basket", background="yellow")
+table.tag_configure("Income", background="light green")
+table.tag_configure("Outgoing", background="light red" )
 
 
 Button(win, text="Save", width=12, command=save_click).place(x=80,y=440)
