@@ -46,6 +46,13 @@ unit=LabelwithEntry(win,"unit:","DodgerBlue3",10,280,StringVar,100)
 
 expiration_date=LabelwithEntry(win,"expiration_date:","DodgerBlue3",10,310,StringVar,100)
 
+
+
+#save
+def save_click():
+    customer=(id.get(),name.get(),brand.get(),model.get(),serial.get(),category.get(),unit.get(),expiration_date.get())
+    table.insert(" ",END,values=customer)
+    
 Button(win,text="save",bg="DodgerBlue2",width=10).place(x=10,y=350)
 Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=350)
 
