@@ -4,7 +4,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from tools import bank_validator
 from model.entity.bank import Bank
-from model.repository.bank_repository import BankRepository
+from repository.bank_repository import BankRepository
 from tools.bank_validator import name_validator, description_validator, balance_validator, account_validator
 
 window = BankGui()
@@ -47,30 +47,34 @@ window.mainloop()
 
 
 
-# class BankGui:
-#     def __init__(self):
-#         self.window = Tk()
-#         self.window.title("Bank")
-#         self.window.geometry("400x500")
-#         self.window.configure("sky blue")
-#         self.bank_repository = BankRepository()
-#
-#     def get_info(self):
-#
-#         Label(self.window, "bank name:", fg="navy", font=("Arial", 16)).place(x=50, y=30)
-#         Entry(self.window, width=30, fg="navy", font=("Arial", 15)).place(x=160, y=60)
-#
-#         Label(self.window, text="account name:", fg="navy", font=("Arial", 16)).place(x=50, y=100)
-#         Entry(self.window, width=30, fg="navy", font=("Arial", 15)).place(x=160, y=130)
-#
-#         Label(self.window, text="balance:", fg="navy", font=("Arial", 16)).place(x=50, y=170)
-#         Entry(self.window, width=30, fg="navy", font=("Arial", 15),).place(x=160, y=200)
-#
-#         Label(self.window, text="description:", fg="navy", font=("Arial", 16)).place(x=50, y=240)
-#         Entry(self.window, width=30, fg="nazy", font=("Arial", 15)).place(x=160, y=270)
-#
-#         Button(self.window, text="save", command=self.bank_repository.save,
-#                 width=10, fg="navy", font=("Arial", 12)).place(x=100, y=320)
+class BankGui:
+    def __init__(self):
+        self.window = Tk()
+        self.window.title("Bank")
+        self.window.geometry("400x500")
+        self.window.configure(bg= "sky blue")
+        self.bank_repository = BankRepository()
+        self.name = StringVar
+        self.account = StringVar
+        self.balance = IntVar
+        self.description = StringVar
+        self.get_info()
+
+    def get_info(self):
+        Label(self.window, text="bank name:", fg="navy", font=("Arial", 16), bg="sky blue").place(x=50, y=30)
+        Entry(self.window, width=30, fg="navy", font=("Arial", 15), textvariable=self.name).place(x=160, y=60)
+
+        Label(self.window, text="account:", fg="navy", font=("Arial", 16), bg="sky blue").place(x=50, y=100)
+        Entry(self.window, width=30, fg="navy", font=("Arial", 15), textvariable=self.account).place(x=160, y=130)
+
+        Label(self.window, text="balance:", fg="navy", font=("Arial", 16), bg="sky blue").place(x=50, y=170)
+        Entry(self.window, width=30, fg="navy", font=("Arial", 15), textvariable=self.balance).place(x=160, y=200)
+
+        Label(self.window, text="description:", fg="navy", font=("Arial", 16), bg="sky blue").place(x=50, y=240)
+        Entry(self.window, width=30, fg="navy", font=("Arial", 15), textvariable=self.description).place(x=160, y=270)
+
+        Button(self.window, text="save", command=self.bank_repository.save,
+                width=10, fg="navy", font=("Arial", 12)).place(x=100, y=320)
 
 
 
@@ -83,4 +87,5 @@ window.mainloop()
 #
 # bank_controller = BankController()
 # bank_controller.save(name,balance ,account,description)
+
 
