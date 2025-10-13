@@ -1,14 +1,12 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox
-from tools.financial_trancaction_veiw_tools import *
-from view.bank_view import window
+from view.component.lable_with_entry import *
 
 
 window=Tk()
 id= LabelWithEntry(window, "ID:", 20,20)
 
-transaction_type= LabelWithEntry(window, "transaction",, 20,60)
+transaction_type= LabelWithEntry(window, "transaction", 20,60)
 
 customer_id= LabelWithEntry(window, "CustomerID", 20,100)
 
@@ -23,9 +21,9 @@ date_and_time= LabelWithEntry(window, "Date&Time", 20,220)
 payment_id= LabelWithEntry(window, "PaymentID", 20,260)
 
 
-description= LabelWithEntry(window, "Description", 20,300, data_type=StringVar)
+description= LabelWithEntry(window, "Description", 20,300)
 
-Button(window, text="Save", width=12, command=save_click).place(x=50, y=350)
+Button(window, text="Save", width=12).place(x=50, y=350)
 
-Button(window, text="Delete", width=12,command=reset_form).place(x=350, y=350)  # فعلاً بدون عملکرد
+Button(window, text="Delete", width=12).place(x=350, y=350)
 window.mainioop()
