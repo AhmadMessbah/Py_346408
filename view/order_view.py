@@ -8,7 +8,7 @@ from view.component.lable_with_entry import LabelWithEntry
 
 window = Tk()
 window.title("Order View")
-window.geometry("1300x550")
+window.geometry("1250x510")
 
 
 id = LabelWithEntry(window, "ID", 20, 20, data_type=IntVar)
