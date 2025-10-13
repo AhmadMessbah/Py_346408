@@ -3,9 +3,10 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import Combobox
 
-from view.component.label_with_entry import LabelWithEntry
+from view.component.win_table import LabelWithEntry,HeadingWithWidth
 
 from tools.order_validator import datetime_validator,datetime_parser
+
 
 def reset_form():
     id.clear()
@@ -83,27 +84,17 @@ order_type.place(x=110,y=390)
 table = ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8,9,10],show="headings")
 table.place(x=280,y=20)
 
-table.heading(1, text="ID")
-table.heading(2, text="Customer ID")
-table.heading(3, text="Employee ID")
-table.heading(4, text="Date & Time")
-table.heading(5, text="Payment ID")
-table.heading(6, text="Ware Trans ID")
-table.heading(7, text="Tax")
-table.heading(8, text="Total Discount")
-table.heading(9, text="Total Amount")
-table.heading(10, text="Order Type")
+table_id = HeadingWithWidth(table,1,"ID", 40)
+table_customer_id = HeadingWithWidth(table,2,"Customer ID", 90)
+table_employee_id = HeadingWithWidth(table,3,"Employee ID", 90)
+table_date_time = HeadingWithWidth(table,4,"Date & Time", 140)
+table_payment_id = HeadingWithWidth(table,5,"Payment ID", 90)
+table_warehouse_transaction_id = HeadingWithWidth(table,6,"Warehouse Transaction ID", 90)
+table_tax = HeadingWithWidth(table,7,"Tax")
+table_total_discount = HeadingWithWidth(table,8,"Total Discount", 90)
+table_total_amount = HeadingWithWidth(table,9,"Total Amount", 90)
+table_order_type = HeadingWithWidth(table,10,"Order Type", 120)
 
-table.column(1, width=40)
-table.column(2, width=90)
-table.column(3, width=90)
-table.column(4, width=140)
-table.column(5, width=90)
-table.column(6, width=90)
-table.column(7, width=60)
-table.column(8, width=90)
-table.column(9, width=90)
-table.column(10, width=120)
 
 Button(win, text="Save", width=12, command=save_click).place(x=80,y=440)
 
