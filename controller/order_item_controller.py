@@ -2,7 +2,7 @@ from model.entity.order_item import OrderItem
 from model.service.order_item_service import OrderItemService
 
 
-class OrderServiceController:
+class OrderItemController:
     def save(self, product_id, quantity, price, discount, description):
         try:
             order_item = OrderItem(None, product_id, quantity, price, discount, description)
@@ -32,8 +32,8 @@ class OrderServiceController:
     def find_all(self):
         try:
             service = OrderItemService()
-            order_list = service.find_all()
-            return True, order_list
+            orderitem_list = service.find_all()
+            return True, orderitem_list
         except:
             return False, "Find All Error"
 
