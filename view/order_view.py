@@ -2,9 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import Combobox
-
-from view.component.win_table import LabelWithEntry,HeadingWithWidth
-
+from view.component.heading import HeadingWithWidth
+from view.component.lable_with_entry import LabelWithEntry
 from tools.order_validator import datetime_validator,datetime_parser
 
 
@@ -40,6 +39,7 @@ def save_click():
     except Exception as e:
         messagebox.showerror("Error", f"{e}")
 
+# todo *** اتصال به دیتابیس و سیو شی
 
 
 win = Tk()
@@ -74,11 +74,22 @@ total_discount = LabelWithEntry(win, "Total Discount:", 20,310)
 # Total Amount
 total_amount = LabelWithEntry(win, "Total Amount:", 20,350)
 
+
 # Order Type
+order_type_list=["Basket","Income","Outgoing"]
+order_type = StringVar(value="Basket")
 Label(win, text="Order Type:").place(x=20,y=390)
-order_type = Combobox(win, values=["Basket","Income","Outgoing"], width=17, state="readonly")
-order_type.set("Basket")
-order_type.place(x=110,y=390)
+Combobox(
+    win,
+    values=order_type_list,
+    width=17, state="readonly"
+).place(x=110,y=390)
+
+
+
+
+
+
 
 # Table
 table = ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8,9,10],show="headings")
@@ -97,7 +108,5 @@ table_order_type = HeadingWithWidth(table,10,"Order Type", 120)
 
 
 Button(win, text="Save", width=12, command=save_click).place(x=80,y=440)
-
-
 
 win.mainloop()
