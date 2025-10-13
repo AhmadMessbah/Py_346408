@@ -40,7 +40,7 @@ table.column(5, width=90)
 
 
 Button(window, text="Save", width=10, command=save_click, fg="navy", font=("Arial", 12)).place(x=100,y=320)
-
+Button(window, text="Delete", width=10, command= reset_form, fg="navy", font=("Arial", 12)).place(x=200, y=320)
 
 window.mainloop()
 
