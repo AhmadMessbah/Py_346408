@@ -8,36 +8,29 @@ from view.component.lable_with_entry import LabelWithEntry
 
 window = Tk()
 window.title("Order View")
-window.geometry("1300x550")
+window.geometry("1250x510")
 
 
-id = LabelWithEntry(window, "ID:", 20, 20, data_type=IntVar)
-
-customer_id = LabelWithEntry(window, "Customer ID:", 20,60)
-
-employee_id = LabelWithEntry(window, "Employee ID:", 20,100)
-
-date_time = LabelWithEntry(window, "Date & Time:", 20,140)
-
-payment_id = LabelWithEntry(window, "Payment ID:", 20,180)
-
-warehouse_transaction_id = LabelWithEntry(window, "Warehouse      \nTransaction ID:", 20,220)
-
-tax = LabelWithEntry(window, "Tax:", 20,270)
-
-total_discount = LabelWithEntry(window, "Total Discount:", 20,310)
-
-total_amount = LabelWithEntry(window, "Total Amount:", 20,350)
+id = LabelWithEntry(window, "ID", 20, 20, data_type=IntVar)
+customer_id = LabelWithEntry(window, "Customer ID", 20,60, data_type=IntVar)
+employee_id = LabelWithEntry(window, "Employee ID", 20,100, data_type=IntVar)
+date_time = LabelWithEntry(window, "Date & Time", 20,140)
+payment_id = LabelWithEntry(window, "Payment ID", 20,180, data_type=IntVar)
+warehouse_transaction_id = LabelWithEntry(window, "Warehouse      \nTransaction ID", 20,225, data_type=IntVar)
+tax = LabelWithEntry(window, "Tax", 20,270, data_type=IntVar)
+total_discount = LabelWithEntry(window, "Total Discount", 20,310, data_type=IntVar)
+total_amount = LabelWithEntry(window, "Total Amount", 20,350, data_type=IntVar)
 
 
 # Order Type
-order_type_list=["Basket","Income","Outgoing"]
+order_type_list=["Basket","Sell","Buy"]
 order_type = StringVar(value="Basket")
-Label(window, text="Order Type:").place(x=20,y=390)
+Label(window, text="Order Type").place(x=20,y=390)
 Combobox(
     window,
     values=order_type_list,
-    width=17, state="readonly"
+    width=17,
+    state="readonly"
 ).place(x=110,y=390)
 
 
@@ -66,11 +59,6 @@ table.column(7, width=90)
 table.column(8, width=90)
 table.column(9, width=90)
 table.column(10, width=120)
-
-# tags
-table.tag_configure("Basket")
-table.tag_configure("Income")
-table.tag_configure("Outgoing")
 
 
 Button(window, text="Save", width=7).place(x=20,y=440)
