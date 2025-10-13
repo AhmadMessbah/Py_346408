@@ -87,14 +87,14 @@ def save_click():
     table.insert(" ",END,values=customer)
     
 Button(win,text="save",bg="#FFD6A5",width=10).place(x=10,y=350)
-Button(win,text="update",bg="#B5EAD7",width=10).place(x=110,y=350)
+Button(win,text="update",bg="#BAFEC4",width=10).place(x=110,y=350)
 
 
 
 id=LabelwithEntry(win,"id:","#FFFFFF",10,430,IntVar,100)
 
 Button(win,text="delete",bg="#A7C7E7",width=10).place(x=10,y=470)
-Button(win,text="find",bg="#FFD6A5",width=10).place(x=110,y=470)
+Button(win,text="find",bg="#FBF17E",width=10).place(x=110,y=470)
 
 
 

@@ -73,12 +73,12 @@ password=LabelwithEntry(win,"password:","#FFFFFF",10,310,StringVar,100)
 
 #Button
 Button(win,text="save",bg="#A7C7E7",width=10, command=save).place(x=10,y=350)
-Button(win,text="update",bg="#FFD6A5",width=10, command=update).place(x=110,y=350)
+Button(win,text="update",bg="#BAFEC4",width=10, command=update).place(x=110,y=350)
 
 id=LabelwithEntry(win,"id:","#FFFFFF",10,430,IntVar,100)
 
-Button(win,text="delete",bg="#B5EAD7",width=10, command=delete).place(x=10,y=470)
-Button(win,text="find",bg="#FFD6A5",width=10).place(x=110,y=470)
+Button(win,text="delete",bg="#FFBAC3",width=10, command=delete).place(x=10,y=470)
+Button(win,text="find",bg="#FBF17E",width=10).place(x=110,y=470)
 
 #table
 table=ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8],show="headings")

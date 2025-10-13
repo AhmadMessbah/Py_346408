@@ -70,14 +70,14 @@ address=LabelwithEntry(win,"address:","#FFFFFF",10,220,StringVar,100)
 Button(win,text="save",bg="#A7C7E7",command=save,width=10).place(x=10,y=250)
 
 
-Button(win,text="update",bg="#FFD6A5",width=10).place(x=110,y=250)
+Button(win,text="update",bg="#BAFEC4",width=10).place(x=110,y=250)
 
 
 
 id=LabelwithEntry(win,"id:","#FFFFFF",10,330,IntVar,100)
 
 Button(win,text="delete",bg="#FFD6A5",width=10).place(x=10,y=370)
-Button(win,text="find",bg="#B5EAD7",width=10).place(x=110,y=370)
+Button(win,text="find",bg="#FBF17E",width=10).place(x=110,y=370)
 
 #table
 table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
