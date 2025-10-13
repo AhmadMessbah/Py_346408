@@ -5,7 +5,7 @@ from tkinter import messagebox as msg
 win=Tk()
 win.title=("customer")
 win.geometry="1000x1000"
-win.configure(bg="lightblue")
+win.configure(bg="#FFF8F0")
 
 
 
@@ -46,38 +46,38 @@ def reset_form():
   
   
 #title
-Label(win,text="customer Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
+Label(win,text="customer Management System",bg=("#F18284"),font=("Arial",18,"italic")).place(x=400,y=20)
 #id
-id=LabelwithEntry(win,"id:","DodgerBlue3",10,100,IntVar,100)
+id=LabelwithEntry(win,"id:","#FFFFFF",10,100,IntVar,100)
 
 #first_name
-first_name=LabelwithEntry(win,"first_name:","DodgerBlue3",10,130,StringVar,100)
+first_name=LabelwithEntry(win,"first_name:","#FFFFFF",10,130,StringVar,100)
 
 #last_name
-last_name=LabelwithEntry(win,"last_name:","DodgerBlue3",10,160,StringVar,100)
+last_name=LabelwithEntry(win,"last_name:","#FFFFFF",10,160,StringVar,100)
 
 #phone_number
-phone_number=LabelwithEntry(win,"phone_number:","DodgerBlue3",10,190,IntVar,100)
+phone_number=LabelwithEntry(win,"phone_number:","#FFFFFF",10,190,IntVar,100)
 
 
 #address
-address=LabelwithEntry(win,"address:","DodgerBlue3",10,220,StringVar,100)
+address=LabelwithEntry(win,"address:","#FFFFFF",10,220,StringVar,100)
 
 
 
 
     
-Button(win,text="save",bg="DodgerBlue2",command=save,width=10).place(x=10,y=250)
+Button(win,text="save",bg="#A7C7E7",command=save,width=10).place(x=10,y=250)
 
 
-Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=250)
+Button(win,text="update",bg="#FFD6A5",width=10).place(x=110,y=250)
 
 
 
-id=LabelwithEntry(win,"id:","DodgerBlue3",10,330,IntVar,100)
+id=LabelwithEntry(win,"id:","#FFFFFF",10,330,IntVar,100)
 
-Button(win,text="delete",bg="DodgerBlue2",width=10).place(x=10,y=370)
-Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=370)
+Button(win,text="delete",bg="#FFB5E8",width=10).place(x=10,y=370)
+Button(win,text="find",bg="#B5EAD7",width=10).place(x=110,y=370)
 
 #table
 table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
