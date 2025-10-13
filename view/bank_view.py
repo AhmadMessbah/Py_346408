@@ -3,7 +3,7 @@ from tkinter import ttk
 from view.component.lable_with_entry import LabelWithEntry
 
 window = Tk()
-window.geometry("700x320")
+window.geometry("700x400")
 window.title("Bank")
 
 id = LabelWithEntry(window, "Id", 20,20, data_type=IntVar)
