@@ -23,6 +23,18 @@ class LabelwithEntry:
         self.variable=data_type()
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
         
+def save():
+    customer=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())
+    table.insert(" ",END,values=customer)
+    
+
+def update():
+    customer=(id.set(id.get()),transaction_type.set(transaction_type.get()),payment_type.set(payment_type.get()),date_time.set(date_time.get()),customer_id.set(customer_id.get()))
+    table.insert(" ",END,values=customer)   
+    
+def delete():
+    pass
+
     
 
 Label(win,text="Payment Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
@@ -48,11 +60,6 @@ customer_id=LabelwithEntry(win,"customer_id:","DodgerBlue3",10,220,StringVar,100
 
 
 
-#save
-def save_click():
-    customer=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())
-    table.insert(" ",END,values=customer)
-    
 Button(win,text="save",bg="DodgerBlue2",width=10).place(x=10,y=250)
 
 Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=250)

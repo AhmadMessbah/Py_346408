@@ -16,7 +16,20 @@ class LabelwithEntry:
         self.variable=data_type()
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
         
+
+def save():
+    customer=(id.get(),first_name.get(),last_name.get(),phone_number.get(),address.get())
+    table.insert(" ",END,values=customer)
     
+
+def update():
+    customer=(id.set(id.get()),first_name.set(first_name.get()),last_name.set(last_name.get()),phone_number.set(phone_number.get()),address.set(address.get()))
+
+def delete():
+    pass
+  
+  
+  
 #title
 Label(win,text="customer Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
 #id
@@ -35,11 +48,7 @@ phone_number=LabelwithEntry(win,"phone_number:","DodgerBlue3",10,190,IntVar,100)
 #address
 address=LabelwithEntry(win,"address:","DodgerBlue3",10,220,StringVar,100)
 
-#save
-def save_click():
-    customer=(id.get(),first_name.get(),last_name.get(),phone_number.get(),address.get())
-    table.insert(" ",END,values=customer)
-    
+
 
 
     

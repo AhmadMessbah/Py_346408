@@ -26,7 +26,18 @@ class LabelwithEntry:
         self.variable=data_type()
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
         
+def save():
+    customer=(id.get(),name.get(),brand.get(),model.get(),serial.get(),category.get(),unit.get(),expiration_date.get())
+    table.insert(" ",END,values=customer)
     
+
+def update():
+    customer=(id.set(id.get()),name.set(name.get()),brand.set(brand.get()),model.set(model.get()),serial.set(serial.get()),category.set(category.get()),unit.set(unit.get()),expiration_date.set(expiration_date.get()))
+    table.insert(" ",END,values=customer)  
+
+def delete():
+    pass
+
 
 Label(win,text="Product Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
 
