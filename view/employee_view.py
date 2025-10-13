@@ -20,7 +20,19 @@ def update():
 def delete():
     pass
 
-
+def reset_form():
+  id.set(0) 
+  first_name.set(" ") 
+  last_name.set(" ") 
+  salary.set(0)
+  occupation.set(" ")
+  phone_number.set(" ")
+  username.set(" ")
+  password.set(" ")
+  
+    
+    
+    
 class LabelwithEntry:
     def __init__(self,master,label_text,color,x,y,data_type=StringVar,distance=110,height_difference=0):
         Label(master,text=label_text,bg=(color)).place(x=x,y=y)
@@ -37,7 +49,7 @@ first_name=LabelwithEntry(win,"first_name:","DodgerBlue3",10,130,StringVar,100)
 
 last_name=LabelwithEntry(win,"last_name:","DodgerBlue3",10,160,StringVar,100)
 
-salary=LabelwithEntry(win,"salary:","DodgerBlue3",10,190,StringVar,100)
+salary=LabelwithEntry(win,"salary:","DodgerBlue3",10,190,IntVar,100)
 
 occupation=LabelwithEntry(win,"occupation:","DodgerBlue3",10,220,StringVar,100)
 

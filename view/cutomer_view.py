@@ -28,6 +28,12 @@ def update():
 def delete():
     pass
   
+def reset_form():
+  id.set(0) 
+  first_name.set(" ") 
+  last_name.set(" ") 
+  phone_number.set(0)
+  address.set(" ")
   
   
 #title

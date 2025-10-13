@@ -35,6 +35,14 @@ def update():
 def delete():
     pass
 
+def reset_form():
+  id.set(0) 
+  transaction_type.set(" ") 
+  payment_type.set(" ") 
+  date_time.set(" ")
+  customer_id.set(" ")
+  
+  
     
 
 Label(win,text="Payment Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)

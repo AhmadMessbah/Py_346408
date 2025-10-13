@@ -38,6 +38,19 @@ def update():
 def delete():
     pass
 
+def reset_form():
+  id.set(0) 
+  name.set(" ") 
+  brand.set(" ") 
+  model.set(" ")
+  serial.set(" ")
+  category.set(" ")
+  unit.set(" ")
+  expiration_date.set(" ")
+  
+
+
+
 
 Label(win,text="Product Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
 
