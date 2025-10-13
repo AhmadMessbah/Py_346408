@@ -46,7 +46,15 @@ date_time=LabelwithEntry(win,"date_time:","DodgerBlue3",10,190,StringVar,100)
 customer_id=StringVar()
 customer_id=LabelwithEntry(win,"customer_id:","DodgerBlue3",10,220,StringVar,100)
 
+
+
+#save
+def save_click():
+    customer=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())
+    table.insert(" ",END,values=customer)
+    
 Button(win,text="save",bg="DodgerBlue2",width=10).place(x=10,y=250)
+
 Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=250)
 
 
