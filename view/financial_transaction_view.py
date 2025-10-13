@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from tools.financial_trancaction_veiw_tools import *
 
 #  توابع
 def save_click():
