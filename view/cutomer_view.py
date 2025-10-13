@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
 
 win=Tk()
 win.title=("customer")
@@ -38,6 +40,27 @@ id=LabelwithEntry(win,"id:","DodgerBlue3",10,330,IntVar,100)
 
 Button(win,text="delete",bg="DodgerBlue2",width=10).place(x=10,y=370)
 Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=370)
+
+#table
+table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
+table.place(x=400,y=100)
+
+table.heading(1, text="id")
+table.heading(1, text="first_name")
+table.heading(1, text="last_name")
+table.heading(1, text="phone_number")
+table.heading(1, text="address")
+
+
+table.column(1,width=100)
+table.column(2,width=100)
+table.column(3,width=100)
+table.column(4,width=100)
+table.column(5,width=100)
+
+
+
+
 
 
 
