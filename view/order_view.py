@@ -4,8 +4,6 @@ from tkinter.ttk import Combobox
 from view.component.lable_with_entry import LabelWithEntry
 
 
-
-
 window = Tk()
 window.title("Order View")
 window.geometry("1250x510")

@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from view.component.lable_with_entry import LabelWithEntry
 
+
 window = Tk()
 window.title("Order Item")
 window.geometry("850x360")
