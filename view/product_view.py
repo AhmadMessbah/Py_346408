@@ -9,7 +9,8 @@ product_controller.save(name, description)
  id, name, brand, model, serial, category, unit, expiration_date=None'''
  
 from tkinter import *
-
+import tkinter.ttk as ttk
+import tkinter.messagebox as msg
 win=Tk()
 win.title=("Product")
 win.geometry="1000x1000"
@@ -55,6 +56,29 @@ Button(win,text="delete",bg="DodgerBlue2",width=10).place(x=10,y=470)
 Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=470)
 
 
+
+#table
+table=ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8],show="headings")
+table.place(x=400,y=100)
+
+table.heading(1, text="id")
+table.heading(2, text="name")
+table.heading(3, text="brand")
+table.heading(4, text="model")
+table.heading(5, text="serial")
+table.heading(6, text="category")
+table.heading(7, text="unit")
+table.heading(8, text="expiration_date")
+
+
+table.column(1,width=100)
+table.column(2,width=100)
+table.column(3,width=100)
+table.column(4,width=100)
+table.column(5,width=100)
+table.column(6,width=100)
+table.column(7,width=100)
+table.column(8,width=100)
 
 
 
