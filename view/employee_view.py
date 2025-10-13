@@ -14,7 +14,8 @@ def save():
     
 
 def update():
-    pass
+    customer=(id.set(id.get()),id.set(first_name.get()),id.set(last_name.get()),id.set(salary.get()),id.set(occupation.get()),id.set(phone_number.get()),id.set(username.get()),id.set(password.get()))
+    table.insert(" ",END,values=customer)
 
 def delete():
     pass
