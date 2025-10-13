@@ -1,22 +1,28 @@
 from model.entity.order_item import OrderItem
 from model.service.order_item_service import OrderItemService
 
-order_item = OrderItem(None, 899, 2456, 45, 120000)
-order_item_service = OrderItemService()
+order_item = OrderItem(3, 33695, 2456, 55, 120000, 10, "test")
+# print(order_item)
+order_item_service1 = OrderItemService()
 
-# order_item_service.save(order_item)
-# Save Successful,
-#                       BUT ORDER_ID Always Set to NULL???
+# test passed
+# order_item_service1.save(order_item)
 
-# order_item_service.update(order_item)
-# Update Successful!!
+# test passed
+# order_item_service1.update(order_item)
 
-# order_item_service.delete(id)
-# Delete Successful!!,
-#                       BUT Doesn't Raise Error if ID doesn't exist????
+# test passed
+# order_item_service1.delete(5)
 
-# print(order_item_service.find_all())
-# Find All Successful!!
+#############################################################
 
-# print(order_item_service.find_by_id(id))
-# Find by id Successful!!
+# todo *** BUT Doesn't Raise Error if ID doesn't exist????******
+# todo *** AND Autoincrement ID is NOT RESET?????*******
+
+#############################################################
+
+# test passed
+# print(order_item_service1.find_all())
+
+# test passed
+# print(order_item_service1.find_by_id(10))

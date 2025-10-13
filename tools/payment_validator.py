@@ -1,16 +1,16 @@
 import re
 
-def document_type_validator(document_type):
-    if not (type(document_type) == str and re.match(r"^[a-zA-Z0-9\s]{3,30}$", document_type)):
-        raise ValueError("Invalid document_type !!!")
-    else:
-        return document_type
-
 def transaction_type_validator(transaction_type):
     if not (type(transaction_type) == str and re.match(r"^[a-zA-Z0-9\s]{3,30}$", transaction_type)):
         raise ValueError("Invalid transaction_type !!!")
     else:
         return transaction_type
+
+def payment_type_validator(payment_type):
+    if not (type(payment_type) == str and re.match(r"^[a-zA-Z0-9\s]{3,30}$", payment_type)):
+        raise ValueError("Invalid payment_type !!!")
+    else:
+        return payment_type
 
 def date_time_validator(date_time):
     if not (type(date_time) == str and re.match(r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$", date_time)):
@@ -30,11 +30,11 @@ def total_amount_validator(total_amount):
     else:
         return total_amount
 
-def items_list_validator(items_list):
-    if not (type(items_list) == str and re.match(r"^[a-zA-Z0-9\s]{3,30}$", items_list)):
-        raise ValueError("Invalid items_list !!!")
+def employee_id_validator(employee_id):
+    if not (type(employee_id) == str and re.match(r"^[a-zA-Z0-9\s]{3,30}$", employee_id)):
+        raise ValueError("Invalid employee_id !!!")
     else:
-        return items_list
+        return employee_id
 
 def description_validator(description):
     if not (type(description) == str and re.match(r"^[a-zA-Z0-9\s]*$", description)):

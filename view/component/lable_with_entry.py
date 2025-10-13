@@ -11,6 +11,7 @@ class LabelWithEntry:
         return self.variable.get()
 
     def set(self, value):
+        # todo *** validation
         self.variable.set(value)
 
     def clear(self):
@@ -22,4 +23,3 @@ class LabelWithEntry:
             self.variable.set(0.0)
         elif self.data_type== BooleanVar:
             self.variable.set(True)
-

@@ -13,15 +13,15 @@ class OrderItemRepository:
 
     def save(self, order_item):
         self.connect()
-        self.cursor.execute("insert into order_items (product_id , quantity, price, discount, description) values (?,?,?,?,?)" ,
-                            [order_item.product_id, order_item.quantity, order_item.price, order_item.discount, order_item.description])
+        self.cursor.execute("insert into order_items (order_id, product_id , quantity, price, discount, description) values (?,?,?,?,?,?)" ,
+                            [order_item.order_id, order_item.product_id, order_item.quantity, order_item.price, order_item.discount, order_item.description])
         self.connection.commit()
         self.disconnect()
 
     def update(self, order_item):
         self.connect()
-        self.cursor.execute("update order_items set product_id=?, quantity=?, price=?, discount=?, description=? where id=?" ,
-                            [order_item.product_id, order_item.quantity, order_item.price, order_item.discount, order_item.description, order_item.id])
+        self.cursor.execute("update order_items set order_id=?, product_id=?, quantity=?, price=?, discount=?, description=? where id=?" ,
+                            [order_item.order_id, order_item.product_id, order_item.quantity, order_item.price, order_item.discount, order_item.description, order_item.id])
         self.connection.commit()
         self.disconnect()
 
@@ -41,6 +41,7 @@ class OrderItemRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from order_items where id=?", [id])
-        found_id = OrderItem(*self.cursor.fetchone())
+        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
         self.disconnect()
-        return found_id
+        return order_item_list
+

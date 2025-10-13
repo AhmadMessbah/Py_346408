@@ -8,10 +8,14 @@ service = ProductService()
 #test passed
 # service.save(product)
 
+#test passed
 #service.update(product)
 
+#test passed
 #service.delete(1)
 
+#test passed
 #print(service.find_all())
 
+#test passed
 #print(service.find_by_id(2))
