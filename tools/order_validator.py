@@ -1,5 +1,6 @@
 import re
 from datetime import datetime
+from dateutil import parser
 
 
 def customer_validator(customer):

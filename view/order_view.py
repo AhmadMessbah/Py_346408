@@ -2,10 +2,10 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import Combobox
-
-from view.component.label_with_entry import LabelWithEntry
-
+from view.component.heading_with_width import HeadingWithWidth
+from view.component.lable_with_entry import LabelWithEntry
 from tools.order_validator import datetime_validator,datetime_parser
+
 
 def reset_form():
     id.clear()
@@ -27,10 +27,13 @@ def save_click():
                   payment_id.get(), warehouse_transaction_id.get(), tax.get(),
                   total_discount.get(), total_amount.get(), order_type.get())
 
+# todo *** should not create object ?? *** used tuple instead object ***
+
         table.insert(
                 "",
                 END,
-                values=order
+                values = order,
+                tags = order_type.get()
                 )
 
         messagebox.showinfo("Save", "Order has been saved")
@@ -39,6 +42,7 @@ def save_click():
     except Exception as e:
         messagebox.showerror("Error", f"{e}")
 
+# todo *** database connection / save object
 
 
 win = Tk()
@@ -73,40 +77,41 @@ total_discount = LabelWithEntry(win, "Total Discount:", 20,310)
 # Total Amount
 total_amount = LabelWithEntry(win, "Total Amount:", 20,350)
 
+
 # Order Type
+order_type_list=["Basket","Income","Outgoing"]
+order_type = StringVar(value="Basket")
 Label(win, text="Order Type:").place(x=20,y=390)
-order_type = Combobox(win, values=["Basket","Income","Outgoing"], width=17, state="readonly")
-order_type.set("Basket")
-order_type.place(x=110,y=390)
+Combobox(
+    win,
+    values=order_type_list,
+    width=17, state="readonly"
+).place(x=110,y=390)
+
 
 # Table
 table = ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8,9,10],show="headings")
 table.place(x=280,y=20)
 
-table.heading(1, text="ID")
-table.heading(2, text="Customer ID")
-table.heading(3, text="Employee ID")
-table.heading(4, text="Date & Time")
-table.heading(5, text="Payment ID")
-table.heading(6, text="Ware Trans ID")
-table.heading(7, text="Tax")
-table.heading(8, text="Total Discount")
-table.heading(9, text="Total Amount")
-table.heading(10, text="Order Type")
+table_id = HeadingWithWidth(table,1,"ID", 40)
+table_customer_id = HeadingWithWidth(table,2,"Customer ID", 90)
+table_employee_id = HeadingWithWidth(table,3,"Employee ID", 90)
+table_date_time = HeadingWithWidth(table,4,"Date & Time", 140)
+table_payment_id = HeadingWithWidth(table,5,"Payment ID", 90)
+table_ware_trans_id = HeadingWithWidth(table,6,"Ware Trans ID", 90)
+table_tax = HeadingWithWidth(table,7,"Tax")
+table_total_discount = HeadingWithWidth(table,8,"Total Discount", 90)
+table_total_amount = HeadingWithWidth(table,9,"Total Amount", 90)
+table_order_type = HeadingWithWidth(table,10,"Order Type", 120)
 
-table.column(1, width=40)
-table.column(2, width=90)
-table.column(3, width=90)
-table.column(4, width=140)
-table.column(5, width=90)
-table.column(6, width=90)
-table.column(7, width=60)
-table.column(8, width=90)
-table.column(9, width=90)
-table.column(10, width=120)
+# tags
+table.tag_configure("Basket", background="yellow")
+table.tag_configure("Income", background="light green")
+table.tag_configure("Outgoing", background="light red" )
+
 
 Button(win, text="Save", width=12, command=save_click).place(x=80,y=440)
-
+# todo *** add update button ***
 
 
 win.mainloop()
