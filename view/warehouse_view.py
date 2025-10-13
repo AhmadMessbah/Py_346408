@@ -1,70 +1,36 @@
 from tkinter import *
+from tkinter import ttk
+from view.component.lable_with_entry import LabelWithEntry
 
-root = Tk()
-root.title("Warehouse View")
-root.geometry("300x250")
+window = Tk()
+window.geometry("750x320")
+window.title("Warehouse View")
 
-
-def edit():
-    win = Tk()
-    win.title("Edit")
-    win.geometry("200x200")
-    l = Label(win, text="enter product id")
-    l.pack()
-    entry = Entry(win)
-    entry.pack()
-    sub = Button(win, text="submit")
-    sub.pack()
-
-def add():
-    win = Tk()
-    win.title("Add")
-    win.geometry("200x200")
-    l = Label(win, text="enter product id")
-    l.pack()
-    entry = Entry(win)
-    entry.pack()
-    l = Label(win, text="enter product name")
-    l.pack()
-    entry = Entry(win)
-    entry.pack()
-    l = Label(win, text="enter product type")
-    l.pack()
-    entry = Entry(win)
-    entry.pack()
-    sub = Button(win, text="submit")
-    sub.pack()
-
-
-def find():
-    win = Tk()
-    win.title("Find")
-    win.geometry("200x200")
-    l = Label(win, text="enter product id")
-    l.pack()
-    entry = Entry(win)
-    entry.pack()
-    sub = Button(win, text="submit")
-    sub.pack()
+id= LabelWithEntry(window, "ID", 20,20, data_type=IntVar)
+product_id= LabelWithEntry(window, "Product_id", 20,60)
+quantity= LabelWithEntry(window, "Quantity", 20,100)
 
 
 
-# ADD-SECTION
-add_label = Label(root, text="Add product to warehouse")
-add_label.pack()
-add_btn = Button(root, text="Add product", bg="red", command=add)
-add_btn.pack(pady=5)
+table = ttk.Treeview(window,columns=[1,2,3],show="headings", height=12)
+table.place(x=270,y=20)
 
-# EDIT-SECTION
-edit_label = Label(root, text="Edit product in warehouse")
-edit_label.pack(pady=10)
-edit_btn = Button(root, text="Edit product", bg="yellow", command=edit)
-edit_btn.pack(pady=5)
+table.heading(1, text="ID")
+table.heading(2, text="Product_ID")
+table.heading(3, text="Quantity")
 
-# FIND-SECTION
-find_label = Label(root, text="Find product in warehouse")
-find_label.pack(pady=10)
-find_btn = Button(root, text="Find product", bg="green", command=find)
-find_btn.pack(pady=5)
 
-root.mainloop()
+
+table.column(1, width=30)
+table.column(2, width=100)
+table.column(3, width=100)
+
+
+
+Button(window, text="Save", width=7).place(x=20,y=260)
+Button(window, text="Edit", width=7).place(x=100,y=260)
+Button(window, text="Delete", width=7).place(x=180, y=260)
+
+window.mainloop()
+
+
