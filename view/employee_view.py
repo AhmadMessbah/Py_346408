@@ -83,16 +83,6 @@ Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=470)
 table=ttk.Treeview(win,columns=[1,2,3,4,5,6,7,8],show="headings")
 table.place(x=400,y=100)
 
-table.heading(1, text="id")
-table.heading(2, text="first_name")
-table.heading(3, text="last_name")
-table.heading(4, text="salary")
-table.heading(5, text="occupation")
-table.heading(6, text="phone_number")
-table.heading(7, text="username")
-table.heading(8, text="password")
-
-
 columns=["id","first_name","last_name","salary","occupation","phone_number","username","expiration_date"]
 
 i=1
