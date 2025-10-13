@@ -24,8 +24,8 @@ class LabelwithEntry:
         Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
         
 def save():
-    customer=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())
-    table.insert(" ",END,values=customer)
+    payment=(id.get(),transaction_type.get(),payment_type.get(),date_time.get(),customer_id.get())
+    table.insert(" ",END,values=payment)
     
 
 def update():
