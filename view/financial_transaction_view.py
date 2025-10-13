@@ -4,24 +4,18 @@ from view.component.lable_with_entry import *
 
 
 window=Tk()
+window.geometry("700x400")
+window.title("Financial transaction")
+
 id= LabelWithEntry(window, "ID:", 20,20)
-
 transaction_type= LabelWithEntry(window, "transaction", 20,60)
-
 customer_id= LabelWithEntry(window, "CustomerID", 20,100)
-
 employee_id= LabelWithEntry(window, "EmployeeID", 20,140)
-
 amount= LabelWithEntry(window, "Amount", 20,180)
-
-
 date_and_time= LabelWithEntry(window, "Date&Time", 20,220)
-
-
 payment_id= LabelWithEntry(window, "PaymentID", 20,260)
-
-
 description= LabelWithEntry(window, "Description", 20,300)
+
 table = ttk.Treeview(window,columns=[1,2,3,4,5,6,7,8],show="headings", height=12)
 table.place(x=270,y=20)
 

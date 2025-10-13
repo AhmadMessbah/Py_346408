@@ -4,21 +4,15 @@ from view.component.lable_with_entry import LabelWithEntry
 
 window = Tk()
 window.title("Order Item")
-window.geometry("900x400")
+window.geometry("850x360")
 
 
 id = LabelWithEntry(window, "ID", 20,20, data_type=IntVar)
-
-order_id = LabelWithEntry(window, "Order ID", 20,60)
-
-product_id = LabelWithEntry(window, "Product ID", 20,100)
-
-quantity = LabelWithEntry(window, "Quantity", 20,140)
-
-price = LabelWithEntry(window, "Price", 20,180)
-
-discount = LabelWithEntry(window, "Discount", 20,220)
-
+order_id = LabelWithEntry(window, "Order ID", 20,60, data_type=IntVar)
+product_id = LabelWithEntry(window, "Product ID", 20,100, data_type=IntVar)
+quantity = LabelWithEntry(window, "Quantity", 20,140, data_type=IntVar)
+price = LabelWithEntry(window, "Price", 20,180, data_type=IntVar)
+discount = LabelWithEntry(window, "Discount", 20,220, data_type=IntVar)
 description = LabelWithEntry(window, "Description", 20,260)
 
 
