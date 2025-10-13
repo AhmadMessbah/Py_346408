@@ -30,6 +30,8 @@ def save_click():
 
 # todo *** database connection / save object
 
+
+# todo *** complete update_click ***
 def update_click():
     pass
 
@@ -74,7 +76,6 @@ table_description = HeadingWithWidth(table,7, "Description", 140)
 
 Button(win, text="Save", width=12, command=save_click).place(x=80,y=300)
 Button(win, text="Update", width=12, command=update_click).place(x=80,y=340)
-
 
 
 win.mainloop()
