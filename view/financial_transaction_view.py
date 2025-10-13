@@ -1,50 +1,29 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox
-from view.bank_view import window
+from view.component.lable_with_entry import *
 
 
+window=Tk()
+id= LabelWithEntry(window, "ID:", 20,20)
 
-window = Tk()
-window.title("Financial Transaction")
-window.geometry("500x450")
+transaction_type= LabelWithEntry(window, "transaction", 20,60)
 
-#  فیلدها
-Label(window, text="ID:").place(x=20, y=20)
-id_entry = Entry(window, width=40)
-id_entry.place(x=150, y=20)
+customer_id= LabelWithEntry(window, "CustomerID", 20,100)
 
-Label(window, text="Transaction Type:").place(x=20, y=60)
-transaction_type_combo = ttk.Combobox(window, values=["Income", "Outgoing"], state="readonly", width=37)
-transaction_type_combo.place(x=150, y=60)
-transaction_type_combo.set("Income")
+employee_id= LabelWithEntry(window, "EmployeeID", 20,140)
 
-Label(window, text="Customer ID:").place(x=20, y=100)
-customer_id_entry = Entry(window, width=40)
-customer_id_entry.place(x=150, y=100)
+amount= LabelWithEntry(window, "Amount", 20,180)
 
-Label(window, text="Employee ID:").place(x=20, y=140)
-employee_id_entry = Entry(window, width=40)
-employee_id_entry.place(x=150, y=140)
 
-Label(window, text="Amount:").place(x=20, y=180)
-amount_entry = Entry(window, width=40)
-amount_entry.place(x=150, y=180)
+date_and_time= LabelWithEntry(window, "Date&Time", 20,220)
 
-Label(window, text="Date & Time:").place(x=20, y=220)
-date_time_entry = Entry(window, width=40)
-date_time_entry.place(x=150, y=220)
 
-Label(window, text="Payment ID:").place(x=20, y=260)
-payment_id_entry = Entry(window, width=40)
-payment_id_entry.place(x=150, y=260)
+payment_id= LabelWithEntry(window, "PaymentID", 20,260)
 
-Label(window, text="Description:").place(x=20, y=300)
-description_entry = Entry(window, width=40)
-description_entry.place(x=150, y=300)
 
-#  دکمه‌ها
+description= LabelWithEntry(window, "Description", 20,300)
+
 Button(window, text="Save", width=12).place(x=50, y=350)
-Button(window, text="Delete", width=12).place(x=350, y=350)  # فعلاً بدون عملکرد
 
-window.mainloop()
+Button(window, text="Delete", width=12).place(x=350, y=350)
+window.mainioop()
