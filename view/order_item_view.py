@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 
-from view.component.win_table import LabelWithEntry,HeadingWithWidth
+from view.component.lable_with_entry import LabelWithEntry,HeadingWithWidth
 
 def reset_form():
     id.clear()

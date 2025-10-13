@@ -3,7 +3,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter.ttk import Combobox
 
-from view.component.win_table import LabelWithEntry,HeadingWithWidth
+from view.component.lable_with_entry import LabelWithEntry,HeadingWithWidth
 
 from tools.order_validator import datetime_validator,datetime_parser
 
