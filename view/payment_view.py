@@ -14,7 +14,7 @@ from tkinter import messagebox as msg
 win=Tk()
 win.title=("Payment")
 win.geometry="1000x1000"
-win.configure(bg="lightblue")
+win.configure(bg="#FFF8F0")
 
 #class 
 class LabelwithEntry:
@@ -55,39 +55,39 @@ def reset_form():
   
     
 
-Label(win,text="Payment Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
+Label(win,text="Payment Management System",bg=("#F18284"),font=("Arial",18,"italic")).place(x=400,y=20)
 
-id=LabelwithEntry(win,"id:","DodgerBlue3",10,100,IntVar,100)
+id=LabelwithEntry(win,"id:","#FFFFFF",10,100,IntVar,100)
 id.set("")
 transaction_type=StringVar()
-Label(win,text="transaction_type",bg='DodgerBlue3').place(x=10,y=130)
-Radiobutton(win,text="payment",variable=transaction_type,value="payment",bg="lightblue").place(x=110,y=130)
-Radiobutton(win,text="reception",variable=transaction_type,value="reception",bg="lightblue",font=('Arial',10)).place(x=180,y=130)
+Label(win,text="transaction_type",bg='#FFFFFF').place(x=10,y=130)
+Radiobutton(win,text="payment",variable=transaction_type,value="payment",bg="#FFFFFF").place(x=110,y=130)
+Radiobutton(win,text="reception",variable=transaction_type,value="reception",bg="#FFFFFF",font=('Arial',10)).place(x=180,y=130)
 
 
 payment_type=StringVar()
-Label(win,text="payment_type",bg='DodgerBlue3').place(x=10,y=160)
+Label(win,text="payment_type",bg='#FFFFFF').place(x=10,y=160)
 ttk.Combobox(win,values=["debit card","check","cash","credit"],width=17,textvariable="payment_type",state="readonly").place(x=110,y=160)
 
 
 date_time=StringVar()
-date_time=LabelwithEntry(win,"date_time:","DodgerBlue3",10,190,StringVar,100)
+date_time=LabelwithEntry(win,"date_time:","#FFFFFF",10,190,StringVar,100)
 
 customer_id=StringVar()
-customer_id=LabelwithEntry(win,"customer_id:","DodgerBlue3",10,220,StringVar,100)
+customer_id=LabelwithEntry(win,"customer_id:","#FFFFFF",10,220,StringVar,100)
 
 
 
-Button(win,text="save",bg="DodgerBlue2",width=10).place(x=10,y=250)
+Button(win,text="save",bg="#A7C7E7",width=10).place(x=10,y=250)
 
-Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=250)
+Button(win,text="update",bg="#FFD6A5",width=10).place(x=110,y=250)
 
 
 
-id=LabelwithEntry(win,"id:","DodgerBlue3",10,330,IntVar,100)
+id=LabelwithEntry(win,"id:","#FFFFFF",10,330,IntVar,100)
 
-Button(win,text="delete",bg="DodgerBlue2",width=10).place(x=10,y=370)
-Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=370)
+Button(win,text="delete",bg="#FFD6A5",width=10).place(x=10,y=370)
+Button(win,text="find",bg="#B5EAD7",width=10).place(x=110,y=370)
 
 #table
 table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")

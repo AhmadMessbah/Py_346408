@@ -14,7 +14,7 @@ from tkinter import messagebox as msg
 win=Tk()
 win.title=("Product")
 win.geometry="1000x1000"
-win.configure(bg="lightblue")
+win.configure(bg="#FFF8F0")
 
 
 
@@ -61,23 +61,23 @@ def reset_form():
 
 
 
-Label(win,text="Product Management System",bg=("DodgerBlue3"),font=("Arial",18,"italic")).place(x=400,y=20)
+Label(win,text="Product Management System",bg=("#F18284"),font=("Arial",18,"italic")).place(x=400,y=20)
 
-id=LabelwithEntry(win,"id:","DodgerBlue3",10,100,IntVar,100)
+id=LabelwithEntry(win,"id:","#FFFFFF",10,100,IntVar,100)
 
-name=LabelwithEntry(win,"name:","DodgerBlue3",10,130,StringVar,100)
+name=LabelwithEntry(win,"name:","#FFFFFF",10,130,StringVar,100)
 
-brand=LabelwithEntry(win,"brand:","DodgerBlue3",10,160,StringVar,100)
+brand=LabelwithEntry(win,"brand:","#FFFFFF",10,160,StringVar,100)
 
-model=LabelwithEntry(win,"model:","DodgerBlue3",10,190,StringVar,100)
+model=LabelwithEntry(win,"model:","#FFFFFF",10,190,StringVar,100)
 
-serial=LabelwithEntry(win,"serial:","DodgerBlue3",10,220,StringVar,100)
+serial=LabelwithEntry(win,"serial:","#FFFFFF",10,220,StringVar,100)
 
-category=LabelwithEntry(win,"category:","DodgerBlue3",10,250,IntVar,100)
+category=LabelwithEntry(win,"category:","#FFFFFF",10,250,IntVar,100)
 
-unit=LabelwithEntry(win,"unit:","DodgerBlue3",10,280,StringVar,100)
+unit=LabelwithEntry(win,"unit:","#FFFFFF",10,280,StringVar,100)
 
-expiration_date=LabelwithEntry(win,"expiration_date:","DodgerBlue3",10,310,StringVar,100)
+expiration_date=LabelwithEntry(win,"expiration_date:","#FFFFFF",10,310,StringVar,100)
 
 
 
@@ -86,15 +86,15 @@ def save_click():
     customer=(id.get(),name.get(),brand.get(),model.get(),serial.get(),category.get(),unit.get(),expiration_date.get())
     table.insert(" ",END,values=customer)
     
-Button(win,text="save",bg="DodgerBlue2",width=10).place(x=10,y=350)
-Button(win,text="update",bg="DodgerBlue2",width=10).place(x=110,y=350)
+Button(win,text="save",bg="#FFD6A5",width=10).place(x=10,y=350)
+Button(win,text="update",bg="#B5EAD7",width=10).place(x=110,y=350)
 
 
 
-id=LabelwithEntry(win,"id:","DodgerBlue3",10,430,IntVar,100)
+id=LabelwithEntry(win,"id:","#FFFFFF",10,430,IntVar,100)
 
-Button(win,text="delete",bg="DodgerBlue2",width=10).place(x=10,y=470)
-Button(win,text="find",bg="DodgerBlue2",width=10).place(x=110,y=470)
+Button(win,text="delete",bg="#A7C7E7",width=10).place(x=10,y=470)
+Button(win,text="find",bg="#FFD6A5",width=10).place(x=110,y=470)
 
 
 

@@ -76,7 +76,7 @@ Button(win,text="update",bg="#FFD6A5",width=10).place(x=110,y=250)
 
 id=LabelwithEntry(win,"id:","#FFFFFF",10,330,IntVar,100)
 
-Button(win,text="delete",bg="#FFB5E8",width=10).place(x=10,y=370)
+Button(win,text="delete",bg="#FFD6A5",width=10).place(x=10,y=370)
 Button(win,text="find",bg="#B5EAD7",width=10).place(x=110,y=370)
 
 #table
