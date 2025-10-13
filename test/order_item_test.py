@@ -14,13 +14,6 @@ order_item_service1 = OrderItemService()
 # test passed
 # order_item_service1.delete(5)
 
-#############################################################
-
-# todo *** BUT Doesn't Raise Error if ID doesn't exist????******
-# todo *** AND Autoincrement ID is NOT RESET?????*******
-
-#############################################################
-
 # test passed
 # print(order_item_service1.find_all())
 
