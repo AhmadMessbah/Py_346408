@@ -32,8 +32,8 @@ class OrderItemController:
     def find_all(self):
         try:
             service = OrderItemService()
-            orderitem_list = service.find_all()
-            return True, orderitem_list
+            order_item_list = service.find_all()
+            return True, order_item_list
         except:
             return False, "Find All Error"
 
