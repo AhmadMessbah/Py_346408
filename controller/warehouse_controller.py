@@ -5,7 +5,6 @@ class WarehouseController:
     def save(self, product_id, quantity):
         try:
             warehouse = Warehouse(None, product_id, quantity)
-            print("Warehouse save request [OK]")
             service = WarehouseService()
             service.save(warehouse)
             return True, "Saved"
@@ -15,7 +14,6 @@ class WarehouseController:
     def update(self, product_id, quantity):
         try:
             warehouse = Warehouse(None, product_id, quantity)
-            print("Warehouse update request [OK]")
             service = WarehouseService()
             service.update(warehouse)
             return True, "Updated"
@@ -26,7 +24,6 @@ class WarehouseController:
         try:
             service = WarehouseService()
             service.delete(id)
-            print("Warehouse delete request [OK]")
             return True, "Deleted"
         except:
             return False, "Error"
@@ -35,7 +32,6 @@ class WarehouseController:
         try:
             service = WarehouseService()
             service.find_all()
-            print("Warehouse find all request [OK]")
             return True, "Found"
         except:
             return False, "Error"
@@ -44,7 +40,6 @@ class WarehouseController:
         try:
             service = WarehouseService()
             service.find_by_id(id)
-            print("Warehouse find by id request [OK]")
             return True, "Found"
         except:
             return False, "Error"
