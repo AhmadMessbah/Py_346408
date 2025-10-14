@@ -78,7 +78,7 @@ class OrderView(Frame):
             messagebox.showerror("Order Save Error", message)
 
     def edit_click(self):
-        status, message = self.order_controller.update(self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
+        status, message = self.order_controller.update(self.id.get(), self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
                                                        self.date_time.get(), self.payment_id.get(), self.warehouse_transaction_id.get(),
                                                        self.tax.get(), self.total_discount.get(), self.total_amount.get())
         if status:

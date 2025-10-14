@@ -46,7 +46,8 @@ class OrderItemView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.order_item_controller.save(self.product_id.get(), self.quantity.get(), self.price.get())
+        status, message = self.order_item_controller.save(self.order_id.get(), self.product_id.get(), self.quantity.get(),
+                                                          self.price.get(), self.discount.get(), self.description.get())
         if status:
             messagebox.showinfo("OrderItem Save", message)
             self.reset_form()
@@ -54,7 +55,8 @@ class OrderItemView:
             messagebox.showerror("OrderItem Save Error", message)
 
     def edit_click(self):
-        status, message = self.order_item_controller.update(self.product_id.get(), self.quantity.get(), self.price.get())
+        status, message = self.order_item_controller.update(self.id.get(),self.order_id.get(), self.product_id.get(), self.quantity.get(),
+                                                          self.price.get(), self.discount.get(), self.description.get())
         if status:
             messagebox.showinfo("OrderItem Update", message)
             self.reset_form()
