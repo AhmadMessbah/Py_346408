@@ -119,14 +119,15 @@ class OrderView(Frame):
 
     def select_from_table(self, event):
         selected_order = self.table.item(self.table.focus())["values"]
-        self.id.set(order.id)
-        self.order_type.set(order.order_type)
-        self.customer_id.set(order.customer_id)
-        self.employee_id.set(order.employee_id)
-        self.date_time.set(order.date_time.get())
-        self.payment_id.set(order.payment_id)
-        self.warehouse_transaction_id.set(order.warehouse_transaction_id)
-        self.tax.set(order.tax.get())
-        self.total_discount.set(order.total_discount.get())
-        self.total_amount.set(order.total_amount.get())
-
+        if selected_order:
+            order = Order(*selected_order)
+            self.id.set(order.id)
+            self.order_type.set(order.order_type)
+            self.customer_id.set(order.customer_id)
+            self.employee_id.set(order.employee_id)
+            self.date_time.set(order.date_time.get())
+            self.payment_id.set(order.payment_id)
+            self.warehouse_transaction_id.set(order.warehouse_transaction_id)
+            self.tax.set(order.tax.get())
+            self.total_discount.set(order.total_discount.get())
+            self.total_amount.set(order.total_amount.get())

@@ -99,4 +99,3 @@ class OrderItemView:
             self.price.set(order_item.price)
             self.discount.set(order_item.discount)
             self.description.set(order_item.description)
-
