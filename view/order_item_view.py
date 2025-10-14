@@ -85,7 +85,7 @@ class OrderItemView:
             self.table.delete(item)
 
         for order_item in order_item_list:
-            order_item_tuple = tuple(OrderItem.__dict__.values())
+            order_item_tuple = tuple(order_item.__dict__.values())
             self.table.insert("", END, values=order_item_tuple)
 
     def select_from_table(self, event):
