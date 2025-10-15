@@ -54,6 +54,37 @@ class EmployeeView:
         self.window.mainloop()
 
 
+    def save_click(self):
+        status, message = self.employee_controller.save(self.first_name.get(), self.last_name.get(), self.salary.get(), self.occupation(), self.phone_number.get(), self.username.get(), self.password.get())
+        if status:
+            messagebox.showinfo("Employee Save", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Employee Save Error", message)
+
+
+    def edit_click(self):
+        status, message = self.employee_controller.update(self.first_name.get(), self.last_name.get(), self.salary.get(),
+                                                        self.occupation(), self.phone_number.get(), self.username.get(),
+                                                        self.password.get())
+        if status:
+            messagebox.showinfo("Employee update", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Employee update Error", message)
+
+
+
+    def delete_click(self):
+        status, message = self.employee_controller.delete(self.id.get())
+        if status:
+            messagebox.showinfo("Employee Delete", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Employee Delete Error", message)
+
+
+
 
 
 
