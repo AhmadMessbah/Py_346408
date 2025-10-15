@@ -5,20 +5,18 @@ class EmployeeController:
     def save(self, first_name, last_name, salary, occupation, phone_number, username, password):
         try:
            employe = Employee(None, first_name, last_name, salary, occupation, phone_number, username, password)
-           print("employee darkhaste zakhire kard, ok")
            service = EmployeeService()
            service.save(employe)
-           return True, "Saved"
+           return True, f"Employee Saved Successfully \n{employe}"
         except:
             return False, "Save Error"
 
     def update(self, id, first_name, last_name, salary, occupation, phone_number, username, password):
         try:
-            #id None?
             employee = Employee(id, first_name, last_name, salary, occupation, phone_number, username, password)
             service = EmployeeService()
             service.update(employee)
-            return True, "Updated Successfully"
+            return True, f"Employee updated Successfully \n{employe}"
         except:
             return False, "Update Error"
 
