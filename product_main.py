@@ -1,3 +1,6 @@
 #from test import product_test
-from view import product_view
+from view.product_view import  ProductView
+
+
+ui=ProductView
 
