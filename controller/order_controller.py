@@ -17,7 +17,7 @@ class OrderController:
     def update(self, id, order_type, customer_id, employee_id, date_time, payment_id,
                warehouse_transaction_id, tax=None, total_discount=None, total_amount=None):
         try:
-            order = Order(id, order_type, customer_id,employee_id, date_time,
+            order = Order(id, order_type, customer_id, employee_id, date_time,
                  payment_id, warehouse_transaction_id, tax, total_discount, total_amount)
             service = OrderService()
             service.update(order)
