@@ -1,2 +1,4 @@
 # from test import order_test
-from view import order_view
+from view.order_view import OrderView
+
+ui = OrderView()
