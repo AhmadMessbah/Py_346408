@@ -3,18 +3,18 @@ from model.service.order_item_service import OrderItemService
 
 
 class OrderItemController:
-    def save(self, product_id, quantity, price, discount, description):
+    def save(self,order_id, product_id, quantity, price, discount, description):
         try:
-            order_item = OrderItem(None, product_id, quantity, price, discount, description)
+            order_item = OrderItem(None,order_id, product_id, quantity, price, discount, description)
             service = OrderItemService()
             service.save(order_item)
             return True, f"Customer Saved Successfully \n{order_item}"
         except:
             return False, "Save Error"
 
-    def update(self, id, product_id, quantity, price, discount, description):
+    def update(self, id,order_id, product_id, quantity, price, discount, description):
         try:
-            order_item = OrderItem(id, product_id, quantity, price, discount, description)
+            order_item = OrderItem(id,order_id, product_id, quantity, price, discount, description)
             service = OrderItemService()
             service.update(order_item)
             return True, f"Customer Updated Successfully \n{order_item}"
