@@ -4,44 +4,46 @@ from tkinter.ttk import Combobox
 from model.entity.order import Order
 from controller.order_controller import OrderController
 
-class OrderView:
+class OrderView():
     def __init__(self):
+
         self.order_controller = OrderController()
+
         self.window = Tk()
         self.window.title("Order")
         self.window.geometry("1250x510")
 
-        self.id = LabelWithEntry(self.window, "ID", 20, 20, data_type=IntVar, state="readonly")
-        self.customer_id = LabelWithEntry(self.window, "Customer ID", 20, 60, data_type=IntVar)
-        self.employee_id = LabelWithEntry(self.window, "Employee ID", 20, 100, data_type=IntVar)
+        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.customer_id = LabelWithEntry(self.window, "Customer Id", 20, 60, data_type=IntVar)
+        self.employee_id = LabelWithEntry(self.window, "Employee Id", 20, 100, data_type=IntVar)
         self.date_time = LabelWithEntry(self.window, "Date & Time", 20, 140)
-        self.payment_id = LabelWithEntry(self.window, "Payment ID", 20, 180, data_type=IntVar)
-        self.warehouse_transaction_id = LabelWithEntry(self.window, "Ware Trans ID", 20, 225, data_type=IntVar)
+        self.payment_id = LabelWithEntry(self.window, "Payment Id", 20, 180, data_type=IntVar)
+        self.warehouse_transaction_id = LabelWithEntry(self.window, "Ware Trans Id", 20, 225, data_type=IntVar)
         self.tax = LabelWithEntry(self.window, "Tax", 20, 270, data_type=IntVar)
         self.total_discount = LabelWithEntry(self.window, "Total Discount", 20, 310, data_type=IntVar)
         self.total_amount = LabelWithEntry(self.window, "Total Amount", 20, 350, data_type=IntVar)
 
-        self.order_type_list = ["Basket", "Sell", "Buy"]
-        self.order_type = StringVar(value="Basket")
+        order_type_list = ["Basket", "Sell", "Buy"]
+        type_order = StringVar(value="Basket")
         Label(self.window, text="Order Type").place(x=20, y=390)
-        Combobox(
+        self.order_type = Combobox(
             self.window,
-            values=self.order_type_list,
-            textvariable=self.order_type,
+            values=order_type_list,
+            textvariable=type_order,
             width=17,
-            state="readonly"
-        ).place(x=110, y=390)
+            state="readonly")
+        self.order_type.place(x=110, y=390)
 
         self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], show="headings", height=21)
         self.table.place(x=280, y=20)
 
-        self.table.heading(1, text="ID")
+        self.table.heading(1, text="Id")
         self.table.heading(2, text="Order Type")
-        self.table.heading(3, text="Customer ID")
-        self.table.heading(4, text="Employee ID")
+        self.table.heading(3, text="Customer Id")
+        self.table.heading(4, text="Employee Id")
         self.table.heading(5, text="Date & Time")
-        self.table.heading(6, text="Payment ID")
-        self.table.heading(7, text="Ware Trans ID")
+        self.table.heading(6, text="Payment Id")
+        self.table.heading(7, text="Ware Trans Id")
         self.table.heading(8, text="Tax")
         self.table.heading(9, text="Total Discount")
         self.table.heading(10, text="Total Amount")
@@ -49,8 +51,8 @@ class OrderView:
         self.table.column(1, width=40)
         self.table.column(2, width=90)
         self.table.column(3, width=90)
-        self.table.column(4, width=140)
-        self.table.column(5, width=90)
+        self.table.column(4, width=90)
+        self.table.column(5, width=140)
         self.table.column(6, width=90)
         self.table.column(7, width=90)
         self.table.column(8, width=90)
@@ -62,12 +64,13 @@ class OrderView:
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=440)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=440)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=175, y=440)
+
         self.reset_form()
         self.window.mainloop()
 
     def save_click(self):
         status, message = self.order_controller.save(self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
-                                                     self.date_time.get(),self.payment_id.get(),
+                                                     self.date_time.get(), self.payment_id.get(),
                                                      self.warehouse_transaction_id.get(), self.tax.get(),
                                                      self.total_discount.get(), self.total_amount.get())
         if status:
@@ -96,7 +99,6 @@ class OrderView:
 
     def reset_form(self):
         self.id.clear()
-        self.order_type_list.clear()
         self.customer_id.clear()
         self.employee_id.clear()
         self.date_time.clear()
@@ -105,6 +107,7 @@ class OrderView:
         self.tax.clear()
         self.total_discount.clear()
         self.total_amount.clear()
+        self.order_type.set("Basket")
         status, order_list = self.order_controller.find_all()
         self.refresh_table(order_list)
 
