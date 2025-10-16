@@ -23,13 +23,13 @@ class OrderView():
         self.total_discount = LabelWithEntry(self.window, "Total Discount", 20, 310, data_type=IntVar)
         self.total_amount = LabelWithEntry(self.window, "Total Amount", 20, 350, data_type=IntVar)
 
-        self.order_type_list = ["Basket", "Sell", "Buy"]
-        self.type_order = StringVar(value="Basket")
+        order_type_list = ["Basket", "Sell", "Buy"]
+        type_order = StringVar(value="Basket")
         Label(self.window, text="Order Type").place(x=20, y=390)
         self.order_type = Combobox(
             self.window,
-            values=self.order_type_list,
-            textvariable=self.type_order,
+            values=order_type_list,
+            textvariable=type_order,
             width=17,
             state="readonly")
         self.order_type.place(x=110, y=390)
@@ -69,8 +69,8 @@ class OrderView():
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.order_controller.save(self.order_type.get(), self.customer_id, self.employee_id.get(),
-                                                     self.date_time.get(),self.payment_id.get(),
+        status, message = self.order_controller.save(self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
+                                                     self.date_time.get(), self.payment_id.get(),
                                                      self.warehouse_transaction_id.get(), self.tax.get(),
                                                      self.total_discount.get(), self.total_amount.get())
         if status:
