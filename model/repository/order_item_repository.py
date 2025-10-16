@@ -25,7 +25,7 @@ class OrderItemRepository:
         self.connection.commit()
         self.disconnect()
 
-    def delete(self,id):
+    def delete(self, id):
         self.connect()
         self.cursor.execute("delete from order_items where id=?", [id])
         self.connection.commit()
