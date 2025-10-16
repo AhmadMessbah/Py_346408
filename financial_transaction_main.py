@@ -1,1 +1,2 @@
-from test import financial_transaction_test
+# from test import financial_transaction_test
+from veiw import financial_trancaction_veiw

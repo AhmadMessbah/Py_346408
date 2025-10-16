@@ -1,52 +1,41 @@
 from tkinter import *
 from tkinter import ttk
-from tkinter import messagebox
+from view.component.lable_with_entry import *
 
-#  توابع
-def save_click():
-    messagebox.showinfo("Save", "Transaction  saved")
-#  پنجره
-win = Tk()
-win.title("Financial Transaction")
-win.geometry("500x450")
 
-#  فیلدها
-Label(win, text="ID:").place(x=20, y=20)
-id_entry = Entry(win, width=40)
-id_entry.place(x=150, y=20)
+window=Tk()
+window.geometry("700x400")
+window.title("Financial transaction")
 
-Label(win, text="Transaction Type:").place(x=20, y=60)
-transaction_type_combo = ttk.Combobox(win, values=["Income", "Outgoing"], state="readonly", width=37)
-transaction_type_combo.place(x=150, y=60)
-transaction_type_combo.set("Income")
+id= LabelWithEntry(window, "ID:", 20,20)
+transaction_type= LabelWithEntry(window, "Transaction", 20,60)
+customer_id= LabelWithEntry(window, "CustomerID", 20,100)
+employee_id= LabelWithEntry(window, "EmployeeID", 20,140)
+amount= LabelWithEntry(window, "Amount", 20,180)
+date_and_time= LabelWithEntry(window, "Date&Time", 20,220)
+payment_id= LabelWithEntry(window, "PaymentID", 20,260)
+description= LabelWithEntry(window, "Description", 20,300)
 
-Label(win, text="Customer ID:").place(x=20, y=100)
-customer_id_entry = Entry(win, width=40)
-customer_id_entry.place(x=150, y=100)
+table = ttk.Treeview(window,columns=[1,2,3,4,5,6,7,8],show="headings", height=12)
+table.place(x=270,y=20)
 
-Label(win, text="Employee ID:").place(x=20, y=140)
-employee_id_entry = Entry(win, width=40)
-employee_id_entry.place(x=150, y=140)
+table.heading(1, text="ID")
+table.heading(2, text="Transaction")
+table.heading(3, text="CustomerID")
+table.heading(4, text="EmployeeID")
+table.heading(5, text="Amount")
+table.heading(6, text="Date&Time")
+table.heading(7, text="PaymentID")
+table.heading(8, text="Description")
 
-Label(win, text="Amount:").place(x=20, y=180)
-amount_entry = Entry(win, width=40)
-amount_entry.place(x=150, y=180)
+table.column(1, width=40)
+table.column(2, width=100)
+table.column(3, width=100)
+table.column(4, width=60)
+table.column(5, width=100)
 
-Label(win, text="Date & Time:").place(x=20, y=220)
-date_time_entry = Entry(win, width=40)
-date_time_entry.place(x=150, y=220)
+Button(window, text="Save", width=7).place(x=20,y=260)
+Button(window, text="Edit", width=7).place(x=100,y=260)
+Button(window, text="Delete", width=7).place(x=180, y=260)
 
-Label(win, text="Payment ID:").place(x=20, y=260)
-payment_id_entry = Entry(win, width=40)
-payment_id_entry.place(x=150, y=260)
-
-Label(win, text="Description:").place(x=20, y=300)
-description_entry = Entry(win, width=40)
-description_entry.place(x=150, y=300)
-
-#  دکمه‌ها
-Button(win, text="Save", width=12, command=save_click).place(x=50, y=350)
-
-Button(win, text="Delete", width=12).place(x=350, y=350)  # فعلاً بدون عملکرد
-
-win.mainloop()
+window.mainloop()

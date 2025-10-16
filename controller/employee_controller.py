@@ -4,21 +4,19 @@ from model.service.employee_service import EmployeeService
 class EmployeeController:
     def save(self, first_name, last_name, salary, occupation, phone_number, username, password):
         try:
-           employe = Employee(None, first_name, last_name, salary, occupation, phone_number, username, password)
-           print("employee darkhaste zakhire kard, ok")
+           employee = Employee(None, first_name, last_name, salary, occupation, phone_number, username, password)
            service = EmployeeService()
-           service.save(employe)
-           return True, "Saved"
+           service.save(employee)
+           return True, f"Employee Saved Successfully \n{employee}"
         except:
             return False, "Save Error"
 
     def update(self, id, first_name, last_name, salary, occupation, phone_number, username, password):
         try:
-            #id None?
             employee = Employee(id, first_name, last_name, salary, occupation, phone_number, username, password)
             service = EmployeeService()
             service.update(employee)
-            return True, "Updated Successfully"
+            return True, f"Employee updated Successfully \n{employee}"
         except:
             return False, "Update Error"
 
@@ -33,8 +31,8 @@ class EmployeeController:
     def find_all(self):
         try:
             service = EmployeeService()
-            employees = service.find_all()
-            return True, employees
+            employee_list = service.find_all()
+            return True, employee_list
         except:
             return False, "Find All Error"
 
@@ -44,4 +42,4 @@ class EmployeeController:
             employee = service.find_by_id(id)
             return True, employee
         except:
-            return False, "Find By ID Error"
+            return False, "Find By Id Error"

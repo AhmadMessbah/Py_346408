@@ -3,25 +3,44 @@ from model.service.order_item_service import OrderItemService
 
 
 class OrderItemController:
-
-    def save(self, product_id, quantity, price, discount, description):
+    def save(self,order_id, product_id, quantity, price, discount, description):
         try:
-            order_item = OrderItem(None, product_id, quantity, price, discount, description)
-            print("Save requested, ok")
+            order_item = OrderItem(None,order_id, product_id, quantity, price, discount, description)
             service = OrderItemService()
             service.save(order_item)
-            return True, "Saved"
+            return True, f"Customer Saved Successfully \n{order_item}"
         except:
             return False, "Save Error"
 
-    def update(self, order_item):
-        pass
+    def update(self, id,order_id, product_id, quantity, price, discount, description):
+        try:
+            order_item = OrderItem(id,order_id, product_id, quantity, price, discount, description)
+            service = OrderItemService()
+            service.update(order_item)
+            return True, f"Customer Updated Successfully \n{order_item}"
+        except:
+            return False, "Update Error"
 
     def delete(self, id):
-        pass
+        try:
+            service = OrderItemService()
+            service.delete(id)
+            return True, f"Customer With Id{id} Delete Successfully"
+        except:
+            return False, "Delete Error"
 
     def find_all(self):
-        pass
+        try:
+            service = OrderItemService()
+            order_item_list = service.find_all()
+            return True, order_item_list
+        except:
+            return False, "Find All Error"
 
     def find_by_id(self, id):
-        pass
+        try:
+            service = OrderItemService()
+            order = service.find_by_id(id)
+            return True, order
+        except:
+            return False, "Find By Id Error"

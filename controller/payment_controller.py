@@ -6,19 +6,18 @@ class PaymentController:
     def save(self,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description):
         try:
             payment = Payment(None,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description)
-            print("Ali darkhaste zakhire kard, ok")
             service = PaymentService()
             service.save(payment)
-            return True, "Saved"
+            return True, f"Payment Saved Successfully \n{payment}"
         except:
             return False, "Save Error"
 
     def update(self,id,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description):
         try:
-            payment = Payment(None,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description)
+            payment = Payment(id,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description)
             service = PaymentService()
             service.update(payment)
-            return True, "Updated successfully"
+            return True, f"Payment Updated Successfully \n{payment}"
         except:
             return False, "Update Error"
 
@@ -26,15 +25,15 @@ class PaymentController:
         try:
             service = PaymentService()
             service.delete(id)
-            return True, f"payment with ID {id} delete successfully"
+            return True, f"Payment with Id {id} delete successfully"
         except:
             return False, "delete Error"
 
     def find_all(self):
         try:
             service = PaymentService()
-            payments = service.find_all()
-            return True, payments
+            payment_list = service.find_all()
+            return True, payment_list
         except:
             return False, "Find All Error"
 
@@ -44,4 +43,4 @@ class PaymentController:
             payment = service.find_by_id(id)
             return True, payment
         except:
-            return False, "Find By ID Error"
+            return False, "Find By Id Error"
