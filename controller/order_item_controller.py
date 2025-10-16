@@ -8,7 +8,7 @@ class OrderItemController:
             order_item = OrderItem(None,order_id, product_id, quantity, price, discount, description)
             service = OrderItemService()
             service.save(order_item)
-            return True, f"Customer Saved Successfully \n{order_item}"
+            return True, f"OrderItem Saved Successfully \n{order_item}"
         except:
             return False, "Save Error"
 
@@ -17,7 +17,7 @@ class OrderItemController:
             order_item = OrderItem(id,order_id, product_id, quantity, price, discount, description)
             service = OrderItemService()
             service.update(order_item)
-            return True, f"Customer Updated Successfully \n{order_item}"
+            return True, f"OrderItem Updated Successfully \n{order_item}"
         except:
             return False, "Update Error"
 
@@ -25,7 +25,7 @@ class OrderItemController:
         try:
             service = OrderItemService()
             service.delete(id)
-            return True, f"Customer With Id{id} Delete Successfully"
+            return True, f"OrderItem With Id{id} Delete Successfully"
         except:
             return False, "Delete Error"
 
