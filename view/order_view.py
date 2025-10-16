@@ -10,7 +10,7 @@ class OrderView():
         self.order_controller = OrderController()
 
         self.window = Tk()
-        self.window.title("Order View")
+        self.window.title("Order")
         self.window.geometry("1250x510")
 
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")

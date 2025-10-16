@@ -3,26 +3,22 @@ from model.service.order_service import OrderService
 
 
 class OrderController:
-    def save(self, order_type, customer_id, employee_id, order_item_list, date_time,
-                 payment_id, warehouse_transaction_id, tax=None, total_discount=None,
-                 total_amount=None):
+    def save(self, order_type, customer_id, employee_id, date_time, payment_id,
+             warehouse_transaction_id, tax=None, total_discount=None, total_amount=None):
         try:
-            order = Order(None, order_type, customer_id, employee_id, order_item_list, date_time,
-                 payment_id, warehouse_transaction_id, tax=None, total_discount=None,
-                 total_amount=None)
+            order = Order(None, order_type, customer_id, employee_id, date_time,
+                 payment_id, warehouse_transaction_id, tax, total_discount, total_amount)
             service = OrderService()
             service.save(order)
             return True, f"order Saved Successfully \n{order}"
         except:
             return False, "Save Error"
 
-    def update(self, id,order_type, customer_id, employee_id, order_item_list, date_time,
-                 payment_id, warehouse_transaction_id, tax=None, total_discount=None,
-                 total_amount=None):
+    def update(self, id, order_type, customer_id, employee_id, date_time, payment_id,
+               warehouse_transaction_id, tax=None, total_discount=None, total_amount=None):
         try:
-            order = Order(id, order_type, customer_id,employee_id, order_item_list, date_time,
-                 payment_id, warehouse_transaction_id, tax=None, total_discount=None,
-                 total_amount=None)
+            order = Order(id, order_type, customer_id,employee_id, date_time,
+                 payment_id, warehouse_transaction_id, tax, total_discount, total_amount)
             service = OrderService()
             service.update(order)
             return True, f"order Updated Successfully \n{order}"
@@ -33,7 +29,7 @@ class OrderController:
         try:
             order = OrderService()
             order.delete(id)
-            return True, f"order with Id {id} delete successfully"
+            return True, f"order with Id {id} Deleted Successfully"
         except:
             return False, "Delete Error"
 
