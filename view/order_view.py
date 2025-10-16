@@ -1,15 +1,14 @@
-from test.order_test import order
 from view import *
 from tkinter.ttk import Combobox
 
 from model.entity.order import Order
 from controller.order_controller import OrderController
 
-class OrderView(Frame):
+class OrderView:
     def __init__(self):
         self.order_controller = OrderController()
         self.window = Tk()
-        self.window.title("Order View")
+        self.window.title("Order")
         self.window.geometry("1250x510")
 
         self.id = LabelWithEntry(self.window, "ID", 20, 20, data_type=IntVar, state="readonly")
@@ -37,15 +36,15 @@ class OrderView(Frame):
         self.table.place(x=280, y=20)
 
         self.table.heading(1, text="ID")
-        self.table.heading(2, text="Customer ID")
-        self.table.heading(3, text="Employee ID")
-        self.table.heading(4, text="Date & Time")
-        self.table.heading(5, text="Payment ID")
-        self.table.heading(6, text="Ware Trans ID")
-        self.table.heading(7, text="Tax")
-        self.table.heading(8, text="Total Discount")
-        self.table.heading(9, text="Total Amount")
-        self.table.heading(10, text="Order Type")
+        self.table.heading(2, text="Order Type")
+        self.table.heading(3, text="Customer ID")
+        self.table.heading(4, text="Employee ID")
+        self.table.heading(5, text="Date & Time")
+        self.table.heading(6, text="Payment ID")
+        self.table.heading(7, text="Ware Trans ID")
+        self.table.heading(8, text="Tax")
+        self.table.heading(9, text="Total Discount")
+        self.table.heading(10, text="Total Amount")
 
         self.table.column(1, width=40)
         self.table.column(2, width=90)
@@ -67,7 +66,7 @@ class OrderView(Frame):
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.order_controller.save(self.order_type.get(), self.customer_id, self.employee_id.get(),
+        status, message = self.order_controller.save(self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
                                                      self.date_time.get(),self.payment_id.get(),
                                                      self.warehouse_transaction_id.get(), self.tax.get(),
                                                      self.total_discount.get(), self.total_amount.get())
@@ -125,9 +124,9 @@ class OrderView(Frame):
             self.order_type.set(order.order_type)
             self.customer_id.set(order.customer_id)
             self.employee_id.set(order.employee_id)
-            self.date_time.set(order.date_time.get())
+            self.date_time.set(order.date_time)
             self.payment_id.set(order.payment_id)
             self.warehouse_transaction_id.set(order.warehouse_transaction_id)
-            self.tax.set(order.tax.get())
-            self.total_discount.set(order.total_discount.get())
-            self.total_amount.set(order.total_amount.get())
+            self.tax.set(order.tax)
+            self.total_discount.set(order.total_discount)
+            self.total_amount.set(order.total_amount)
