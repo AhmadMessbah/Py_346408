@@ -5,14 +5,16 @@ from controller.order_item_controller import OrderItemController
 
 class OrderItemView:
     def __init__(self):
+
         self.order_item_controller = OrderItemController()
+
         self.window = Tk()
         self.window.title("Order Item")
         self.window.geometry("850x360")
 
-        self.id = LabelWithEntry(self.window, "ID", 20, 20, data_type=IntVar, state="readonly")
-        self.order_id = LabelWithEntry(self.window, "Order ID", 20, 60, data_type=IntVar)
-        self.product_id = LabelWithEntry(self.window, "Product ID", 20, 100, data_type=IntVar)
+        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.order_id = LabelWithEntry(self.window, "Order Id", 20, 60, data_type=IntVar)
+        self.product_id = LabelWithEntry(self.window, "Product Id", 20, 100, data_type=IntVar)
         self.quantity = LabelWithEntry(self.window, "Quantity", 20, 140, data_type=IntVar)
         self.price = LabelWithEntry(self.window, "Price", 20, 180, data_type=IntVar)
         self.discount = LabelWithEntry(self.window, "Discount", 20, 220, data_type=IntVar)
@@ -21,9 +23,9 @@ class OrderItemView:
         self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7], show="headings", height=14)
         self.table.place(x=300, y=20)
 
-        self.table.heading(1, text="ID")
-        self.table.heading(2, text="Order ID")
-        self.table.heading(3, text="Product ID")
+        self.table.heading(1, text="Id")
+        self.table.heading(2, text="Order Id")
+        self.table.heading(3, text="Product Id")
         self.table.heading(4, text="Quantity")
         self.table.heading(5, text="Price")
         self.table.heading(6, text="Discount")
@@ -42,6 +44,7 @@ class OrderItemView:
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=300)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=300)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=175, y=300)
+
         self.reset_form()
         self.window.mainloop()
 
@@ -49,27 +52,27 @@ class OrderItemView:
         status, message = self.order_item_controller.save(self.order_id.get(), self.product_id.get(), self.quantity.get(),
                                                           self.price.get(), self.discount.get(), self.description.get())
         if status:
-            messagebox.showinfo("OrderItem Save", message)
+            messagebox.showinfo("Order Item Save", message)
             self.reset_form()
         else:
-            messagebox.showerror("OrderItem Save Error", message)
+            messagebox.showerror("Order Item Save Error", message)
 
     def edit_click(self):
         status, message = self.order_item_controller.update(self.id.get(),self.order_id.get(), self.product_id.get(), self.quantity.get(),
                                                           self.price.get(), self.discount.get(), self.description.get())
         if status:
-            messagebox.showinfo("OrderItem Update", message)
+            messagebox.showinfo("Order Item Update", message)
             self.reset_form()
         else:
-            messagebox.showerror("OrderItem Update Error", message)
+            messagebox.showerror("Order Item Update Error", message)
 
     def delete_click(self):
         status, message = self.order_item_controller.delete(self.id.get())
         if status:
-            messagebox.showinfo("OrderItem Delete", message)
+            messagebox.showinfo("Order Item Delete", message)
             self.reset_form()
         else:
-            messagebox.showerror("OrderItem Delete Error", message)
+            messagebox.showerror("Order Item Delete Error", message)
 
     def reset_form(self):
        self.id.clear()
