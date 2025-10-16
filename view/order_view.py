@@ -4,7 +4,7 @@ from tkinter.ttk import Combobox
 from model.entity.order import Order
 from controller.order_controller import OrderController
 
-class OrderView():
+class OrderView:
     def __init__(self):
 
         self.order_controller = OrderController()
