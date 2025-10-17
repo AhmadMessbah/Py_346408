@@ -1,5 +1,3 @@
-
-
 from model.entity.bank import Bank
 from model.service.bank_service import BankService
 
@@ -26,27 +24,27 @@ class BankController:
 
 
     def delete(self, id):
-         try:
-             service = BankService()
-             service.delete(id)
-             return True, f"Bank_id with ID {id} deleted successfully"
+        try:
+            service = BankService()
+            service.delete(id)
+            return True, f"Bank_id with ID {id} deleted successfully"
         except:
-             return False, "Delete Error"
+            return False, "Delete Error"
 
 
     def find_all(self):
-         try:
-             service = BankService()
-             bank = service.find_all()
-             return True, bank
+        try:
+            service = BankService()
+            bank = service.find_all()
+            return True, bank
         except:
-               return False, "Find All Error"
+            return False, "Find All Error"
 
 
     def find_by_id(self, id):
-         try:
-             service = BankService()
-             bank = service.find_by_id(id)
-             return True, bank
-         except:
-             return False, "Find By ID Error"
+        try:
+            service = BankService()
+            bank = service.find_by_id(id)
+            return True, bank
+        except:
+            return False, "Find By ID Error"
