@@ -77,7 +77,7 @@ class WarehouseView:
         for item in self.table.get_children():
             self.table.delete(item)
 
-        for employee in warehouse_list:
+        for warehouse in warehouse_list:
             warehouse_tuple = tuple(warehouse_list.__dict__.values())
             self.table.insert("", END, values=warehouse_tuple)
 
