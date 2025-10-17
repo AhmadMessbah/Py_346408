@@ -93,14 +93,14 @@ class FinancialTransactionView:
         for item in self.table.get_children():
             self.table.delete(item)
 
-        for customer in financial_transaction_list:
-            financial_transaction_tuple = tuple(customer.__dict__.values())
+        for financialtransaction in financial_transaction_list:
+            financial_transaction_tuple = tuple(financialtransaction.__dict__.values())
             self.table.insert("", END, values=financial_transaction_tuple)
 
     def select_from_table(self, event):
         selected_financial_transaction = self.table.item(self.table.focus())["values"]
         if selected_financial_transaction:
-            financial_transaction = financial_transaction (*selected_financial_transaction)
+            financial_transaction = FinancialTransaction (*selected_financial_transaction)
             self.id.set(financial_transaction.id)
             self.transaction_type.set(financial_transaction.transaction_type)
             self.employee_id.set(financial_transaction.employee_id)
