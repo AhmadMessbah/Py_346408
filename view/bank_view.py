@@ -1,7 +1,6 @@
-from tkinter import *
-from tkinter import ttk
-from tkinter import messagebox
-from view.component.lable_with_entry import LabelWithEntry
+from view import *
+
+from model.entity.bank import Bank
 from controller.bank_controller import BankController
 
 class BankView:
@@ -11,7 +10,7 @@ class BankView:
         self.window.geometry("700x320")
         self.window.title("Bank")
 
-        id = LabelWithEntry(self.window, "Id", 20,20, data_type=IntVar, state="readonly")
+        self.id = LabelWithEntry(self.window, "Id", 20,20, data_type=IntVar, state="readonly")
         self.bank_name= LabelWithEntry(self.window, "BankName", 20,60)
         self.account_name= LabelWithEntry(self.window, "AccountName", 20,100)
         self.balance = LabelWithEntry(self.window, "Balance", 20,140,data_type= IntVar)
@@ -41,14 +40,14 @@ class BankView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message= self.bank_controller.save(self.name.get(), self.account.get(), self.balance.get(), self.description.get())
+        status, message= self.bank_controller.save(self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
         if status:
             messagebox.showinfo("Bank saved", message)
             self.reset_form()
         else:
             messagebox.showerror("Bank save error", message)
     def edit_click(self):
-        status, message= self.bank_controller.update(self.id.get(), self.name.get(), self.account.get(), self.balance.get(), self.description.get())
+        status, message= self.bank_controller.update(self.id.get(), self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
         if status:
             messagebox.showinfo("Bank updated", message)
             self.reset_form()
@@ -63,24 +62,26 @@ class BankView:
             messagebox.showerror("Bank delete error", message)
     def reset_form(self):
         self.id.clear()
-        self.name.clear()
-        self.account.clear()
+        self.bank_name.clear()
+        self.account_name.clear()
         self.balance.clear()
         self.description.clear()
         status, bank_list = self.bank_controller.find_all()
         self.refresh_table(bank_list)
+
     def refresh_table(self, bank_list):
         for item in self.table.get_children():
             self.table.delete(item)
-        for bank in bank_list():
-            bank_tuple= tuple(bank.__dict__.values())
-            self.table.insert("", END, values(bank_tuple))
+
+        for bank in bank_list:
+            customer_tuple = tuple(bank.__dict__.values())
+            self.table.insert("", END, values=customer_tuple)
+
     def select_from_table(self, event):
         selected_bank = self.table.item(self.item.focus())["values"]
         bank = Bank(*selected_bank)
         self.id.set(bank.id)
-        self.name.set(bank.name)
-        self.account.set(bank.account)
+        self.account_name.set(bank.account)
         self.balance.set(bank.balance)
         self.description.set(bank.description)
         
