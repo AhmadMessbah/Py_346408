@@ -42,24 +42,24 @@ class BankView:
     def save_click(self):
         status, message= self.bank_controller.save(self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
         if status:
-            messagebox.showinfo("Bank saved", message)
+            messagebox.showinfo("Bank Saved", message)
             self.reset_form()
         else:
-            messagebox.showerror("Bank save error", message)
+            messagebox.showerror("Bank Save Error", message)
     def edit_click(self):
         status, message= self.bank_controller.update(self.id.get(), self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
         if status:
-            messagebox.showinfo("Bank updated", message)
+            messagebox.showinfo("Bank Updated", message)
             self.reset_form()
         else:
-            messagebox.showerror("Bank update error", message)
+            messagebox.showerror("Bank Update Error", message)
     def delete_click(self):
         status, message= self.bank_controller.delete(self.id.get())
         if status:
-            messagebox.showinfo("Bank deleted", message)
+            messagebox.showinfo("Bank Deleted", message)
             self.reset_form()
         else:
-            messagebox.showerror("Bank delete error", message)
+            messagebox.showerror("Bank Delete Error", message)
     def reset_form(self):
         self.id.clear()
         self.bank_name.clear()
@@ -78,7 +78,7 @@ class BankView:
             self.table.insert("", END, values=customer_tuple)
 
     def select_from_table(self, event):
-        selected_bank = self.table.item(self.item.focus())["values"]
+        selected_bank = self.table.item(self.table.focus())["values"]
         bank = Bank(*selected_bank)
         self.id.set(bank.id)
         self.account_name.set(bank.account)
