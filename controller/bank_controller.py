@@ -8,7 +8,7 @@ class BankController:
            print("bank added, ok")
            service = BankService()
            service.save(bank)
-           return True, "Saved"
+           return True,f"Bank Saved Successfully \n{bank}"
         except:
             return False, "Save Error"
 
