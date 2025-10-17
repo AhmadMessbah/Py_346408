@@ -32,37 +32,57 @@ class BankView:
         self.table.column(4, width=60)
         self.table.column(5, width=100)
 
-        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20,y=260)
-        Button(self.window, text="Edit", width=7).place(x=100,y=260)
-        Button(self.window, text="Delete", width=7).place(x=180, y=260)
+        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
 
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20,y=260)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100,y=260)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=260)
+        self.reset_form()
         self.window.mainloop()
 
-def save_click(self):
-    status, message= self.bank_controller.save(self.name.get(), self.account.get(), self.balance.get(), self.description.get())
-    if status:
-        messagebox.showinfo("Bank saved", message)
+    def save_click(self):
+        status, message= self.bank_controller.save(self.name.get(), self.account.get(), self.balance.get(), self.description.get())
+        if status:
+            messagebox.showinfo("Bank saved", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Bank save error", message)
+    def edit_click(self):
+        status, message= self.bank_controller.update(self.id.get(), self.name.get(), self.account.get(), self.balance.get(), self.description.get())
+        if status:
+            messagebox.showinfo("Bank updated", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Bank update error", message)
+    def delete_click(self):
+        status, message= self.bank_controller.delete(self.id.get())
+        if status:
+            messagebox.showinfo("Bank deleted", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Bank delete error", message)
+    def reset_form(self):
+        self.id.clear()
+        self.name.clear()
+        self.account.clear()
+        self.balance.clear()
+        self.description.clear()
         status, bank_list = self.bank_controller.find_all()
         self.refresh_table(bank_list)
-        self.reset_form()
-    else:
-        messagebox.showerror("Bank save error", message)
-def edit_click(self):
-    pass
-def delete_click(self):
-    pass
-def reset_form(self):
-    self.id.clear()
-    self.name.clear()
-    self.account.clear()
-    self.balance.clear()
-    self.description.clear()
-def refresh_table(self, bank_list):
-    for item in self.table.get_children():
-        self.table.delete(item)
-    for bank in bank_list():
-        bank_tuple= tuple(bank.__dict__.values())
-        self.table.insert("", END, values(bank_tuple))
-
+    def refresh_table(self, bank_list):
+        for item in self.table.get_children():
+            self.table.delete(item)
+        for bank in bank_list():
+            bank_tuple= tuple(bank.__dict__.values())
+            self.table.insert("", END, values(bank_tuple))
+    def select_from_table(self, event):
+        selected_bank = self.table.item(self.item.focus())["values"]
+        bank = Bank(*selected_bank)
+        self.id.set(bank.id)
+        self.name.set(bank.name)
+        self.account.set(bank.account)
+        self.balance.set(bank.balance)
+        self.description.set(bank.description)
+        
 
 
