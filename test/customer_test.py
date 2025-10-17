@@ -5,6 +5,7 @@ from model.service.customer_service import CustomerService
 customer = Customer(1, "reza", "alii", "091234867890", "street2, number2")
 
 customer_service = CustomerService()
+
 #test passed
 #customer_service.save(customer)
 

@@ -11,7 +11,7 @@ class OrderService:
     def update(self, order):
         self.repository.update(order)
 
-    def delete(self,id):
+    def delete(self, id):
         self.repository.delete(id)
 
     def find_all(self):

@@ -1,2 +1,5 @@
-#from test import customer_test
-from view import customer_view
+# from test import customer_test
+from view.customer_view import CustomerView
+
+
+ui = CustomerView()

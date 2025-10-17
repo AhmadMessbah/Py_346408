@@ -1,113 +1,96 @@
-from tkinter import *
-from tkinter import ttk
-from view.component.lable_with_entry import LabelWithEntry
+from view import *
 
-window = Tk()
-window.geometry("740x320")
-window.title("Customer")
+from model.entity.customer import Customer
+from controller.customer_controller import CustomerController
+
+class CustomerView:
+    def __init__(self):
+        self.customer_controller = CustomerController()
+        self.window = Tk()
+        self.window.geometry("740x320")
+        self.window.title("Customer")
+
+        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.first_name = LabelWithEntry(self.window, "FirstName", 20, 60)
+        self.last_name = LabelWithEntry(self.window, "LastName", 20, 100)
+        self.phone_number = LabelWithEntry(self.window, "PhoneNumber", 20, 140, data_type=IntVar)
+        self.address = LabelWithEntry(self.window, "Address", 20, 180)
+
+        self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5], show="headings", height=12)
+        self.table.place(x=270, y=20)
+
+        self.table.heading(1, text="Id")
+        self.table.heading(2, text="FirstName")
+        self.table.heading(3, text="LastName")
+        self.table.heading(4, text="PhoneNumber")
+        self.table.heading(5, text="Address")
+
+        self.table.column(1, width=40)
+        self.table.column(2, width=100)
+        self.table.column(3, width=100)
+        self.table.column(4, width=100)
+        self.table.column(5, width=100)
+
+        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
+
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=260)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=260)
+        Button(self.window, text="Delete", width=7,command=self.delete_click).place(x=180, y=260)
+        self.reset_form()
+        self.window.mainloop()
 
 
-id = LabelWithEntry(window, "Id", 20,20, data_type=IntVar)
-first_name = LabelWithEntry(window, "FirstName", 20,60)
-last_name = LabelWithEntry(window, "LastName", 20,100)
-phone_number = LabelWithEntry(window, "PhoneNumber", 20,140,data_type= IntVar)
-address= LabelWithEntry(window, "Address", 20,180)
-
-table = ttk.Treeview(window,columns=[1,2,3,4,5],show="headings", height=12)
-table.place(x=270,y=20)
-
-table.heading(1, text="ID")
-table.heading(2, text="First Name")
-table.heading(3, text="Last Name")
-table.heading(4, text="Phone Number")
-table.heading(5, text="Address")
-
-table.column(1, width=40)
-table.column(2, width=100)
-table.column(3, width=100)
-table.column(4, width=100)
-table.column(5, width=100)
-
-Button(window, text="Save", width=7).place(x=20,y=260)
-Button(window, text="Edit", width=7).place(x=100,y=260)
-Button(window, text="Delete", width=7).place(x=180, y=260)
-
-window.mainloop()
+    def save_click(self):
+        status, message = self.customer_controller.save(self.first_name.get(), self.last_name.get(), self.phone_number.get(), self.address.get())
+        if status:
+            messagebox.showinfo("Customer Save", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Customer Save Error", message)
 
 
+    def edit_click(self):
+        status, message = self.customer_controller.update( self.id.get(), self.first_name.get(), self.last_name.get(),
+                                                        self.phone_number.get(), self.address.get())
+        if status:
+            messagebox.showinfo("Customer Update", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Customer Update Error", message)
+
+    def delete_click(self):
+        status, message = self.customer_controller.delete(self.id.get())
+        if status:
+            messagebox.showinfo("Customer Delete", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Customer Delete Error", message)
 
 
+    def reset_form(self):
+        self.id.clear()
+        self.first_name.clear()
+        self.last_name.clear()
+        self.phone_number.clear()
+        self.address.clear()
+        status, customer_list = self.customer_controller.find_all()
+        self.refresh_table(customer_list)
 
+    def refresh_table(self, customer_list):
+        for item in self.table.get_children():
+            self.table.delete(item)
 
+        for customer in customer_list:
+            customer_tuple = tuple(customer.__dict__.values())
+            self.table.insert("", END, values=customer_tuple)
 
+    def select_from_table(self, event):
+        selected_customer = self.table.item(self.table.focus())["values"]
+        if selected_customer:
+            customer = Customer(*selected_customer)
+            self.id.set(customer.id)
+            self.first_name.set(customer.first_name)
+            self.last_name.set(customer.last_name)
+            self.phone_number.set(customer.phone_number)
+            self.address.set(customer.address)
 
-#class 
-#class LabelwithEntry:
- #   def __init__(self,master,label_text,color,x,y,data_type=StringVar,distance=110,height_difference=0):
-  #      Label(master,text=label_text,bg=(color)).place(x=x,y=y)
-   #     self.variable=data_type()
-    #    Entry(master,textvariable=self.variable).place(x=x+distance,y=y+height_difference)
-    
-    #def get(self):
-     #   return self.variable.get()
-    
-    #def set(self,value):
-     #   return self.variable.set(value)
-
-#def save():
- #   customer=(id.get(),first_name.get(),last_name.get(),phone_number.get(),address.get())
-  #  table.insert("",END,values=customer)
-   # msg.showinfo("saved","customer saved")
-    #reset_form()
-    
-#def update():
- #   customer=(id.set(id.get()),first_name.set(first_name.get()),last_name.set(last_name.get()),phone_number.set(phone_number.get()),address.set(address.get()))
-  #  reset_form()
-    
-#def delete():
- #   pass
-    
-#def reset_form():
- # id.set(0)
-  #first_name.set(" ")
-  #last_name.set(" ")
-  #phone_number.set(0)
-  #address.set(" ")
-
-#title
-#Label(win,text="customer Management System",bg=("#F18284"),font=("Arial",18,"italic")).place(x=400,y=20)
-#id
-#id=LabelwithEntry(win,"id:","#FFFFFF",10,100,IntVar,100)
-
-#first_name
-#first_name=LabelwithEntry(win,"first_name:","#FFFFFF",10,130,StringVar,100)
-
-#last_name
-#last_name=LabelwithEntry(win,"last_name:","#FFFFFF",10,160,StringVar,100)
-
-#phone_number
-#phone_number=LabelwithEntry(win,"phone_number:","#FFFFFF",10,190,IntVar,100)
-
-#address
-#address=LabelwithEntry(win,"address:","#FFFFFF",10,220,StringVar,100)
-
-#Button(win,text="save",bg="#A7C7E7",command=save,width=10).place(x=10,y=250)
-#Button(win,text="update",bg="#BAFEC4",width=10).place(x=110,y=250)
-
-#id=LabelwithEntry(win,"id:","#FFFFFF",10,330,IntVar,100)
-
-#Button(win,text="delete",bg="#FFD6A5",width=10).place(x=10,y=370)
-#Button(win,text="find",bg="#FBF17E",width=10).place(x=110,y=370)
-
-#table
-#table=ttk.Treeview(win,columns=[1,2,3,4,5],show="headings")
-#table.place(x=400,y=100)
-
-#columns=["id","first_name","last_name","phone_number","address"]
-
-#i=1
-#for col in columns:
- #   table.heading(i,text=col)
-  #  table.column(i,width=100)
-   # i+=1
-#win.mainloop()
