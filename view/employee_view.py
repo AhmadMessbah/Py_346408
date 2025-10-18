@@ -10,7 +10,7 @@ class EmployeeView:
         self.window.title("Employee")
         self.window.geometry("1000x400")
 
-        self.id = LabelWithEntry(self.window,"Id",20,20, data_type=IntVar)
+        self.id = LabelWithEntry(self.window,"Id",20,20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window,"FirstName",20,60)
         self.last_name = LabelWithEntry(self.window,"LastName",20,100)
         self.salary = LabelWithEntry(self.window,"Salary",20,140,data_type=IntVar)

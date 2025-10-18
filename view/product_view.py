@@ -13,7 +13,7 @@ class ProductView:
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.name = LabelWithEntry(self.window, "Name", 20, 60)
         self.brand = LabelWithEntry(self.window, "Brand", 20, 100)
-        self.model = LabelWithEntry(self.window, "Model", 20, 140, data_type=IntVar)
+        self.model = LabelWithEntry(self.window, "Model", 20, 140)
         self.serial = LabelWithEntry(self.window, "Serial", 20, 180)
         self.category = LabelWithEntry(self.window, "Category", 20, 220)
         self.unit = LabelWithEntry(self.window, "Unit", 20, 260)

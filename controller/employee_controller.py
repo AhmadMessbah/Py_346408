@@ -25,7 +25,7 @@ class EmployeeController:
         try:
             service = EmployeeService()
             service.delete(id)
-            return True, f"employee with ID {id} deleted successfully"
+            return True, f"employee with Id {id} deleted successfully"
         except:
             return False, "Delete Error"
 

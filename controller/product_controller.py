@@ -12,9 +12,9 @@ class ProductController:
         except:
             return False, "Save Error"
 
-    def update(self, name, brand, model, serial, category, unit, expiration_date):
+    def update(self,id, name, brand, model, serial, category, unit, expiration_date):
         try:
-            product = Product(None, name, brand, model, serial, category, unit, expiration_date)
+            product = Product(id, name, brand, model, serial, category, unit, expiration_date)
             service = ProductService()
             service.update(product)
             return True, f"Product Saved Successfully \n{product}"
@@ -32,15 +32,13 @@ class ProductController:
     def find_all(self):
         try:
             service = ProductService()
-            product_list = service.find_all(self)
-            return True, product_list
+            return True, service.find_all()
         except:
             return False, "Find All Error"
 
     def find_by_id(self, id):
         try:
             service = ProductService()
-            product = service.find_by_id(id)
-            return True, product
+            return True, service.find_by_id(id)
         except:
             return False, "Find By Id Error"

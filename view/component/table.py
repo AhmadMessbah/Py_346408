@@ -10,7 +10,7 @@ class Table:
         self.set_column_widths()
 
     def set_column_headings(self):
-        headings = ["ID", "Order ID", "Product ID", "Quantity", "Price", "Discount", "Description"]
+        headings = ["Id", "Order Id", "Product Id", "Quantity", "Price", "Discount", "Description"]
         for i, heading in enumerate(headings):
             self.table.heading(i, text=heading)
 
