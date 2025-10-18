@@ -11,3 +11,7 @@ class Product:
 
     def __repr__(self):
         return f"{self.__dict__}"
+
+
+    def to_tuple(self):
+        return tuple((self.id, self.name, self.brand,self.model,self.serial,self.category,self.unit,self.expiration_date))

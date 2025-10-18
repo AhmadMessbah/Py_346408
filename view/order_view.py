@@ -11,7 +11,7 @@ class OrderView:
 
         self.window = Tk()
         self.window.title("Order")
-        self.window.geometry("1250x510")
+        self.window.geometry("1310x510")
 
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.customer_id = LabelWithEntry(self.window, "Customer Id", 20, 60, data_type=IntVar)
@@ -39,8 +39,8 @@ class OrderView:
 
         self.table.heading(1, text="Id")
         self.table.heading(2, text="Order Type")
-        self.table.heading(3, text="Customer Id")
-        self.table.heading(4, text="Employee Id")
+        self.table.heading(3, text="Customer")
+        self.table.heading(4, text="Employee")
         self.table.heading(5, text="Date & Time")
         self.table.heading(6, text="Payment Id")
         self.table.heading(7, text="Ware Trans Id")
@@ -50,14 +50,18 @@ class OrderView:
 
         self.table.column(1, width=40)
         self.table.column(2, width=90)
-        self.table.column(3, width=90)
-        self.table.column(4, width=90)
+        self.table.column(3, width=120)
+        self.table.column(4, width=120)
         self.table.column(5, width=140)
         self.table.column(6, width=90)
         self.table.column(7, width=90)
         self.table.column(8, width=90)
         self.table.column(9, width=90)
         self.table.column(10, width=120)
+
+        v_scroll = ttk.Scrollbar(self.window, command=self.table.yview)
+        self.table.configure(yscrollcommand=v_scroll.set(0.0,0.4))
+        v_scroll.place(x=1212, y=20, height=445)
 
         self.table.bind("<<TreeviewSelect>>", self.select_from_table)
 
