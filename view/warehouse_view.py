@@ -1,15 +1,12 @@
-import tkinter as tk
-import tkinter.ttk as ttk
-from tkinter import IntVar
-import tkinter.messagebox as messagebox
-from tkinter.ttk import Button
+from view import *
 
+from model.entity.warehouse import Warehouse
 from controller.warehouse_controller import WarehouseController
-from view.component.lable_with_entry import LabelWithEntry
+
 class WarehouseView:
     def __init__(self):
         self.warehouse_controller = WarehouseController()
-        self.window=tk()
+        self.window = Tk()
         self.window.title("Warehouse View")
         self.window.geometry("750x320")
 
@@ -78,16 +75,16 @@ class WarehouseView:
             self.table.delete(item)
 
         for warehouse in warehouse_list:
-            warehouse_tuple = tuple(warehouse_list.__dict__.values())
+            warehouse_tuple = tuple(warehouse.__dict__.values())
             self.table.insert("", END, values=warehouse_tuple)
 
     def select_from_table(self, event):
-                selected_warehouse = self.table.item(self.table.focus())["values"]
-                if selected_warehouse:
-                    warehouse = Warehouse(*selected_warehouse)
-                    self.id.set(warehouse.id)
-                    self.product_id.set(warehouse.product_id)
-                    self.quantity.set(warehouse.quantity)
+        selected_warehouse = self.table.item(self.table.focus())["values"]
+        if selected_warehouse:
+            warehouse = Warehouse(*selected_warehouse)
+            self.id.set(warehouse.id)
+            self.product_id.set(warehouse.product_id)
+            self.quantity.set(warehouse.quantity)
 
 
 
