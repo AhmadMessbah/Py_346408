@@ -37,7 +37,7 @@ class OrderView:
 
         self.table = Table(
             self.window,
-            ["Id", "Order Type", "Customer", "Employee", "Date & Time", "Total Amount", "Total Discount", "Total Discount"],
+            ["Id", "Order Type", "Customer", "Employee", "Date & Time","Payment Id","WareTransId", "Total Amount", "Total Discount", "Total Discount"],
             [40, 90, 120, 120,140, 90, 90, 90, 90, 120],
             280, 20,
             21,
