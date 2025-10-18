@@ -8,3 +8,6 @@ class Bank:
 
     def __repr__(self):
         return f"{self.__dict__}"
+
+    def to_tuple(self):
+        return tuple((self.id, self.name, self.account, self.balance, self.description))

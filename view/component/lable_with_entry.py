@@ -3,7 +3,7 @@ from tkinter import *
 class LabelWithEntry:
     def __init__(self, master, label_text, x, y, distance=90, data_type=StringVar, state="normal"):
         self.data_type = data_type
-        self.variable = data_type()
+        self.variable = data_type(master)
         Label(master, text=label_text).place(x=x, y=y)
         Entry(master, textvariable=self.variable, state=state).place(x=x + distance, y=y)
 
