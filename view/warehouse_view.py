@@ -84,7 +84,7 @@ class WarehouseView:
     def select_from_table(self, event):
                 selected_warehouse = self.table.item(self.table.focus())["values"]
                 if selected_warehouse:
-                    warehouse = WarehouseView(*selected_warehouse)
+                    warehouse = Warehouse(*selected_warehouse)
                     self.id.set(warehouse.id)
                     self.product_id.set(warehouse.product_id)
                     self.quantity.set(warehouse.quantity)
