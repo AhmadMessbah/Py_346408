@@ -2,50 +2,45 @@ from model.entity.warehouse_transaction import WarehouseTransaction
 from model.service.warehouse_transaction_service import WarehouseTransactionService
 
 
-class WarehouseController:
+class WarehouseTransactionController:
     def save(self, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id):
         try:
-            warehouse_transacton = WarehouseTransaction(None, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id)
-            print("WarehouseTransaction save request [OK]")
+            warehouse_transaction = WarehouseTransaction(None, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id)
             service = WarehouseTransactionService()
-            service.save(warehouse_transacton)
-            return True, "Saved"
+            service.save(warehouse_transaction)
+            return True, "WarehouseTransaction save request [OK]"
         except:
-            return False, "Error"
+            return False, "Save Error"
 
-    def update(self, product_id, quantity):
+    def update(self, id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id):
         try:
-            warehouse = WarehouseTransaction(None, product_id, quantity)
-            print("Warehouse update request [OK]")
+            warehouse = WarehouseTransaction(id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id)
             service = WarehouseTransactionService()
             service.update(warehouse)
-            return True, "Updated"
+            return True, "Warehouse update request [OK]"
         except:
-            return False, "Error"
+            return False, "Update Error"
 
     def delete(self, id):
         try:
             service = WarehouseTransactionService()
             service.delete(id)
-            print("Warehouse delete request [OK]")
             return True, "Deleted"
         except:
-            return False, "Error"
+            return False, f"product with ID {id} was deleted successfully"
 
     def find_all(self):
         try:
             service = WarehouseTransactionService()
-            service.find_all()
-            print("Warehouse find all request [OK]")
-            return True, "Found"
+            product_list = service.find_all()
+            return True, product_list
         except:
-            return False, "Error"
+            return False, "Find Al Error"
 
     def find_by_id(self, id):
         try:
             service = WarehouseTransactionService()
-            service.find_by_id(id)
-            print("Warehouse find by id request [OK]")
-            return True, "Found"
+            product = service.find_by_id(id)
+            return True, product
         except:
-            return False, "Error"
+            return False, "Find by id Error!"
