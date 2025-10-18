@@ -96,7 +96,7 @@ class EmployeeView:
             employee_tuple = tuple(employee.__dict__.values())
             self.table.insert("", END, values=employee_tuple)
 
-            def select_from_table(self, event):
+    def select_from_table(self, event):
                 selected_employee = self.table.item(self.table.focus())["values"]
                 if selected_employee:
                     employee = Employee(*selected_employee)
