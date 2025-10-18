@@ -1,3 +1,4 @@
+from test.order_test import order
 from view import *
 from tkinter.ttk import Combobox
 
@@ -34,40 +35,25 @@ class OrderView:
             state="readonly")
         self.order_type.place(x=110, y=390)
 
-        self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], show="headings", height=21)
-        self.table.place(x=280, y=20)
+        self.table = Table(
+            self.window,
+            ["Id", "Order Type", "Customer", "Employee", "Date & Time", "Total Amount", "Total Discount", "Total Discount"],
+            [40, 90, 120, 120,140, 90, 90, 90, 90, 120],
+            280, 20,
+            21,
+            self.select_from_table
+        )
 
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="Order Type")
-        self.table.heading(3, text="Customer")
-        self.table.heading(4, text="Employee")
-        self.table.heading(5, text="Date & Time")
-        self.table.heading(6, text="Payment Id")
-        self.table.heading(7, text="Ware Trans Id")
-        self.table.heading(8, text="Tax")
-        self.table.heading(9, text="Total Discount")
-        self.table.heading(10, text="Total Amount")
 
-        self.table.column(1, width=40)
-        self.table.column(2, width=90)
-        self.table.column(3, width=120)
-        self.table.column(4, width=120)
-        self.table.column(5, width=140)
-        self.table.column(6, width=90)
-        self.table.column(7, width=90)
-        self.table.column(8, width=90)
-        self.table.column(9, width=90)
-        self.table.column(10, width=120)
+        # v_scroll = ttk.Scrollbar(self.window, command=self.table.yview)
+        # self.table.configure(yscrollcommand=v_scroll.set(0.0,0.4))
+        # v_scroll.place(x=1212, y=20, height=445)
 
-        v_scroll = ttk.Scrollbar(self.window, command=self.table.yview)
-        self.table.configure(yscrollcommand=v_scroll.set(0.0,0.4))
-        v_scroll.place(x=1212, y=20, height=445)
-
-        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=440)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=440)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=175, y=440)
+        Button(self.window, text="View Order", width=21,command=self.order_item_view).place(x=20, y=480)
 
         self.reset_form()
         self.window.mainloop()
@@ -113,18 +99,9 @@ class OrderView:
         self.total_amount.clear()
         self.order_type.set("Basket")
         status, order_list = self.order_controller.find_all()
-        self.refresh_table(order_list)
+        self.table.refresh_table(order_list)
 
-    def refresh_table(self, order_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
-
-        for order in order_list:
-            order_tuple = tuple(order.__dict__.values())
-            self.table.insert("", END, values=order_tuple)
-
-    def select_from_table(self, event):
-        selected_order = self.table.item(self.table.focus())["values"]
+    def select_from_table(self, selected_order):
         if selected_order:
             order = Order(*selected_order)
             self.id.set(order.id)
@@ -137,3 +114,6 @@ class OrderView:
             self.tax.set(order.tax)
             self.total_discount.set(order.total_discount)
             self.total_amount.set(order.total_amount)
+
+    def order_item_view(self):
+        ui = OrderItemView()
