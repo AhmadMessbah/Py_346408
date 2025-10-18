@@ -16,6 +16,7 @@ class CustomerView:
         self.phone_number = LabelWithEntry(self.window, "PhoneNumber", 20, 140, data_type=IntVar)
         self.address = LabelWithEntry(self.window, "Address", 20, 180)
 
+
         self.table = Table(
             self.window,
             ["Id", "first_name", "last_name", "phone_number", "address"],
