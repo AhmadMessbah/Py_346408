@@ -43,14 +43,14 @@ class EmployeeView:
         self.table.bind("<<TreeviewSelect>>", self.select_from_table)
 
         Button(self.window, text="Save", width=8, command=self.save_click).place(x=20, y=340)
-        Button(self.window, text="Edit", width=8, command=self.save_click).place(x=100, y=340)
-        Button(self.window, text="Delete", width=8, command=self.save_click).place(x=180, y=340)
+        Button(self.window, text="Edit", width=8, command=self.edit_click).place(x=100, y=340)
+        Button(self.window, text="Delete", width=8, command=self.delete_click).place(x=180, y=340)
         self.reset_form()
         self.window.mainloop()
 
 
     def save_click(self):
-        status, message = self.employee_controller.save(self.first_name.get(), self.last_name.get(), self.salary.get(), self.occupation(),
+        status, message = self.employee_controller.save(self.first_name.get(), self.last_name.get(), self.salary.get(), self.occupation.get(),
                                                         self.phone_number.get(), self.username.get(), self.password.get())
         if status:
             messagebox.showinfo("Employee Save", message)
@@ -61,7 +61,7 @@ class EmployeeView:
 
     def edit_click(self):
         status, message = self.employee_controller.update(self.id.get(), self.first_name.get(), self.last_name.get(), self.salary.get(),
-                                                        self.occupation(), self.phone_number.get(), self.username.get(),self.password.get())
+                                                        self.occupation.get(), self.phone_number.get(), self.username.get(),self.password.get())
         if status:
             messagebox.showinfo("Employee update", message)
             self.reset_form()
