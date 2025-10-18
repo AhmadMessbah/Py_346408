@@ -83,13 +83,14 @@ class WarehouseTransactionView:
 
     def select_from_table(self, event):
         selected_transaction = self.table.item(self.table.focus())["values"]
-        transaction = WarehouseTransaction(*selected_transaction)
-        self.id.set(transaction.id)
-        self.product_id.set(transaction.product_id)
-        self.quantity.set(transaction.quantity)
-        self.transaction_type.set(transaction.transaction_type)
-        self.transaction_datetime.set(transaction.transaction_datetime)
-        self.employee_id.set(self.customer_id)
+        if selected_transaction:
+            transaction = WarehouseTransaction(*selected_transaction)
+            self.id.set(transaction.id)
+            self.product_id.set(transaction.product_id)
+            self.quantity.set(transaction.quantity)
+            self.transaction_type.set(transaction.transaction_type)
+            self.transaction_datetime.set(transaction.transaction_datetime)
+            self.employee_id.set(self.customer_id)
 
 
 
