@@ -38,9 +38,9 @@ class WarehouseTransactionView:
         self.table.column(6, width=90)
         self.table.column(7, width=90)
 
-        Button(self.window, text="Save", width=7).place(x=20, y=260)
-        Button(self.window, text="Edit", width=7).place(x=100, y=260)
-        Button(self.window, text="Delete", width=7).place(x=180, y=260)
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=260)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=260)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=260)
 
         self.window.mainloop()
 
