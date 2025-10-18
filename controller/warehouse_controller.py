@@ -31,15 +31,13 @@ class WarehouseController:
     def find_all(self):
         try:
             service = WarehouseService()
-            service.find_all()
-            return True, "Found"
+            return True, service.find_all()
         except:
             return False, "Error"
 
     def find_by_id(self, id):
         try:
             service = WarehouseService()
-            service.find_by_id(id)
-            return True, "Found"
+            return True, service.find_by_id(id)
         except:
             return False, "Error"

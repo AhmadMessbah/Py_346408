@@ -14,7 +14,7 @@ class WarehouseService:
         self.repository.delete(id)
 
     def find_all(self):
-        self.repository.find_all()
+        return self.repository.find_all()
 
     def find_by_id(self, id):
         return self.repository.find_by_id(id)
