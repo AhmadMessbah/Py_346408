@@ -1,2 +1,5 @@
-# from test import financial_transaction_test
-from veiw import financial_trancaction_veiw
+# from test import customer_test
+from view.financial_transaction_view  import FinancialTransactionView
+
+
+ui = FinancialTransactionView()
