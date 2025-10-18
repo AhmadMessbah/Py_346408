@@ -11,3 +11,5 @@ class FinancialTransaction:
 
     def __repr__(self):
         return f"{self.__dict__}"
+    def to_tuple(self):
+        return tuple((self.id,self.transaction_type,self.customer_id,self.employee_id,self.amount,self.date_time,self.payment_id,self.description))
