@@ -19,7 +19,7 @@ class BankView:
         self.table = ttk.Treeview(self.window,columns=[1,2,3,4,5],show="headings", height=12)
         self.table.place(x=270,y=20)
 
-        self.table.heading(1, text="ID")
+        self.table.heading(1, text="Id")
         self.table.heading(2, text="BankName")
         self.table.heading(3, text="AccountName")
         self.table.heading(4, text="Balance")
@@ -79,11 +79,13 @@ class BankView:
 
     def select_from_table(self, event):
         selected_bank = self.table.item(self.table.focus())["values"]
-        bank = Bank(*selected_bank)
-        self.id.set(bank.id)
-        self.account_name.set(bank.account)
-        self.balance.set(bank.balance)
-        self.description.set(bank.description)
-        
+        if selected_bank:
+            bank = Bank(*selected_bank)
+            self.id.set(bank.id)
+            self.bank_name.set(bank.name)
+            self.account_name.set(bank.account)
+            self.balance.set(bank.balance)
+            self.description.set(bank.description)
+
 
 

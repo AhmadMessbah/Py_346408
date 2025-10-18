@@ -11,7 +11,7 @@ class WarehouseTransactionView:
         self.window.geometry("1000x320")
         self.window.title("Warehouse Transaction")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar)
+        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.product_id = LabelWithEntry(self.window, "product Id", 20, 40, data_type=IntVar)
         self.quantity = LabelWithEntry(self.window, "quantity", 20, 60, data_type=IntVar)
         self.transaction_type = LabelWithEntry(self.window, "transaction type", 20, 100)
@@ -22,13 +22,13 @@ class WarehouseTransactionView:
         self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7], show="headings", height=12)
         self.table.place(x=270, y=20)
 
-        self.table.heading(1, text="ID")
+        self.table.heading(1, text="Id")
         self.table.heading(2, text="Product Id")
         self.table.heading(3, text="Quantity")
         self.table.heading(4, text="Transaction Type")
         self.table.heading(5, text="Transaction Date")
-        self.table.heading(6, text="Customer ID")
-        self.table.heading(7, text="Employee ID")
+        self.table.heading(6, text="Customer Id")
+        self.table.heading(7, text="Employee Id")
 
         self.table.column(1, width=40)
         self.table.column(2, width=80)

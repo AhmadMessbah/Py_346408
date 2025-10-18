@@ -27,7 +27,7 @@ class WarehouseTransactionController:
             service.delete(id)
             return True, "Deleted"
         except:
-            return False, f"product with ID {id} was deleted successfully"
+            return False, f"product with Id {id} was deleted successfully"
 
     def find_all(self):
         try:

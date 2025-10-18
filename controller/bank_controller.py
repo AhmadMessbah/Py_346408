@@ -5,17 +5,15 @@ class BankController:
     def save(self, name, account, balance, description):
         try:
            bank = Bank(None, name, account, balance, description)
-           print("bank added, ok")
            service = BankService()
            service.save(bank)
            return True,f"Bank Saved Successfully \n{bank}"
         except:
             return False, "Save Error"
 
-    def update(self , name, account, balance, description):
+    def update(self ,id, name, account, balance, description):
         try:
-            #id
-            bank = Bank( name, account, balance, description)
+            bank = Bank(id, name, account, balance, description)
             service = BankService()
             service.update(bank)
             return True, "Updated Successfully"
@@ -27,7 +25,7 @@ class BankController:
         try:
             service = BankService()
             service.delete(id)
-            return True, f"Bank_id with ID {id} deleted successfully"
+            return True, f"Bank_id with Id {id} deleted successfully"
         except:
             return False, "Delete Error"
 
@@ -47,4 +45,4 @@ class BankController:
             bank = service.find_by_id(id)
             return True, bank
         except:
-            return False, "Find By ID Error"
+            return False, "Find By Id Error"
