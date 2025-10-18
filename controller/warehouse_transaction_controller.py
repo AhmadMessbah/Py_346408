@@ -2,7 +2,7 @@ from model.entity.warehouse_transaction import WarehouseTransaction
 from model.service.warehouse_transaction_service import WarehouseTransactionService
 
 
-class WarehouseController:
+class WarehouseTransactionController:
     def save(self, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id):
         try:
             warehouse_transaction = WarehouseTransaction(None, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id)
