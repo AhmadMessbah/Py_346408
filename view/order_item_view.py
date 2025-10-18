@@ -10,7 +10,7 @@ class OrderItemView:
 
         self.window = Tk()
         self.window.title("Order Item")
-        self.window.geometry("850x360")
+        self.window.geometry("850x410")
 
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.order_id = LabelWithEntry(self.window, "Order Id", 20, 60, data_type=IntVar)
@@ -19,27 +19,30 @@ class OrderItemView:
         self.price = LabelWithEntry(self.window, "Price", 20, 180, data_type=IntVar)
         self.discount = LabelWithEntry(self.window, "Discount", 20, 220, data_type=IntVar)
         self.description = LabelWithEntry(self.window, "Description", 20, 260)
+        #self, window, headings, column_widths, x, y, height = 10, function_name = None
+        self.table = Table(self.window,["id", "Order Id","Product","Quantity","Price","Discount","Description"],[40,60,120,60,90,60,140]
+                           , 300 , 20 , 14 , self.selecct_from_table)
 
         self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7], show="headings", height=14)
         self.table.place(x=300, y=20)
+        #
+        # self.table.heading(1, text="Id")
+        # self.table.heading(2, text="Order Id")
+        # self.table.heading(3, text="Product")
+        # self.table.heading(4, text="Quantity")
+        # self.table.heading(5, text="Price")
+        # self.table.heading(6, text="Discount")
+        # self.table.heading(7, text="Description")
+        #
+        # self.table.column(1, width=40)
+        # self.table.column(2, width=60)
+        # self.table.column(3, width=120)
+        # self.table.column(4, width=60)
+        # self.table.column(5, width=90)
+        # self.table.column(6, width=60)
+        # self.table.column(7, width=140)
 
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="Order Id")
-        self.table.heading(3, text="Product Id")
-        self.table.heading(4, text="Quantity")
-        self.table.heading(5, text="Price")
-        self.table.heading(6, text="Discount")
-        self.table.heading(7, text="Description")
-
-        self.table.column(1, width=40)
-        self.table.column(2, width=60)
-        self.table.column(3, width=70)
-        self.table.column(4, width=60)
-        self.table.column(5, width=90)
-        self.table.column(6, width=60)
-        self.table.column(7, width=140)
-
-        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
+        # self.table.bind("<<TreeviewSelect>>", self.select_from_table)
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=300)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=300)
