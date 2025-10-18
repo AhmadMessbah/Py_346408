@@ -16,22 +16,14 @@ class CustomerView:
         self.phone_number = LabelWithEntry(self.window, "PhoneNumber", 20, 140, data_type=IntVar)
         self.address = LabelWithEntry(self.window, "Address", 20, 180)
 
-        self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5], show="headings", height=12)
-        self.table.place(x=270, y=20)
-
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="FirstName")
-        self.table.heading(3, text="LastName")
-        self.table.heading(4, text="PhoneNumber")
-        self.table.heading(5, text="Address")
-
-        self.table.column(1, width=40)
-        self.table.column(2, width=100)
-        self.table.column(3, width=100)
-        self.table.column(4, width=100)
-        self.table.column(5, width=100)
-
-        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
+        self.table = Table(
+            self.window,
+            ["Id", "first_name", "last_name", "phone_number", "address"],
+            [40, 100, 100, 60, 100],
+            270, 20,
+            12,
+            self.select_from_table
+        )
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=260)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=260)
@@ -76,13 +68,7 @@ class CustomerView:
         status, customer_list = self.customer_controller.find_all()
         self.refresh_table(customer_list)
 
-    def refresh_table(self, customer_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
 
-        for customer in customer_list:
-            customer_tuple = tuple(customer.__dict__.values())
-            self.table.insert("", END, values=customer_tuple)
 
     def select_from_table(self, event):
         selected_customer = self.table.item(self.table.focus())["values"]
