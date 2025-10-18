@@ -8,3 +8,7 @@ class Customer:
 
     def __repr__(self):
         return f"{self.__dict__}"
+
+    def to_tuple(self):
+        return tuple(
+            (self.id, self.first_name, self.last_name, self.phone_number, self.address))
