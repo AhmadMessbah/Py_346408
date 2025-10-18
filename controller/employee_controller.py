@@ -17,7 +17,8 @@ class EmployeeController:
             service = EmployeeService()
             service.update(employee)
             return True, f"Employee updated Successfully \n{employee}"
-        except:
+        except Exception as e:
+            e.with_traceback()
             return False, "Update Error"
 
     def delete(self, id):

@@ -24,7 +24,7 @@ class EmployeeRepository:
     def update(self, employee):
         self.connect()
         self.cursor.execute(
-            "update employees set first_name=?, last_name=?, salary=?, occuption=?, phone_number=?, username=?, password=? where id=?",
+            "update employees set first_name=?, last_name=?, salary=?, occupation=?, phone_number=?, username=?, password=? where id=?",
             [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
              employee.username, employee.password, employee.id])
         self.connection.commit()
