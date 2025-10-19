@@ -1,7 +1,7 @@
 from model.entity.product import Product
 from model.service.product_service import ProductService
 
-product = Product(1, "mobile", "iPhon", "13pro", "123a","electric","12",None)
+product = Product(1, "mobile", "iPhone", "13pro", "123a","electronic","12",None)
 
 product_service = ProductService()
 
