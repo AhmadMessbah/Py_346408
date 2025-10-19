@@ -19,12 +19,12 @@ class PaymentView:
         self.total_amount = LabelWithEntry(self.window, "TotalAmount", 20, 220, data_type=IntVar)
         self.employee_id = LabelWithEntry(self.window, "EmployeeId", 20, 260, data_type=IntVar)
         self.description = LabelWithEntry(self.window, "Description", 20, 300)
-        
+
         self.table = Table(
             self.window,
-            ["Id","TransactType", "PaymentType", "DateTime", "CustomerId","TotalAmount","EmployeeId",  "Description"],
-            [40,100,100,100,100,100,100,100],
-            270,20,
+            ["Id", "TransactType", "PaymentType", "DateTime", "CustomerId", "TotalAmount", "EmployeeId", "Description"],
+            [40, 100, 100, 100, 100, 100, 100, 100],
+            270, 20,
             18,
             self.select_from_table
         )
@@ -46,10 +46,11 @@ class PaymentView:
             messagebox.showerror("Payment Info Save Error", message)
 
     def edit_click(self):
-        status, message = self.payment_controller.update(self.transaction_type.get(), self.payment_type.get(),
+        status, message = self.payment_controller.update(self.id.get(), self.transaction_type.get(),
+                                                         self.payment_type.get(),
                                                          self.date_time.get(), self.customer_id.get(),
                                                          self.total_amount.get(), self.employee_id.get(),
-                                                         self.description.get(), self.id.get())
+                                                         self.description.get())
         if status:
             messagebox.showinfo("Payment Info Update", message)
             self.reset_form()
@@ -76,14 +77,16 @@ class PaymentView:
         status, payment_list = self.payment_controller.find_all()
         self.table.refresh_table(payment_list)
 
-    def select_from_table(self,selected_payment):
+    def select_from_table(self, selected_payment):
         if selected_payment:
-            payment = Payment(*selected_payment)
-            self.id.set(payment.id)
-            self.transaction_type.set(payment.transaction_type)
-            self.payment_type.set(payment.payment_type)
-            self.date_time.set(payment.date_time)
-            self.customer_id.set(payment.customer_id)
-            self.total_amount.set(payment.total_amount)
-            self.employee_id.set(payment.employee_id)
-            self.description.set(payment.description)
+            status, payment = self.payment_controller.find_by_id(selected_payment[0])
+            if status:
+                payment = Payment(*selected_payment)
+                self.id.set(payment.id)
+                self.transaction_type.set(payment.transaction_type)
+                self.payment_type.set(payment.payment_type)
+                self.date_time.set(payment.date_time)
+                self.customer_id.set(payment.customer_id)
+                self.total_amount.set(payment.total_amount)
+                self.employee_id.set(payment.employee_id)
+                self.description.set(payment.description)

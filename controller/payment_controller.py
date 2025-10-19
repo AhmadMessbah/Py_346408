@@ -3,18 +3,21 @@ from model.service.payment_service import PaymentService
 
 
 class PaymentController:
-    def save(self,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description):
+    def save(self, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description):
         try:
-            payment = Payment(None,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description)
+            payment = Payment(None, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id,
+                              description)
             service = PaymentService()
             service.save(payment)
             return True, f"Payment Saved Successfully \n{payment}"
         except:
             return False, "Save Error"
 
-    def update(self,id,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description):
+    def update(self, id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id,
+               description):
         try:
-            payment = Payment(id,transaction_type,payment_type,date_time,customer_id,total_amount,employee_id,description)
+            payment = Payment(id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id,
+                              description)
             service = PaymentService()
             service.update(payment)
             return True, f"Payment Updated Successfully \n{payment}"
