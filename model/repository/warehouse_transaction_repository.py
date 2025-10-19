@@ -14,17 +14,15 @@ class WarehouseTransactionRepository:
     def save(self,warehouse_transaction):
             self.connect()
             self.cursor.execute("""
-                    insert into warehouse_transactions (product_id,quantity,transaction_type,transaction_datetime,customer_id,employee_id)
+                    insert into warehouse_transactions (product_id,quantity,transaction_type, transaction_datetime, customer_id, employee_id)
                      values (?,?,?,?,?,?)
-            """, ([warehouse_transaction.product_id,warehouse_transaction.quantity,warehouse_transaction.transaction_type,warehouse_transaction.transaction_datetime,warehouse_transaction.customer_id,warehouse_transaction.employee_id]))
+            """, ([warehouse_transaction.product_id, warehouse_transaction.quantity, warehouse_transaction.transaction_type, warehouse_transaction.transaction_datetime,warehouse_transaction.customer_id, warehouse_transaction.employee_id]))
             self.connection.commit()
             self.disconnect()
 
-    def update(self,warehouse_transaction):
+    def update(self, warehouse_transaction):
             self.connect()
-            self.cursor.execute("""
-                    update warehouse_transactions set product_id=?,quantity=?,transaction_type=?,transaction_datetime=?,customer_id=?,employee_id=? where id=?"""
-            , ([warehouse_transaction.product_id,warehouse_transaction.quantity,warehouse_transaction.transaction_type,warehouse_transaction.transaction_datetime,warehouse_transaction.customer_id,warehouse_transaction.employee_id, warehouse_transaction.id]))
+            self.cursor.execute("""update warehouse_transactions set product_id=?,quantity=?,transaction_type=?,transaction_datetime=?,customer_id=?,employee_id=? where id=?""", ([warehouse_transaction.product_id,warehouse_transaction.quantity,warehouse_transaction.transaction_type,warehouse_transaction.transaction_datetime,warehouse_transaction.customer_id,warehouse_transaction.employee_id, warehouse_transaction.id]))
             self.connection.commit()
             self.disconnect()
 

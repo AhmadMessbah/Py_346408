@@ -23,27 +23,15 @@ class FinancialTransactionView:
         self.payment_id = LabelWithEntry(self.window, "PaymentId", 20, 260)
         self.description = LabelWithEntry(self.window, "Description", 20, 300)
 
-        self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7, 8], show="headings", height=16)
-        self.table.place(x=270, y=20)
+        self.table = Table(
+            self.window,
+            ["Id", "Type", "CustomerId", "EmployeeId","Amount","Date&Time","PaymentId", "Description"],
+            [60, 100, 100, 80, 100,80,80,100],
+            270, 20,
+            16,
+            self.select_from_table
+        )
 
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="Type")
-        self.table.heading(3, text="CustomerId")
-        self.table.heading(4, text="EmployeeId")
-        self.table.heading(5, text="Amount")
-        self.table.heading(6, text="Date&Time")
-        self.table.heading(7, text="PaymentId")
-        self.table.heading(8, text="Description")
-
-        self.table.column(1, width=60)
-        self.table.column(2, width=100)
-        self.table.column(3, width=100)
-        self.table.column(4, width=80)
-        self.table.column(5, width=100)
-        self.table.column(6, width=80)
-        self.table.column(7, width=80)
-        self.table.column(8, width=100)
-        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=340)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=340)
@@ -91,18 +79,11 @@ class FinancialTransactionView:
         self.payment_id.clear()
         self.description.clear()
         status, financial_transaction_list = self.financial_transaction_controller.find_all()
-        self.refresh_table(financial_transaction_list)
+        self.table.refresh_table(financial_transaction_list)
 
-    def refresh_table(self, financial_transaction_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
 
-        for financialtransaction in financial_transaction_list:
-            financial_transaction_tuple = tuple(financialtransaction.__dict__.values())
-            self.table.insert("", END, values=financial_transaction_tuple)
 
-    def select_from_table(self, event):
-        selected_financial_transaction = self.table.item(self.table.focus())["values"]
+    def select_from_table(self, selected_financial_transaction):
         if selected_financial_transaction:
             financial_transaction = FinancialTransaction(*selected_financial_transaction)
             self.id.set(financial_transaction.id)

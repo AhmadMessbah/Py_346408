@@ -4,7 +4,7 @@ from model.entity.delivery import Delivery
 
 class DeliveryRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling_db")
+        self.connection = sqlite3.connect("../db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
@@ -21,11 +21,10 @@ class DeliveryRepository:
 
     def update(self, delivery):
         self.connect()
-        self.cursor.execute(
-                "update deliveries set first_name=?, last_name=?, address=?, description=? where id=?",
-                [delivery.first_name, delivery.last_name, delivery.address, delivery.description, delivery.id])
+        self.cursor.execute("update deliveries set first_name=?, last_name=?, address=?, description=? where id=?", [delivery.first_name, delivery.last_name, delivery.address, delivery.description, delivery.id])
         self.connection.commit()
         self.disconnect()
+        return "updated"
 
     def delete(self, id):
         self.connect()

@@ -1,16 +1,21 @@
 from model.entity.delivery import Delivery
 from model.service.delivery_service import DeliveryService
+from model.repository.delivery_repository import DeliveryRepository
 
-delivery = Delivery(1, "Hossein", "Hosseini", "street 26", "Tozih jadid")
+# save test [passed]
+# delivery = Delivery(None, "reza", "Hosseini", "street 92", "felaaan")
+# delivery_service = DeliveryService()
+# delivery_service.save(delivery)
 
-delivery_service = DeliveryService()
+# update test [passed]
+# delivery = Delivery(3, "reza", "Hosseini", "street 92", "felaaan")
+# delivery_service = DeliveryService()
+# delivery_service.update(delivery)
 
-#test failed
-delivery_service.save(delivery)
+# find_all test [passed]
+# delivery_service = DeliveryService()
+# delivery_service.findall()
 
-#test failed
-#delivery_service.update(delivery)
-
-#test failed
-#delivery_service.delete(1)
-
+# find_by_id test [passed]
+# delivery_service = DeliveryService()
+# delivery_service.find_by_id(3)

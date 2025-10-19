@@ -32,7 +32,7 @@ class Order:
         return tuple((
             self.id,
             self.order_type,
-            customer.first_name + " " + customer.last_name ,
+            customer.first_name + " " + customer.last_name,
             employee.first_name + " " + employee.last_name,
             self.date_time,
             self.payment_id,

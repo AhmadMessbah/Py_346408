@@ -27,7 +27,6 @@ class DashboardView:
     def payment_view(self):
         ui = PaymentView()
 
-    #
     # def warehouse_transaction_view(self):
     #     ui = WarehouseTransactionView()
 
@@ -53,28 +52,21 @@ class DashboardView:
         Label(self.window, image=image).place(x=195, y=20)
 
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Employee",
-               command=self.employee_view).place(
-            x=80, y=200)
+               command=self.employee_view).place(x=80, y=200)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Customer",
-               command=self.customer_view).place(
-            x=80, y=200 + y_dist * 1)
+               command=self.customer_view).place(x=80, y=200 + y_dist * 1)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Bank",
-               command=self.bank_view).place(x=80,
-                                             y=200 + y_dist * 2)
+               command=self.bank_view).place(x=80, y=200 + y_dist * 2)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Product",
-               command=self.product_view).place(
-            x=80, y=200 + y_dist * 3)
+               command=self.product_view).place(x=80, y=200 + y_dist * 3)
         # Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Warehouse", command= self.warehouse_view).place(
         #     x=80, y=200 + y_dist * 4)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Order",
-               command=self.order_view).place(x=80,
-                                              y=200 + y_dist * 5)
+               command=self.order_view).place(x=80, y=200 + y_dist * 5)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="OrderItem",
-               command=self.order_item_view).place(
-            x=80, y=200 + y_dist * 6)
+               command=self.order_item_view).place(x=80, y=200 + y_dist * 6)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Payment",
-               command=self.payment_view).place(
-            x=80, y=200 + y_dist * 7)
+               command=self.payment_view).place(x=80, y=200 + y_dist * 7)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
                text="Financial Transaction", command=self.financial_transactoin_view).place(x=80, y=200 + y_dist * 8)
         # Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,

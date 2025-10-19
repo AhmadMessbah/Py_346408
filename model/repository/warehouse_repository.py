@@ -4,22 +4,22 @@ from model.entity.warehouse import Warehouse
 
 class WarehouseRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling_db")
+        self.connection = sqlite3.connect("../db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
         self.cursor.close()
         self.connection.close()
 
-    def save(self,warehouse):
+    def save(self, warehouse):
             self.connect()
             self.cursor.execute("""insert into warehouses (product_id,quantity) values (?,?)""", ([warehouse.product_id,warehouse.quantity]))
             self.connection.commit()
             self.disconnect()
 
-    def update(self,warehouse):
+    def update(self, warehouse):
             self.connect()
-            self.cursor.execute("""update warehouses set product_id=?,quantity=? where id=?""", ([warehouse.product_id,warehouse.quantity, warehouse.id]))
+            self.cursor.execute("""update warehouses set product_id=?,quantity=? where id=?""", ([warehouse.product_id, warehouse.quantity, warehouse.id]))
             self.connection.commit()
             self.disconnect()
 

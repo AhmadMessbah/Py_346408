@@ -12,7 +12,7 @@ class OrderView:
 
         self.window = Tk()
         self.window.title("Order")
-        self.window.geometry("1310x510")
+        self.window.geometry("1310x525")
 
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.customer_id = LabelWithEntry(self.window, "Customer Id", 20, 60, data_type=IntVar)
@@ -35,25 +35,24 @@ class OrderView:
             state="readonly")
         self.order_type.place(x=110, y=390)
 
+        # Table
         self.table = Table(
             self.window,
-            ["Id", "Order Type", "Customer", "Employee", "Date & Time", "Total Amount", "Total Discount", "Total Discount"],
-            [40, 90, 120, 120,140, 90, 90, 90, 90, 120],
+            ["Id", "Order Type", "Customer", "Employee", "Date & Time", "Payment Id", "Ware Trans Id", "Tax", "Total Discount", "Total Amount"],
+            [40, 90, 120, 120, 140, 90, 90, 90, 90, 120],
             280, 20,
-            21,
+            23,
             self.select_from_table
         )
-
 
         # v_scroll = ttk.Scrollbar(self.window, command=self.table.yview)
         # self.table.configure(yscrollcommand=v_scroll.set(0.0,0.4))
         # v_scroll.place(x=1212, y=20, height=445)
 
-
-        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=440)
-        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=440)
-        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=175, y=440)
-        Button(self.window, text="View Order", width=21,command=self.order_item_view).place(x=20, y=480)
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=475)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=475)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=175, y=475)
+        Button(self.window, text="View Order", width=29, command=self.order_item_view).place(x=20, y=435)
 
         self.reset_form()
         self.window.mainloop()
@@ -87,6 +86,9 @@ class OrderView:
         else:
             messagebox.showerror("Order Delete Error", message)
 
+    def order_item_view(self):
+        pass
+
     def reset_form(self):
         self.id.clear()
         self.customer_id.clear()
@@ -103,17 +105,16 @@ class OrderView:
 
     def select_from_table(self, selected_order):
         if selected_order:
-            order = Order(*selected_order)
-            self.id.set(order.id)
-            self.order_type.set(order.order_type)
-            self.customer_id.set(order.customer_id)
-            self.employee_id.set(order.employee_id)
-            self.date_time.set(order.date_time)
-            self.payment_id.set(order.payment_id)
-            self.warehouse_transaction_id.set(order.warehouse_transaction_id)
-            self.tax.set(order.tax)
-            self.total_discount.set(order.total_discount)
-            self.total_amount.set(order.total_amount)
-
-    def order_item_view(self):
-        ui = OrderItemView()
+            status, order = self.order_controller.find_by_id(selected_order[0])
+            if status:
+                order = Order(*selected_order)
+                self.id.set(order.id)
+                self.order_type.set(order.order_type)
+                self.customer_id.set(order.customer_id)
+                self.employee_id.set(order.employee_id)
+                self.date_time.set(order.date_time)
+                self.payment_id.set(order.payment_id)
+                self.warehouse_transaction_id.set(order.warehouse_transaction_id)
+                self.tax.set(order.tax)
+                self.total_discount.set(order.total_discount)
+                self.total_amount.set(order.total_amount)
