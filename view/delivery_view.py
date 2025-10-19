@@ -49,3 +49,48 @@ class DeliveryView:
             messagebox.showerror("Delivery Save Error", message)
 
 
+    def edit_click(self):
+        status, message = self.delivery_controller.update( self.id.get(), self.first_name.get(), self.last_name.get(),
+                                                        self.address.get(), self.description.get())
+        if status:
+            messagebox.showinfo("Delivery Update", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Delivery Update Error", message)
+
+    def delete_click(self):
+        status, message = self.delivery_controller.delete(self.id.get())
+        if status:
+            messagebox.showinfo("Delivery Delete", message)
+            self.reset_form()
+        else:
+            messagebox.showerror("Delivery Delete Error", message)
+
+
+    def reset_form(self):
+        self.id.clear()
+        self.first_name.clear()
+        self.last_name.clear()
+        self.address.clear()
+        self.description.clear()
+        status, delivery_list = self.delivery_controller.find_all()
+        self.refresh_table(delivery_list)
+
+    def refresh_table(self, delivery_list):
+        for item in self.table.get_children():
+            self.table.delete(item)
+
+        for delivery in delivery_list:
+            delivery_tuple = tuple(delivery.__dict__.values())
+            self.table.insert("", END, values=delivery_tuple)
+
+    def select_from_table(self, event):
+        selected_delivery = self.table.item(self.table.focus())["values"]
+        if selected_delivery:
+            delivery = Delivery(*selected_delivery)
+            self.id.set(delivery.id)
+            self.first_name.set(delivery.first_name)
+            self.last_name.set(delivery.last_name)
+            self.address.set(delivery.address)
+            self.description.set(delivery.description)
+
