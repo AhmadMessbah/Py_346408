@@ -3,22 +3,26 @@ from model.entity.warehouse import Warehouse
 from model.repository.warehouse_repository import WarehouseRepository
 from model.service.warehouse_service import WarehouseService
 
-
-# warehouse = Warehouse(None, 222, 3)
-#
+# save test [passed]
+# warehouse = Warehouse(None, 111, 22)
 # warehouse_service = WarehouseService()
 # warehouse_service.save(warehouse)
+
+
+# update test [passed]
+# warehouse = Warehouse(2, 111, 22)
+# warehouse_service = WarehouseService()
 # warehouse_service.update(warehouse)
-# warehouse_service.delete(id)
-# print(warehouse_service.find_all())
-# print(warehouse_service.find_by_id(id))
 
 
-# warehouse_controller = WarehouseController()
-# print(warehouse_controller.find_all())
+# delete test [passed]
+# warehouse_service = WarehouseService()
+# warehouse_service.delete(2)
 
-# repo = WarehouseRepository()
-# print(repo.find_all())
+# find_all test [passed]
+# warehouse_service = WarehouseService()
+# warehouse_service.findall()
 
-# service = WarehouseService()
-# print(service.find_all())
+# find_by_id test [passed]
+# warehouse_service = WarehouseService()
+# warehouse_service.find_by_id(2)
