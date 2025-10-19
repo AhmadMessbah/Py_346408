@@ -4,7 +4,7 @@ from model.entity.warehouse import Warehouse
 
 class WarehouseRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling_db")
+        self.connection = sqlite3.connect("../db/selling_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
