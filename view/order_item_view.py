@@ -19,16 +19,14 @@ class OrderItemView:
         self.price = LabelWithEntry(self.window, "Price", 20, 180, data_type=IntVar)
         self.discount = LabelWithEntry(self.window, "Discount", 20, 220, data_type=IntVar)
         self.description = LabelWithEntry(self.window, "Description", 20, 260)
-        #self, window, headings, column_widths, x, y, height = 10, function_name = None
+
         self.table = Table(self.window,
-                           ["Id", "Order Id","Product","Quantity","Price","Discount","Description"],
-                           [40,60,120,60,90,60,140]
+                           ["Id", "Order Id", "Product", "Quantity", "Price", "Discount", "Description"],
+                           [40, 60, 120, 60, 90, 60, 140]
                            , 300 ,20 ,
                            14 ,
                            self.select_from_table
                            )
-
-
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=300)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=300)
@@ -74,10 +72,7 @@ class OrderItemView:
        status, order_item_list = self.order_item_controller.find_all()
        self.table.refresh_table(order_item_list)
 
-
-
-    def select_from_table(self,selected_order_item):
-
+    def select_from_table(self, selected_order_item):
         if selected_order_item:
             status , order_item = self.order_item_controller.find_by_id(selected_order_item[0])
             if status:
