@@ -1,16 +1,12 @@
 from model.entity.delivery import Delivery
 from model.service.delivery_service import DeliveryService
+from model.repository.delivery_repository import DeliveryRepository
 
-delivery = Delivery(1, "Hossein", "Hosseini", "street 26", "Tozih jadid")
+delivery = Delivery(None, "Hossein", "Hosseini", "street 26", "Tozih jadid")
+deliv = Delivery(None, "mamad", "alipour", "street 92", "hichi")
 
 delivery_service = DeliveryService()
 
-#test failed
-delivery_service.save(delivery)
 
-#test failed
-#delivery_service.update(delivery)
-
-#test failed
-#delivery_service.delete(1)
-
+repo = DeliveryRepository()
+repo.update(deliv)
