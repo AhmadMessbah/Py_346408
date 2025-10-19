@@ -18,29 +18,14 @@ class EmployeeView:
         self.phone_number = LabelWithEntry(self.window,"PhoneNumber",20,220)
         self.username = LabelWithEntry(self.window,"Username",20,260)
         self.password = LabelWithEntry(self.window,"Password",20,300)
-
-        self.table = ttk.Treeview(self.window,columns=[1,2,3,4,5,6,7,8],show="headings", height=16)
-        self.table.place(x=270,y=20)
-
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="FirstName")
-        self.table.heading(3, text="LastName")
-        self.table.heading(4, text="Salary")
-        self.table.heading(5, text="Occupation")
-        self.table.heading(6, text="PhoneNumber")
-        self.table.heading(7, text="Username")
-        self.table.heading(8, text="Password")
-
-        self.table.column(1, width=40)
-        self.table.column(2, width=100)
-        self.table.column(3, width=100)
-        self.table.column(4, width=60)
-        self.table.column(5, width=100)
-        self.table.column(6, width=100)
-        self.table.column(7, width=100)
-        self.table.column(8, width=100)
-
-        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
+        
+        self.table=Table(self.window,
+            ["Id", "FirstName","LastName","Salary","Occupation","PhoneNumber","Username","Password"],
+            [40,100,100,60,100,100,100,100],
+            270,20,
+            16,
+            self.select_from_table)
+    
 
         Button(self.window, text="Save", width=8, command=self.save_click).place(x=20, y=340)
         Button(self.window, text="Edit", width=8, command=self.edit_click).place(x=100, y=340)
@@ -88,17 +73,11 @@ class EmployeeView:
         status, employee_list = self.employee_controller.find_all()
         self.refresh_table(employee_list)
 
-    def refresh_table(self, employee_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
-
-        for employee in employee_list:
-            employee_tuple = tuple(employee.__dict__.values())
-            self.table.insert("", END, values=employee_tuple)
-
-    def select_from_table(self, event):
-                selected_employee = self.table.item(self.table.focus())["values"]
+    
+    def select_from_table(self,selected_employee):
                 if selected_employee:
+                   status,employee=self.employee_controller.find_by_id(selected_employee[0])
+                   if status:
                     employee = Employee(*selected_employee)
                     self.id.set(employee.id)
                     self.first_name.set(employee.first_name)
