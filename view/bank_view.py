@@ -63,12 +63,14 @@ class BankView:
 
     def select_from_table(self, selected_bank):
         if selected_bank:
-            bank = Bank(*selected_bank)
-            self.id.set(bank.id)
-            self.bank_name.set(bank.name)
-            self.account_name.set(bank.account)
-            self.balance.set(bank.balance)
-            self.description.set(bank.description)
+            status, bank = self.bank_controller.find_by_id(selected_bank[0])
+            if status:
+                bank = Bank(*selected_bank)
+                self.id.set(bank.id)
+                self.bank_name.set(bank.name)
+                self.account_name.set(bank.account)
+                self.balance.set(bank.balance)
+                self.description.set(bank.description)
 
 
 
