@@ -19,28 +19,14 @@ class ProductView:
         self.unit = LabelWithEntry(self.window, "Unit", 20, 260)
         self.expirationdate = LabelWithEntry(self.window, "ExpirationDate", 20, 300)
 
-        self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7, 8], show="headings", height=18)
-        self.table.place(x=270, y=20)
-
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="Name")
-        self.table.heading(3, text="Brand")
-        self.table.heading(4, text="Model")
-        self.table.heading(5, text="Serial")
-        self.table.heading(6, text="Category")
-        self.table.heading(7, text="Unit")
-        self.table.heading(8, text="ExpirationDate")
-
-        self.table.column(1, width=40)
-        self.table.column(2, width=100)
-        self.table.column(3, width=100)
-        self.table.column(4, width=60)
-        self.table.column(5, width=100)
-        self.table.column(6, width=100)
-        self.table.column(7, width=100)
-        self.table.column(8, width=100)
-
-        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
+        self.table = Table(
+            self.window,
+            ["Id", "Name", "Brand", "Model", "Serial", "Category", "Unit", "ExpirationDate"],
+            [40,100,100,60,100,100,100,100],
+            270,20,
+            18,
+            self.select_from_table
+        )
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=380)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=380)
