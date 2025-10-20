@@ -32,3 +32,8 @@ def employee_id_validator(employee_id):
         return employee_id
 
 
+def transaction_type_validator(transaction_type):
+    if transaction_type=="get"or transaction_type=="receive":
+        return transaction_type
+    else:
+        raise ValueError('Invalid transaction type !!!')
