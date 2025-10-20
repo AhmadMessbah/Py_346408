@@ -19,30 +19,14 @@ class PaymentView:
         self.total_amount = LabelWithEntry(self.window, "TotalAmount", 20, 220, data_type=IntVar)
         self.employee_id = LabelWithEntry(self.window, "EmployeeId", 20, 260, data_type=IntVar)
         self.description = LabelWithEntry(self.window, "Description", 20, 300)
-
-        self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7, 8], show="headings", height=19)
-        self.table.place(x=280, y=20)
-
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="TransactType")
-        self.table.heading(3, text="PaymentType")
-        self.table.heading(4, text="DateTime")
-        self.table.heading(5, text="CustomerId")
-        self.table.heading(6, text="TotalAmount")
-        self.table.heading(7, text="EmployeeId")
-        self.table.heading(8, text="Description")
-
-        self.table.column(1, width=40)
-        self.table.column(2, width=100)
-        self.table.column(3, width=100)
-        self.table.column(4, width=100)
-        self.table.column(5, width=100)
-        self.table.column(6, width=100)
-        self.table.column(7, width=100)
-        self.table.column(8, width=100)
-
-        self.table.bind("<<TreeviewSelect>>", self.select_from_table)
-
+        self.table = Table(
+            self.window,
+            ["Id","TransactType", "PaymentType", "DateTime", "CustomerId","TotalAmount","EmployeeId",  "Description"],
+            [40,100,100,100,100,100,100,100],
+            270,20,
+            18,
+            self.select_from_table
+        )
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=400)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=400)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=400)
@@ -89,18 +73,10 @@ class PaymentView:
         self.employee_id.clear()
         self.description.clear()
         status, payment_list = self.payment_controller.find_all()
-        self.refresh_table(payment_list)
+        self.table.refresh_table(payment_list)
 
-    def refresh_table(self, payment_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
-
-        for payment in payment_list:
-            payment_tuple = tuple(payment.__dict__.values())
-            self.table.insert("", END, values=payment_tuple)
-
-    def select_from_table(self, event):
-        selected_payment = self.table.item(self.table.focus())["values"]
+    def select_from_table(self,selected_payment):
+       
         if selected_payment:
             payment = Payment(*selected_payment)
             self.id.set(payment.id)

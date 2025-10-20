@@ -1,5 +1,4 @@
 from view import *
-
 from model.entity.product import Product
 from controller.product_controller import ProductController
 
@@ -70,18 +69,10 @@ class ProductView:
         self.unit.clear()
         self.expirationdate.clear()
         status, product_list = self.product_controller.find_all()
-        self.refresh_table(product_list)
-
-    def refresh_table(self, product_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
-
-        for product in product_list:
-            product_tuple = tuple(product.__dict__.values())
-            self.table.insert("", END, values=product_tuple)
-
-    def select_from_table(self, event):
-        selected_product = self.table.item(self.table.focus())["values"]
+        self.table.refresh_table(product_list)
+        
+    def select_from_table(self,selected_product):
+        
         if selected_product:
             product = Product(*selected_product)
             self.id.set(product.id)
