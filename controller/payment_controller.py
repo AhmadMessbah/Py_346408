@@ -10,7 +10,7 @@ class PaymentController:
             service.save(payment)
             return True, f"Payment Saved Successfully \n{payment}"
         except Exception as e:
-            return False, "Save Error"
+            return False, e
 
     def update(self, id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id,
                description):
@@ -21,7 +21,7 @@ class PaymentController:
             service.update(payment)
             return True, f"Payment Updated Successfully \n{payment}"
         except Exception as e:
-            return False, "Update Error"
+            return False, e
 
     def delete(self, id):
         try:
@@ -29,7 +29,7 @@ class PaymentController:
             service.delete(id)
             return True, f"Payment with Id {id} delete successfully"
         except Exception as e:
-            return False, "delete Error"
+            return False, e
 
     def find_all(self):
         try:
@@ -37,7 +37,7 @@ class PaymentController:
             payment_list = service.find_all()
             return True, payment_list
         except Exception as e:
-            return False, "Find All Error"
+            return False, e
 
     def find_by_id(self, id):
         try:
@@ -45,4 +45,4 @@ class PaymentController:
             payment = service.find_by_id(id)
             return True, payment
         except Exception as e:
-            return False, "Find By Id Error"
+            return False, e
