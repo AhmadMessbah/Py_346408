@@ -1,5 +1,5 @@
 from view import  *
-
+from tkinter.ttk import Combobox
 from model.entity.warehouse_transaction import WarehouseTransaction
 from controller.warehouse_transaction_controller import WarehouseTransactionController
 
@@ -8,89 +8,93 @@ class WarehouseTransactionView:
     def __init__(self):
         self.warehouse_transaction_controller = WarehouseTransactionController()
         self.window = Tk()
-        self.window.geometry("1000x320")
+        self.window.geometry("1000x400")
         self.window.title("Warehouse Transaction")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
-        self.product_id = LabelWithEntry(self.window, "product Id", 20, 40, data_type=IntVar)
-        self.quantity = LabelWithEntry(self.window, "quantity", 20, 60, data_type=IntVar)
-        self.transaction_type = LabelWithEntry(self.window, "transaction type", 20, 100)
-        self.transaction_datetime = LabelWithEntry(self.window, "transaction datetime", 20, 140, data_type=StringVar)
-        self.customer_id = LabelWithEntry(self.window, "customer_id", 20, 180, data_type=IntVar)
-        self.employee_id = LabelWithEntry(self.window, "employee_id", 20, 220, data_type=IntVar)
+        self.id = LabelWithEntry(self.window, "Id", 30, 20, data_type=IntVar, state="readonly")
+        self.product_id = LabelWithEntry(self.window, "product Id", 30, 60)
+        self.quantity = LabelWithEntry(self.window, "quantity", 30, 100)
 
-        self.table = ttk.Treeview(self.window, columns=[1, 2, 3, 4, 5, 6, 7], show="headings", height=12)
-        self.table.place(x=270, y=20)
+        self.transaction_datetime = LabelWithEntry(self.window, "transaction datetime", 30, 180)
+        self.customer_id = LabelWithEntry(self.window, "customer_id", 30, 220)
+        self.employee_id = LabelWithEntry(self.window, "employee_id", 30, 260)
 
-        self.table.heading(1, text="Id")
-        self.table.heading(2, text="Product Id")
-        self.table.heading(3, text="Quantity")
-        self.table.heading(4, text="Transaction Type")
-        self.table.heading(5, text="Transaction Date")
-        self.table.heading(6, text="Customer Id")
-        self.table.heading(7, text="Employee Id")
+        transaction_type_list = ["get","receive"]
+        transaction_type = StringVar(value="get")
+        Label(self.window, text="transaction type").place(x=30, y=140)
+        self.transaction_type = Combobox(
+            self.window,
+            values=transaction_type_list,
+            textvariable=transaction_type,
+            width=17,
+            state="readonly")
+        self.transaction_type.place(x=120, y=140)
+        self.table = Table(
+            self.window,
+            ["Id", "Product_Id", "Quantity","transaction_type", "transaction_datetime","customer_id","employee_id"],
+            [40, 100, 100,100,120,100,100],
+            275, 20,
+            13,
+            self.select_from_table
+        )
 
-        self.table.column(1, width=40)
-        self.table.column(2, width=80)
-        self.table.column(3, width=60)
-        self.table.column(4, width=100)
-        self.table.column(5, width=100)
-        self.table.column(6, width=90)
-        self.table.column(7, width=90)
-
-        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=260)
-        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=260)
-        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=260)
-
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=300)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=300)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=300)
+        self.reset_form()
         self.window.mainloop()
 
+
     def save_click(self):
-        status, message = self.warehouse_transaction_controller.save(self.product_id.get(),self.quantity.get(),self.transaction_type.get(),self.transaction_datetime.get(), self.employee_id.get(), self.customer_id.get())
+        status, message = self.warehouse_transaction_controller.save(self.product_id.get(), self.quantity.get(),
+                                                                     self.transaction_type.get(),self.transaction_datetime.get(),self.customer_id.get(),self.employee_id.get())
         if status:
-            messagebox.showinfo("Transaction Saved", message)
+            messagebox.showinfo("Warehouse_transaction Save", message)
+            self.reset_form()
         else:
-            messagebox.showerror("Transaction Save Error", message)
+            messagebox.showerror("Warehouse_transaction Save Error", message)
 
     def edit_click(self):
-        status, message = self.warehouse_transaction_controller.update(self.product_id.get(),self.quantity.get(),self.transaction_type.get(),self.transaction_datetime.get(), self.employee_id.get(), self.customer_id.get())
+        status, message = self.warehouse_transaction_controller.update(self.id.get(), self.product_id.get(), self.quantity.get(),self.transaction_type.get(),
+                                                                       self.transaction_datetime.get(),self.customer_id.get(), self.employee_id.get())
         if status:
-            messagebox.showinfo("Transaction Updated", message)
+            messagebox.showinfo("Warehouse_transaction Update", message)
+            self.reset_form()
         else:
-            messagebox.showerror("Transaction Update Error", message)
+            messagebox.showerror("Warehouse_transaction Update Error", message)
+
     def delete_click(self):
-        status, message = self.warehouse_transaction_controller.delete(self.product_id.get(),self.quantity.get(),self.transaction_type.get(),self.transaction_datetime.get(), self.employee_id.get(), self.customer_id.get())
+        status, message = self.warehouse_transaction_controller.delete(self.id.get())
         if status:
-            messagebox.showinfo("Transaction Deleted", message)
+            messagebox.showinfo("Warehouse_transaction Delete", message)
+            self.reset_form()
         else:
-            messagebox.showerror("Transaction Delete Error", message)
+            messagebox.showerror("Warehouse_transaction Delete Error", message)
+
     def reset_form(self):
         self.id.clear()
         self.product_id.clear()
         self.quantity.clear()
-        self.transaction_type.clear()
+        self.transaction_type.set("get")
         self.transaction_datetime.clear()
-        self.employee_id.clear()
         self.customer_id.clear()
+        self.employee_id.clear()
+        status, warehouse_transaction_list = self.warehouse_transaction_controller.find_all()
+        self.table.refresh_table(warehouse_transaction_list)
 
-    def refresh_table(self, transaction_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
+    def select_from_table(self, selected_warehouse_transaction):
+        if selected_warehouse_transaction:
+            status, warehouse_transaction = self.warehouse_transaction_controller.find_by_id(selected_warehouse_transaction[0])
+            if status:
+                warehouse_transaction = WarehouseTransaction(*selected_warehouse_transaction)
+                self.id.set(warehouse_transaction.id)
+                self.product_id.set(warehouse_transaction.product_id)
+                self.quantity.set(warehouse_transaction.quantity)
+                self.transaction_type.set(warehouse_transaction.transaction_type)
+                self.transaction_datetime.set(warehouse_transaction.transaction_datetime)
+                self.customer_id.set(warehouse_transaction.customer_id)
+                self.employee_id.set(warehouse_transaction.employee_id)
 
-        for transaction in transaction_list:
-            product_tuple = tuple(transaction.__dict__.values())
-            self.table.insert("", END, values=product_tuple)
-
-
-    def select_from_table(self, event):
-        selected_transaction = self.table.item(self.table.focus())["values"]
-        if selected_transaction:
-            transaction = WarehouseTransaction(*selected_transaction)
-            self.id.set(transaction.id)
-            self.product_id.set(transaction.product_id)
-            self.quantity.set(transaction.quantity)
-            self.transaction_type.set(transaction.transaction_type)
-            self.transaction_datetime.set(transaction.transaction_datetime)
-            self.employee_id.set(self.customer_id)
 
 
 

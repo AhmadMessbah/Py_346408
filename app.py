@@ -15,8 +15,8 @@ class DashboardView:
     def product_view(self):
         ui = ProductView()
 
-    # def warehouse_view(self):
-    #     ui = WarehouseView()
+    def warehouse_view(self):
+        ui = WarehouseView()
 
     def order_view(self):
         ui = OrderView()
@@ -27,8 +27,8 @@ class DashboardView:
     def payment_view(self):
         ui = PaymentView()
 
-    # def warehouse_transaction_view(self):
-    #     ui = WarehouseTransactionView()
+    def warehouse_transaction_view(self):
+        ui = WarehouseTransactionView()
 
     def financial_transactoin_view(self):
         ui = FinancialTransactionView()
@@ -59,8 +59,8 @@ class DashboardView:
                command=self.bank_view).place(x=80, y=200 + y_dist * 2)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Product",
                command=self.product_view).place(x=80, y=200 + y_dist * 3)
-        # Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Warehouse", command= self.warehouse_view).place(
-        #     x=80, y=200 + y_dist * 4)
+        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Warehouse", command= self.warehouse_view).place(
+              x=80, y=200 + y_dist * 4)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Order",
                command=self.order_view).place(x=80, y=200 + y_dist * 5)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="OrderItem",
@@ -69,8 +69,8 @@ class DashboardView:
                command=self.payment_view).place(x=80, y=200 + y_dist * 7)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
                text="Financial Transaction", command=self.financial_transactoin_view).place(x=80, y=200 + y_dist * 8)
-        # Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
-        #        text="Warehouse Transaction", command= self.warehouse_transaction_view).place(x=80, y=200 + y_dist * 9)
+        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
+                text="Warehouse Transaction", command= self.warehouse_transaction_view).place(x=80, y=200 + y_dist * 9)
 
         Label(self.window, text="Employee : Ahmad", font=font, bg="white").place(x=80, y=820)
 

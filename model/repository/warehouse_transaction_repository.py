@@ -1,6 +1,6 @@
 import sqlite3
 from model.entity.warehouse_transaction import WarehouseTransaction
-from datetime import datetime
+
 
 class WarehouseTransactionRepository:
     def connect(self):

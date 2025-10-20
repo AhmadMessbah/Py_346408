@@ -24,3 +24,5 @@ from view.financial_transaction_view import FinancialTransactionView
 from view.order_view import OrderView
 from view.order_item_view import OrderItemView
 
+from view.warehouse_view import WarehouseView
+from view.warehouse_transaction_view import WarehouseTransactionView

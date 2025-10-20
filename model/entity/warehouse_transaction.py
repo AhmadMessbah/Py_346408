@@ -10,3 +10,5 @@ class WarehouseTransaction:
 
     def __repr__(self):
         return f'{self.__dict__}'
+    def to_tuple(self):
+        return (self.id, self.product_id, self.quantity, self.transaction_type, self.transaction_datetime,self.customer_id, self.employee_id)
