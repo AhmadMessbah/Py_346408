@@ -33,7 +33,7 @@ class FinancialTransactionService:
         pass
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
-        pass
+        return self.repository.find_by_date_time_range(start_date_time, end_date_time)
 
     def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
         pass

@@ -21,16 +21,16 @@ class OrderService:
         return self.repository.find_by_id(id)
 
     def find_by_order_type(self, order_type):
-        pass
+        return self.repository.find_by_order_type(order_type)
 
     def find_by_customer_id(self, customer_id):
-        pass
+        return self.repository.find_by_customer_id(customer_id)
 
     def find_by_employee_id(self, employee_id):
-        pass
+        return self.repository.find_by_employee_id(employee_id)
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
-        pass
+        return self.repository.find_by_date_time_range(start_date_time, end_date_time)
 
     def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
-        pass
+        return self.repository.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
