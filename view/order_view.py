@@ -35,7 +35,6 @@ class OrderView:
             state="readonly")
         self.order_type.place(x=110, y=390)
 
-        # Table
         self.table = Table(
             self.window,
             ["Id", "Order Type", "Customer", "Employee", "Date & Time", "Payment Id", "Ware Trans Id", "Tax", "Total Discount", "Total Amount"],
