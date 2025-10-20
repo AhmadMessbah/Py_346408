@@ -1,6 +1,4 @@
-from model.entity.financial_transaction import FinancialTransaction
-from model.service.financial_transaction_service import FinancialTransactionService
-
+from model import FinancialTransaction, FinancialTransactionService
 
 class FinancialTransactionController:
     def save(self, transaction_type, customer_id, employee_id, amount, date_time, payment_id, description):
@@ -10,7 +8,7 @@ class FinancialTransactionController:
             service = FinancialTransactionService()
             service.save(financial_transaction)
             return True, "Saved"
-        except:
+        except Exception as e:
             return False, "Save Error"
 
     def update(self, id, transaction_type, customer_id, employee_id, amount, date_time, payment_id, description):
@@ -20,8 +18,8 @@ class FinancialTransactionController:
             service = FinancialTransactionService()
             service.update(financial_transaction)
             return True, "update Successfully"
-        except:
-            return False, "update Error"
+        except Exception as e:
+            return False, e
 
     def delete(self, id):
 
@@ -29,7 +27,7 @@ class FinancialTransactionController:
             service = FinancialTransactionService()
             service.delete(id)
             return True, f"Customer with Id {id} delete successfully"
-        except:
+        except Exception as e:
             return False, "delete Error"
 
     def find_all(self):
@@ -38,7 +36,7 @@ class FinancialTransactionController:
             financial_transaction = service.find_all()
             return True, financial_transaction
 
-        except:
+        except Exception as e:
             return False, "Find All Error"
 
     def find_by_id(self, id):
@@ -46,5 +44,5 @@ class FinancialTransactionController:
             service = FinancialTransactionService()
             financial_transaction_list = service.find_by_id(id)
             return True, financial_transaction_list
-        except:
+        except Exception as e:
             return False, "Find By Id Error"

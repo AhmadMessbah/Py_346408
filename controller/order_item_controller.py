@@ -1,5 +1,4 @@
-from model.entity.order_item import OrderItem
-from model.service.order_item_service import OrderItemService
+from model import OrderItem, OrderItemService
 
 
 class OrderItemController:
@@ -9,7 +8,7 @@ class OrderItemController:
             service = OrderItemService()
             service.save(order_item)
             return True, f"OrderItem Saved Successfully \n{order_item}"
-        except:
+        except Exception as e:
             return False, "Save Error"
 
     def update(self, id,order_id, product_id, quantity, price, discount, description):
@@ -18,7 +17,7 @@ class OrderItemController:
             service = OrderItemService()
             service.update(order_item)
             return True, f"OrderItem Updated Successfully \n{order_item}"
-        except:
+        except Exception as e:
             return False, "Update Error"
 
     def delete(self, id):
@@ -26,7 +25,7 @@ class OrderItemController:
             service = OrderItemService()
             service.delete(id)
             return True, f"OrderItem With Id{id} Delete Successfully"
-        except:
+        except Exception as e:
             return False, "Delete Error"
 
     def find_all(self):
@@ -34,7 +33,7 @@ class OrderItemController:
             service = OrderItemService()
             order_item_list = service.find_all()
             return True, order_item_list
-        except:
+        except Exception as e:
             return False, "Find All Error"
 
     def find_by_id(self, id):
@@ -42,5 +41,5 @@ class OrderItemController:
             service = OrderItemService()
             order = service.find_by_id(id)
             return True, order
-        except:
+        except Exception as e:
             return False, "Find By Id Error"

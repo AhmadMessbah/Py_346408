@@ -1,6 +1,4 @@
-from model.entity.sample import Sample
-from model.service.sample_service import SampleService
-
+from model import Sample, SampleService
 
 class SampleController:
     def save(self, name, description):
@@ -10,7 +8,7 @@ class SampleController:
             service = SampleService()
             service.save(sample)
             return True, "Saved"
-        except:
+        except Exception as e:
             return False, "Save Error"
 
     def update(self, sample):

@@ -1,5 +1,4 @@
-from model.entity.warehouse import Warehouse
-from model.service.warehouse_service import WarehouseService
+from model import Warehouse, WarehouseService
 
 
 class WarehouseController:

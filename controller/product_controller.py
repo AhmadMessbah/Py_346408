@@ -1,6 +1,4 @@
-from model.entity.product import Product
-from model.service.product_service import ProductService
-
+from model import Product, ProductService
 
 class ProductController:
     def save(self, name, brand, model, serial, category, unit, expiration_date):
@@ -9,7 +7,7 @@ class ProductController:
             service = ProductService()
             service.save(product)
             return True, f"Product Saved Successfully \n{product}"
-        except:
+        except Exception as e:
             return False, "Save Error"
 
     def update(self,id, name, brand, model, serial, category, unit, expiration_date):
@@ -18,7 +16,7 @@ class ProductController:
             service = ProductService()
             service.update(product)
             return True, f"Product Saved Successfully \n{product}"
-        except:
+        except Exception as e:
             return False, "Update Error"
 
     def delete(self, id):
@@ -26,19 +24,19 @@ class ProductController:
             service = ProductService()
             service.delete(id)
             return True, f"Product with Id {id} delete successfully"
-        except:
+        except Exception as e:
             return False, "delete Error"
 
     def find_all(self):
         try:
             service = ProductService()
             return True, service.find_all()
-        except:
+        except Exception as e:
             return False, "Find All Error"
 
     def find_by_id(self, id):
         try:
             service = ProductService()
             return True, service.find_by_id(id)
-        except:
+        except Exception as e:
             return False, "Find By Id Error"

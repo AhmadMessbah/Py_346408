@@ -1,7 +1,7 @@
 from view import *
 
-from model.entity.employee import Employee
-from controller.employee_controller import EmployeeController
+from model import Employee
+from controller import EmployeeController
 
 class EmployeeView:
     def __init__(self):

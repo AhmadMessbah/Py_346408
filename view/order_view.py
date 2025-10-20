@@ -1,9 +1,7 @@
-from test.order_test import order
 from view import *
-from tkinter.ttk import Combobox
 
-from model.entity.order import Order
-from controller.order_controller import OrderController
+from model import Order
+from controller import OrderController
 
 class OrderView:
     def __init__(self):

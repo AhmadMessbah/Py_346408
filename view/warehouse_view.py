@@ -1,6 +1,8 @@
 from view import *
-from controller.warehouse_controller import WarehouseController
-from model.entity.warehouse import Warehouse
+from model import Warehouse
+from controller import WarehouseController
+
+
 class WarehouseView:
     def __init__(self):
         self.warehouse_controller = WarehouseController()
@@ -9,8 +11,8 @@ class WarehouseView:
         self.window.title("warehouse view")
 
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
-        self.product_id = LabelWithEntry(self.window, "Product_Id", 20, 60,data_type=IntVar)
-        self.quantity = LabelWithEntry(self.window, "Quantity", 20, 100,data_type=IntVar)
+        self.product_id = LabelWithEntry(self.window, "Product_Id", 20, 60, data_type=IntVar)
+        self.quantity = LabelWithEntry(self.window, "Quantity", 20, 100, data_type=IntVar)
 
         self.table = Table(
             self.window,
@@ -36,7 +38,7 @@ class WarehouseView:
             messagebox.showerror("Warehouse Save Error", message)
 
     def edit_click(self):
-        status, message = self.warehouse_controller.update( self.id.get(),self.product_id.get(),self.quantity.get())
+        status, message = self.warehouse_controller.update(self.id.get(), self.product_id.get(), self.quantity.get())
         if status:
             messagebox.showinfo("Warehouse Update", message)
             self.reset_form()
@@ -62,17 +64,7 @@ class WarehouseView:
         if selected_warehouse:
             status, warehouse = self.warehouse_controller.find_by_id(selected_warehouse[0])
             if status:
-                warehouse= Warehouse(*selected_warehouse)
+                warehouse = Warehouse(*selected_warehouse)
                 self.id.set(warehouse.id)
                 self.product_id.set(warehouse.product_id)
                 self.quantity.set(warehouse.quantity)
-
-
-
-
-
-
-
-
-
-

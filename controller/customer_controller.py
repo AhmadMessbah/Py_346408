@@ -1,5 +1,4 @@
-from model.entity.customer import Customer
-from model.service.customer_service import CustomerService
+from model import Customer, CustomerService
 
 
 class CustomerController:
@@ -9,8 +8,8 @@ class CustomerController:
             service = CustomerService()
             service.save(customer)
             return True, f"Customer Saved Successfully \n{customer}"
-        except:
-            return False, "Save Error"
+        except Exception as e:
+            return False, e
 
     def update(self, id, first_name, last_name, phone_number, address):
         try:
@@ -18,29 +17,29 @@ class CustomerController:
             service = CustomerService()
             service.update(customer)
             return True, f"Customer Updated Successfully \n{customer}"
-        except:
-            return False, "Update Error"
+        except Exception as e:
+            return False, e
 
     def delete(self, id):
         try:
             service = CustomerService()
             service.delete(id)
             return True, f"Customer with Id {id} delete successfully"
-        except:
-            return False, "delete Error"
+        except Exception as e:
+            return False, e
 
     def find_all(self):
         try:
             service = CustomerService()
             customer_list = service.find_all()
             return True, customer_list
-        except:
-            return False, "Find All Error"
+        except Exception as e:
+            return False, e
 
     def find_by_id(self, id):
         try:
             service = CustomerService()
             customer = service.find_by_id(id)
             return True, customer
-        except:
-            return False, "Find By Id Error"
+        except Exception as e:
+            return False, e

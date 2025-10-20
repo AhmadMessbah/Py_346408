@@ -1,7 +1,6 @@
 from view import *
-
-from model.entity.bank import Bank
-from controller.bank_controller import BankController
+from model import Bank
+from controller import BankController
 
 class BankView:
     def __init__(self):
