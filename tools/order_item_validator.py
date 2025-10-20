@@ -1,25 +1,25 @@
 import re
 
-def product_validator(product):
-    if not (type(product) == str and re.match(r"^[a-zA-Z\s]{3,30}$", product)):
-        raise ValueError(f"{product} is not a valid product name")
-    else:
-        return product
-
 def quantity_validator(quantity):
     if not (type(quantity) == int and re.match(r"^[0-9]{5,20}$", quantity)):
-        raise ValueError(f"{quantity} is not a valid number for quantity")
+        raise ValueError("Invalid quantity !!!")
     else:
         return quantity
 
 def price_validator(price):
     if not (type(price) == int or type(price) == float) and re.match(r"^[0-9.]{5,20}$", price):
-        raise ValueError(f"{price} is not a valid number for price")
+        raise ValueError("Invalid price !!!")
     else:
         return price
 
-def datetime_validator(date_time):
-    if not type(date_time) == str  and re.match(r"^[a-zA-Z]{5,20}$", date_time):
-        raise ValueError(f"{date_time} is not a date for today")
+def discount_validator(total_discount):
+    if not 0 <= total_discount <= 100:
+        raise ValueError(' Invalid total_discount !!!')
     else:
-        return date_time
+        return total_discount
+
+def description_validator(description):
+    if not type(description) == str  and re.match(r"^[a-zA-Z]{10,30}$", description):
+        raise ValueError("Invalid description !!!")
+    else:
+        return description

@@ -1,3 +1,5 @@
+from tools.order_item_validator import *
+
 class OrderItem:
 
     def __init__(self, id, order_id, product_id, quantity, price, discount=None, description=None):
@@ -8,6 +10,12 @@ class OrderItem:
         self.price = price
         self.discount = discount
         self.description = description
+
+    def validate(self):
+        quantity_validator(self.quantity)
+        price_validator(self.price)
+        discount_validator(self.discount)
+        description_validator(self.description)
 
 
     def __repr__(self):

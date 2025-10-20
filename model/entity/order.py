@@ -1,5 +1,6 @@
-class Order:
+from tools.order_validator import *
 
+class Order:
     def __init__(self, id, order_type, customer_id, employee_id, date_time,
                  payment_id, warehouse_transaction_id, tax=None, total_discount=None,
                  total_amount=None):
@@ -14,6 +15,12 @@ class Order:
         self.tax = tax
         self.total_discount = total_discount
         self.total_amount = total_amount
+
+    def validate(self):
+        datetime_validator(self.date_time)
+        tax_validator(self.tax)
+        total_discount_validator(self.total_discount)
+        total_amount_validator(self.total_amount)
 
     def __repr__(self):
         return f"{self.__dict__}"
