@@ -52,3 +52,17 @@ class OrderItemRepository:
         self.disconnect()
         return order_item_list
 
+    def find_by_product_id(self, product_id):
+        self.connect()
+        self.cursor.execute("select * from order_items where product_id=?", [product_id])
+        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
+        self.disconnect()
+        return order_item_list
+
+    def find_by_quantity_less_than(self, quantity):
+        self.connect()
+        self.cursor.execute("select * from order_items where quantity < ?", [quantity])
+        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
+        self.disconnect()
+        return order_item_list
+
