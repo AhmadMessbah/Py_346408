@@ -84,13 +84,14 @@ class DeliveryView:
             delivery_tuple = tuple(delivery.__dict__.values())
             self.table.insert("", END, values=delivery_tuple)
 
-    def select_from_table(self, event):
-        selected_delivery = self.table.item(self.table.focus())["values"]
+    def select_from_table(self, selected_delivery):
         if selected_delivery:
-            delivery = Delivery(*selected_delivery)
-            self.id.set(delivery.id)
-            self.first_name.set(delivery.first_name)
-            self.last_name.set(delivery.last_name)
-            self.address.set(delivery.address)
-            self.description.set(delivery.description)
+            status, delivery = self.delivery_controller.find_by_id(selected_delivery[0])
+            if status:
+                delivery = Delivery(*selected_delivery)
+                self.id.set(delivery.id)
+                self.first_name.set(delivery.first_name)
+                self.last_name.set(delivery.last_name)
+                self.address.set(delivery.address)
+                self.description.set(delivery.description)
 
