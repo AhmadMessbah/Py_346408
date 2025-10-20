@@ -1,4 +1,4 @@
-from model.repository.payment_repository import PaymentRepository
+from model import PaymentRepository
 
 
 class PaymentService:
@@ -19,3 +19,19 @@ class PaymentService:
 
     def find_by_id(self, id):
         return self.repository.find_by_id(id)
+
+    def find_by_transaction_type(self, transaction_type):
+        pass
+
+    def find_by_payment_type(self, payment_type):
+        pass
+
+    def find_by_date_time_range(self, start_date_time, end_date_time):
+        pass
+
+    def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
+        pass
+
+    def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time,employee_id):
+        pass
+

@@ -1,4 +1,4 @@
-from model.repository.product_repository import ProductRepository
+from model import ProductRepository
 
 
 class ProductService:
@@ -19,3 +19,12 @@ class ProductService:
 
     def find_by_id(self, product_id):
         return self.repository.find_by_id(product_id)
+
+    def find_by_name_and_brand(self,name,brand):
+        pass
+
+    def find_by_category(self,category):
+        pass
+
+    def find_by_expire_date_until(self,expire_date):
+        pass

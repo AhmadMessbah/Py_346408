@@ -1,4 +1,4 @@
-from model.repository.delivery_repository import DeliveryRepository
+from model import DeliveryRepository
 
 
 class DeliveryService:
@@ -19,3 +19,4 @@ class DeliveryService:
 
      def find_by_id(self, id):
          return self.repository.find_by_id(id)
+

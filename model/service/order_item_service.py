@@ -1,4 +1,4 @@
-from model.repository.order_item_repository  import OrderItemRepository
+from model  import OrderItemRepository
 
 
 class OrderItemService:
@@ -22,3 +22,9 @@ class OrderItemService:
 
     def find_by_order_id(self, order_id):
         return self.repository.find_by_order_id(order_id)
+
+    def find_by_product_id (self, product_id):
+        pass
+
+    def find_by_quantity_less_than (self, quantity):
+        pass

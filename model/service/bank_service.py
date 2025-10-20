@@ -18,3 +18,9 @@ class BankService:
 
     def find_by_id(self, bank_id):
         return self.repository.find_by_id(bank_id)
+
+    def find_by_name(self,name):
+        return self.repository.find_by_name(name)
+
+    def find_by_account(self, account):
+        return self.repository.find_by_account(account)

@@ -1,4 +1,4 @@
-from model.repository.employee_repository import EmployeeRepository
+from model import EmployeeRepository
 
 
 class EmployeeService:
@@ -19,3 +19,15 @@ class EmployeeService:
 
     def find_by_id(self, id):
         return self.repository.find_by_id(id)
+
+    def find_by_firstname_and_lastname(self, firstname, lastname):
+        pass
+
+    def find_by_phone_number(self, phone_number):
+        pass
+
+    def find_by_username(self, username):
+        pass
+
+    def find_by_username_and_password(self, username, password):
+        pass

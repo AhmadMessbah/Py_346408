@@ -1,5 +1,3 @@
-import re
-
 from tools.bank_validator import *
 
 

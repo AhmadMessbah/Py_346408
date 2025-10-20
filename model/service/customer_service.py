@@ -1,4 +1,4 @@
-from model.repository.customer_repository import CustomerRepository
+from model import CustomerRepository
 
 
 class CustomerService:
@@ -19,3 +19,9 @@ class CustomerService:
 
     def find_by_id(self, id):
         return self.repository.find_by_id(id)
+
+    def find_by_firstname_and_lastname(self, firstname, lastname):
+        pass
+
+    def find_by_phone_number(self, phone_number):
+        pass

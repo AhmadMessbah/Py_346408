@@ -45,3 +45,18 @@ class BankRepository:
         bank_list = [Bank(*bank) for bank in self.cursor.fetchall()]
         self.disconnect()
         return bank_list
+
+    def find_by_name(self, name):
+        self.connect()
+        self.cursor.execute("select * from banks where name=?", [name])
+        bank_list = [Bank(*bank) for bank in self.cursor.fetchall()]
+        self.disconnect()
+        return bank_list
+
+
+    def find_by_account(self, account):
+        self.connect()
+        self.cursor.execute("select * from banks where account=?", [account])
+        bank_list = [Bank(*bank) for bank in self.cursor.fetchall()]
+        self.disconnect()
+        return bank_list

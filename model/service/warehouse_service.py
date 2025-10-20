@@ -1,4 +1,4 @@
-from model.repository.warehouse_repository import WarehouseRepository
+from model import WarehouseRepository
 
 class WarehouseService:
     def __init__(self):
@@ -18,3 +18,12 @@ class WarehouseService:
 
     def find_by_id(self, id):
         return self.repository.find_by_id(id)
+
+    def find_by_product_id(self, product_id):
+        pass
+
+    def find_by_quantity_less_than(self, quantity):
+        pass
+
+    def find_by_quantity_more_than(self, quantity):
+        pass
