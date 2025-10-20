@@ -1,5 +1,5 @@
 import sqlite3
-from model.entity.bank import Bank
+from model import Bank
 
 
 class BankRepository:

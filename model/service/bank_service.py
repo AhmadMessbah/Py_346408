@@ -1,4 +1,4 @@
-from model.repository.bank_repository import BankRepository
+from model import BankRepository
 
 class BankService:
     def __init__(self):

@@ -1,6 +1,6 @@
 import sqlite3
 
-from model.entity.customer import Customer
+from model import Customer
 
 
 class CustomerRepository:

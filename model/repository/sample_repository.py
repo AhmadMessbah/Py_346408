@@ -1,6 +1,6 @@
 import sqlite3
 
-from model.entity.sample import Sample
+from model import Sample
 
 
 class SampleRepository:

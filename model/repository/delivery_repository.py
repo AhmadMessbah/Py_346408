@@ -1,5 +1,5 @@
 import sqlite3
-from model.entity.delivery import Delivery
+from model import Delivery
 
 
 class DeliveryRepository:

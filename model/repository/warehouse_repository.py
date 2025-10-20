@@ -1,5 +1,5 @@
 import sqlite3
-from model.entity.warehouse import Warehouse
+from model import Warehouse
 
 
 class WarehouseRepository:

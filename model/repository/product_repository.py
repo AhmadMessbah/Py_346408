@@ -1,6 +1,6 @@
 import sqlite3
 
-from model.entity.product import Product
+from model import Product
 
 
 class ProductRepository:

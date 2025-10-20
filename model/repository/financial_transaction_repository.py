@@ -1,5 +1,5 @@
 import sqlite3
-from model.entity.financial_transaction import FinancialTransaction
+from model import FinancialTransaction
 
 class FinancialTransactionRepository:
     def connect(self):

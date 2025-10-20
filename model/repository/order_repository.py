@@ -1,5 +1,5 @@
 import sqlite3
-from model.entity.order import Order
+from model import Order
 
 
 class OrderRepository:

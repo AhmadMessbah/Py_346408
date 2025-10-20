@@ -1,7 +1,3 @@
-from model.service.customer_service import CustomerService
-from model.service.employee_service import EmployeeService
-
-
 class Order:
 
     def __init__(self, id, order_type, customer_id, employee_id, date_time,
