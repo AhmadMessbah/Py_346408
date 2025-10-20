@@ -76,6 +76,8 @@ class EmployeeView:
     
     def select_from_table(self,selected_employee):
                 if selected_employee:
+                   status,employee=self.employee_controller.find_by_id(selected_employee[0])
+                   if status:
                     employee = Employee(*selected_employee)
                     self.id.set(employee.id)
                     self.first_name.set(employee.first_name)
