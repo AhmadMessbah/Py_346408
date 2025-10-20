@@ -18,13 +18,14 @@ class OrderItem:
         return f"{self.__dict__}"
 
     def to_tuple(self):
-        product_service = ProductService()
-        product = product_service.find_by_id(self.product_id)[0]
+
+        # product_service = ProductService()
+        # product = product_service.find_by_id(self.product_id)[0]
 
         return tuple((
             self.id,
             self.order_id,
-            product.name + " " + product.brand,
+            self.product_id,
             self.quantity,
             self.price,
             self.discount,
