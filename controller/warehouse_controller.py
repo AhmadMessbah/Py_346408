@@ -11,9 +11,9 @@ class WarehouseController:
         except:
             return False, "Error"
         
-    def update(self, product_id, quantity):
+    def update(self,id, product_id, quantity):
         try:
-            warehouse = Warehouse(None, product_id, quantity)
+            warehouse = Warehouse(id,product_id,quantity)
             service = WarehouseService()
             service.update(warehouse)
             return True, "Updated"
