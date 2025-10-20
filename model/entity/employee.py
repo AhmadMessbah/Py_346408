@@ -1,5 +1,8 @@
+from tools.employee_validator import *
+
+
 class Employee:
-    def __init__(self, id, first_name, last_name, salary, occupation, phone_number, username ,password, role):
+    def __init__(self, id, first_name, last_name, salary, occupation, phone_number, username, password, role):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -10,10 +13,22 @@ class Employee:
         self.password = password
         self.role = role
 
-    def __repr__(self):
-        return f"{self.__dict__}"
-    
-    
-    def to_tuple(self):
-        return tuple(
-            (self.id, self.first_name, self.last_name, self.salary, self.occupation, self.phone_number, self.username, self.password))
+    def validate(self):
+        first_name_validator(self.first_name)
+        last_name_validator(self.last_name)
+        salary_validator(self.salary)
+        occupation_validator(self.occupation)
+        phone_number_validator(self.phone_number)
+        username_validator(self.username)
+        password_validator(self.password)
+        role_validator(self.role)
+
+
+def __repr__(self):
+    return f"{self.__dict__}"
+
+
+def to_tuple(self):
+    return tuple(
+        (self.id, self.first_name, self.last_name, self.salary, self.occupation, self.phone_number, self.username,
+         self.password))

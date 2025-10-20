@@ -3,45 +3,26 @@ from datetime import datetime
 from dateutil import parser
 
 
-def customer_validator(customer):
-    if not (type(customer) == str and re.match(r"^[a-zA-Z\s]{3,30}$", customer)):
-        raise ValueError(f"Customer {customer} is not a valid customer name")
-    else:
-        return customer
-
-def employee_validator(employee):
-    if not (type(employee) == str and re.match(r"^[a-zA-Z\s]{3,30}$", employee)):
-        raise ValueError(f"Employee {employee} is not a valid employee name")
-    else:
-        return employee
-
-def order_items_list_validator(order_items_list):
-    if  order_items_list is None:
-        raise ValueError('order_items_list is None')
-    else:
-        return order_items_list
-
-def date_validator(date_time):
-    if datetime.strptime(date_time, "%Y-%m-%d").date() :
-        return date_time
-    else:
-        raise ValueError('date is invalid!!')
-
-def time_validator(date_time):
-    if datetime.strptime(date_time, "%H : %M").time() :
-        return date_time
-    else:
-        raise ValueError('time is invalid!!')
-
 def datetime_validator(date_time):
-    if datetime.strptime(date_time, "%Y-%m-%d %H:%M"):
-        return date_time
+    if not datetime.strptime(date_time, "%Y-%m-%d %H:%M"):
+        raise ValueError('Invalid date time format !!!')
     else:
-        raise ValueError('date or time is invalid!!')
-
-def datetime_parser(date_time):
-    if parser.parse(date_time):
         return date_time
-    else:
-        raise ValueError('date or time is invalid!!')
 
+def tax_validator(tax_number):
+    if not 0<=tax_number<=100:
+        raise ValueError(' Invalid tax number !!!')
+    else:
+        return tax_number
+
+def total_discount_validator(total_discount):
+    if not 0<=total_discount<=100:
+        raise ValueError(' Invalid total_discount !!!')
+    else:
+        return total_discount
+
+def total_amount_validator(total_amount):
+    if not total_amount>=0:
+        raise ValueError(' Invalid total_amount !!!')
+    else:
+        return total_amount
