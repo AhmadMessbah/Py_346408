@@ -19,3 +19,6 @@ class OrderItemService:
 
     def find_by_id(self, id):
         return self.repository.find_by_id(id)
+
+    def find_by_order_id(self, order_id):
+        return self.repository.find_by_order_id(order_id)

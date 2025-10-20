@@ -34,7 +34,7 @@ class OrderController:
         try:
             order = OrderService()
             order.delete(id)
-            return True, f"Order with Id {id} delete successfully"
+            return True, f"Order with Id {id} Deleted Successfully"
         except Exception as e:
             print("Delete Error",e)
             return False, "Delete Error"

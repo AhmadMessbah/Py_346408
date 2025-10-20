@@ -45,3 +45,10 @@ class OrderItemRepository:
         self.disconnect()
         return order_item_list
 
+    def find_by_order_id(self, order_id):
+        self.connect()
+        self.cursor.execute("select * from order_items where order_id=?", [order_id])
+        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
+        self.disconnect()
+        return order_item_list
+
