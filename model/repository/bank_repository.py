@@ -48,7 +48,7 @@ class BankRepository:
 
     def find_by_name(self, name):
         self.connect()
-        self.cursor.execute("select * from banks where name=?", [name])
+        self.cursor.execute("select * from banks where name like ?", [name+"%"])
         bank_list = [Bank(*bank) for bank in self.cursor.fetchall()]
         self.disconnect()
         return bank_list
