@@ -19,6 +19,7 @@ class PaymentView:
         self.total_amount = LabelWithEntry(self.window, "TotalAmount", 20, 220, data_type=IntVar)
         self.employee_id = LabelWithEntry(self.window, "EmployeeId", 20, 260, data_type=IntVar)
         self.description = LabelWithEntry(self.window, "Description", 20, 300)
+        
         self.table = Table(
             self.window,
             ["Id","TransactType", "PaymentType", "DateTime", "CustomerId","TotalAmount","EmployeeId",  "Description"],
@@ -76,7 +77,6 @@ class PaymentView:
         self.table.refresh_table(payment_list)
 
     def select_from_table(self,selected_payment):
-       
         if selected_payment:
             payment = Payment(*selected_payment)
             self.id.set(payment.id)

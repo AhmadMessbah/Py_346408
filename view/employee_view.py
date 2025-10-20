@@ -71,7 +71,7 @@ class EmployeeView:
         self.username.clear()
         self.password.clear()
         status, employee_list = self.employee_controller.find_all()
-        self.refresh_table(employee_list)
+        self.table.refresh_table(employee_list)
 
     
     def select_from_table(self,selected_employee):
