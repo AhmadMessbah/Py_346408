@@ -1,5 +1,5 @@
 class Employee:
-    def __init__(self, id, first_name, last_name, salary, occupation, phone_number, username ,password):
+    def __init__(self, id, first_name, last_name, salary, occupation, phone_number, username ,password, role):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
@@ -8,6 +8,7 @@ class Employee:
         self.phone_number = phone_number
         self.username = username
         self.password = password
+        self.role = role
 
     def __repr__(self):
         return f"{self.__dict__}"
