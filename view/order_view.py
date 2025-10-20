@@ -5,6 +5,7 @@ from tkinter.ttk import Combobox
 from model.entity.order import Order
 from controller.order_controller import OrderController
 from controller.order_item_controller import OrderItemController
+from view.show_order_view import ShowOderView
 from view.view_order import ViewOrder
 
 
