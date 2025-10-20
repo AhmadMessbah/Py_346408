@@ -1,13 +1,7 @@
-from test.order_test import order
 from view import *
-from tkinter.ttk import Combobox
 
-from model.entity.order import Order
-from controller.order_controller import OrderController
-from controller.order_item_controller import OrderItemController
-from view.show_order_view import ShowOderView
-from view.view_order import ViewOrder
-
+from model import Order
+from controller import OrderController
 
 class OrderView:
     def __init__(self):
@@ -39,13 +33,15 @@ class OrderView:
             state="readonly")
         self.order_type.place(x=110, y=390)
 
+        # Table
         self.table = Table(
             self.window,
             ["Id", "Order Type", "Customer", "Employee", "Date & Time", "Payment Id", "Ware Trans Id", "Tax", "Total Discount", "Total Amount"],
             [40, 90, 120, 120, 140, 90, 90, 90, 90, 120],
             280, 20,
             23,
-            self.select_from_table)
+            self.select_from_table
+        )
 
         # v_scroll = ttk.Scrollbar(self.window, command=self.table.yview)
         # self.table.configure(yscrollcommand=v_scroll.set(0.0,0.4))
@@ -89,7 +85,7 @@ class OrderView:
             messagebox.showerror("Order Delete Error", message)
 
     def order_item_view(self):
-        ui = ViewOrder()
+        pass
 
     def reset_form(self):
         self.id.clear()

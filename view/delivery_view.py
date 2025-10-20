@@ -1,7 +1,7 @@
 from view import *
 
-from model.entity.delivery import Delivery
-from controller.delivery_controller import DeliveryController
+from model import Delivery
+from controller import DeliveryController
 
 class DeliveryView:
     def __init__(self):

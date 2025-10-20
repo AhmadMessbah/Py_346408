@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
+from tkinter.ttk import Combobox
 
 from view.component.lable_with_entry import LabelWithEntry
 from view.component.table import Table

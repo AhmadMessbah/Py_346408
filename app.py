@@ -1,4 +1,3 @@
-from controller.order_controller import OrderController
 from view import *
 
 

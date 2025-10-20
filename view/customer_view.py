@@ -1,7 +1,7 @@
 from view import *
 
-from model.entity.customer import Customer
-from controller.customer_controller import CustomerController
+from model import Customer
+from controller import CustomerController
 
 
 class CustomerView:

@@ -1,5 +1,5 @@
 import sqlite3
-from model.entity.payment import Payment
+from model import Payment
 
 class PaymentRepository:
     def connect(self):

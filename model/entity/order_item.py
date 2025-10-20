@@ -1,7 +1,3 @@
-from model.service.product_service import ProductService
-# from test.product_test import product
-
-
 class OrderItem:
 
     def __init__(self, id, order_id, product_id, quantity, price, discount=None, description=None):

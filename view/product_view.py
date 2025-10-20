@@ -1,6 +1,7 @@
 from view import *
-from model.entity.product import Product
-from controller.product_controller import ProductController
+from model import Product
+from controller import ProductController
+
 
 class ProductView:
     def __init__(self):
@@ -21,21 +22,22 @@ class ProductView:
         self.table = Table(
             self.window,
             ["Id", "Name", "Brand", "Model", "Serial", "Category", "Unit", "ExpirationDate"],
-            [40,100,100,60,100,100,100,100],
-            270,20,
+            [40, 100, 100, 60, 100, 100, 100, 100],
+            270, 20,
             18,
             self.select_from_table
         )
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=380)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=380)
-        Button(self.window, text="Delete", width=7,command=self.delete_click).place(x=180, y=380)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=380)
         self.reset_form()
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.product_controller.save(self.name.get(), self.brand.get(), self.model.get(), self.category.get(),
-                                                       self.serial.get(),self.unit.get(),self.expirationdate.get())
+        status, message = self.product_controller.save(self.name.get(), self.brand.get(), self.model.get(),
+                                                       self.category.get(),
+                                                       self.serial.get(), self.unit.get(), self.expirationdate.get())
         if status:
             messagebox.showinfo("Product Save", message)
             self.reset_form()
@@ -43,8 +45,10 @@ class ProductView:
             messagebox.showerror("Product Save Error", message)
 
     def edit_click(self):
-        status, message = self.product_controller.update( self.id.get(), self.name.get(), self.brand.get(),self.model.get(),
-                                                          self.category.get(),self.serial.get(),self.unit.get(),self.expirationdate.get())
+        status, message = self.product_controller.update(self.id.get(), self.name.get(), self.brand.get(),
+                                                         self.model.get(),
+                                                         self.category.get(), self.serial.get(), self.unit.get(),
+                                                         self.expirationdate.get())
         if status:
             messagebox.showinfo("Product Update", message)
             self.reset_form()
@@ -70,9 +74,9 @@ class ProductView:
         self.expirationdate.clear()
         status, product_list = self.product_controller.find_all()
         self.table.refresh_table(product_list)
-        
-    def select_from_table(self,selected_product):
-        
+
+    def select_from_table(self, selected_product):
+
         if selected_product:
             product = Product(*selected_product)
             self.id.set(product.id)

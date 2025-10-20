@@ -1,7 +1,6 @@
-from view import  *
-from tkinter.ttk import Combobox
-from model.entity.warehouse_transaction import WarehouseTransaction
-from controller.warehouse_transaction_controller import WarehouseTransactionController
+from view import *
+from model import WarehouseTransaction
+from controller import WarehouseTransactionController
 
 
 class WarehouseTransactionView:
@@ -19,7 +18,7 @@ class WarehouseTransactionView:
         self.customer_id = LabelWithEntry(self.window, "customer_id", 30, 220)
         self.employee_id = LabelWithEntry(self.window, "employee_id", 30, 260)
 
-        transaction_type_list = ["get","receive"]
+        transaction_type_list = ["get", "receive"]
         transaction_type = StringVar(value="get")
         Label(self.window, text="transaction type").place(x=30, y=140)
         self.transaction_type = Combobox(
@@ -31,8 +30,8 @@ class WarehouseTransactionView:
         self.transaction_type.place(x=120, y=140)
         self.table = Table(
             self.window,
-            ["Id", "Product_Id", "Quantity","transaction_type", "transaction_datetime","customer_id","employee_id"],
-            [40, 100, 100,100,120,100,100],
+            ["Id", "Product_Id", "Quantity", "transaction_type", "transaction_datetime", "customer_id", "employee_id"],
+            [40, 100, 100, 100, 120, 100, 100],
             275, 20,
             13,
             self.select_from_table
@@ -44,10 +43,11 @@ class WarehouseTransactionView:
         self.reset_form()
         self.window.mainloop()
 
-
     def save_click(self):
         status, message = self.warehouse_transaction_controller.save(self.product_id.get(), self.quantity.get(),
-                                                                     self.transaction_type.get(),self.transaction_datetime.get(),self.customer_id.get(),self.employee_id.get())
+                                                                     self.transaction_type.get(),
+                                                                     self.transaction_datetime.get(),
+                                                                     self.customer_id.get(), self.employee_id.get())
         if status:
             messagebox.showinfo("Warehouse_transaction Save", message)
             self.reset_form()
@@ -55,8 +55,10 @@ class WarehouseTransactionView:
             messagebox.showerror("Warehouse_transaction Save Error", message)
 
     def edit_click(self):
-        status, message = self.warehouse_transaction_controller.update(self.id.get(), self.product_id.get(), self.quantity.get(),self.transaction_type.get(),
-                                                                       self.transaction_datetime.get(),self.customer_id.get(), self.employee_id.get())
+        status, message = self.warehouse_transaction_controller.update(self.id.get(), self.product_id.get(),
+                                                                       self.quantity.get(), self.transaction_type.get(),
+                                                                       self.transaction_datetime.get(),
+                                                                       self.customer_id.get(), self.employee_id.get())
         if status:
             messagebox.showinfo("Warehouse_transaction Update", message)
             self.reset_form()
@@ -84,7 +86,8 @@ class WarehouseTransactionView:
 
     def select_from_table(self, selected_warehouse_transaction):
         if selected_warehouse_transaction:
-            status, warehouse_transaction = self.warehouse_transaction_controller.find_by_id(selected_warehouse_transaction[0])
+            status, warehouse_transaction = self.warehouse_transaction_controller.find_by_id(
+                selected_warehouse_transaction[0])
             if status:
                 warehouse_transaction = WarehouseTransaction(*selected_warehouse_transaction)
                 self.id.set(warehouse_transaction.id)
@@ -94,11 +97,3 @@ class WarehouseTransactionView:
                 self.transaction_datetime.set(warehouse_transaction.transaction_datetime)
                 self.customer_id.set(warehouse_transaction.customer_id)
                 self.employee_id.set(warehouse_transaction.employee_id)
-
-
-
-
-
-
-
-

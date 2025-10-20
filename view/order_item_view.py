@@ -1,7 +1,7 @@
 from view import *
 
-from model.entity.order_item import OrderItem
-from controller.order_item_controller import OrderItemController
+from model import OrderItem
+from controller import OrderItemController
 
 class OrderItemView:
     def __init__(self):

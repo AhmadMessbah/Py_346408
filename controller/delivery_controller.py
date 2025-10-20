@@ -1,5 +1,4 @@
-from model.entity.delivery import Delivery
-from model.service.delivery_service import DeliveryService
+from model import Delivery, DeliveryService
 
 
 class DeliveryController:
@@ -9,8 +8,8 @@ class DeliveryController:
             service = DeliveryService()
             service.save(delivery)
             return True, "Saved"
-        except:
-            return False, "Save Error"
+        except Exception as e:
+            return False, e
 
     def update(self, id, first_name, last_name, address, description):
         try:
@@ -18,29 +17,27 @@ class DeliveryController:
             service = DeliveryService()
             service.update(delivery)
             return True, "Updated"
-        except:
-            return False, "Update Error"
+        except Exception as e:
+            return False, e
 
     def delete(self, id):
         try:
             service = DeliveryService()
             service.delete(id)
             return True, "Deleted"
-        except:
-            return False, "Delete Error"
+        except Exception as e:
+            return False, e
 
     def find_all(self):
         try:
             service = DeliveryService()
-            service.find_all()
-            return True, "Found"
-        except:
-            return False, "Error"
+            return True, service.find_all()
+        except Exception as e:
+            return False, e
 
     def find_by_id(self, id):
         try:
             service = DeliveryService()
-            service.find_by_id(id)
-            return True, "Found"
-        except:
-            return False, "Error"
+            return True, service.find_by_id(id)
+        except Exception as e:
+            return False, e

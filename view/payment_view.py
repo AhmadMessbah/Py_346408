@@ -1,7 +1,7 @@
 from view import *
 
-from model.entity.payment import Payment
-from controller.payment_controller import PaymentController
+from model import Payment
+from controller import PaymentController
 
 
 class PaymentView:

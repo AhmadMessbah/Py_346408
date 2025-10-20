@@ -1,6 +1,5 @@
 import sqlite3
-
-from model.entity.employee import Employee
+from model import Employee
 
 
 class EmployeeRepository:
