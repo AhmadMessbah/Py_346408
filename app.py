@@ -70,7 +70,7 @@ class DashboardView:
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
                text="Financial Transaction", command=self.financial_transactoin_view).place(x=80, y=200 + y_dist * 8)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
-                text="Warehouse Transaction", command= self.warehouse_transaction_view).place(x=80, y=200 + y_dist * 9)
+               text="Warehouse Transaction", command= self.warehouse_transaction_view).place(x=80, y=200 + y_dist * 9)
 
         Label(self.window, text="Employee : Ahmad", font=font, bg="white").place(x=80, y=820)
 
