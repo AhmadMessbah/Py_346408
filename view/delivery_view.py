@@ -66,15 +66,7 @@ class DeliveryView:
         self.address.clear()
         self.description.clear()
         status, delivery_list = self.delivery_controller.find_all()
-        self.refresh_table(delivery_list)
-
-    def refresh_table(self, delivery_list):
-        for item in self.table.get_children():
-            self.table.delete(item)
-
-        for delivery in delivery_list:
-            delivery_tuple = tuple(delivery.__dict__.values())
-            self.table.insert("", END, values=delivery_tuple)
+        self.table.refresh_table(delivery_list)
 
     def select_from_table(self, selected_delivery):
         if selected_delivery:
