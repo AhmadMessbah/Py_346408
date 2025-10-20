@@ -8,7 +8,8 @@ class EmployeeController:
            service = EmployeeService()
            service.save(employee)
            return True, f"Employee Saved Successfully \n{employee}"
-        except:
+        except Exception as e:
+            e.with_traceback()
             return False, "Save Error"
 
     def update(self, id, first_name, last_name, salary, occupation, phone_number, username, password):
@@ -17,8 +18,7 @@ class EmployeeController:
             service = EmployeeService()
             service.update(employee)
             return True, f"Employee updated Successfully \n{employee}"
-        except Exception as e:
-            e.with_traceback()
+        except:
             return False, "Update Error"
 
     def delete(self, id):
