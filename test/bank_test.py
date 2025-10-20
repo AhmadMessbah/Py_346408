@@ -13,7 +13,7 @@ service.save(bank2)
 # bank3 = Bank(3, "melli", "card", 2500, "tozih jadid")
 # service.save(bank3)
 
-print(service.find_by_name("mellat"))
+print(service.find_by_name("m"))
 # print(service.find_by_account("saving2"))
 
 
