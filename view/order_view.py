@@ -4,6 +4,9 @@ from tkinter.ttk import Combobox
 
 from model.entity.order import Order
 from controller.order_controller import OrderController
+from controller.order_item_controller import OrderItemController
+from view.view_order import ViewOrder
+
 
 class OrderView:
     def __init__(self):
@@ -41,8 +44,7 @@ class OrderView:
             [40, 90, 120, 120, 140, 90, 90, 90, 90, 120],
             280, 20,
             23,
-            self.select_from_table
-        )
+            self.select_from_table)
 
         # v_scroll = ttk.Scrollbar(self.window, command=self.table.yview)
         # self.table.configure(yscrollcommand=v_scroll.set(0.0,0.4))
@@ -86,7 +88,7 @@ class OrderView:
             messagebox.showerror("Order Delete Error", message)
 
     def order_item_view(self):
-        pass
+        ui = ViewOrder()
 
     def reset_form(self):
         self.id.clear()

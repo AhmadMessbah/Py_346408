@@ -10,7 +10,7 @@ class OrderItemView:
 
         self.window = Tk()
         self.window.title("Order Item")
-        self.window.geometry("900x410")
+        self.window.geometry("900x380")
 
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.order_id = LabelWithEntry(self.window, "Order Id", 20, 60, data_type=IntVar)
@@ -25,8 +25,7 @@ class OrderItemView:
                            [40, 60, 120, 60, 90, 60, 140]
                            , 300 ,20 ,
                            14 ,
-                           self.select_from_table
-                           )
+                           self.select_from_table)
 
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=300)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=300)
