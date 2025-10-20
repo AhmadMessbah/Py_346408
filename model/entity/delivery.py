@@ -8,5 +8,7 @@ class Delivery:
 
     def __repr__(self):
         return f'{self.__dict__}'
+
     def to_tuple(self):
         return (self.id, self.first_name, self.last_name, self.address, self.description)
+
