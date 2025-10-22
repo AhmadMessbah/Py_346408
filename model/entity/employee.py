@@ -24,11 +24,11 @@ class Employee:
         role_validator(self.role)
 
 
-def __repr__(self):
-    return f"{self.__dict__}"
+    def __repr__(self):
+     return f"{self.__dict__}"
 
 
-def to_tuple(self):
-    return tuple(
+    def to_tuple(self):
+      return tuple(
         (self.id, self.first_name, self.last_name, self.salary, self.occupation, self.phone_number, self.username,
          self.password,self.role))
