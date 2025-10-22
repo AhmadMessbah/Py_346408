@@ -49,3 +49,45 @@ class EmployeeRepository:
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
+    
+   
+    def find_by_firstname_and_lastname(self,firstname, lastname):
+        self.connect()
+        self.cursor.execute("select * from employees where firstname=?  lastname=? ", [firstname, lastname])
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.disconnect()
+        return employee_list
+    
+    def find_by_phone_number(self, phone_number):
+        self.connect()
+        self.cursor.execute("select * from employees where phone_number=?", [phone_number])
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.disconnect()
+        return employee_list
+    
+    
+    
+    def find_by_username(self, username):
+        self.connect()
+        self.cursor.execute("select * from employees where username=?", [username])
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.disconnect()
+        return employee_list
+    
+    
+    
+    def find_by_username_and_password(self, username,password):
+        self.connect()
+        self.cursor.execute("select * from employees where iusername=? password=?", [username,password])
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.disconnect()
+        return employee_list
+    
+    
+    
+    def find_by_role(self, role):
+        self.connect()
+        self.cursor.execute("select * from employees where role=?", [role])
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.disconnect()
+        return employee_list
