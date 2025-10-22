@@ -51,7 +51,7 @@ def username_validator(username):
 
 
 def password_validator(password):
-    if not (type(password) == str and re.match(r"^[a-zA-Z0-9\s][.\w]{3,30}(@|&)$", password)):
+    if not (type(password) == str and re.match(r"^[0-9a-zA-Z@#$%^&+=]{8,20}$", password)):
         raise ValueError("Invalid password !!!")
     else:
         return password

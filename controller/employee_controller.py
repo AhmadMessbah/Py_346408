@@ -1,18 +1,18 @@
 from model import Employee, EmployeeService
 
 class EmployeeController:
-    def save(self, first_name, last_name, salary, occupation, phone_number, username, password):
+    def save(self, first_name, last_name, salary, occupation, phone_number, username, password,role):
         try:
-           employee = Employee(None, first_name, last_name, salary, occupation, phone_number, username, password)
+           employee = Employee(None, first_name, last_name, salary, occupation, phone_number, username, password,role)
            service = EmployeeService()
            service.save(employee)
            return True, f"Employee Saved Successfully \n{employee}"
         except Exception as e:
             return False, e
 
-    def update(self, id, first_name, last_name, salary, occupation, phone_number, username, password):
+    def update(self, id, first_name, last_name, salary, occupation, phone_number, username, password,role):
         try:
-            employee = Employee(id, first_name, last_name, salary, occupation, phone_number, username, password)
+            employee = Employee(id, first_name, last_name, salary, occupation, phone_number, username, password,role)
             service = EmployeeService()
             service.update(employee)
             return True, f"Employee updated Successfully \n{employee}"

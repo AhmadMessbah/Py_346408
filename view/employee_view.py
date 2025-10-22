@@ -9,7 +9,6 @@ class EmployeeView:
         self.window=Tk()
         self.window.title("Employee")
         self.window.geometry("1000x400")
-
         self.id = LabelWithEntry(self.window,"Id",20,20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window,"FirstName",20,60)
         self.last_name = LabelWithEntry(self.window,"LastName",20,100)
@@ -70,6 +69,7 @@ class EmployeeView:
         self.phone_number.clear()
         self.username.clear()
         self.password.clear()
+        self.role.clear()
         status, employee_list = self.employee_controller.find_all()
         self.table.refresh_table(employee_list)
 
@@ -87,7 +87,7 @@ class EmployeeView:
                     self.phone_number.set(employee.phone_number)
                     self.username.set(employee.username)
                     self.password.set(employee.password)
-
+                    self.role.set(employee.role)
 
 
 

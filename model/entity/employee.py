@@ -31,4 +31,4 @@ def __repr__(self):
 def to_tuple(self):
     return tuple(
         (self.id, self.first_name, self.last_name, self.salary, self.occupation, self.phone_number, self.username,
-         self.password))
+         self.password,self.role))
