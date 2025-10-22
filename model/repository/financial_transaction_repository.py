@@ -37,37 +37,35 @@ class FinancialTransactionRepository:
         self.connection.commit()
         self.disconnect()
 
-    # def find_all(self):
-    #     self.connect()
-    #     self.cursor.execute("select * from financial_transactions")
-    #     transactions = [FinancialTransaction(*row) for row in self.cursor.fetchall()]
-    #     self.disconnect()
-    #     return transactions
+
     def find_all(self):
         self.connect()
         self.cursor.execute("select * from financial_transactions")
-        transaction_list =  [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        financial_transaction_list =  [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
-        return transaction_list
+        return financial_transaction_list
 
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from financial_transactions where id=?", [id])
-        transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
-        return transaction_list
+        return financial_transaction_list
+
+    def find_by_transaction_type(self, transaction_type):
+
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
         self.connect()
         self.cursor.execute("select * from financial_transactions where date_time between ? and ?", [start_date_time, end_date_time])
-        transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
-        return transaction_list
+        return financial_transaction_list
 
     def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
         self.connect()
         self.cursor.execute("select * from financial_transactions where date_time between ? and ? and customer_id = ?",
                             [start_date_time, end_date_time, customer_id])
-        transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
-        return transaction_list
+        return financial_transaction_list

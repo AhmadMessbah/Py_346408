@@ -1,6 +1,10 @@
 from view import *
-from model import FinancialTransaction
-from controller import FinancialTransactionController
+
+from controller.financial_transaction_controller import FinancialTransactionController
+from view import *
+
+from model.entity.financial_transaction import FinancialTransaction
+from controller.customer_controller import CustomerController
 
 
 class FinancialTransactionView:
