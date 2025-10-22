@@ -46,7 +46,7 @@ class EmployeeView:
 
     def edit_click(self):
         status, message = self.employee_controller.update(self.id.get(), self.first_name.get(), self.last_name.get(), self.salary.get(),
-                                                        self.occupation.get(), self.phone_number.get(), self.username.get(),self.password.get())
+                                                        self.occupation.get(), self.phone_number.get(), self.username.get(),self.password.get(),self.role.get())
         if status:
             messagebox.showinfo("Employee update", message)
             self.reset_form()

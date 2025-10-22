@@ -21,16 +21,16 @@ class EmployeeService:
         return self.repository.find_by_id(id)
 
     def find_by_firstname_and_lastname(self, firstname, lastname):
-        pass
+        return self.repository.find_by_firstname_and_lastname(firstname, lastname)
 
     def find_by_phone_number(self, phone_number):
-        pass
+        return self.repository.find_by_phone_number(phone_number)
 
     def find_by_username(self, username):
-        pass
+        return self.repository.find_by_username(username)
 
     def find_by_username_and_password(self, username, password):
-        pass
+        return self.repository.find_by_password(password)
 
     def find_by_role(self, role):
-        pass
+        return self.repository.find_by_role(role)
