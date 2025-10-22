@@ -2,7 +2,7 @@ import re
 
 
 def first_name_validator(first_name):
-    if not (type(first_name) == str and re.match(r"^[a-zA-Z\s]{2,20}$", first_name)):
+    if not (type(first_name) == str and re.match(r"^[a-z]{2,20}$", first_name)):
         raise ValueError("Invalid first_name !!!")
     else:
         return first_name
@@ -17,14 +17,14 @@ def last_name_validator(last_name):
 
 def salary_validator(salary):
     if not (type(salary) == int and salary>0, salary):
-        raise ValueError("Invalid first_name !!!")
+        raise ValueError("Invalid salary !!!")
     else:
         return salary
 
 
 def phone_number_validator(phone_number):
     if not (type(phone_number) == int and re.match(r"^\\+?[1-9][0-9]{7,14}$", phone_number)):
-        raise ValueError("Invalid first_name !!!")
+        raise ValueError("Invalid phone_number !!!")
     else:
         return phone_number
 
