@@ -53,7 +53,7 @@ class EmployeeRepository:
    
     def find_by_firstname_and_lastname(self,firstname, lastname):
         self.connect()
-        self.cursor.execute("select * from employees where firstname=?  lastname=? ", [firstname, lastname])
+        self.cursor.execute("select * from employees where firstname=? AND lastname=? ", [firstname, lastname])
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
@@ -78,7 +78,7 @@ class EmployeeRepository:
     
     def find_by_username_and_password(self, username,password):
         self.connect()
-        self.cursor.execute("select * from employees where iusername=? password=?", [username,password])
+        self.cursor.execute("select * from employees where username=? AND password=?", [username,password])
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
