@@ -8,7 +8,7 @@ class EmployeeView:
         self.employee_controller = EmployeeController()
         self.window=Tk()
         self.window.title("Employee")
-        self.window.geometry("1000x400")
+        self.window.geometry("1060x400")
         self.id = LabelWithEntry(self.window,"Id",20,20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window,"FirstName",20,60)
         self.last_name = LabelWithEntry(self.window,"LastName",20,100)
@@ -17,10 +17,11 @@ class EmployeeView:
         self.phone_number = LabelWithEntry(self.window,"PhoneNumber",20,220)
         self.username = LabelWithEntry(self.window,"Username",20,260)
         self.password = LabelWithEntry(self.window,"Password",20,300)
+        self.role=LabelWithEntry(self.window,"Role",20,340)
         
         self.table=Table(self.window,
-            ["Id", "FirstName","LastName","Salary","Occupation","PhoneNumber","Username","Password"],
-            [40,100,100,60,100,100,100,100],
+            ["Id", "FirstName","LastName","Salary","Occupation","PhoneNumber","Username","Password","Role"],
+            [40,100,100,60,100,100,100,100,60],
             270,20,
             16,
             self.select_from_table)
@@ -35,7 +36,7 @@ class EmployeeView:
 
     def save_click(self):
         status, message = self.employee_controller.save(self.first_name.get(), self.last_name.get(), self.salary.get(), self.occupation.get(),
-                                                        self.phone_number.get(), self.username.get(), self.password.get())
+                                                        self.phone_number.get(), self.username.get(), self.password.get(),self.role.get())
         if status:
             messagebox.showinfo("Employee Save", message)
             self.reset_form()
