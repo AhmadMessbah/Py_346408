@@ -23,7 +23,7 @@ def salary_validator(salary):
 
 
 def phone_number_validator(phone_number):
-    if not (type(phone_number) == int and re.match(r"^\\+?[1-9][0-9]{7,14}$", phone_number)):
+    if not (type(phone_number) == int and re.match(r"^[0-9]{7,14}$", phone_number)):
         raise ValueError("Invalid phone_number !!!")
     else:
         return phone_number
