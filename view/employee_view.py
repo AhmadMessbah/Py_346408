@@ -1,5 +1,4 @@
 from view import *
-
 from model import Employee
 from controller import EmployeeController
 
@@ -8,7 +7,8 @@ class EmployeeView:
         self.employee_controller = EmployeeController()
         self.window=Tk()
         self.window.title("Employee")
-        self.window.geometry("1060x400")
+        self.window.geometry("1060x440")
+        
         self.id = LabelWithEntry(self.window,"Id",20,20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window,"FirstName",20,60)
         self.last_name = LabelWithEntry(self.window,"LastName",20,100)
@@ -27,9 +27,9 @@ class EmployeeView:
             self.select_from_table)
     
 
-        Button(self.window, text="Save", width=8, command=self.save_click).place(x=20, y=340)
-        Button(self.window, text="Edit", width=8, command=self.edit_click).place(x=100, y=340)
-        Button(self.window, text="Delete", width=8, command=self.delete_click).place(x=180, y=340)
+        Button(self.window, text="Save", width=8, command=self.save_click).place(x=20, y=380)
+        Button(self.window, text="Edit", width=8, command=self.edit_click).place(x=100, y=380)
+        Button(self.window, text="Delete", width=8, command=self.delete_click).place(x=180, y=380)
         self.reset_form()
         self.window.mainloop()
 

@@ -4,6 +4,7 @@ class EmployeeController:
     def save(self, first_name, last_name, salary, occupation, phone_number, username, password,role):
         try:
            employee = Employee(None, first_name, last_name, salary, occupation, phone_number, username, password,role)
+           employee.validate()
            service = EmployeeService()
            service.save(employee)
            return True, f"Employee Saved Successfully \n{employee}"
