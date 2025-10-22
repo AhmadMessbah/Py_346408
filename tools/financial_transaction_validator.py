@@ -8,7 +8,7 @@ def transaction_type_validator(transaction_type):
         return transaction_type
 
 def customer_id_validator(customer_id):
-    if not (type(customer_id) == int and customer_id > 0):
+    if not (type(customer_id) == int and customer_id >  0):
         raise ValueError("Invalid Customer Id !!!")
     else:
         return customer_id
