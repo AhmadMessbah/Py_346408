@@ -1,6 +1,7 @@
 import sqlite3
 from model import Payment
 
+
 class PaymentRepository:
     def connect(self):
         self.connection = sqlite3.connect("./db/selling_db")
@@ -45,6 +46,43 @@ class PaymentRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from payments where id=?", [id])
+        payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
+        self.disconnect()
+        return payment_list
+
+    def find_by_transaction_type(self, transaction_type):
+        self.connect()
+        self.cursor.execute("select * from payments where transaction_type=?", [transaction_type + "%"])
+        payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
+        self.disconnect()
+        return payment_list
+
+    def find_by_payment_type(self, payment_type):
+        self.connect()
+        self.cursor.execute("select * from payments where payment_type=?", [payment_type + "%"])
+        payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
+        self.disconnect()
+        return payment_list
+
+    def find_by_date_time_range(self, start_date_time, end_date_time):
+        self.connect()
+        self.cursor.execute("select * from payments where date_time between ? and ?", [start_date_time, end_date_time])
+        payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
+        self.disconnect()
+        return payment_list
+
+    def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
+        self.connect()
+        self.cursor.execute("select * from payments where date_time between ? and ? and customer_id = ?",
+                            [start_date_time, end_date_time, customer_id])
+        payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
+        self.disconnect()
+        return payment_list
+
+    def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time, employee_id):
+        self.connect()
+        self.cursor.execute("select * from payments where date_time between ? and ? and employee_id = ?",
+                            [start_date_time, end_date_time, employee_id])
         payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
         self.disconnect()
         return payment_list
