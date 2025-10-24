@@ -50,3 +50,26 @@ class ProductRepository:
         product_list = [Product(*product) for product in self.cursor.fetchall()]
         self.disconnect()
         return product_list
+
+    def find_by_name_and_brand(self, name, brand):
+        self.connect()
+        self.cursor.execute("select * from products where name=? and brand=?", [name, brand])
+        product_list = [Product(*product) for product in self.cursor.fetchall()]
+        self.disconnect()
+        return product_list
+
+    def find_by_category(self, category):
+        self.connect()
+        self.cursor.execute("select * from products where category=?", [category])
+        product_list = [Product(*product) for product in self.cursor.fetchall()]
+        self.disconnect()
+        return product_list
+
+    def find_by_expire_date_until(self, expire_date):
+        self.connect()
+        self.cursor.execute("select * from products where expiration_date=?", [expire_date])
+        product_list = [Product(*product) for product in self.cursor.fetchall()]
+        self.disconnect()
+        return product_list
+
+
