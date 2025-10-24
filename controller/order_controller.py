@@ -9,12 +9,12 @@ class OrderController:
             order = Order(None, order_type, customer_id, employee_id, date_time,
                  payment_id, warehouse_transaction_id, tax, total_discount,
                  total_amount)
+            order.validate()
             service = OrderService()
             service.save(order)
             return True, f"Order Saved Successfully \n{order}"
-        except Exception as e:
-            print("Save Error",e)
-            return False, "Save Error"
+        except Exception as e:            
+            return False, f"Save Error! \n{e}"
 
     def update(self, id, order_type, customer_id, employee_id,  date_time,
                  payment_id, warehouse_transaction_id, tax, total_discount,
@@ -23,36 +23,74 @@ class OrderController:
             order = Order(id, order_type, customer_id, employee_id, date_time,
                  payment_id, warehouse_transaction_id, tax, total_discount,
                  total_amount)
+            order.validate()
             service = OrderService()
             service.update(order)
             return True, f"Order Updated Successfully \n{order}"
-        except Exception as e:
-            print("Update Error",e)
-            return False, "Update Error"
+        except Exception as e:            
+            return False, f"Update Error! \n{e}"
 
     def delete(self, id):
         try:
             order = OrderService()
             order.delete(id)
             return True, f"Order with Id {id} Deleted Successfully"
-        except Exception as e:
-            print("Delete Error",e)
-            return False, "Delete Error"
+        except Exception as e:            
+            return False, f"Delete Error! \n{e}"
 
     def find_all(self):
         try:
             service = OrderService()
             order_list = service.find_all()
             return True, order_list
-        except Exception as e:
-            print("Find All Error",e)
-            return False, "Find All Error"
+        except Exception as e:            
+            return False, f"Find All Error! \n{e}"
 
     def find_by_id(self, id):
         try:
             service = OrderService()
-            order = service.find_by_id(id)
-            return True, order
+            order_list = service.find_by_id(id)
+            return True, order_list
+        except Exception as e:            
+            return False, f"Find by Id Error! \n{e}"
+        
+    def find_by_order_type(self, order_type):
+        try:
+            service = OrderService()
+            order_list = service.find_by_order_type(order_type)
+            return True, order_list
         except Exception as e:
-            print("Find By Id Error",e)
-            return False, "Find By Id Error"
+            return False, f"Find by Order Type Error! \n{e}"
+        
+    def find_by_customer_id(self, customer_id):
+        try:
+            service = OrderService()
+            order_list = service.find_by_customer_id(customer_id)
+            return True, order_list
+        except Exception as e:            
+            return False, f"Find by Customer Id Error! \n{e}"
+        
+    def find_by_employee_id(self, employee_id):
+        try:
+            service = OrderService()
+            order_list = service.find_by_employee_id(employee_id)
+            return True, order_list
+        except Exception as e:            
+            return False, f"Find by Employee Id Error! \n{e}"
+        
+    def find_by_date_time_range(self, start_date_time, end_date_time):
+        try:
+            service = OrderService()
+            order_list = service.find_by_date_time_range(start_date_time, end_date_time)
+            return True, order_list
+        except Exception as e:            
+            return False, f"Find by Date Range Error! \n{e}"
+        
+    def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
+        try:
+            service = OrderService()
+            order_list = service.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
+            return True, order_list
+        except Exception as e:            
+            return False, f"Find by Date Range and Customer Error! \n{e}"
+    

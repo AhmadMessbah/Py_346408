@@ -45,7 +45,6 @@ class OrderRepository:
         self.disconnect()
         return order_list
 
-
     def find_by_order_type(self, order_type):
         self.connect()
         self.cursor.execute("select * from orders where order_type=?", [order_type])
@@ -67,16 +66,16 @@ class OrderRepository:
         self.disconnect()
         return order_list
 
-    def find_by_date_time_range(self, start_date_time , end_date_time):
+    def find_by_date_time_range(self, start_date_time, end_date_time):
         self.connect()
-        self.cursor.execute("select * from orders where date_time between ? and ?", [ start_date_time , end_date_time])
+        self.cursor.execute("select * from orders where date_time between ? and ?", [start_date_time, end_date_time])
         order_list = [Order(*order) for order in self.cursor.fetchall()]
         self.disconnect()
         return order_list
 
     def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
         self.connect()
-        self.cursor.execute("select * from orders where date_time between ? and ? and customer_id=?" , [ start_date_time,end_date_time,customer_id])
+        self.cursor.execute("select * from orders where date_time between ? and ? and customer_id=?" , [start_date_time, end_date_time, customer_id])
         order_list = [Order(*order) for order in self.cursor.fetchall()]
         self.disconnect()
         return order_list
