@@ -53,7 +53,11 @@ class FinancialTransactionRepository:
         return financial_transaction_list
 
     def find_by_transaction_type(self, transaction_type):
-
+        self.connect()
+        self.cursor.execute("select * from financial_transactions where transaction_type=?", [transaction_type])
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return financial_transaction_list
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
         self.connect()

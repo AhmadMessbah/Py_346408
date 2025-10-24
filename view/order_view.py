@@ -2,6 +2,8 @@ from view import *
 
 from model import Order
 from controller import OrderController
+from view.show_order_view import ShowOderView
+
 
 class OrderView:
     def __init__(self):
@@ -85,7 +87,7 @@ class OrderView:
             messagebox.showerror("Order Delete Error", message)
 
     def order_item_view(self):
-        pass
+        ui = ShowOderView()
 
     def reset_form(self):
         self.id.clear()
