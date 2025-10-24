@@ -10,7 +10,7 @@ class WarehouseTransactionController:
             service.save(warehouse_transaction)
             return True, f"WarehouseTransaction saved {warehouse_transaction}"
         except Exception as e:
-            return False, f"Save Error{e}"
+            return False, e
 
     def update(self, id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id):
         try:

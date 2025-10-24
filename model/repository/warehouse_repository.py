@@ -36,10 +36,17 @@ class WarehouseRepository:
         self.disconnect()
         return warehouse_list
 
-
     def find_by_id(self,id):
         self.connect()
         self.cursor.execute("select * from warehouses where id=?", [id])
         warehouse_list = [Warehouse(*warehouse) for warehouse in self.cursor.fetchall()]
         self.disconnect()
         return warehouse_list
+
+    def find_by_product_id(self,product_id):
+        self.connect()
+        self.cursor.execute("select * from warehouses where product_id=?", [product_id])
+        warehouse_list = [Warehouse(*warehouse) for warehouse in self.cursor.fetchall()]
+        self.disconnect()
+        return warehouse_list
+

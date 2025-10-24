@@ -1,5 +1,6 @@
 import sqlite3
 from model import WarehouseTransaction
+from test.warehouse_transaction_test import warehouse_transaction
 
 
 class WarehouseTransactionRepository:
@@ -62,3 +63,38 @@ class WarehouseTransactionRepository:
                                       self.cursor.fetchall()]
         self.disconnect()
         return warehouse_transaction_list
+
+    def find_bye_product_id(self,product_id):
+        self.connect()
+        self.cursor.execute("select * from warehouse_transactions where product_id=?", [product_id])
+        warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return warehouse_transaction_list
+
+    def find_by_transaction_type(self, transaction_type):
+        self.connect()
+        self.cursor.execute("select * from warehouse_transactions where transaction_type=?", [transaction_type])
+        warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
+                                      self.cursor.fetchall()]
+        self.disconnect()
+        return warehouse_transaction_list
+
+    def find_by_customer_id(self, customer_id):
+        self.connect()
+        self.cursor.execute("select * from warehouse_transactions where customer_id=?", [customer_id])
+        warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
+                                      self.cursor.fetchall()]
+        self.disconnect()
+        return warehouse_transaction_list
+
+    def find_by_employee_id(self, employee_id):
+        self.connect()
+        self.cursor.execute("select * from warehouse_transactions where warehouse_transactions.employee_id=?", [employee_id])
+        warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
+                                      self.cursor.fetchall()]
+        self.disconnect()
+        return warehouse_transaction_list
+
+
+
+

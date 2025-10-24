@@ -21,16 +21,16 @@ class WarehouseTransactionService:
         return self.repository.find_by_id(id)
 
     def find_by_product_id(self, product_id):
-        pass
+        return self.repository.find_bye_product_id
 
     def find_by_transaction_type(self, transaction_type):
-        pass
+        return self.repository.find_by_transaction_type
 
     def find_by_customer_id(self, customer_id):
-        pass
+        return self.repository.find_by_customer_id(customer_id)
 
     def find_by_employee_id(self, employee_id):
-        pass
+        return self.repository.find_by_employee_id(employee_id)
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
         pass
