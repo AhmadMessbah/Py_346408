@@ -5,6 +5,7 @@ class WarehouseController:
     def save(self, product_id, quantity):
         try:
             warehouse = Warehouse(None, product_id, quantity)
+            warehouse.validate()
             service = WarehouseService()
             service.save(warehouse)
             return True, f"Warehouse Saved {warehouse}"
@@ -14,6 +15,7 @@ class WarehouseController:
     def update(self, id, product_id, quantity):
         try:
             warehouse = Warehouse(id, product_id, quantity)
+            warehouse.validate()
             service = WarehouseService()
             service.update(warehouse)
             return True, f" Warehouse Updated {warehouse}"
