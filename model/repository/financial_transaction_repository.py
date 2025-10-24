@@ -13,8 +13,8 @@ class FinancialTransactionRepository:
     def save(self, financial_transactions):
         self.connect()
         self.cursor.execute("""insert into financial_transactions 
-            (id,transaction_type,customer_id,employee_id,amount,date_time,payment_id,description) values (?,?,?,?,?,?,?,?)""",
-            [financial_transactions.id, financial_transactions.transaction_type, financial_transactions.customer_id,
+            (transaction_type,customer_id,employee_id,amount,date_time,payment_id,description) values (?,?,?,?,?,?,?)""",
+            [financial_transactions.transaction_type, financial_transactions.customer_id,
             financial_transactions.employee_id, financial_transactions.amount, financial_transactions.date_time,
             financial_transactions.payment_id, financial_transactions.description])
         self.connection.commit()
@@ -53,7 +53,11 @@ class FinancialTransactionRepository:
         return financial_transaction_list
 
     def find_by_transaction_type(self, transaction_type):
-
+        self.connect()
+        self.cursor.execute("select * from financial_transactions where transaction_type=?", [transaction_type])
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return financial_transaction_list
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
         self.connect()
