@@ -1,4 +1,4 @@
-from test import customer_test
+from test import financial_transaction_test
 # from view.financial_transaction_view  import FinancialTransactionView
 #
 #

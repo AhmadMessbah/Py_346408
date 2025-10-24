@@ -1,5 +1,7 @@
 import sqlite3
 from model import FinancialTransaction
+from tools.financial_transaction_validator import transaction_type_validator
+
 
 class FinancialTransactionRepository:
     def connect(self):
@@ -53,6 +55,32 @@ class FinancialTransactionRepository:
         return financial_transaction_list
 
     def find_by_transaction_type(self, transaction_type):
+        self.connect()
+        self.cursor.execute("select * from financial_transactions where transaction_type=?", [transaction_type])
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return financial_transaction_list
+
+    def find_by_customer_id(self, customer_id):
+        self.connect()
+        self.cursor.execute("select * from financial_transactions where customer_id=?", [customer_id])
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return financial_transaction_list
+
+    def find_by_employee_id(self, employee_id):
+        self.connect()
+        self.cursor.execute("select * from financial_transactions where employee_id=?", [employee_id])
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return financial_transaction_list
+
+    def find_by_payment_id(self, payment_id):
+        self.connect()
+        self.cursor.execute("select * from financial_transactions where payment_id=?", [payment_id])
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return financial_transaction_list
 
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
