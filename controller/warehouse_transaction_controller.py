@@ -44,4 +44,4 @@ class WarehouseTransactionController:
             service = WarehouseTransactionService()
             return True, service.find_by_id(id)
         except Exception as e:
-            return False, f"Find by id Error{e}!"
+            return False, e
