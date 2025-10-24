@@ -1,8 +1,9 @@
 from datetime import datetime
+from persiantools.jdatetime import JalaliDateTime
 
 
 def datetime_validator(date_time):
-    if not datetime.strptime(date_time, "%Y-%m-%d %H:%M"):
+    if not JalaliDateTime.strptime(date_time, "%Y-%m-%d %H:%M"):
         raise ValueError("Invalid date time format !!!")
     else:
         return date_time
