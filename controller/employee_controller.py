@@ -14,6 +14,7 @@ class EmployeeController:
     def update(self, id, first_name, last_name, salary, occupation, phone_number, username, password,role):
         try:
             employee = Employee(id, first_name, last_name, salary, occupation, phone_number, username, password,role)
+            employee.validate()
             service = EmployeeService()
             service.update(employee)
             return True, f"Employee updated Successfully \n{employee}"

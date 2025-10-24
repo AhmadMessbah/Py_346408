@@ -1,7 +1,5 @@
-from tkinter import *
-from tkinter import messagebox
+from view import *
 
-from view import LabelWithEntry, Table
 
 
 class ShowOderView:
@@ -26,7 +24,4 @@ class ShowOderView:
             )
 
             self.window.mainloop()
-
-
-
 

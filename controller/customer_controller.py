@@ -5,6 +5,7 @@ class CustomerController:
     def save(self, first_name, last_name, phone_number, address):
         try:
             customer = Customer(None, first_name, last_name, phone_number, address)
+            customer.validate()
             service = CustomerService()
             service.save(customer)
             return True, f"Customer Saved Successfully \n{customer}"
@@ -14,6 +15,7 @@ class CustomerController:
     def update(self, id, first_name, last_name, phone_number, address):
         try:
             customer = Customer(id, first_name, last_name, phone_number, address)
+            customer.validate()
             service = CustomerService()
             service.update(customer)
             return True, f"Customer Updated Successfully \n{customer}"

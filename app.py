@@ -1,3 +1,4 @@
+
 from view import *
 
 
@@ -29,8 +30,11 @@ class DashboardView:
     def warehouse_transaction_view(self):
         ui = WarehouseTransactionView()
 
-    def financial_transactoin_view(self):
+    def financial_transaction_view(self):
         ui = FinancialTransactionView()
+
+    def delivery_view(self):
+        ui = DeliveryView()
 
     def __init__(self):
         font = ("Arial", 18, "bold")
@@ -48,30 +52,32 @@ class DashboardView:
         image = Image.open("./view/images/img.png")
         image = ImageTk.PhotoImage(image)
 
-        Label(self.window, image=image).place(x=195, y=20)
+        Label(self.window, image=image).place(x=195, y=15)
 
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Employee",
-               command=self.employee_view).place(x=80, y=200)
+               command=self.employee_view).place(x=80, y=180)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Customer",
-               command=self.customer_view).place(x=80, y=200 + y_dist * 1)
+               command=self.customer_view).place(x=80, y=180 + y_dist * 1)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Bank",
-               command=self.bank_view).place(x=80, y=200 + y_dist * 2)
+               command=self.bank_view).place(x=80, y=180 + y_dist * 2)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Product",
-               command=self.product_view).place(x=80, y=200 + y_dist * 3)
-        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Warehouse", command= self.warehouse_view).place(
-              x=80, y=200 + y_dist * 4)
+               command=self.product_view).place(x=80, y=180 + y_dist * 3)
+        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Warehouse",
+               command= self.warehouse_view).place(x=80, y=180 + y_dist * 4)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Order",
-               command=self.order_view).place(x=80, y=200 + y_dist * 5)
+               command=self.order_view).place(x=80, y=180 + y_dist * 5)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="OrderItem",
-               command=self.order_item_view).place(x=80, y=200 + y_dist * 6)
+               command=self.order_item_view).place(x=80, y=180 + y_dist * 6)
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Payment",
-               command=self.payment_view).place(x=80, y=200 + y_dist * 7)
-        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
-               text="Financial Transaction", command=self.financial_transactoin_view).place(x=80, y=200 + y_dist * 8)
-        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color,
-               text="Warehouse Transaction", command= self.warehouse_transaction_view).place(x=80, y=200 + y_dist * 9)
+               command=self.payment_view).place(x=80, y=180 + y_dist * 7)
+        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Financial Transaction",
+               command=self.financial_transaction_view).place(x=80, y=180 + y_dist * 8)
+        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Warehouse Transaction",
+               command= self.warehouse_transaction_view).place(x=80, y=180 + y_dist * 9)
+        Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Delivery",
+               command=self.delivery_view).place(x=80, y=180 + y_dist * 10)
 
-        Label(self.window, text="Employee : Ahmad", font=font, bg="white").place(x=80, y=820)
+        Label(self.window, text="Employee : Ahmad", font=font, bg="white").place(x=80, y=850)
 
         self.window.mainloop()
 
