@@ -1,11 +1,11 @@
 from model import WarehouseTransaction, WarehouseTransactionService
 
-
 class WarehouseTransactionController:
     def save(self, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id):
         try:
             warehouse_transaction = WarehouseTransaction(None, product_id, quantity, transaction_type,
                                                          transaction_datetime, customer_id, employee_id)
+            warehouse_transaction.validate()
             service = WarehouseTransactionService()
             service.save(warehouse_transaction)
             return True, f"WarehouseTransaction saved {warehouse_transaction}"
@@ -16,6 +16,7 @@ class WarehouseTransactionController:
         try:
             warehouse_transaction = WarehouseTransaction(id, product_id, quantity, transaction_type,
                                                          transaction_datetime, customer_id, employee_id)
+            warehouse_transaction.validate()
             service = WarehouseTransactionService()
             service.update(warehouse_transaction)
             return True, f"Warehouse_transaction updated {warehouse_transaction}"
