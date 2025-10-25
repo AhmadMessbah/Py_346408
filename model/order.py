@@ -1,12 +1,5 @@
 from tools.order_validator import *
-
-def _get_customer_service():
-    from service import CustomerService
-    return CustomerService
-
-def _get_employee_service():
-    from service import EmployeeService
-    return EmployeeService
+from service import CustomerService, EmployeeService
 
 class Order:
     def __init__(self, order_id, order_type, customer_id, employee_id, date_time,
@@ -34,10 +27,8 @@ class Order:
         return f"{self.__dict__}"
 
     def to_tuple(self):
-        customer_service = _get_customer_service()
-        employee_service = _get_employee_service()
-        customer = customer_service.find_by_id(self.customer_id)
-        employee = employee_service.find_by_id(self.employee_id)
+        customer = CustomerService.find_by_id(self.customer_id)
+        employee = EmployeeService.find_by_id(self.employee_id)
 
         return tuple((
             self.order_id,
