@@ -1,4 +1,5 @@
-from model import Product, ProductService
+from model import Product
+from service import ProductService
 from tools.logging import Logger
 
 

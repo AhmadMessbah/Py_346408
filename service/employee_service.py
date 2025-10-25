@@ -1,4 +1,4 @@
-from model import EmployeeRepository
+from repository import EmployeeRepository
 
 
 class EmployeeService:

@@ -1,6 +1,6 @@
 import unittest
 from model import Product
-from controller.product_controller import ProductController
+from controller import ProductController
 
 
 class TestProductController(unittest.TestCase):

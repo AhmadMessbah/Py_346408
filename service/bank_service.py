@@ -1,4 +1,4 @@
-from model import BankRepository
+from repository import BankRepository
 
 
 class BankService:

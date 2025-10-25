@@ -48,9 +48,11 @@ class BankRepository:
     def find_by_id(self, bank_id):
         self.connect()
         self.cursor.execute("select * from banks where id=?", [bank_id])
-        bank = [Bank(*bank) for bank in self.cursor.fetchall()]
+        bank = self.cursor.fetchone()
         self.disconnect()
-        return bank
+        if bank:
+            return Bank(*bank)
+        return None
 
     def find_by_name(self, name):
         self.connect()

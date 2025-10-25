@@ -1,6 +1,6 @@
 import unittest
-from model.entity.bank import Bank
-from controller.bank_controller import BankController
+from model import Bank
+from controller import BankController
 
 
 class TestBankController(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestBankController(unittest.TestCase):
 
     def test_save_bank(self):
         """Test saving a bank"""
-        status, message = self.controller.save("Melli Bank", "123456", 1000000, "Test Description")
+        status, message = self.controller.save("Melli Bank", "saving", 1000000, "Test Description")
         self.assertTrue(status)
         self.assertIn("Saved Successfully", message)
 
@@ -37,18 +37,18 @@ class TestBankController(unittest.TestCase):
     def test_update_bank(self):
         """Test updating a bank"""
         # First save a bank
-        status, message = self.controller.save("Update Test Bank", "111111", 200000, "Before Update")
+        status, message = self.controller.save("Update Test Bank", "checking", 200000, "Before Update")
         if status:
             status_all, bank_list = self.controller.find_all()
             if bank_list:
                 bank_id = bank_list[-1].bank_id
-                status, message = self.controller.update(bank_id, "Updated Bank", "111111", 300000, "After Update")
+                status, message = self.controller.update(bank_id, "Updated Bank", "checking", 300000, "After Update")
                 self.assertTrue(status)
 
     def test_delete_bank(self):
         """Test deleting a bank"""
         # First save a bank
-        status, message = self.controller.save("Delete Test Bank", "222222", 150000, "To Be Deleted")
+        status, message = self.controller.save("Delete Test Bank", "current", 150000, "To Be Deleted")
         if status:
             status_all, bank_list = self.controller.find_all()
             if bank_list:
@@ -65,7 +65,7 @@ class TestBankController(unittest.TestCase):
 
     def test_find_by_account(self):
         """Test finding banks by account"""
-        status, bank_list = self.controller.find_by_account("123456")
+        status, bank_list = self.controller.find_by_account("saving")
         self.assertTrue(status)
         self.assertIsInstance(bank_list, list)
 
@@ -76,7 +76,7 @@ class TestBankController(unittest.TestCase):
 
     def test_update_nonexistent_bank(self):
         """Test updating a non-existent bank"""
-        status, message = self.controller.update(999999, "Test", "999", 1000, "Test")
+        status, message = self.controller.update(999999, "Test", "account", 1000, "Test")
         self.assertFalse(status)
 
 

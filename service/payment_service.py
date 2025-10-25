@@ -1,4 +1,4 @@
-from model import PaymentRepository
+from repository import PaymentRepository
 
 
 class PaymentService:

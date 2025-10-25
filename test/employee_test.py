@@ -1,6 +1,6 @@
 import unittest
 from model import Employee
-from controller.employee_controller import EmployeeController
+from controller import EmployeeController
 
 
 class TestEmployeeController(unittest.TestCase):
@@ -11,7 +11,10 @@ class TestEmployeeController(unittest.TestCase):
 
     def test_save_employee(self):
         """Test saving an employee"""
-        status, message = self.controller.save("Ali", "Mohammadi", 5000000, "Developer", "09123456789", "alim", "pass123", "admin")
+        import random
+        import string
+        unique_username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
+        status, message = self.controller.save("ali", "Mohammadi", 5000000, "cashier", "09123456789", unique_username, "pass1234", "cashier")
         self.assertTrue(status)
         self.assertIn("Saved Successfully", message)
 
@@ -53,7 +56,7 @@ class TestEmployeeController(unittest.TestCase):
 
     def test_find_by_username_and_password(self):
         """Test finding employee by username and password"""
-        status, employee = self.controller.find_by_username_and_password("alim", "pass123")
+        status, employee = self.controller.find_by_username_and_password("aliuser", "pass1234")
         self.assertTrue(status or employee is None)
 
     def test_find_by_role(self):

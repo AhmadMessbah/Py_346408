@@ -1,4 +1,5 @@
-from model import Warehouse, WarehouseService
+from model import Warehouse
+from service import WarehouseService
 from tools.logging import Logger
 
 

@@ -1,6 +1,6 @@
 import unittest
 from model import Sample
-from controller.sample_controller import SampleController
+from controller import SampleController
 
 
 class TestSampleController(unittest.TestCase):

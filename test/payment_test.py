@@ -1,6 +1,6 @@
 import unittest
 from model import Payment
-from controller.payment_controller import PaymentController
+from controller import PaymentController
 
 
 class TestPaymentController(unittest.TestCase):

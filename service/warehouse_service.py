@@ -1,4 +1,4 @@
-from model import WarehouseRepository
+from repository import WarehouseRepository
 
 
 class WarehouseService:

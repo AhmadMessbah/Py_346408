@@ -1,6 +1,6 @@
 import unittest
-from model.entity.customer import Customer
-from controller.customer_controller import CustomerController
+from model import Customer
+from controller import CustomerController
 
 
 class TestCustomerController(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestCustomerController(unittest.TestCase):
 
     def test_save_customer(self):
         """Test saving a customer"""
-        status, message = self.controller.save("Ahmad", "Rezaei", "09123456789", "Tehran, Iran")
+        status, message = self.controller.save("Ahmad", "Rezaei", "09123456789", "Tehran_Iran_123")
         self.assertTrue(status)
         self.assertIn("Saved Successfully", message)
 

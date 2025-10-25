@@ -1,4 +1,5 @@
-from model import WarehouseTransaction, WarehouseTransactionService
+from model import WarehouseTransaction
+from service import WarehouseTransactionService
 from tools.logging import Logger
 
 

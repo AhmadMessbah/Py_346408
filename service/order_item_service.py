@@ -1,4 +1,4 @@
-from model import OrderItemRepository
+from repository import OrderItemRepository
 
 
 class OrderItemService:

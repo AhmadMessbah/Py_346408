@@ -1,6 +1,6 @@
 import unittest
 from model import Delivery
-from controller.delivery_controller import DeliveryController
+from controller import DeliveryController
 
 
 class TestDeliveryController(unittest.TestCase):

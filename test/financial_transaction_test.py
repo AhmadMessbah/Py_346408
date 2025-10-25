@@ -1,5 +1,6 @@
 import unittest
-from controller.financial_transaction_controller import FinancialTransactionController
+from model import FinancialTransaction
+from controller import FinancialTransactionController
 
 
 class TestFinancialTransactionController(unittest.TestCase):

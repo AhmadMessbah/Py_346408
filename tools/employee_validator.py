@@ -30,21 +30,21 @@ def phone_number_validator(phone_number):
 
 
 def role_validator(role):
-    if not (type(role) == str and re.match(r"^[a-zA-Z0-9\s](manager|cashier|storekeeper|sale)$", role)):
+    if not (type(role) == str and re.match(r"^(manager|cashier|storekeeper|sale)$", role)):
         raise ValueError("Invalid role !!!")
     else:
         return role
 
 
 def occupation_validator(occupation):
-    if not (type(occupation) == str and re.match(r"^[a-zA-Z0-9\s](manager|cashier|storekeeper|sale)$", occupation)):
+    if not (type(occupation) == str and re.match(r"^(manager|cashier|storekeeper|sale)$", occupation)):
         raise ValueError("Invalid occupation !!!")
     else:
         return occupation
 
 
 def username_validator(username):
-    if not (type(username) == str and re.match(r"^[a-zA-Z0-9\s]{3,30}$", username)):
+    if not (type(username) == str and re.match(r"^[a-zA-Z0-9]{3,30}$", username)):
         raise ValueError("Invalid username !!!")
     else:
         return username

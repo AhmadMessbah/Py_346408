@@ -1,4 +1,5 @@
-from model import Payment, PaymentService
+from model import Payment
+from service import PaymentService
 from tools.logging import Logger
 
 

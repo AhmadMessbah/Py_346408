@@ -1,4 +1,4 @@
-from model import WarehouseTransactionRepository
+from repository import WarehouseTransactionRepository
 
 
 class WarehouseTransactionService:

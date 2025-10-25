@@ -1,4 +1,4 @@
-from model import CustomerRepository
+from repository import CustomerRepository
 
 
 class CustomerService:

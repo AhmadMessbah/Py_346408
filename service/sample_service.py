@@ -1,4 +1,4 @@
-from model import SampleRepository
+from repository import SampleRepository
 
 
 class SampleService:

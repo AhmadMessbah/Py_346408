@@ -1,4 +1,5 @@
-from model import Customer, CustomerService
+from model import Customer
+from service import CustomerService
 from tools.logging import Logger
 
 

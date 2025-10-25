@@ -1,4 +1,4 @@
-from model import DeliveryRepository
+from repository import DeliveryRepository
 
 
 class DeliveryService:

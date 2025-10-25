@@ -1,4 +1,5 @@
-from model import OrderItem, OrderItemService
+from model import OrderItem
+from service import OrderItemService
 from tools.logging import Logger
 
 

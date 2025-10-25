@@ -1,6 +1,6 @@
 import unittest
 from model import Warehouse
-from controller.warehouse_controller import WarehouseController
+from controller import WarehouseController
 
 
 class TestWarehouseController(unittest.TestCase):

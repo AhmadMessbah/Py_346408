@@ -1,6 +1,6 @@
 import unittest
 from model import Order
-from controller.order_controller import OrderController
+from controller import OrderController
 
 
 class TestOrderController(unittest.TestCase):

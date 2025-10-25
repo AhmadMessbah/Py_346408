@@ -1,6 +1,6 @@
 import unittest
 from model import WarehouseTransaction
-from controller.warehouse_transaction_controller import WarehouseTransactionController
+from controller import WarehouseTransactionController
 
 
 class TestWarehouseTransactionController(unittest.TestCase):

@@ -1,4 +1,4 @@
-from model import FinancialTransactionRepository
+from repository import FinancialTransactionRepository
 
 
 class FinancialTransactionService:
