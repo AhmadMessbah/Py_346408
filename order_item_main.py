@@ -3,5 +3,4 @@
 # ui = OrderItemView()
 from controller import OrderItemController
 
-for item in OrderItemController.find_all()[1]:
-    print(item.to_tuple())
+print(OrderItemController.find_all())
