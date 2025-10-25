@@ -1,5 +1,17 @@
-from view import *
+from tkinter import *
+from PIL import ImageTk, Image
 from model import Session
+from view.customer_view import CustomerView
+from view.employee_view import EmployeeView
+from view.bank_view import BankView
+from view.product_view import ProductView
+from view.warehouse_view import WarehouseView
+from view.order_view import OrderView
+from view.order_item_view import OrderItemView
+from view.payment_view import PaymentView
+from view.warehouse_transaction_view import WarehouseTransactionView
+from view.financial_transaction_view import FinancialTransactionView
+from view.delivery_view import DeliveryView
 
 class DashboardView:
     def employee_view(self):
@@ -77,7 +89,8 @@ class DashboardView:
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Delivery",
                command=self.delivery_view).place(x=80, y=180 + y_dist * 10)
 
-        Label(self.window, text=f"Employee : {self.employee.username}", font=font, bg="white").place(x=80, y=850)
+        employee_name = self.employee.username if self.employee else "Not Logged In"
+        Label(self.window, text=f"Employee : {employee_name}", font=font, bg="white").place(x=80, y=850)
 
         self.window.mainloop()
 

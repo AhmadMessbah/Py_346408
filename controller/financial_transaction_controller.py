@@ -40,7 +40,8 @@ class FinancialTransactionController:
             Logger.error(f"FinancialTransaction Delete Error: {e}")
             return False, e
 
-    def find_all(self):
+    @classmethod
+    def find_all(cls):
         try:
             financial_transaction_list = cls.financial_transaction_service.find_all()
             Logger.info("FinancialTransaction FindAll")

@@ -38,7 +38,8 @@ class ProductController:
             Logger.error(f"Product Delete Error: {e}")
             return False, e
 
-    def find_all(self):
+    @classmethod
+    def find_all(cls):
         try:
             product_list = cls.product_service.find_all()
             Logger.info("Product FindAll")

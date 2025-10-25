@@ -40,7 +40,8 @@ class WarehouseController:
             Logger.error(f"Warehouse Delete Error: {e}")
             return False, e
 
-    def find_all(self):
+    @classmethod
+    def find_all(cls):
         try:
             warehouse_list = cls.warehouse_service.find_all()
             Logger.info("Warehouse FindAll")

@@ -19,9 +19,9 @@ class ProductView:
         self.expiration_date = LabelWithEntry(self.window, "ExpirationDate", 20, 300)
 
         self.search_name = LabelWithEntry(self.window, "Name", 270, 20, distance=60,
-                                          keypress_function=self.search_name_brand)
+                                          on_keypress_function=self.search_name_brand)
         self.search_brand = LabelWithEntry(self.window, "Brand", 500, 20, distance=60,
-                                           keypress_function=self.search_name_brand)
+                                           on_keypress_function=self.search_name_brand)
 
         self.table = Table(
             self.window,
@@ -92,7 +92,9 @@ class ProductView:
             self.serial.set(product.serial)
             self.expiration_date.set(product.expiration_date)
 
-    def search_name_brand(self, event):
-        status, product_list = ProductController.find_by_name_and_brand(self.search_name, self.search_brand)
+    def search_name_brand(self):
+        print("KEYPRESS")
+
+        status, product_list = ProductController.find_by_name_and_brand(self.search_name.get(), self.search_brand.get())
         if status and product_list:
             self.table.refresh_table(product_list)

@@ -43,7 +43,8 @@ class PaymentController:
             Logger.error(f"Payment Delete Error: {e}")
             return False, e
 
-    def find_all(self):
+    @classmethod
+    def find_all(cls):
         try:
             payment_list = cls.payment_service.find_all()
             Logger.info("Payment FindAll")

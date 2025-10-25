@@ -42,7 +42,8 @@ class WarehouseTransactionController:
             Logger.error(f"WarehouseTransaction Delete Error: {e}")
             return False, e
 
-    def find_all(self):
+    @classmethod
+    def find_all(cls):
         try:
             warehouse_transaction_list = cls.warehouse_transaction_service.find_all()
             Logger.info("WarehouseTransaction FindAll")
