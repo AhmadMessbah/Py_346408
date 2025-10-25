@@ -6,19 +6,33 @@ class EmployeeService:
         self.repository = EmployeeRepository()
 
     def save(self, employee):
-        self.repository.save(employee)
+        return self.repository.save(employee)
 
     def update(self, employee):
-        self.repository.update(employee)
+        employee_result = self.repository.find_by_id(employee.id)
+        if employee_result:
+            self.repository.update(employee)
+            return employee
+        else:
+            raise Exception("Employee Not Found !!!")
 
-    def delete(self, id):
-        self.repository.delete(id)
+    def delete(self, employee_id):
+        employee = self.repository.find_by_id(employee_id)
+        if employee:
+            self.repository.delete(employee_id)
+            return employee
+        else:
+            raise Exception("Employee Not Found !!!")
 
     def find_all(self):
         return self.repository.find_all()
 
-    def find_by_id(self, id):
-        return self.repository.find_by_id(id)
+    def find_by_id(self, employee_id):
+        employee = self.repository.find_by_id(employee_id)
+        if employee:
+            return employee
+        else:
+            raise Exception("Employee Not Found !!!")
 
     def find_by_firstname_and_lastname(self, firstname, lastname):
         return self.repository.find_by_firstname_and_lastname(firstname, lastname)

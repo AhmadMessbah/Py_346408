@@ -29,6 +29,7 @@ class PaymentRepository:
              payment.total_amount, payment.employee_id, payment.description, payment.id])
         self.connection.commit()
         self.disconnect()
+        return payment
 
     def delete(self, id):
         self.connect()

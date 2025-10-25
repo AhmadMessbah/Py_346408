@@ -29,6 +29,7 @@ class OrderItemRepository:
                              order_item.price, order_item.discount, order_item.description, order_item.id])
         self.connection.commit()
         self.disconnect()
+        return order_item
 
     def delete(self, id):
         self.connect()

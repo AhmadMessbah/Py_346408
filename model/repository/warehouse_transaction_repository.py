@@ -39,6 +39,7 @@ class WarehouseTransactionRepository:
                                                   warehouse_transaction.id]))
         self.connection.commit()
         self.disconnect()
+        return warehouse_transaction
 
     def delete(self, id):
         self.connect()

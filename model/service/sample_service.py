@@ -6,16 +6,30 @@ class SampleService:
         self.repository = SampleRepository()
 
     def save(self, sample):
-        self.repository.save(sample)
+        return self.repository.save(sample)
 
     def update(self, sample):
-        self.repository.update(sample)
+        sample_result = self.repository.find_by_id(sample.id)
+        if sample_result:
+            self.repository.update(sample)
+            return sample
+        else:
+            raise Exception("Sample Not Found !!!")
 
-    def delete(self, id):
-        self.repository.delete(id)
+    def delete(self, sample_id):
+        sample = self.repository.find_by_id(sample_id)
+        if sample:
+            self.repository.delete(sample_id)
+            return sample
+        else:
+            raise Exception("Sample Not Found !!!")
 
     def find_all(self):
         return self.repository.find_all()
 
-    def find_by_id(self, id):
-        return self.repository.find_by_id(id)
+    def find_by_id(self, sample_id):
+        sample = self.repository.find_by_id(sample_id)
+        if sample:
+            return sample
+        else:
+            raise Exception("Sample Not Found !!!")

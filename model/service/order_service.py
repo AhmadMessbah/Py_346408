@@ -6,19 +6,33 @@ class OrderService:
         self.repository = OrderRepository()
 
     def save(self, order):
-        self.repository.save(order)
+        return self.repository.save(order)
 
     def update(self, order):
-        self.repository.update(order)
+        order_result = self.repository.find_by_id(order.id)
+        if order_result:
+            self.repository.update(order)
+            return order
+        else:
+            raise Exception("Order Not Found !!!")
 
-    def delete(self, id):
-        self.repository.delete(id)
+    def delete(self, order_id):
+        order = self.repository.find_by_id(order_id)
+        if order:
+            self.repository.delete(order_id)
+            return order
+        else:
+            raise Exception("Order Not Found !!!")
 
     def find_all(self):
         return self.repository.find_all()
 
-    def find_by_id(self, id):
-        return self.repository.find_by_id(id)
+    def find_by_id(self, order_id):
+        order = self.repository.find_by_id(order_id)
+        if order:
+            return order
+        else:
+            raise Exception("Order Not Found !!!")
 
     def find_by_order_type(self, order_type):
         return self.repository.find_by_order_type(order_type)

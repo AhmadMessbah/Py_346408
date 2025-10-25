@@ -30,6 +30,7 @@ class ProductRepository:
              product.expiration_date, product.id])
         self.connection.commit()
         self.disconnect()
+        return product
 
     def delete(self, id):
         self.connect()

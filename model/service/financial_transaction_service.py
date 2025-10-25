@@ -6,19 +6,33 @@ class FinancialTransactionService:
         self.repository = FinancialTransactionRepository()
 
     def save(self, financial_transaction):
-        self.repository.save(financial_transaction)
+        return self.repository.save(financial_transaction)
 
     def update(self, financial_transaction):
-        self.repository.update(financial_transaction)
+        financial_transaction_result = self.repository.find_by_id(financial_transaction.id)
+        if financial_transaction_result:
+            self.repository.update(financial_transaction)
+            return financial_transaction
+        else:
+            raise Exception("Financial Transaction Not Found !!!")
 
-    def delete(self, id):
-        self.repository.delete(id)
+    def delete(self, financial_transaction_id):
+        financial_transaction = self.repository.find_by_id(financial_transaction_id)
+        if financial_transaction:
+            self.repository.delete(financial_transaction_id)
+            return financial_transaction
+        else:
+            raise Exception("Financial Transaction Not Found !!!")
 
     def find_all(self):
         return self.repository.find_all()
 
-    def find_by_id(self, id):
-        return self.repository.find_by_id(id)
+    def find_by_id(self, financial_transaction_id):
+        financial_transaction = self.repository.find_by_id(financial_transaction_id)
+        if financial_transaction:
+            return financial_transaction
+        else:
+            raise Exception("Financial Transaction Not Found !!!")
 
     def find_by_transaction_type(self, transaction_type):
         return self.repository.find_by_transaction_type(transaction_type)

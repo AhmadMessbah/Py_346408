@@ -28,6 +28,7 @@ class CustomerRepository:
             [customer.first_name, customer.last_name, customer.phone_number, customer.address, customer.id])
         self.connection.commit()
         self.disconnect()
+        return customer
 
     def delete(self, id):
         self.connect()

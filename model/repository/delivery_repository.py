@@ -25,7 +25,7 @@ class DeliveryRepository:
         self.cursor.execute("update deliveries set first_name=?, last_name=?, address=?, description=? where id=?", [delivery.first_name, delivery.last_name, delivery.address, delivery.description, delivery.id])
         self.connection.commit()
         self.disconnect()
-        return "updated"
+        return delivery
 
     def delete(self, id):
         self.connect()

@@ -6,19 +6,33 @@ class WarehouseTransactionService:
         self.repository = WarehouseTransactionRepository()
 
     def save(self, warehouse_transaction):
-        self.repository.save(warehouse_transaction)
+        return self.repository.save(warehouse_transaction)
 
     def update(self, warehouse_transaction):
-        self.repository.update(warehouse_transaction)
+        warehouse_transaction_result = self.repository.find_by_id(warehouse_transaction.id)
+        if warehouse_transaction_result:
+            self.repository.update(warehouse_transaction)
+            return warehouse_transaction
+        else:
+            raise Exception("Warehouse Transaction Not Found !!!")
 
-    def delete(self, id):
-        self.repository.delete(id)
+    def delete(self, warehouse_transaction_id):
+        warehouse_transaction = self.repository.find_by_id(warehouse_transaction_id)
+        if warehouse_transaction:
+            self.repository.delete(warehouse_transaction_id)
+            return warehouse_transaction
+        else:
+            raise Exception("Warehouse Transaction Not Found !!!")
 
     def find_all(self):
         return self.repository.find_all()
 
-    def find_by_id(self, id):
-        return self.repository.find_by_id(id)
+    def find_by_id(self, warehouse_transaction_id):
+        warehouse_transaction = self.repository.find_by_id(warehouse_transaction_id)
+        if warehouse_transaction:
+            return warehouse_transaction
+        else:
+            raise Exception("Warehouse Transaction Not Found !!!")
 
     def find_by_product_id(self, product_id):
         return self.repository.find_bye_product_id

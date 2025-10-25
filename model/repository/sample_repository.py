@@ -26,6 +26,7 @@ class SampleRepository:
                             [sample.name, sample.description, sample.id])
         self.connection.commit()
         self.disconnect()
+        return sample
 
     def delete(self, id):
         self.connect()

@@ -25,6 +25,7 @@ class BankRepository:
                             [bank.name, bank.account, bank.balance, bank.description, bank.id])
         self.connection.commit()
         self.disconnect()
+        return bank
 
     def delete(self, id):
         self.connect()
@@ -49,15 +50,14 @@ class BankRepository:
 
     def find_by_name(self, name):
         self.connect()
-        self.cursor.execute("select * from banks where name like ?", [name+"%"])
+        self.cursor.execute("select * from banks where name like ?", [name + "%"])
         bank_list = [Bank(*bank) for bank in self.cursor.fetchall()]
         self.disconnect()
         return bank_list
 
-
     def find_by_account(self, account):
         self.connect()
-        self.cursor.execute("select * from banks where account=?", [account])
+        self.cursor.execute("select * from banks where account like ?", [account + "%"])
         bank_list = [Bank(*bank) for bank in self.cursor.fetchall()]
         self.disconnect()
         return bank_list

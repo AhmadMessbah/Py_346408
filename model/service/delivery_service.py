@@ -6,17 +6,31 @@ class DeliveryService:
          self.repository = DeliveryRepository()
 
      def save(self, delivery):
-         self.repository.save(delivery)
+         return self.repository.save(delivery)
 
      def update(self, delivery):
-         self.repository.update(delivery)
+         delivery_result = self.repository.find_by_id(delivery.id)
+         if delivery_result:
+             self.repository.update(delivery)
+             return delivery
+         else:
+             raise Exception("Delivery Not Found !!!")
 
-     def delete(self, id):
-         self.repository.delete(id)
+     def delete(self, delivery_id):
+         delivery = self.repository.find_by_id(delivery_id)
+         if delivery:
+             self.repository.delete(delivery_id)
+             return delivery
+         else:
+             raise Exception("Delivery Not Found !!!")
 
      def find_all(self):
          return self.repository.find_all()
 
-     def find_by_id(self, id):
-         return self.repository.find_by_id(id)
+     def find_by_id(self, delivery_id):
+         delivery = self.repository.find_by_id(delivery_id)
+         if delivery:
+             return delivery
+         else:
+             raise Exception("Delivery Not Found !!!")
 

@@ -29,6 +29,7 @@ class EmployeeRepository:
              employee.username, employee.password, employee.role, employee.id])
         self.connection.commit()
         self.disconnect()
+        return employee
 
     def delete(self, id):
         self.connect()

@@ -1,6 +1,7 @@
 import sqlite3
 from model import FinancialTransaction
 
+
 class FinancialTransactionRepository:
     def connect(self):
         self.connection = sqlite3.connect("./db/selling_db")
@@ -12,11 +13,13 @@ class FinancialTransactionRepository:
 
     def save(self, financial_transactions):
         self.connect()
-        self.cursor.execute("""insert into financial_transactions 
-            (transaction_type,customer_id,employee_id,amount,date_time,payment_id,description) values (?,?,?,?,?,?,?)""",
-            [financial_transactions.transaction_type, financial_transactions.customer_id,
-            financial_transactions.employee_id, financial_transactions.amount, financial_transactions.date_time,
-            financial_transactions.payment_id, financial_transactions.description])
+        self.cursor.execute("""insert into financial_transactions
+                               (transaction_type, customer_id, employee_id, amount, date_time, payment_id, description)
+                               values (?, ?, ?, ?, ?, ?, ?)""",
+                            [financial_transactions.transaction_type, financial_transactions.customer_id,
+                             financial_transactions.employee_id, financial_transactions.amount,
+                             financial_transactions.date_time,
+                             financial_transactions.payment_id, financial_transactions.description])
         financial_transactions.id = self.cursor.lastrowid
         self.connection.commit()
         return financial_transactions
@@ -24,13 +27,22 @@ class FinancialTransactionRepository:
     def update(self, financial_transactions):
         self.connect()
         self.cursor.execute("""update financial_transactions
-            set transaction_type=?,customer_id=?,employee_id=?,amount=?,date_time=?,payment_id=?,description=? where id=?""",
+                               set transaction_type=?,
+                                   customer_id=?,
+                                   employee_id=?,
+                                   amount=?,
+                                   date_time=?,
+                                   payment_id=?,
+                                   description=?
+                               where id = ?""",
                             [financial_transactions.transaction_type, financial_transactions.customer_id,
                              financial_transactions.employee_id, financial_transactions.amount,
                              financial_transactions.date_time,
-                             financial_transactions.payment_id, financial_transactions.description, financial_transactions.id])
+                             financial_transactions.payment_id, financial_transactions.description,
+                             financial_transactions.id])
         self.connection.commit()
         self.disconnect()
+        return financial_transactions
 
     def delete(self, id):
         self.connect()
@@ -38,11 +50,10 @@ class FinancialTransactionRepository:
         self.connection.commit()
         self.disconnect()
 
-
     def find_all(self):
         self.connect()
         self.cursor.execute("select * from financial_transactions")
-        financial_transaction_list =  [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
         return financial_transaction_list
 
@@ -81,11 +92,10 @@ class FinancialTransactionRepository:
         self.disconnect()
         return financial_transaction_list
 
-
-
     def find_by_date_time_range(self, start_date_time, end_date_time):
         self.connect()
-        self.cursor.execute("select * from financial_transactions where date_time between ? and ?", [start_date_time, end_date_time])
+        self.cursor.execute("select * from financial_transactions where date_time between ? and ?",
+                            [start_date_time, end_date_time])
         financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
         return financial_transaction_list
@@ -94,6 +104,15 @@ class FinancialTransactionRepository:
         self.connect()
         self.cursor.execute("select * from financial_transactions where date_time between ? and ? and customer_id = ?",
                             [start_date_time, end_date_time, customer_id])
+        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.disconnect()
+        return financial_transaction_list
+
+
+    def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time, employee_id):
+        self.connect()
+        self.cursor.execute("select * from financial_transactions where date_time between ? and ? and employee_id = ?",
+                            [start_date_time, end_date_time, employee_id])
         financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
         return financial_transaction_list

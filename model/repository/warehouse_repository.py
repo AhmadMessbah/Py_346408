@@ -23,6 +23,7 @@ class WarehouseRepository:
             self.cursor.execute("""update warehouses set product_id=?,quantity=? where id=?""", ([warehouse.product_id, warehouse.quantity, warehouse.id]))
             self.connection.commit()
             self.disconnect()
+            return warehouse
 
     def delete(self,id):
         self.connect()

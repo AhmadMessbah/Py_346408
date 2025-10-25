@@ -25,6 +25,7 @@ class OrderRepository:
                             [order.order_type, order.customer_id, order.employee_id,  order.date_time, order.payment_id, order.warehouse_transaction_id, order.tax, order.total_discount, order.total_amount, order.id])
         self.connection.commit()
         self.disconnect()
+        return order
 
     def delete(self,id):
         self.connect()
