@@ -33,39 +33,34 @@ class OrderItemController:
     def find_all(self):
         try:
             service = OrderItemService()
-            order_item_list = service.find_all()
-            return True, order_item_list
+            return True, service.find_all()
         except Exception as e:
             return False, e
 
     def find_by_id(self, id):
         try:
             service = OrderItemService()
-            order_item_list = service.find_by_id(id)
-            return True, order_item_list
+            return True, service.find_by_id(id)
         except Exception as e:
             return False, e
 
     def find_by_order_id(self, order_id):
         try:
             service = OrderItemService()
-            order_item_list = service.find_by_order_id(order_id)
-            return True, order_item_list
+            return True, service.find_by_order_id(order_id)
         except Exception as e:
             return False, e
 
     def find_by_product_id(self, product_id):
         try:
             service = OrderItemService()
-            order_item_list = service.find_by_product_id(product_id)
-            return True, order_item_list
+            return True, service.find_by_product_id(product_id)
         except Exception as e:
             return False, e
 
     def find_by_quantity_less_than(self, quantity):
         try:
             service = OrderItemService()
-            order_item_list = service.find_by_quantity_less_than(quantity)
-            return True, order_item_list
+            return True, service.find_by_quantity_less_than(quantity)
         except Exception as e:
             return False, e
