@@ -37,7 +37,7 @@ class WarehouseService:
         return self.repository.find_by_product_id(product_id)
 
     def find_by_quantity_less_than(self, quantity):
-        pass
+        return self.repository.find_by_quantity_less_than(quantity)
 
     def find_by_quantity_more_than(self, quantity):
-        pass
+        return self.repository.find_by_quantity_more_than(quantity)

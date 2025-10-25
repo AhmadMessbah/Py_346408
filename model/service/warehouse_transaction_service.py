@@ -35,10 +35,10 @@ class WarehouseTransactionService:
             raise Exception("Warehouse Transaction Not Found !!!")
 
     def find_by_product_id(self, product_id):
-        return self.repository.find_bye_product_id
+        return self.repository.find_bye_product_id(product_id)
 
     def find_by_transaction_type(self, transaction_type):
-        return self.repository.find_by_transaction_type
+        return self.repository.find_by_transaction_type(transaction_type)
 
     def find_by_customer_id(self, customer_id):
         return self.repository.find_by_customer_id(customer_id)
@@ -47,10 +47,10 @@ class WarehouseTransactionService:
         return self.repository.find_by_employee_id(employee_id)
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
-        pass
+        return self.repository.find_by_date_time_range(start_date_time, end_date_time)
 
     def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
-        pass
+        return self.repository.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
 
     def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time, employee_id):
-        pass
+        return self.repository.find_by_date_time_range_and_employee_id(start_date_time, end_date_time, employee_id)
