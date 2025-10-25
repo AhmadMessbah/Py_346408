@@ -56,13 +56,14 @@ class WarehouseTransactionRepository:
         self.disconnect()
         return warehouse_transaction_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, warehouse_transaction_id):
         self.connect()
-        self.cursor.execute("select * from warehouse_transactions where id=?", [id])
-        warehouse_transaction = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
-                                      self.cursor.fetchall()]
+        self.cursor.execute("select * from warehouse_transactions where id=?", [warehouse_transaction_id])
+        warehouse_transaction = self.cursor.fetchone()
         self.disconnect()
-        return warehouse_transaction
+        if warehouse_transaction:
+            return WarehouseTransaction(*warehouse_transaction)
+        return None
 
     def find_bye_product_id(self,product_id):
         self.connect()

@@ -45,12 +45,14 @@ class PaymentRepository:
         self.disconnect()
         return payment_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, payment_id):
         self.connect()
-        self.cursor.execute("select * from payments where id=?", [id])
-        payment = [Payment(*payment) for payment in self.cursor.fetchall()]
+        self.cursor.execute("select * from payments where id=?", [payment_id])
+        payment = self.cursor.fetchone()
         self.disconnect()
-        return payment
+        if payment:
+            return Payment(*payment)
+        return None
 
     def find_by_transaction_type(self, transaction_type):
         self.connect()

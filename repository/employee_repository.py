@@ -45,12 +45,14 @@ class EmployeeRepository:
         self.disconnect()
         return customer_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, employee_id):
         self.connect()
-        self.cursor.execute("select * from employees where id=?", [id])
-        employee = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.cursor.execute("select * from employees where id=?", [employee_id])
+        employee = self.cursor.fetchone()
         self.disconnect()
-        return employee
+        if employee:
+            return Employee(*employee)
+        return None
 
     def find_by_firstname_and_lastname(self, firstname, lastname):
         self.connect()

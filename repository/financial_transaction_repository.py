@@ -57,12 +57,14 @@ class FinancialTransactionRepository:
         self.disconnect()
         return financial_transaction_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, financial_transaction_id):
         self.connect()
-        self.cursor.execute("select * from financial_transactions where id=?", [id])
-        financial_transaction = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        self.cursor.execute("select * from financial_transactions where id=?", [financial_transaction_id])
+        financial_transaction = self.cursor.fetchone()
         self.disconnect()
-        return financial_transaction
+        if financial_transaction:
+            return FinancialTransaction(*financial_transaction)
+        return None
 
     def find_by_transaction_type(self, transaction_type):
         self.connect()

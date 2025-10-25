@@ -44,12 +44,14 @@ class OrderItemRepository:
         self.disconnect()
         return order_item_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, order_item_id):
         self.connect()
-        self.cursor.execute("select * from order_items where id=?", [id])
-        order_item = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
+        self.cursor.execute("select * from order_items where id=?", [order_item_id])
+        order_item = self.cursor.fetchone()
         self.disconnect()
-        return order_item
+        if order_item:
+            return OrderItem(*order_item)
+        return None
 
     def find_by_order_id(self, order_id):
         self.connect()

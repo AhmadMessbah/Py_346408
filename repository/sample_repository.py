@@ -43,9 +43,11 @@ class SampleRepository:
         return sample_list
 
 
-    def find_by_id(self, id):
+    def find_by_id(self, sample_id):
         self.connect()
-        self.cursor.execute("select * from samples where id=?", [id])
-        sample = [Sample(*sample) for sample in self.cursor.fetchall()]
+        self.cursor.execute("select * from samples where id=?", [sample_id])
+        sample = self.cursor.fetchone()
         self.disconnect()
-        return sample
+        if sample:
+            return Sample(*sample)
+        return None

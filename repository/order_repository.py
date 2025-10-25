@@ -40,12 +40,14 @@ class OrderRepository:
         self.disconnect()
         return order_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, order_id):
         self.connect()
-        self.cursor.execute("select * from orders where id=?", [id])
-        order = [Order(*order) for order in self.cursor.fetchall()]
+        self.cursor.execute("select * from orders where id=?", [order_id])
+        order = self.cursor.fetchone()
         self.disconnect()
-        return order
+        if order:
+            return Order(*order)
+        return None
 
     def find_by_order_type(self, order_type):
         self.connect()

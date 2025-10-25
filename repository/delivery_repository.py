@@ -40,9 +40,11 @@ class DeliveryRepository:
         self.disconnect()
         return delivery_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, delivery_id):
         self.connect()
-        self.cursor.execute("select * from deliveries where id=?", [id])
-        delivery = [Delivery(*delivery) for delivery in self.cursor.fetchall()]
+        self.cursor.execute("select * from deliveries where id=?", [delivery_id])
+        delivery = self.cursor.fetchone()
         self.disconnect()
-        return delivery
+        if delivery:
+            return Delivery(*delivery)
+        return None

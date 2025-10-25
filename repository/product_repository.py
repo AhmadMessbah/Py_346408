@@ -46,12 +46,14 @@ class ProductRepository:
         self.disconnect()
         return product_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, product_id):
         self.connect()
-        self.cursor.execute("select * from products where id=?", [id])
-        product = [Product(*product) for product in self.cursor.fetchall()]
+        self.cursor.execute("select * from products where id=?", [product_id])
+        product = self.cursor.fetchone()
         self.disconnect()
-        return product
+        if product:
+            return Product(*product)
+        return None
 
     def find_by_name_and_brand(self, name, brand):
         self.connect()
