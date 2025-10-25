@@ -7,7 +7,7 @@ class LabelWithEntry:
         Label(master, text=label_text).place(x=x, y=y)
         txt = Entry(master, textvariable=self.variable, state=state)
         if keypress_function:
-            txt.bind("<KeyRelease>", keypress_function)
+            txt.bind("<KeyPress>", keypress_function)
         txt.place(x=x + distance, y=y)
 
     def get(self):
