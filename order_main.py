@@ -1,6 +1,3 @@
-# from test import order_test
-# from view import OrderView
-from controller import OrderController
+from view import OrderView
 
-# ui = OrderView()
-print(OrderController.find_by_id(2)[1].to_tuple())
+ui = OrderView()

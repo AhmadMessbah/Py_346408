@@ -1,7 +1,3 @@
-# from view.order_item_view import OrderItemView
-#
-# ui = OrderItemView()
-from controller import OrderItemController
+from view.order_item_view import OrderItemView
 
-for item in OrderItemController.find_all()[1]:
-    print(item.to_tuple())
+ui = OrderItemView()

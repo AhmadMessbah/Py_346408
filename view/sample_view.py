@@ -5,7 +5,7 @@ from controller import SampleController
 class SampleView:
     def __init__(self):
         self.window = Tk()
-        self.window.geometry("600x320")
+        self.window.geometry("840x320")
         self.window.title("Sample")
 
         self.sample_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
