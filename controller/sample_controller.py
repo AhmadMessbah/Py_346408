@@ -1,4 +1,5 @@
-from model import Sample, SampleService
+from model import Sample
+from service import SampleService
 from tools.logging import Logger
 
 

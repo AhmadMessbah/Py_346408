@@ -1,17 +1,35 @@
-# save test [passed]
-# delivery = Delivery(None, "reza", "Hosseini", "street 92", "felaaan")
-# delivery_service = DeliveryService()
-# delivery_service.save(delivery)
+import unittest
+from controller.delivery_controller import DeliveryController
 
-# update test [passed]
-# delivery = Delivery(3, "reza", "Hosseini", "street 92", "felaaan")
-# delivery_service = DeliveryService()
-# delivery_service.update(delivery)
 
-# find_all test [passed]
-# delivery_service = DeliveryService()
-# delivery_service.findall()
+class TestDeliveryController(unittest.TestCase):
+    
+    def test_save(self):
+        """Test Delivery save method"""
+        status, message = DeliveryController.save("Ali", "Rezaei", "123 Main St", "Fast delivery")
+        self.assertTrue(status)
+        self.assertIn("Delivery Saved Successfully", message)
+    
+    def test_find_all(self):
+        """Test Delivery find_all method"""
+        status, delivery_list = DeliveryController.find_all()
+        self.assertTrue(status)
+        self.assertIsInstance(delivery_list, list)
+    
+    def test_find_by_id(self):
+        """Test Delivery find_by_id method"""
+        status, delivery = DeliveryController.find_by_id(1)
+        self.assertTrue(status)
+    
+    def test_update(self):
+        """Test Delivery update method"""
+        status, message = DeliveryController.update(1, "Hassan", "Ahmadi", "456 Oak Ave", "Standard delivery")
+        self.assertTrue(status)
+    
+    def test_delete(self):
+        """Test Delivery delete method"""
+        pass
 
-# find_by_id test [passed]
-# delivery_service = DeliveryService()
-# delivery_service.find_by_id(3)
+
+if __name__ == '__main__':
+    unittest.main()

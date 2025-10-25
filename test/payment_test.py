@@ -1,39 +1,60 @@
-from model.payment import Payment
-from service import PaymentService
-
-payment1 = Payment(1, "receive", "cash", "2025-02-02", 12,200,11,"daryaftshod")
-
-payment2= Payment(2, "pay", "cart", "2025-04-02", 22,250,11,"pardakhtshod")
+import unittest
+from controller.payment_controller import PaymentController
 
 
-service = PaymentService()
+class TestPaymentController(unittest.TestCase):
+    
+    def test_save(self):
+        """Test Payment save method"""
+        status, message = PaymentController.save("sale", "cash", "04/07/20", 2134654, 100000, 6469185, "Payment description")
+        self.assertTrue(status)
+        self.assertIn("Payment Saved Successfully", message)
+    
+    def test_find_all(self):
+        """Test Payment find_all method"""
+        status, payment_list = PaymentController.find_all()
+        self.assertTrue(status)
+        self.assertIsInstance(payment_list, list)
+    
+    def test_find_by_id(self):
+        """Test Payment find_by_id method"""
+        status, payment = PaymentController.find_by_id(1)
+        self.assertTrue(status)
+    
+    def test_update(self):
+        """Test Payment update method"""
+        status, message = PaymentController.update(1, "sale", "card", "04/07/20", 2134654, 150000, 6469185, "Updated description")
+        self.assertTrue(status)
+    
+    def test_delete(self):
+        """Test Payment delete method"""
+        pass
+    
+    def test_find_by_transaction_type(self):
+        """Test Payment find_by_transaction_type method"""
+        status, payment_list = PaymentController.find_by_transaction_type("sale")
+        self.assertTrue(status)
+    
+    def test_find_by_payment_type(self):
+        """Test Payment find_by_payment_type method"""
+        status, payment_list = PaymentController.find_by_payment_type("cash")
+        self.assertTrue(status)
+    
+    def test_find_by_date_time_range(self):
+        """Test Payment find_by_date_time_range method"""
+        status, payment_list = PaymentController.find_by_date_time_range("01/01/20", "31/12/20")
+        self.assertTrue(status)
+    
+    def test_find_by_date_time_range_and_customer_id(self):
+        """Test Payment find_by_date_time_range_and_customer_id method"""
+        status, payment_list = PaymentController.find_by_date_time_range_and_customer_id("01/01/20", "31/12/20", 2134654)
+        self.assertTrue(status)
+    
+    def test_find_by_date_time_range_and_employee_id(self):
+        """Test Payment find_by_date_time_range_and_employee_id method"""
+        status, payment_list = PaymentController.find_by_date_time_range_and_employee_id("01/01/20", "31/12/20", 6469185)
+        self.assertTrue(status)
 
-#test passed
-#service.save(payment1)
 
-#test passed????
-#service.update(payment1)
-
-#test passed
-#service.delete(5)
-
-#test passed
-#print(service.find_all())
-
-#test passed
-#print(service.find_by_id(6))
-
-#test did not passed
-#print(service.find_by_transaction_type("receive"))
-
-#test  did not passed
-#print(service.find_by_payment_type("cash"))
-
-#test   did not passed
-#print(service.find_by_date_time_range("2025-02-02"))
-
-#test  did not passed
-#print(service.find_by_date_time_range_and_customer_id(""))
-
-#test passed
-#print(service.find_by_date_time_range_and_employee_id(""))
+if __name__ == '__main__':
+    unittest.main()

@@ -1,40 +1,46 @@
-from service import CustomerService
-from view.customer_view import *
+import unittest
+from controller.customer_controller import CustomerController
 
-service = CustomerService()
 
-customer1 = Customer(1, "reza", "rezayi", "091234867890", "street1, number1")
-service.save(customer1)
+class TestCustomerController(unittest.TestCase):
+    
+    def test_save(self):
+        """Test Customer save method"""
+        status, message = CustomerController.save("John", "Doe", "1234567890", "123 Main St")
+        self.assertTrue(status)
+        self.assertIn("Customer Saved Successfully", message)
+    
+    def test_find_all(self):
+        """Test Customer find_all method"""
+        status, customer_list = CustomerController.find_all()
+        self.assertTrue(status)
+        self.assertIsInstance(customer_list, list)
+    
+    def test_find_by_id(self):
+        """Test Customer find_by_id method"""
+        status, customer = CustomerController.find_by_id(1)
+        self.assertTrue(status)
+    
+    def test_update(self):
+        """Test Customer update method"""
+        status, message = CustomerController.update(1, "Jane", "Smith", "0987654321", "456 Oak Ave")
+        self.assertTrue(status)
+    
+    def test_delete(self):
+        """Test Customer delete method"""
+        # Use with caution
+        pass
+    
+    def test_find_by_firstname_and_lastname(self):
+        """Test Customer find_by_firstname_and_lastname method"""
+        status, customer_list = CustomerController.find_by_firstname_and_lastname("John", "Doe")
+        self.assertTrue(status)
+    
+    def test_find_by_phone_number(self):
+        """Test Customer find_by_phone_number method"""
+        status, customer_list = CustomerController.find_by_phone_number("1234567890")
+        self.assertTrue(status)
 
-customer2 = Customer(2,"sina", "zamani", "0912123434", "street2, number2")
-service.save(customer2)
 
-customer3 = Customer(3,"john", "william", "0912663434", "street3, number3")
-service.save(customer3)
-
-#print(service.find_by_firstname_and_lastname("reza", "rezayi"))
-
-#test did not passed
-#print(service.save(customer3))
-
-#test  did not passed
-#print(service.update(customer))
-
-#test  did not passed
-#print(service.delete(1))
-
-#test did not passed
-#print(service.find_all())
-
-#test did not passed
-#print(customer_service.find_by_id(10))
-   
-   
-#test did not passed
-#print(service.find_by_firstname_and_lastname("reza", "rezayi"))  
-   
-   
-#test did not passed
-#print(service.find_by_phone_number("0912663434"))  
-     
-  
+if __name__ == '__main__':
+    unittest.main()

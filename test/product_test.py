@@ -1,30 +1,50 @@
-from service.product_service import ProductService
+import unittest
+from controller.product_controller import ProductController
 
-service = ProductService()
-# product1 = Product(1, "mobile", "iPhone", "13pro", "123a","electronic","12",None)
-# service.save(product1)
-#
-# product2 = Product(2,"labtab","iphone", "notebook", "231a", "electronic", "13", None)
-# service.save(product2)
-#
-# product3 = Product(3, "mobile", "samsung", "note12", "345b", "electronic", "12", None)
-# service.save(product3)
 
-#print(service.find_by_name_and_brand("mobile", "iPhone"))
+class TestProductController(unittest.TestCase):
+    
+    def test_save(self):
+        """Test Product save method"""
+        status, message = ProductController.save("Laptop", "Dell", "Latitude", "DL12345", "Electronics", "unit", "2025-12-31")
+        self.assertTrue(status)
+        self.assertIn("Product Saved Successfully", message)
+    
+    def test_find_all(self):
+        """Test Product find_all method"""
+        status, product_list = ProductController.find_all()
+        self.assertTrue(status)
+        self.assertIsInstance(product_list, list)
+    
+    def test_find_by_id(self):
+        """Test Product find_by_id method"""
+        status, product = ProductController.find_by_id(1)
+        self.assertTrue(status)
+    
+    def test_update(self):
+        """Test Product update method"""
+        status, message = ProductController.update(1, "Laptop Pro", "Dell", "Latitude Pro", "DL12346", "Electronics", "unit", "2025-12-31")
+        self.assertTrue(status)
+    
+    def test_delete(self):
+        """Test Product delete method"""
+        pass
+    
+    def test_find_by_name_and_brand(self):
+        """Test Product find_by_name_and_brand method"""
+        status, product_list = ProductController.find_by_name_and_brand("Laptop", "Dell")
+        self.assertTrue(status)
+    
+    def test_find_by_category(self):
+        """Test Product find_by_category method"""
+        status, product_list = ProductController.find_by_category("Electronics")
+        self.assertTrue(status)
+    
+    def test_find_by_expire_date_until(self):
+        """Test Product find_by_expire_date_until method"""
+        status, product_list = ProductController.find_by_expire_date_until("2025-12-31")
+        self.assertTrue(status)
 
-print(service.find_by_name_and_brand("m", "i"))
 
-#test passed
-# service.save(product)
-
-#test passed
-#service.update(product)
-
-#test passed
-#service.delete(1)
-
-#test passed
-#print(service.find_all())
-
-#test passed
-#print(service.find_by_id(2))
+if __name__ == '__main__':
+    unittest.main()

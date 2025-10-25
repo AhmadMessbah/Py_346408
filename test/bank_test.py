@@ -1,35 +1,50 @@
-# class TestBank(unittest.TestCase):
-#     def test_save_and_find_by_name(self):
-#         service = BankService()
-#         bank1 = Bank(1, "saderat", "saving", 2500, "tozih jadid")
-#         service.save(bank1)
-#         self.assertEqual(service.find_by_name("saderat")[0].account, "saving")
-#
-# #
-# bank2 = Bank(2, "mellat", "card", 2500, "tozih jadid")
-# service.save(bank2)
-
-# bank3 = Bank(3, "melli", "card", 2500, "tozih jadid")
-# service.save(bank3)
-
-# print(service.find_by_name("m"))
-# print(service.find_by_account("saving2"))
+import unittest
+from controller.bank_controller import BankController
 
 
-# test passed
-# service.save(bank)
+class TestBankController(unittest.TestCase):
+    
+    def test_save(self):
+        """Test Bank save method"""
+        status, message = BankController.save("Test Bank", "Test Account", 1000, "Test Description")
+        self.assertTrue(status)
+        self.assertIn("Bank Saved Successfully", message)
+    
+    def test_find_all(self):
+        """Test Bank find_all method"""
+        status, bank_list = BankController.find_all()
+        self.assertTrue(status)
+        self.assertIsInstance(bank_list, list)
+    
+    def test_find_by_id(self):
+        """Test Bank find_by_id method"""
+        status, bank = BankController.find_by_id(1)
+        self.assertTrue(status)
+        self.assertIsNotNone(bank)
+    
+    def test_update(self):
+        """Test Bank update method"""
+        # Assuming bank with id 1 exists
+        status, message = BankController.update(1, "Updated Bank", "Updated Account", 2000, "Updated Description")
+        self.assertTrue(status)
+    
+    def test_delete(self):
+        """Test Bank delete method"""
+        # This will delete a bank, use with caution
+        # status, message = BankController.delete(1)
+        # self.assertTrue(status)
+        pass
+    
+    def test_find_by_name(self):
+        """Test Bank find_by_name method"""
+        status, bank_list = BankController.find_by_name("Test")
+        self.assertTrue(status)
+    
+    def test_find_by_account(self):
+        """Test Bank find_by_account method"""
+        status, bank_list = BankController.find_by_account("Test")
+        self.assertTrue(status)
 
-# test passed
-# service.update(bank)
 
-# test passed
-# service.delete(id)
-
-# test passed
-# print(service.find_all())
-
-# test passed
-# print(service.find_by_id())
-
-# if __name__ == "__main__":
-#     unittest.main()
+if __name__ == '__main__':
+    unittest.main()

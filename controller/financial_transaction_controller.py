@@ -1,4 +1,5 @@
-from model import FinancialTransaction, FinancialTransactionService
+from model import FinancialTransaction
+from service import FinancialTransactionService
 from tools.logging import Logger
 
 

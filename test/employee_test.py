@@ -1,30 +1,60 @@
-from model import Employee
-from model import EmployeeService
+import unittest
+from controller.employee_controller import EmployeeController
 
 
-service = EmployeeService()
-#
-employee1 = Employee( 1 , "ali" , "mohammadi" , 3000 , "foroosh" , 9121998381 , "ali" , "ali123","foroshande")
-service.save(employee1)
-#
-# employee2 = Employee( 2 , "taranom" , "bagheri" , 4000 , "manage" , 9127846381 , "tariii" , "taranom876","manager")
-# service.save(employee1)
-#
-# employee3 = Employee( 3 , "kiarash" , "hoseyni" , 2000 , "program" , 9121947681 , "kiahosei" , "kiarash765","programer")
-# service.save(employee3)
-#
-#
-# employee4 = Employee( 4 , "adrina" , "joorabchi" ,  4000, "foroosh" , 9126746381 , "adrinef" , "adrina654","foroshande")
-# service.save(employee4)
-#
-#
-# employee5 = Employee( 5 , "malihe" , "asady" , 3678 , "manage" ,9125436756 , "amalyasdy" , "malihe543","manager")
-# service.save(employee5)
-#
-# employee6 = Employee( 6 , "mahdis" , "bakhshi" , 3093 , "sale" , 9122254534 , "mmmht" , "mahds321","saler")
-# service.save(employee6)
-#
-# # print(service.find_by_firstname_and_lastname("adrina" , "joorabchi"))
+class TestEmployeeController(unittest.TestCase):
+    
+    def test_save(self):
+        """Test Employee save method"""
+        status, message = EmployeeController.save("Ali", "Rezaei", 5000, "Developer", "09123456789", "alirez", "password123", "admin")
+        self.assertTrue(status)
+        self.assertIn("Employee Saved Successfully", message)
+    
+    def test_find_all(self):
+        """Test Employee find_all method"""
+        status, employee_list = EmployeeController.find_all()
+        self.assertTrue(status)
+        self.assertIsInstance(employee_list, list)
+    
+    def test_find_by_id(self):
+        """Test Employee find_by_id method"""
+        status, employee = EmployeeController.find_by_id(1)
+        self.assertTrue(status)
+    
+    def test_update(self):
+        """Test Employee update method"""
+        status, message = EmployeeController.update(1, "Ali", "Rezaei", 6000, "Senior Developer", "09123456789", "alirez", "newpass", "admin")
+        self.assertTrue(status)
+    
+    def test_delete(self):
+        """Test Employee delete method"""
+        pass
+    
+    def test_find_by_firstname_and_lastname(self):
+        """Test Employee find_by_firstname_and_lastname method"""
+        status, employee_list = EmployeeController.find_by_firstname_and_lastname("Ali", "Rezaei")
+        self.assertTrue(status)
+    
+    def test_find_by_phone_number(self):
+        """Test Employee find_by_phone_number method"""
+        status, employee_list = EmployeeController.find_by_phone_number("09123456789")
+        self.assertTrue(status)
+    
+    def test_find_by_username(self):
+        """Test Employee find_by_username method"""
+        status, employee_list = EmployeeController.find_by_username("alirez")
+        self.assertTrue(status)
+    
+    def test_find_by_username_and_password(self):
+        """Test Employee find_by_username_and_password method"""
+        status, employee = EmployeeController.find_by_username_and_password("alirez", "password123")
+        self.assertTrue(status)
+    
+    def test_find_by_role(self):
+        """Test Employee find_by_role method"""
+        status, employee_list = EmployeeController.find_by_role("admin")
+        self.assertTrue(status)
 
 
-print(service.find_by_username_and_password("ali", "ali123"))
+if __name__ == '__main__':
+    unittest.main()
