@@ -4,8 +4,8 @@ from model import EmployeeService
 
 service = EmployeeService()
 #
-# employee1 = Employee( 1 , "ali" , "mohammadi" , 3000 , "foroosh" , 9121998381 , "alimo" , "ali987","foroshande")
-# service.save(employee1)
+employee1 = Employee( 1 , "ali" , "mohammadi" , 3000 , "foroosh" , 9121998381 , "ali" , "ali123","foroshande")
+service.save(employee1)
 #
 # employee2 = Employee( 2 , "taranom" , "bagheri" , 4000 , "manage" , 9127846381 , "tariii" , "taranom876","manager")
 # service.save(employee1)
