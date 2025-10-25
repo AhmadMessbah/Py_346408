@@ -6,7 +6,7 @@ from controller import WarehouseController
 class WarehouseView:
     def __init__(self):
         self.window = Tk()
-        self.window.geometry("530x310")
+        self.window.geometry("580x310")
         self.window.title("warehouse view")
 
         self.warehouse_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
@@ -15,8 +15,8 @@ class WarehouseView:
 
         self.table = Table(
             self.window,
-            ["Id", "Product_Id", "Quantity"],
-            [40, 100, 100],
+            ["Id", "Product", "Quantity"],
+            [40, 150, 100],
             275, 20,
             12,
             self.select_from_table

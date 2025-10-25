@@ -7,13 +7,13 @@ from model.financial_transaction import FinancialTransaction
 class FinancialTransactionView:
     def __init__(self):
         self.window = Tk()
-        self.window.geometry("1000x400")
+        self.window.geometry("1150x400")
         self.window.title("Financial transaction")
 
         self.financial_transaction_id = LabelWithEntry(self.window, "Id", 20, 20, state="readonly")
         self.transaction_type = LabelWithEntry(self.window, "Type", 20, 60)
-        self.customer_id = LabelWithEntry(self.window, "CustomerId", 20, 100)
-        self.employee_id = LabelWithEntry(self.window, "EmployeeId", 20, 140)
+        self.customer_id = LabelWithEntry(self.window, "Customer", 20, 100)
+        self.employee_id = LabelWithEntry(self.window, "Employee", 20, 140)
         self.amount = LabelWithEntry(self.window, "Amount", 20, 180)
         self.date_time = LabelWithEntry(self.window, "Date&Time", 20, 220)
         self.payment_id = LabelWithEntry(self.window, "PaymentId", 20, 260)
@@ -21,8 +21,8 @@ class FinancialTransactionView:
 
         self.table = Table(
             self.window,
-            ["Id", "Type", "CustomerId", "EmployeeId","Amount","Date&Time","PaymentId", "Description"],
-            [60, 100, 100, 80, 100,80,80,100],
+            ["Id", "Type", "Customer", "Employee","Amount","Date&Time","PaymentId", "Description"],
+            [60, 60, 140, 140, 100,90,70,180],
             270, 20,
             16,
             self.select_from_table

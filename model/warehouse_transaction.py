@@ -1,7 +1,9 @@
 from tools.warehouse_transaction_validator import *
 
+
 class WarehouseTransaction:
-    def __init__(self, warehouse_transaction_id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id):
+    def __init__(self, warehouse_transaction_id, product_id, quantity, transaction_type, transaction_datetime,
+                 customer_id, employee_id):
         self.warehouse_transaction_id = warehouse_transaction_id
         self.product_id = product_id
         self.quantity = quantity
@@ -22,4 +24,18 @@ class WarehouseTransaction:
         return f'{self.__dict__}'
 
     def to_tuple(self):
-        return tuple((self.warehouse_transaction_id, self.product_id, self.quantity, self.transaction_type, self.transaction_datetime,self.customer_id, self.employee_id))
+        from service import CustomerService, EmployeeService, ProductService
+
+        customer = CustomerService.find_by_id(self.customer_id)
+        employee = EmployeeService.find_by_id(self.employee_id)
+        product = ProductService.find_by_id(self.product_id)
+
+        return tuple(
+            (self.warehouse_transaction_id,
+             product.info(),
+             self.quantity,
+             self.transaction_type,
+             self.transaction_datetime,
+             customer.full_name(),
+             employee.full_name(),
+             ))

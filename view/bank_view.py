@@ -5,7 +5,7 @@ from controller import BankController
 class BankView:
     def __init__(self):
         self.window = Tk()
-        self.window.geometry("700x320")
+        self.window.geometry("750x320")
         self.window.title("Bank")
 
         self.bank_id = LabelWithEntry(self.window, "Id", 20,20, data_type=IntVar, state="readonly")
@@ -17,7 +17,7 @@ class BankView:
         self.table = Table(
             self.window,
             ["Id", "BankName", "AccountName", "Balance", "Description"],
-            [40,100,100,60,100],
+            [40,100,100,60,150],
             270,20,
             12,
             self.select_from_table

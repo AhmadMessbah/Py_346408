@@ -30,7 +30,7 @@ class WarehouseTransactionView:
         self.table = Table(
             self.window,
             ["Id", "Product_Id", "Quantity", "transaction_type", "transaction_datetime", "customer_id", "employee_id"],
-            [40, 100, 100, 100, 120, 100, 100],
+            [40, 100, 60, 80, 120, 130, 130],
             275, 20,
             13,
             self.select_from_table

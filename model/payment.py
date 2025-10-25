@@ -26,5 +26,10 @@ class Payment:
         return f"{self.__dict__}"
 
     def to_tuple(self):
+        from service import CustomerService, EmployeeService
+
+        customer = CustomerService.find_by_id(self.customer_id)
+        employee = EmployeeService.find_by_id(self.employee_id)
+
         return tuple((self.payment_id, self.transaction_type, self.payment_type,
-                      self.date_time, self.customer_id, self.total_amount, self.employee_id, self.description))
+                      self.date_time, customer.full_name(), self.total_amount, employee.full_name(), self.description))

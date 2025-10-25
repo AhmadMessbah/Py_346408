@@ -15,7 +15,9 @@ class Warehouse:
         return f'{self.__dict__}'
 
     def to_tuple(self):
-        return tuple((self.warehouse_id, self.product_id, self.quantity))
+        from service.product_service import ProductService
+        product = ProductService.find_by_id(self.product_id)
+        return tuple((self.warehouse_id, product.info(), self.quantity))
 
 
 

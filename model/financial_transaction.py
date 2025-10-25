@@ -25,4 +25,17 @@ class FinancialTransaction:
         return f"{self.__dict__}"
 
     def to_tuple(self):
-        return tuple((self.financial_transaction_id,self.transaction_type,self.customer_id,self.employee_id,self.amount,self.date_time,self.payment_id,self.description))
+        from service import CustomerService, EmployeeService
+
+        customer = CustomerService.find_by_id(self.customer_id)
+        employee = EmployeeService.find_by_id(self.employee_id)
+
+        return tuple(
+            (self.financial_transaction_id,
+             self.transaction_type,
+             customer.full_name(),
+             employee.full_name(),
+             self.amount,
+             self.date_time,
+             self.payment_id,
+             self.description))

@@ -7,7 +7,7 @@ from controller import CustomerController
 class CustomerView:
     def __init__(self):
         self.window = Tk()
-        self.window.geometry("740x310")
+        self.window.geometry("800x310")
         self.window.title("Customer")
 
         self.customer_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
@@ -19,7 +19,7 @@ class CustomerView:
         self.table = Table(
             self.window,
             ["Id", "first_name", "last_name", "phone_number", "address"],
-            [40, 100, 100, 100, 100],
+            [40, 100, 100, 100, 160],
             275, 20,
             12,
             self.select_from_table

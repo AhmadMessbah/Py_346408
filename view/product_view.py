@@ -93,8 +93,6 @@ class ProductView:
             self.expiration_date.set(product.expiration_date)
 
     def search_name_brand(self):
-        print("KEYPRESS")
-
         status, product_list = ProductController.find_by_name_and_brand(self.search_name.get(), self.search_brand.get())
         if status and product_list:
             self.table.refresh_table(product_list)

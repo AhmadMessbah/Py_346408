@@ -7,7 +7,7 @@ from controller import PaymentController
 class PaymentView:
     def __init__(self):
         self.window = Tk()
-        self.window.geometry("1050x450")
+        self.window.geometry("1100x450")
         self.window.title("Payment")
 
         self.payment_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
@@ -21,7 +21,7 @@ class PaymentView:
         self.table = Table(
             self.window,
             ["Id","TransactType", "PaymentType", "DateTime", "CustomerId","TotalAmount","EmployeeId", "Description"],
-            [40,100,100,100,100,100,100,100],
+            [40,80,60,100,130,80,130,180],
             270,20,
             18,
             self.select_from_table
