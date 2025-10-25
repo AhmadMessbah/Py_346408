@@ -5,9 +5,6 @@ from controller import OrderItemController
 
 class OrderItemView:
     def __init__(self):
-
-        self.order_item_controller = OrderItemController()
-
         self.window = Tk()
         self.window.title("Order Item")
         self.window.geometry("900x380")
@@ -36,7 +33,7 @@ class OrderItemView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.order_item_controller.save(self.order_id.get(), self.product_id.get(), self.quantity.get(),
+        status, message = OrderItemController.save(self.order_id.get(), self.product_id.get(), self.quantity.get(),
                                                           self.price.get(), self.discount.get(), self.description.get())
         if status:
             messagebox.showinfo("Order Item Save", message)
@@ -45,7 +42,7 @@ class OrderItemView:
             messagebox.showerror("Order Item Save Error", message)
 
     def edit_click(self):
-        status, message = self.order_item_controller.update(self.id.get(),self.order_id.get(), self.product_id.get(), self.quantity.get(),
+        status, message = OrderItemController.update(self.id.get(),self.order_id.get(), self.product_id.get(), self.quantity.get(),
                                                           self.price.get(), self.discount.get(), self.description.get())
         if status:
             messagebox.showinfo("Order Item Update", message)
@@ -54,7 +51,7 @@ class OrderItemView:
             messagebox.showerror("Order Item Update Error", message)
 
     def delete_click(self):
-        status, message = self.order_item_controller.delete(self.id.get())
+        status, message = OrderItemController.delete(self.id.get())
         if status:
             messagebox.showinfo("Order Item Delete", message)
             self.reset_form()
@@ -69,12 +66,12 @@ class OrderItemView:
        self.price.clear()
        self.discount.clear()
        self.description.clear()
-       status, order_item_list = self.order_item_controller.find_all()
+       status, order_item_list = OrderItemController.find_all()
        self.table.refresh_table(order_item_list)
 
     def select_from_table(self, selected_order_item):
         if selected_order_item:
-            status , order_item = self.order_item_controller.find_by_id(selected_order_item[0])
+            status , order_item = OrderItemController.find_by_id(selected_order_item[0])
             if status:
                 order_item = OrderItem(*selected_order_item)
                 self.id.set(order_item.id)

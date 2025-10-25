@@ -9,7 +9,6 @@ from controller.customer_controller import CustomerController
 
 class FinancialTransactionView:
     def __init__(self):
-        self.financial_transaction_controller = FinancialTransactionController()
         self.window = Tk()
         self.window.geometry("1000x400")
         self.window.title("Financial transaction")
@@ -40,7 +39,7 @@ class FinancialTransactionView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.financial_transaction_controller.save(self.transaction_type.get(),
+        status, message = FinancialTransactionController.save(self.transaction_type.get(),
                                                                      self.customer_id.get(), self.employee_id.get(),
                                                                      self.amount.get(), self.date_time.get(),
                                                                      self.payment_id.get(), self.description.get())
@@ -51,7 +50,7 @@ class FinancialTransactionView:
             messagebox.showerror("Financial_Transaction", message)
 
     def edit_click(self):
-        status, message = self.financial_transaction_controller.update(self.id.get(), self.transaction_type.get(),
+        status, message = FinancialTransactionController.update(self.id.get(), self.transaction_type.get(),
                                                                        self.customer_id.get(), self.employee_id.get(),
                                                                        self.amount.get(), self.date_time.get(),
                                                                        self.payment_id.get(), self.description.get())
@@ -62,7 +61,7 @@ class FinancialTransactionView:
             messagebox.showerror("Financial_Transaction update error", message)
 
     def delete_click(self):
-        status, message = self.financial_transaction_controller.delete(self.id.get())
+        status, message = FinancialTransactionController.delete(self.id.get())
         if status:
             messagebox.showinfo("Financial_Transaction update", message)
             self.reset_form()
@@ -78,7 +77,7 @@ class FinancialTransactionView:
         self.date_time.clear()
         self.payment_id.clear()
         self.description.clear()
-        status, financial_transaction_list = self.financial_transaction_controller.find_all()
+        status, financial_transaction_list = FinancialTransactionController.find_all()
         self.table.refresh_table(financial_transaction_list)
 
 

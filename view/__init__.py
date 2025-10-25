@@ -30,3 +30,4 @@ from view.delivery_view import DeliveryView
 # Group D
 from view.order_view import OrderView
 from view.order_item_view import OrderItemView
+from view.sample_view import SampleView

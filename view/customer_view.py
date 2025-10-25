@@ -6,7 +6,6 @@ from controller import CustomerController
 
 class CustomerView:
     def __init__(self):
-        self.customer_controller = CustomerController()
         self.window = Tk()
         self.window.geometry("740x310")
         self.window.title("Customer")
@@ -33,7 +32,7 @@ class CustomerView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.customer_controller.save(self.first_name.get(), self.last_name.get(),
+        status, message = CustomerController.save(self.first_name.get(), self.last_name.get(),
                                                         self.phone_number.get(), self.address.get())
         if status:
             messagebox.showinfo("Customer Save", message)
@@ -42,7 +41,7 @@ class CustomerView:
             messagebox.showerror("Customer Save Error", message)
 
     def edit_click(self):
-        status, message = self.customer_controller.update(self.id.get(), self.first_name.get(), self.last_name.get(),
+        status, message = CustomerController.update(self.id.get(), self.first_name.get(), self.last_name.get(),
                                                           self.phone_number.get(), self.address.get())
         if status:
             messagebox.showinfo("Customer Update", message)
@@ -51,7 +50,7 @@ class CustomerView:
             messagebox.showerror("Customer Update Error", message)
 
     def delete_click(self):
-        status, message = self.customer_controller.delete(self.id.get())
+        status, message = CustomerController.delete(self.id.get())
         if status:
             messagebox.showinfo("Customer Delete", message)
             self.reset_form()
@@ -64,12 +63,12 @@ class CustomerView:
         self.last_name.clear()
         self.phone_number.clear()
         self.address.clear()
-        status, customer_list = self.customer_controller.find_all()
+        status, customer_list = CustomerController.find_all()
         self.table.refresh_table(customer_list)
 
     def select_from_table(self, selected_customer):
         if selected_customer:
-            status, customer = self.customer_controller.find_by_id(selected_customer[0])
+            status, customer = CustomerController.find_by_id(selected_customer[0])
             if status:
                 customer = Customer(*selected_customer)
                 self.id.set(customer.id)

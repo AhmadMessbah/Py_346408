@@ -8,8 +8,6 @@ from view.show_order_view import ShowOderView
 class OrderView:
     def __init__(self):
 
-        self.order_controller = OrderController()
-
         self.window = Tk()
         self.window.title("Order")
         self.window.geometry("1310x525")
@@ -58,7 +56,7 @@ class OrderView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.order_controller.save(self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
+        status, message = OrderController.save(self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
                                                      self.date_time.get(), self.payment_id.get(),
                                                      self.warehouse_transaction_id.get(), self.tax.get(),
                                                      self.total_discount.get(), self.total_amount.get())
@@ -69,7 +67,7 @@ class OrderView:
             messagebox.showerror("Order Save Error", message)
 
     def edit_click(self):
-        status, message = self.order_controller.update(self.id.get(), self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
+        status, message = OrderController.update(self.id.get(), self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
                                                        self.date_time.get(), self.payment_id.get(), self.warehouse_transaction_id.get(),
                                                        self.tax.get(), self.total_discount.get(), self.total_amount.get())
         if status:
@@ -79,7 +77,7 @@ class OrderView:
             messagebox.showerror("Order Update Error", message)
 
     def delete_click(self):
-        status, message = self.order_controller.delete(self.id.get())
+        status, message = OrderController.delete(self.id.get())
         if status:
             messagebox.showinfo("Order Delete", message)
             self.reset_form()
@@ -100,12 +98,12 @@ class OrderView:
         self.total_discount.clear()
         self.total_amount.clear()
         self.order_type.set("Basket")
-        status, order_list = self.order_controller.find_all()
+        status, order_list = OrderController.find_all()
         self.table.refresh_table(order_list)
 
     def select_from_table(self, selected_order):
         if selected_order:
-            status, order = self.order_controller.find_by_id(selected_order[0])
+            status, order = OrderController.find_by_id(selected_order[0])
             if status:
                 order = Order(*selected_order)
                 self.id.set(order.id)

@@ -5,7 +5,6 @@ from controller import DeliveryController
 
 class DeliveryView:
     def __init__(self):
-        self.delivery_controller = DeliveryController()
         self.window = Tk()
         self.window.geometry("740x320")
         self.window.title("Delivery")
@@ -33,7 +32,7 @@ class DeliveryView:
 
 
     def save_click(self):
-        status, message = self.delivery_controller.save(self.first_name.get(), self.last_name.get(), self.address.get(), self.description.get())
+        status, message = DeliveryController.save(self.first_name.get(), self.last_name.get(), self.address.get(), self.description.get())
         if status:
             messagebox.showinfo("Delivery Save", message)
             self.reset_form()
@@ -42,7 +41,7 @@ class DeliveryView:
 
 
     def edit_click(self):
-        status, message = self.delivery_controller.update( self.id.get(), self.first_name.get(), self.last_name.get(),
+        status, message = DeliveryController.update( self.id.get(), self.first_name.get(), self.last_name.get(),
                                                         self.address.get(), self.description.get())
         if status:
             messagebox.showinfo("Delivery Update", message)
@@ -51,7 +50,7 @@ class DeliveryView:
             messagebox.showerror("Delivery Update Error", message)
 
     def delete_click(self):
-        status, message = self.delivery_controller.delete(self.id.get())
+        status, message = DeliveryController.delete(self.id.get())
         if status:
             messagebox.showinfo("Delivery Delete", message)
             self.reset_form()
@@ -65,12 +64,12 @@ class DeliveryView:
         self.last_name.clear()
         self.address.clear()
         self.description.clear()
-        status, delivery_list = self.delivery_controller.find_all()
+        status, delivery_list = DeliveryController.find_all()
         self.table.refresh_table(delivery_list)
 
     def select_from_table(self, selected_delivery):
         if selected_delivery:
-            status, delivery = self.delivery_controller.find_by_id(selected_delivery[0])
+            status, delivery = DeliveryController.find_by_id(selected_delivery[0])
             if status:
                 delivery = Delivery(*selected_delivery)
                 self.id.set(delivery.id)

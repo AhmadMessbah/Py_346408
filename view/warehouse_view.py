@@ -5,7 +5,6 @@ from controller import WarehouseController
 
 class WarehouseView:
     def __init__(self):
-        self.warehouse_controller = WarehouseController()
         self.window = Tk()
         self.window.geometry("530x310")
         self.window.title("warehouse view")
@@ -30,7 +29,7 @@ class WarehouseView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.warehouse_controller.save(self.product_id.get(), self.quantity.get())
+        status, message = WarehouseController.save(self.product_id.get(), self.quantity.get())
         if status:
             messagebox.showinfo("Warehouse Save", message)
             self.reset_form()
@@ -38,7 +37,7 @@ class WarehouseView:
             messagebox.showerror("Warehouse Save Error", message)
 
     def edit_click(self):
-        status, message = self.warehouse_controller.update(self.id.get(), self.product_id.get(), self.quantity.get())
+        status, message = WarehouseController.update(self.id.get(), self.product_id.get(), self.quantity.get())
         if status:
             messagebox.showinfo("Warehouse Update", message)
             self.reset_form()
@@ -46,7 +45,7 @@ class WarehouseView:
             messagebox.showerror("Warehouse Update Error", message)
 
     def delete_click(self):
-        status, message = self.warehouse_controller.delete(self.id.get())
+        status, message = WarehouseController.delete(self.id.get())
         if status:
             messagebox.showinfo("Warehouse Delete", message)
             self.reset_form()
@@ -57,12 +56,12 @@ class WarehouseView:
         self.id.clear()
         self.product_id.clear()
         self.quantity.clear()
-        status, warehouse_list = self.warehouse_controller.find_all()
+        status, warehouse_list = WarehouseController.find_all()
         self.table.refresh_table(warehouse_list)
 
     def select_from_table(self, selected_warehouse):
         if selected_warehouse:
-            status, warehouse = self.warehouse_controller.find_by_id(selected_warehouse[0])
+            status, warehouse = WarehouseController.find_by_id(selected_warehouse[0])
             if status:
                 warehouse = Warehouse(*selected_warehouse)
                 self.id.set(warehouse.id)

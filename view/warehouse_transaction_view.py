@@ -5,7 +5,6 @@ from controller import WarehouseTransactionController
 
 class WarehouseTransactionView:
     def __init__(self):
-        self.warehouse_transaction_controller = WarehouseTransactionController()
         self.window = Tk()
         self.window.geometry("1000x400")
         self.window.title("Warehouse Transaction")
@@ -44,7 +43,7 @@ class WarehouseTransactionView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.warehouse_transaction_controller.save(self.product_id.get(), self.quantity.get(),
+        status, message = WarehouseTransactionController.save(self.product_id.get(), self.quantity.get(),
                                                                      self.transaction_type.get(),
                                                                      self.transaction_datetime.get(),
                                                                      self.customer_id.get(), self.employee_id.get())
@@ -55,7 +54,7 @@ class WarehouseTransactionView:
             messagebox.showerror("Warehouse_transaction Save Error", message)
 
     def edit_click(self):
-        status, message = self.warehouse_transaction_controller.update(self.id.get(), self.product_id.get(),
+        status, message = WarehouseTransactionController.update(self.id.get(), self.product_id.get(),
                                                                        self.quantity.get(), self.transaction_type.get(),
                                                                        self.transaction_datetime.get(),
                                                                        self.customer_id.get(), self.employee_id.get())
@@ -66,7 +65,7 @@ class WarehouseTransactionView:
             messagebox.showerror("Warehouse_transaction Update Error", message)
 
     def delete_click(self):
-        status, message = self.warehouse_transaction_controller.delete(self.id.get())
+        status, message = WarehouseTransactionController.delete(self.id.get())
         if status:
             messagebox.showinfo("Warehouse_transaction Delete", message)
             self.reset_form()
@@ -81,12 +80,12 @@ class WarehouseTransactionView:
         self.transaction_datetime.clear()
         self.customer_id.clear()
         self.employee_id.clear()
-        status, warehouse_transaction_list = self.warehouse_transaction_controller.find_all()
+        status, warehouse_transaction_list = WarehouseTransactionController.find_all()
         self.table.refresh_table(warehouse_transaction_list)
 
     def select_from_table(self, selected_warehouse_transaction):
         if selected_warehouse_transaction:
-            status, warehouse_transaction = self.warehouse_transaction_controller.find_by_id(
+            status, warehouse_transaction = WarehouseTransactionController.find_by_id(
                 selected_warehouse_transaction[0])
             if status:
                 warehouse_transaction = WarehouseTransaction(*selected_warehouse_transaction)

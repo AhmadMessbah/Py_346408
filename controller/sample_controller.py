@@ -37,7 +37,8 @@ class SampleController:
             Logger.error(f"Sample Delete Error: {e}")
             return False, e
 
-    def find_all(self):
+    @classmethod
+    def find_all(cls):
         try:
             sample_list = cls.sample_service.find_all()
             Logger.info("Sample FindAll")

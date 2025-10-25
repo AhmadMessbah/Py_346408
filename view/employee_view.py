@@ -4,7 +4,6 @@ from controller import EmployeeController
 
 class EmployeeView:
     def __init__(self):
-        self.employee_controller = EmployeeController()
         self.window=Tk()
         self.window.title("Employee")
         self.window.geometry("1060x440")
@@ -35,7 +34,7 @@ class EmployeeView:
 
 
     def save_click(self):
-        status, message = self.employee_controller.save(self.first_name.get(), self.last_name.get(), self.salary.get(), self.occupation.get(),
+        status, message = EmployeeController.save(self.first_name.get(), self.last_name.get(), self.salary.get(), self.occupation.get(),
                                                         self.phone_number.get(), self.username.get(), self.password.get(),self.role.get())
         if status:
             messagebox.showinfo("Employee Save", message)
@@ -45,7 +44,7 @@ class EmployeeView:
 
 
     def edit_click(self):
-        status, message = self.employee_controller.update(self.id.get(), self.first_name.get(), self.last_name.get(), self.salary.get(),
+        status, message = EmployeeController.update(self.id.get(), self.first_name.get(), self.last_name.get(), self.salary.get(),
                                                         self.occupation.get(), self.phone_number.get(), self.username.get(),self.password.get(),self.role.get())
         if status:
             messagebox.showinfo("Employee update", message)
@@ -54,7 +53,7 @@ class EmployeeView:
             messagebox.showerror("Employee update Error", message)
 
     def delete_click(self):
-        status, message = self.employee_controller.delete(self.id.get())
+        status, message = EmployeeController.delete(self.id.get())
         if status:
             messagebox.showinfo("Employee Delete", message)
             self.reset_form()
@@ -71,13 +70,13 @@ class EmployeeView:
         self.username.clear()
         self.password.clear()
         self.role.clear()
-        status, employee_list = self.employee_controller.find_all()
+        status, employee_list = EmployeeController.find_all()
         self.table.refresh_table(employee_list)
 
     
     def select_from_table(self,selected_employee):
                 if selected_employee:
-                   status,employee=self.employee_controller.find_by_id(selected_employee[0])
+                   status,employee=EmployeeController.find_by_id(selected_employee[0])
                    if status:
                     employee = Employee(*selected_employee)
                     self.id.set(employee.id)

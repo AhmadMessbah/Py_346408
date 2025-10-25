@@ -5,7 +5,6 @@ from controller import ProductController
 
 class ProductView:
     def __init__(self):
-        self.product_controller = ProductController()
         self.window = Tk()
         self.window.geometry("1000x440")
         self.window.title("product")
@@ -40,7 +39,7 @@ class ProductView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.product_controller.save(self.name.get(), self.brand.get(), self.model.get(),
+        status, message = ProductController.save(self.name.get(), self.brand.get(), self.model.get(),
                                                        self.category.get(),
                                                        self.serial.get(), self.unit.get(), self.expiration_date.get())
         if status:
@@ -50,7 +49,7 @@ class ProductView:
             messagebox.showerror("Product Save Error", message)
 
     def edit_click(self):
-        status, message = self.product_controller.update(self.id.get(), self.name.get(), self.brand.get(),
+        status, message = ProductController.update(self.id.get(), self.name.get(), self.brand.get(),
                                                          self.model.get(),
                                                          self.category.get(), self.serial.get(), self.unit.get(),
                                                          self.expiration_date.get())
@@ -61,7 +60,7 @@ class ProductView:
             messagebox.showerror("Product Update Error", message)
 
     def delete_click(self):
-        status, message = self.product_controller.delete(self.id.get())
+        status, message = ProductController.delete(self.id.get())
         if status:
             messagebox.showinfo("Product Delete", message)
             self.reset_form()
@@ -77,7 +76,7 @@ class ProductView:
         self.serial.clear()
         self.unit.clear()
         self.expiration_date.clear()
-        status, product_list = self.product_controller.find_all()
+        status, product_list = ProductController.find_all()
         self.table.refresh_table(product_list)
 
     def select_from_table(self, selected_product):
@@ -94,6 +93,6 @@ class ProductView:
             self.expiration_date.set(product.expiration_date)
 
     def search_name_brand(self, event):
-        status, product_list = self.product_controller.find_by_name_and_brand(self.search_name, self.search_brand)
+        status, product_list = ProductController.find_by_name_and_brand(self.search_name, self.search_brand)
         if status and product_list:
             self.table.refresh_table(product_list)

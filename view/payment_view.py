@@ -6,7 +6,6 @@ from controller import PaymentController
 
 class PaymentView:
     def __init__(self):
-        self.payment_controller = PaymentController()
         self.window = Tk()
         self.window.geometry("1050x450")
         self.window.title("Payment")
@@ -34,7 +33,7 @@ class PaymentView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message = self.payment_controller.save(self.transaction_type.get(), self.payment_type.get(),
+        status, message = PaymentController.save(self.transaction_type.get(), self.payment_type.get(),
                                                        self.date_time.get(), self.customer_id.get(),
                                                        self.total_amount.get(), self.employee_id.get(),
                                                        self.description.get())
@@ -45,7 +44,7 @@ class PaymentView:
             messagebox.showerror("Payment Info Save Error", message)
 
     def edit_click(self):
-        status, message = self.payment_controller.update(self.id.get(), self.transaction_type.get(), self.payment_type.get(),
+        status, message = PaymentController.update(self.id.get(), self.transaction_type.get(), self.payment_type.get(),
                                                          self.date_time.get(), self.customer_id.get(),
                                                          self.total_amount.get(), self.employee_id.get(),
                                                          self.description.get())
@@ -56,7 +55,7 @@ class PaymentView:
             messagebox.showerror("Payment Info Update Error", message)
 
     def delete_click(self):
-        status, message = self.payment_controller.delete(self.id.get())
+        status, message = PaymentController.delete(self.id.get())
         if status:
             messagebox.showinfo("Payment Info Delete", message)
             self.reset_form()
@@ -72,13 +71,13 @@ class PaymentView:
         self.total_amount.clear()
         self.employee_id.clear()
         self.description.clear()
-        status, payment_list = self.payment_controller.find_all()
+        status, payment_list = PaymentController.find_all()
         self.table.refresh_table(payment_list)
 
     def select_from_table(self,selected_payment):
        
         if selected_payment:
-            status, payment = self.payment_controller.find_by_id(selected_payment[0])
+            status, payment = PaymentController.find_by_id(selected_payment[0])
             if status:
                 payment = Payment(*selected_payment)
                 self.id.set(payment.id)

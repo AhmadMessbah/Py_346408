@@ -4,7 +4,6 @@ from controller import BankController
 
 class BankView:
     def __init__(self):
-        self.bank_controller= BankController()
         self.window = Tk()
         self.window.geometry("700x320")
         self.window.title("Bank")
@@ -31,21 +30,21 @@ class BankView:
         self.window.mainloop()
 
     def save_click(self):
-        status, message= self.bank_controller.save(self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
+        status, message= BankController.save(self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
         if status:
             messagebox.showinfo("Bank Saved", message)
             self.reset_form()
         else:
             messagebox.showerror("Bank Save Error", message)
     def edit_click(self):
-        status, message= self.bank_controller.update(self.id.get(), self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
+        status, message= BankController.update(self.id.get(), self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
         if status:
             messagebox.showinfo("Bank Updated", message)
             self.reset_form()
         else:
             messagebox.showerror("Bank Update Error", message)
     def delete_click(self):
-        status, message= self.bank_controller.delete(self.id.get())
+        status, message= BankController.delete(self.id.get())
         if status:
             messagebox.showinfo("Bank Deleted", message)
             self.reset_form()
@@ -57,12 +56,12 @@ class BankView:
         self.account_name.clear()
         self.balance.clear()
         self.description.clear()
-        status, bank_list = self.bank_controller.find_all()
+        status, bank_list = BankController.find_all()
         self.table.refresh_table(bank_list)
 
     def select_from_table(self, selected_bank):
         if selected_bank:
-            status, bank = self.bank_controller.find_by_id(selected_bank[0])
+            status, bank = BankController.find_by_id(selected_bank[0])
             if status:
                 bank = Bank(*selected_bank)
                 self.id.set(bank.id)
