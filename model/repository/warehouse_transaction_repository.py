@@ -97,8 +97,7 @@ class WarehouseTransactionRepository:
 
     def find_by_date_time_range(self, start_date_time, end_date_time):
         self.connect()
-        self.cursor.execute("select * from warehouse_transactions where transaction_datetime between ? and ?", 
-                            [start_date_time, end_date_time])
+        self.cursor.execute("select * from warehouse_transactions where transaction_datetime between ? and ?", [start_date_time, end_date_time])
         warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
                                       self.cursor.fetchall()]
         self.disconnect()
@@ -106,8 +105,7 @@ class WarehouseTransactionRepository:
 
     def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
         self.connect()
-        self.cursor.execute("select * from warehouse_transactions where transaction_datetime between ? and ? and customer_id=?",
-                            [start_date_time, end_date_time, customer_id])
+        self.cursor.execute("select * from warehouse_transactions where transaction_datetime between ? and ? and customer_id=?", [start_date_time, end_date_time, customer_id])
         warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
                                       self.cursor.fetchall()]
         self.disconnect()
@@ -115,8 +113,7 @@ class WarehouseTransactionRepository:
 
     def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time, employee_id):
         self.connect()
-        self.cursor.execute("select * from warehouse_transactions where transaction_datetime between ? and ? and employee_id=?",
-                            [start_date_time, end_date_time, employee_id])
+        self.cursor.execute("select * from warehouse_transactions where transaction_datetime between ? and ? and employee_id=?", [start_date_time, end_date_time, employee_id])
         warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
                                       self.cursor.fetchall()]
         self.disconnect()

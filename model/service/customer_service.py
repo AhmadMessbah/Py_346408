@@ -2,40 +2,45 @@ from model import CustomerRepository
 
 
 class CustomerService:
-    def __init__(self):
-        self.repository = CustomerRepository()
+    customer_repository = CustomerRepository()
 
-    def save(self, customer):
-        return self.repository.save(customer)
+    @classmethod
+    def save(cls, customer):
+        return cls.customer_repository.save(customer)
 
-    def update(self, customer):
-        customer_result = self.repository.find_by_id(customer.id)
+    @classmethod
+    def update(cls, customer):
+        customer_result = cls.customer_repository.find_by_id(customer.id)
         if customer_result:
-            self.repository.update(customer)
-            return customer
+            return cls.customer_repository.update(customer)
         else:
             raise Exception("Customer Not Found !!!")
 
-    def delete(self, customer_id):
-        customer = self.repository.find_by_id(customer_id)
+    @classmethod
+    def delete(cls, customer_id):
+        customer = cls.customer_repository.find_by_id(customer_id)
         if customer:
-            self.repository.delete(customer_id)
+            cls.customer_repository.delete(customer_id)
             return customer
         else:
             raise Exception("Customer Not Found !!!")
 
-    def find_all(self):
-        return self.repository.find_all()
+    @classmethod
+    def find_all(cls):
+        return cls.customer_repository.find_all()
 
-    def find_by_id(self, customer_id):
-        customer = self.repository.find_by_id(customer_id)
+    @classmethod
+    def find_by_id(cls, customer_id):
+        customer = cls.customer_repository.find_by_id(customer_id)
         if customer:
             return customer
         else:
             raise Exception("Customer Not Found !!!")
 
-    def find_by_firstname_and_lastname(self, firstname, lastname):
-        return self.repository.find_by_firstname_and_lastname(firstname, lastname)
+    @classmethod
+    def find_by_firstname_and_lastname(cls, firstname, lastname):
+        return cls.customer_repository.find_by_firstname_and_lastname(firstname, lastname)
 
-    def find_by_phone_number(self, phone_number):
-        return self.repository.find_by_phone_number(phone_number)
+    @classmethod
+    def find_by_phone_number(cls, phone_number):
+        return cls.customer_repository.find_by_phone_number(phone_number)

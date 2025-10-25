@@ -2,49 +2,57 @@ from model import OrderRepository
 
 
 class OrderService:
-    def __init__(self):
-        self.repository = OrderRepository()
+    order_repository = OrderRepository()
 
-    def save(self, order):
-        return self.repository.save(order)
+    @classmethod
+    def save(cls, order):
+        return cls.order_repository.save(order)
 
-    def update(self, order):
-        order_result = self.repository.find_by_id(order.id)
+    @classmethod
+    def update(cls, order):
+        order_result = cls.order_repository.find_by_id(order.id)
         if order_result:
-            self.repository.update(order)
-            return order
+            return cls.order_repository.update(order)
         else:
             raise Exception("Order Not Found !!!")
 
-    def delete(self, order_id):
-        order = self.repository.find_by_id(order_id)
+    @classmethod
+    def delete(cls, order_id):
+        order = cls.order_repository.find_by_id(order_id)
         if order:
-            self.repository.delete(order_id)
+            cls.order_repository.delete(order_id)
             return order
         else:
             raise Exception("Order Not Found !!!")
 
-    def find_all(self):
-        return self.repository.find_all()
+    @classmethod
+    def find_all(cls):
+        return cls.order_repository.find_all()
 
-    def find_by_id(self, order_id):
-        order = self.repository.find_by_id(order_id)
+    @classmethod
+    def find_by_id(cls, order_id):
+        order = cls.order_repository.find_by_id(order_id)
         if order:
             return order
         else:
             raise Exception("Order Not Found !!!")
 
-    def find_by_order_type(self, order_type):
-        return self.repository.find_by_order_type(order_type)
+    @classmethod
+    def find_by_order_type(cls, order_type):
+        return cls.order_repository.find_by_order_type(order_type)
 
-    def find_by_customer_id(self, customer_id):
-        return self.repository.find_by_customer_id(customer_id)
+    @classmethod
+    def find_by_customer_id(cls, customer_id):
+        return cls.order_repository.find_by_customer_id(customer_id)
 
-    def find_by_employee_id(self, employee_id):
-        return self.repository.find_by_employee_id(employee_id)
+    @classmethod
+    def find_by_employee_id(cls, employee_id):
+        return cls.order_repository.find_by_employee_id(employee_id)
 
-    def find_by_date_time_range(self, start_date_time, end_date_time):
-        return self.repository.find_by_date_time_range(start_date_time, end_date_time)
+    @classmethod
+    def find_by_date_time_range(cls, start_date_time, end_date_time):
+        return cls.order_repository.find_by_date_time_range(start_date_time, end_date_time)
 
-    def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
-        return self.repository.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
+    @classmethod
+    def find_by_date_time_range_and_customer_id(cls, start_date_time, end_date_time, customer_id):
+        return cls.order_repository.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)

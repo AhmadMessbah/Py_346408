@@ -2,43 +2,49 @@ from model import ProductRepository
 
 
 class ProductService:
-    def __init__(self):
-        self.repository = ProductRepository()
+    product_repository = ProductRepository()
 
-    def save(self, product):
-        return self.repository.save(product)
+    @classmethod
+    def save(cls, product):
+        return cls.product_repository.save(product)
 
-    def update(self, product):
-        product_result = self.repository.find_by_id(product.id)
+    @classmethod
+    def update(cls, product):
+        product_result = cls.product_repository.find_by_id(product.id)
         if product_result:
-            self.repository.update(product)
-            return product
+            return cls.product_repository.update(product)
         else:
             raise Exception("Product Not Found !!!")
 
-    def delete(self, product_id):
-        product = self.repository.find_by_id(product_id)
+    @classmethod
+    def delete(cls, product_id):
+        product = cls.product_repository.find_by_id(product_id)
         if product:
-            self.repository.delete(product_id)
+            cls.product_repository.delete(product_id)
             return product
         else:
             raise Exception("Product Not Found !!!")
 
-    def find_all(self):
-        return self.repository.find_all()
+    @classmethod
+    def find_all(cls):
+        return cls.product_repository.find_all()
 
-    def find_by_id(self, product_id):
-        product = self.repository.find_by_id(product_id)
+    @classmethod
+    def find_by_id(cls, product_id):
+        product = cls.product_repository.find_by_id(product_id)
         if product:
             return product
         else:
             raise Exception("Product Not Found !!!")
 
-    def find_by_name_and_brand(self,name,brand):
-        return self.repository.find_by_name_and_brand(name,brand)
+    @classmethod
+    def find_by_name_and_brand(cls, name, brand):
+        return cls.product_repository.find_by_name_and_brand(name, brand)
 
-    def find_by_category(self,category):
-        return self.repository.find_by_category(category)
+    @classmethod
+    def find_by_category(cls, category):
+        return cls.product_repository.find_by_category(category)
 
-    def find_by_expire_date_until(self,expire_date):
-        return self.repository.find_by_expire_date_until(expire_date)
+    @classmethod
+    def find_by_expire_date_until(cls, expire_date):
+        return cls.product_repository.find_by_expire_date_until(expire_date)

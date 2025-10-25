@@ -2,33 +2,36 @@ from model import SampleRepository
 
 
 class SampleService:
-    def __init__(self):
-        self.repository = SampleRepository()
+    sample_repository = SampleRepository()
 
-    def save(self, sample):
-        return self.repository.save(sample)
+    @classmethod
+    def save(cls, sample):
+        return cls.sample_repository.save(sample)
 
-    def update(self, sample):
-        sample_result = self.repository.find_by_id(sample.id)
+    @classmethod
+    def update(cls, sample):
+        sample_result = cls.sample_repository.find_by_id(sample.id)
         if sample_result:
-            self.repository.update(sample)
-            return sample
+            return cls.sample_repository.update(sample)
         else:
             raise Exception("Sample Not Found !!!")
 
-    def delete(self, sample_id):
-        sample = self.repository.find_by_id(sample_id)
+    @classmethod
+    def delete(cls, sample_id):
+        sample = cls.sample_repository.find_by_id(sample_id)
         if sample:
-            self.repository.delete(sample_id)
+            cls.sample_repository.delete(sample_id)
             return sample
         else:
             raise Exception("Sample Not Found !!!")
 
-    def find_all(self):
-        return self.repository.find_all()
+    @classmethod
+    def find_all(cls):
+        return cls.sample_repository.find_all()
 
-    def find_by_id(self, sample_id):
-        sample = self.repository.find_by_id(sample_id)
+    @classmethod
+    def find_by_id(cls, sample_id):
+        sample = cls.sample_repository.find_by_id(sample_id)
         if sample:
             return sample
         else:

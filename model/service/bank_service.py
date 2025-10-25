@@ -2,40 +2,45 @@ from model import BankRepository
 
 
 class BankService:
-    def __init__(self):
-        self.repository = BankRepository()
+    bank_repository = BankRepository()
 
-    def save(self, bank):
-        return self.repository.save(bank)
+    @classmethod
+    def save(cls, bank):
+        return cls.bank_repository.save(bank)
 
-    def update(self, bank):
-        bank = self.repository.find_by_id(bank.id)
+    @classmethod
+    def update(cls, bank):
+        bank_result = cls.bank_repository.find_by_id(bank.id)
+        if bank_result:
+            return cls.bank_repository.update(bank)
+        else:
+            raise Exception("Bank Not Found !!!")
+
+    @classmethod
+    def delete(cls, bank_id):
+        bank = cls.bank_repository.find_by_id(bank_id)
         if bank:
-            self.repository.update(bank)
+            cls.bank_repository.delete(bank_id)
             return bank
         else:
             raise Exception("Bank Not Found !!!")
 
-    def delete(self, bank_id):
-        bank = self.repository.find_by_id(bank_id)
-        if bank:
-            self.repository.delete(bank_id)
-            return bank
-        else:
-            raise Exception("Bank Not Found !!!")
+    @classmethod
+    def find_all(cls):
+        return cls.bank_repository.find_all()
 
-    def find_all(self):
-        return self.repository.find_all()
-
-    def find_by_id(self, bank_id):
-        bank = self.repository.find_by_id(bank_id)
+    @classmethod
+    def find_by_id(cls, bank_id):
+        bank = cls.bank_repository.find_by_id(bank_id)
         if bank:
             return bank
         else:
             raise Exception("Bank Not Found !!!")
 
-    def find_by_name(self, name):
-        return self.repository.find_by_name(name)
+    @classmethod
+    def find_by_name(cls, name):
+        return cls.bank_repository.find_by_name(name)
 
-    def find_by_account(self, account):
-        return self.repository.find_by_account(account)
+    @classmethod
+    def find_by_account(cls, account):
+        return cls.bank_repository.find_by_account(account)

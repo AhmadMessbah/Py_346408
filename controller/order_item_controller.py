@@ -1,71 +1,83 @@
 from model import OrderItem, OrderItemService
+from tools.logging import Logger
 
 
 class OrderItemController:
+    def __init__(self):
+        self.order_item_service = OrderItemService()
+
     def save(self, order_id, product_id, quantity, price, discount, description):
         try:
             order_item = OrderItem(None, order_id, product_id, quantity, price, discount, description)
             order_item.validate()
-            service = OrderItemService()
-            service.save(order_item)
-            return True, f"OrderItem Saved Successfully \n{order_item}"
+            order_item = self.order_item_service.save(order_item)
+            Logger.info(f"OrderItem {order_item} saved")
+            return True, f"OrderItem Saved Successfully"
         except Exception as e:
-            return False, f"Save Error! \n{e}"
+            Logger.error(f"OrderItem Save Error: {e}")
+            return False, e
 
-    def update(self, id, order_id, product_id, quantity, price, discount, description):
+    def update(self, order_item_id, order_id, product_id, quantity, price, discount, description):
         try:
-            order_item = OrderItem(id, order_id, product_id, quantity, price, discount, description)
+            order_item = OrderItem(order_item_id, order_id, product_id, quantity, price, discount, description)
             order_item.validate()
-            service = OrderItemService()
-            service.update(order_item)
-            return True, f"OrderItem Updated Successfully \n{order_item}"
+            order_item = self.order_item_service.update(order_item)
+            Logger.info(f"OrderItem {order_item} updated")
+            return True, "OrderItem Updated Successfully"
         except Exception as e:
-            return False, f"Update Error! \n{e}"
+            Logger.error(f"OrderItem Update Error: {e}")
+            return False, e
 
-    def delete(self, id):
+    def delete(self, order_item_id):
         try:
-            service = OrderItemService()
-            service.delete(id)
-            return True, f"OrderItem With Id {id} Deleted Successfully"
+            order_item = self.order_item_service.delete(order_item_id)
+            Logger.info(f"OrderItem {order_item} deleted")
+            return True, f"OrderItem Deleted Successfully"
         except Exception as e:
-            return False, f"Delete Error! \n{e}"
+            Logger.error(f"OrderItem Delete Error: {e}")
+            return False, e
 
     def find_all(self):
         try:
-            service = OrderItemService()
-            order_item_list = service.find_all()
+            order_item_list = self.order_item_service.find_all()
+            Logger.info("OrderItem FindAll")
             return True, order_item_list
         except Exception as e:
-            return False, f"Find All Error! \n{e}"
+            Logger.error(f"OrderItem FindAll Error: {e}")
+            return False, e
 
-    def find_by_id(self, id):
+    def find_by_id(self, order_item_id):
         try:
-            service = OrderItemService()
-            order_item_list = service.find_by_id(id)
-            return True, order_item_list
+            order_item = self.order_item_service.find_by_id(order_item_id)
+            Logger.info(f"OrderItem FindById {order_item_id}")
+            return True, order_item
         except Exception as e:
-            return False, f"Find by Id Error! \n{e}"
+            Logger.error(f"OrderItem FindById Error: {e}")
+            return False, e
 
     def find_by_order_id(self, order_id):
         try:
-            service = OrderItemService()
-            order_item_list = service.find_by_order_id(order_id)
+            order_item_list = self.order_item_service.find_by_order_id(order_id)
+            Logger.info(f"OrderItem FindByOrderId {order_id}")
             return True, order_item_list
         except Exception as e:
-            return False, f"Find by Order Id Error! \n{e}"
+            Logger.error(f"OrderItem FindByOrderId Error: {e}")
+            return False, e
 
     def find_by_product_id(self, product_id):
         try:
-            service = OrderItemService()
-            order_item_list = service.find_by_product_id(product_id)
+            order_item_list = self.order_item_service.find_by_product_id(product_id)
+            Logger.info(f"OrderItem FindByProductId {product_id}")
             return True, order_item_list
         except Exception as e:
-            return False, f"Find by Product Id Error! \n{e}"
+            Logger.error(f"OrderItem FindByProductId Error: {e}")
+            return False, e
 
     def find_by_quantity_less_than(self, quantity):
         try:
-            service = OrderItemService()
-            order_item_list = service.find_by_quantity_less_than(quantity)
+            order_item_list = self.order_item_service.find_by_quantity_less_than(quantity)
+            Logger.info(f"OrderItem FindByQuantityLessThan {quantity}")
             return True, order_item_list
         except Exception as e:
-            return False, f"Find by Quantity Error! \n{e}"
+            Logger.error(f"OrderItem FindByQuantityLessThan Error: {e}")
+            return False, e

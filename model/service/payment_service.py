@@ -2,49 +2,53 @@ from model import PaymentRepository
 
 
 class PaymentService:
-    def __init__(self):
-        self.repository = PaymentRepository()
+    payment_repository = PaymentRepository()
 
-    def save(self, payment):
-        return self.repository.save(payment)
+    @classmethod
+    def save(cls, payment):
+        return cls.payment_repository.save(payment)
 
-    def update(self, payment):
-        payment_result = self.repository.find_by_id(payment.id)
+    @classmethod
+    def update(cls, payment):
+        payment_result = cls.payment_repository.find_by_id(payment.id)
         if payment_result:
-            self.repository.update(payment)
-            return payment
+            return cls.payment_repository.update(payment)
         else:
             raise Exception("Payment Not Found !!!")
 
-    def delete(self, payment_id):
-        payment = self.repository.find_by_id(payment_id)
+    @classmethod
+    def delete(cls, payment_id):
+        payment = cls.payment_repository.find_by_id(payment_id)
         if payment:
-            self.repository.delete(payment_id)
+            cls.payment_repository.delete(payment_id)
             return payment
         else:
             raise Exception("Payment Not Found !!!")
 
-    def find_all(self):
-        return self.repository.find_all()
+    @classmethod
+    def find_all(cls):
+        return cls.payment_repository.find_all()
 
-    def find_by_id(self, payment_id):
-        payment = self.repository.find_by_id(payment_id)
+    @classmethod
+    def find_by_id(cls, payment_id):
+        payment = cls.payment_repository.find_by_id(payment_id)
         if payment:
             return payment
         else:
             raise Exception("Payment Not Found !!!")
 
-    def find_by_transaction_type(self, transaction_type):
-        return self.repository.find_by_transaction_type(transaction_type)
+    @classmethod
+    def find_by_transaction_type(cls, transaction_type):
+        return cls.payment_repository.find_by_transaction_type(transaction_type)
 
-    def find_by_payment_type(self, payment_type):
-        return self.repository.find_by_payment_type(payment_type)
+    @classmethod
+    def find_by_payment_type(cls, payment_type):
+        return cls.payment_repository.find_by_payment_type(payment_type)
 
-    def find_by_date_time_range(self, start_date_time, end_date_time):
-        return self.repository.find_by_date_time_range(start_date_time, end_date_time)
+    @classmethod
+    def find_by_date_time_range(cls, start_date_time, end_date_time):
+        return cls.payment_repository.find_by_date_time_range(start_date_time, end_date_time)
 
-    def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
-        return self.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
-
-    def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time, employee_id):
-        return self.find_by_date_time_range_and_employee_id(start_date_time, end_date_time, employee_id)
+    @classmethod
+    def find_by_date_time_range_and_customer_id(cls, start_date_time, end_date_time, customer_id):
+        return cls.payment_repository.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)

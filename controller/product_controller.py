@@ -1,51 +1,81 @@
 from model import Product, ProductService
+from tools.logging import Logger
+
 
 class ProductController:
+    def __init__(self):
+        self.product_service = ProductService()
+
     def save(self, name, brand, model, serial, category, unit, expiration_date):
         try:
             product = Product(None, name, brand, model, serial, category, unit, expiration_date)
-            service = ProductService()
-            service.save(product)
-            return True, f"Product Saved Successfully \n{product}"
+            product = self.product_service.save(product)
+            Logger.info(f"Product {product} saved")
+            return True, f"Product Saved Successfully"
         except Exception as e:
-            return False, "Save Error"
+            Logger.error(f"Product Save Error: {e}")
+            return False, e
 
-    def update(self,id, name, brand, model, serial, category, unit, expiration_date):
+    def update(self, product_id, name, brand, model, serial, category, unit, expiration_date):
         try:
-            product = Product(id, name, brand, model, serial, category, unit, expiration_date)
-            service = ProductService()
-            service.update(product)
-            return True, f"Product Saved Successfully \n{product}"
+            product = Product(product_id, name, brand, model, serial, category, unit, expiration_date)
+            product = self.product_service.update(product)
+            Logger.info(f"Product {product} updated")
+            return True, "Product Updated Successfully"
         except Exception as e:
-            return False, "Update Error"
+            Logger.error(f"Product Update Error: {e}")
+            return False, e
 
-    def delete(self, id):
+    def delete(self, product_id):
         try:
-            service = ProductService()
-            service.delete(id)
-            return True, f"Product with Id {id} delete successfully"
+            product = self.product_service.delete(product_id)
+            Logger.info(f"Product {product} deleted")
+            return True, f"Product Deleted Successfully"
         except Exception as e:
-            return False, "delete Error"
+            Logger.error(f"Product Delete Error: {e}")
+            return False, e
 
     def find_all(self):
         try:
-            service = ProductService()
-            return True, service.find_all()
+            product_list = self.product_service.find_all()
+            Logger.info("Product FindAll")
+            return True, product_list
         except Exception as e:
-            return False, "Find All Error"
+            Logger.error(f"Product FindAll Error: {e}")
+            return False, e
 
-    def find_by_id(self, id):
+    def find_by_id(self, product_id):
         try:
-            service = ProductService()
-            return True, service.find_by_id(id)
+            product = self.product_service.find_by_id(product_id)
+            Logger.info(f"Product FindById {product_id}")
+            return True, product
         except Exception as e:
-            return False, "Find By Id Error"
+            Logger.error(f"Product FindById Error: {e}")
+            return False, e
 
-
-
-    def find_by_name_and_brand(self, name,brand):
+    def find_by_name_and_brand(self, name, brand):
         try:
-            service = ProductService()
-            return True, service.find_by_name_and_brand(name,brand)
+            product_list = self.product_service.find_by_name_and_brand(name, brand)
+            Logger.info(f"Product FindByNameAndBrand {name} {brand}")
+            return True, product_list
         except Exception as e:
-            return False, "Find By Name And Brand Error"
+            Logger.error(f"Product FindByNameAndBrand Error: {e}")
+            return False, e
+
+    def find_by_category(self, category):
+        try:
+            product_list = self.product_service.find_by_category(category)
+            Logger.info(f"Product FindByCategory {category}")
+            return True, product_list
+        except Exception as e:
+            Logger.error(f"Product FindByCategory Error: {e}")
+            return False, e
+
+    def find_by_expire_date_until(self, expire_date):
+        try:
+            product_list = self.product_service.find_by_expire_date_until(expire_date)
+            Logger.info(f"Product FindByExpireDateUntil {expire_date}")
+            return True, product_list
+        except Exception as e:
+            Logger.error(f"Product FindByExpireDateUntil Error: {e}")
+            return False, e

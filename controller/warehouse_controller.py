@@ -1,45 +1,83 @@
 from model import Warehouse, WarehouseService
+from tools.logging import Logger
 
 
 class WarehouseController:
+    def __init__(self):
+        self.warehouse_service = WarehouseService()
+
     def save(self, product_id, quantity):
         try:
             warehouse = Warehouse(None, product_id, quantity)
             warehouse.validate()
-            service = WarehouseService()
-            service.save(warehouse)
-            return True, f"Warehouse Saved {warehouse}"
+            warehouse = self.warehouse_service.save(warehouse)
+            Logger.info(f"Warehouse {warehouse} saved")
+            return True, f"Warehouse Saved Successfully"
         except Exception as e:
+            Logger.error(f"Warehouse Save Error: {e}")
             return False, e
 
-    def update(self, id, product_id, quantity):
+    def update(self, warehouse_id, product_id, quantity):
         try:
-            warehouse = Warehouse(id, product_id, quantity)
+            warehouse = Warehouse(warehouse_id, product_id, quantity)
             warehouse.validate()
-            service = WarehouseService()
-            service.update(warehouse)
-            return True, f" Warehouse Updated {warehouse}"
+            warehouse = self.warehouse_service.update(warehouse)
+            Logger.info(f"Warehouse {warehouse} updated")
+            return True, "Warehouse Updated Successfully"
         except Exception as e:
+            Logger.error(f"Warehouse Update Error: {e}")
             return False, e
 
-    def delete(self, id):
+    def delete(self, warehouse_id):
         try:
-            service = WarehouseService()
-            service.delete(id)
-            return True, f"Warehouse Deleted {id}"
+            warehouse = self.warehouse_service.delete(warehouse_id)
+            Logger.info(f"Warehouse {warehouse} deleted")
+            return True, f"Warehouse Deleted Successfully"
         except Exception as e:
+            Logger.error(f"Warehouse Delete Error: {e}")
             return False, e
 
     def find_all(self):
         try:
-            service = WarehouseService()
-            return True, service.find_all()
+            warehouse_list = self.warehouse_service.find_all()
+            Logger.info("Warehouse FindAll")
+            return True, warehouse_list
         except Exception as e:
+            Logger.error(f"Warehouse FindAll Error: {e}")
             return False, e
 
-    def find_by_id(self, id):
+    def find_by_id(self, warehouse_id):
         try:
-            service = WarehouseService()
-            return True, service.find_by_id(id)
+            warehouse = self.warehouse_service.find_by_id(warehouse_id)
+            Logger.info(f"Warehouse FindById {warehouse_id}")
+            return True, warehouse
         except Exception as e:
+            Logger.error(f"Warehouse FindById Error: {e}")
+            return False, e
+
+    def find_by_product_id(self, product_id):
+        try:
+            warehouse_list = self.warehouse_service.find_by_product_id(product_id)
+            Logger.info(f"Warehouse FindByProductId {product_id}")
+            return True, warehouse_list
+        except Exception as e:
+            Logger.error(f"Warehouse FindByProductId Error: {e}")
+            return False, e
+
+    def find_by_quantity_less_than(self, quantity):
+        try:
+            warehouse_list = self.warehouse_service.find_by_quantity_less_than(quantity)
+            Logger.info(f"Warehouse FindByQuantityLessThan {quantity}")
+            return True, warehouse_list
+        except Exception as e:
+            Logger.error(f"Warehouse FindByQuantityLessThan Error: {e}")
+            return False, e
+
+    def find_by_quantity_more_than(self, quantity):
+        try:
+            warehouse_list = self.warehouse_service.find_by_quantity_more_than(quantity)
+            Logger.info(f"Warehouse FindByQuantityMoreThan {quantity}")
+            return True, warehouse_list
+        except Exception as e:
+            Logger.error(f"Warehouse FindByQuantityMoreThan Error: {e}")
             return False, e

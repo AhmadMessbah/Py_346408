@@ -2,55 +2,61 @@ from model import FinancialTransactionRepository
 
 
 class FinancialTransactionService:
-    def __init__(self):
-        self.repository = FinancialTransactionRepository()
+    financial_transaction_repository = FinancialTransactionRepository()
 
-    def save(self, financial_transaction):
-        return self.repository.save(financial_transaction)
+    @classmethod
+    def save(cls, financial_transaction):
+        return cls.financial_transaction_repository.save(financial_transaction)
 
-    def update(self, financial_transaction):
-        financial_transaction_result = self.repository.find_by_id(financial_transaction.id)
+    @classmethod
+    def update(cls, financial_transaction):
+        financial_transaction_result = cls.financial_transaction_repository.find_by_id(financial_transaction.id)
         if financial_transaction_result:
-            self.repository.update(financial_transaction)
-            return financial_transaction
+            return cls.financial_transaction_repository.update(financial_transaction)
         else:
             raise Exception("Financial Transaction Not Found !!!")
 
-    def delete(self, financial_transaction_id):
-        financial_transaction = self.repository.find_by_id(financial_transaction_id)
+    @classmethod
+    def delete(cls, financial_transaction_id):
+        financial_transaction = cls.financial_transaction_repository.find_by_id(financial_transaction_id)
         if financial_transaction:
-            self.repository.delete(financial_transaction_id)
+            cls.financial_transaction_repository.delete(financial_transaction_id)
             return financial_transaction
         else:
             raise Exception("Financial Transaction Not Found !!!")
 
-    def find_all(self):
-        return self.repository.find_all()
+    @classmethod
+    def find_all(cls):
+        return cls.financial_transaction_repository.find_all()
 
-    def find_by_id(self, financial_transaction_id):
-        financial_transaction = self.repository.find_by_id(financial_transaction_id)
+    @classmethod
+    def find_by_id(cls, financial_transaction_id):
+        financial_transaction = cls.financial_transaction_repository.find_by_id(financial_transaction_id)
         if financial_transaction:
             return financial_transaction
         else:
             raise Exception("Financial Transaction Not Found !!!")
 
-    def find_by_transaction_type(self, transaction_type):
-        return self.repository.find_by_transaction_type(transaction_type)
+    @classmethod
+    def find_by_transaction_type(cls, transaction_type):
+        return cls.financial_transaction_repository.find_by_transaction_type(transaction_type)
 
-    def find_by_customer_id(self, customer_id):
-        return self.repository.find_by_customer_id(customer_id)
+    @classmethod
+    def find_by_customer_id(cls, customer_id):
+        return cls.financial_transaction_repository.find_by_customer_id(customer_id)
 
-    def find_by_employee_id(self, employee_id):
-        return self.repository.find_by_employee_id(employee_id)
+    @classmethod
+    def find_by_employee_id(cls, employee_id):
+        return cls.financial_transaction_repository.find_by_employee_id(employee_id)
 
-    def find_by_payment_id(self, payment_id):
-        return self.repository.find_by_payment_id(payment_id)
+    @classmethod
+    def find_by_payment_id(cls, payment_id):
+        return cls.financial_transaction_repository.find_by_payment_id(payment_id)
 
-    def find_by_date_time_range(self, start_date_time, end_date_time):
-        return self.repository.find_by_date_time_range(start_date_time, end_date_time)
+    @classmethod
+    def find_by_date_time_range(cls, start_date_time, end_date_time):
+        return cls.financial_transaction_repository.find_by_date_time_range(start_date_time, end_date_time)
 
-    def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
-        return self.repository.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
-
-    def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time, employee_id):
-        return self.repository.find_by_date_time_range_and_employee_id(start_date_time, end_date_time, employee_id)
+    @classmethod
+    def find_by_date_time_range_and_customer_id(cls, start_date_time, end_date_time, customer_id):
+        return cls.financial_transaction_repository.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
