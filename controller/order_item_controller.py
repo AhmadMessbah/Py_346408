@@ -40,7 +40,8 @@ class OrderItemController:
             Logger.error(f"OrderItem Delete Error: {e}")
             return False, e
 
-    def find_all(self):
+    @classmethod
+    def find_all(cls):
         try:
             order_item_list = cls.order_item_service.find_all()
             Logger.info("OrderItem FindAll")

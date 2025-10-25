@@ -154,6 +154,48 @@ create table if not exists deliveries(
 );
 
 -- ============================================
+-- SAMPLE DATA WITH CONSISTENT IDs
+-- ============================================
+
+-- Insert base data
+insert or ignore into banks (id, name, account, balance, description) values 
+(1, 'Melli Bank', 'checking', 5000000, 'Main checking account');
+
+insert or ignore into customers (id, first_name, last_name, phone_number, address) values 
+(1, 'Ahmad', 'Rezaei', '09123456789', 'Tehran_Iran_123');
+
+insert or ignore into employees (id, first_name, last_name, salary, occupation, phone_number, username, password, role) values 
+(1, 'ali', 'Mohammadi', 5000000, 'cashier', '09123456789', 'aliuser', 'pass1234', 'cashier');
+
+insert or ignore into products (id, name, brand, model, serial, category, unit, expiration_date) values 
+(1, 'Laptop', 'Dell', 'XPS15', 'SN123456', 'Electronics', 'Piece', '2025/12/31');
+
+insert or ignore into samples (id, name, description) values 
+(1, 'Sample 1', 'Test sample data');
+
+-- Insert dependent data (using consistent IDs)
+insert or ignore into warehouses (id, product_id, quantity) values 
+(1, 1, 100);
+
+insert or ignore into payments (id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description) values 
+(1, 'income', 'cash', '2024/01/01', 1, 500000, 1, 'Initial payment');
+
+insert or ignore into warehouse_transactions (id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id) values 
+(1, 1, 10, 'output', '2024/01/01', 1, 1);
+
+insert or ignore into orders (id, order_type, customer_id, employee_id, date_time, payment_id, warehouse_transaction_id, tax, total_discount, total_amount) values 
+(1, 'frooshe', 1, 1, '2024/01/01', 1, 1, 100000, 5000, 95000);
+
+insert or ignore into order_items (id, order_id, customer, product_id, quantity, price, discount, description) values 
+(1, 1, 'Ahmad Rezaei', 1, 2, 100000, 5000, 'First order item');
+
+insert or ignore into financial_transactions (id, transaction_type, customer_id, employee_id, amount, date_time, payment_id, description) values 
+(1, 'sale', 1, 1, 500000, '2024/01/01', 1, 'Sale transaction');
+
+insert or ignore into deliveries (id, first_name, last_name, address, description) values 
+(1, 'Reza', 'Ahmadi', 'Tehran Street 1', 'Standard delivery');
+
+-- ============================================
 -- TABLE CREATION ORDER (Reflecting dependencies)
 -- ============================================
 -- 1. banks
@@ -172,19 +214,18 @@ create table if not exists deliveries(
 -- ============================================
 -- RELATIONSHIP SUMMARY
 -- ============================================
--- customers -> payments (1:N)
--- employees -> payments (1:N)
--- products -> warehouses (1:N)
--- products -> warehouse_transactions (1:N)
--- products -> order_items (1:N)
--- customers -> warehouse_transactions (1:N)
--- customers -> financial_transactions (1:N)
--- customers -> orders (1:N)
--- employees -> warehouse_transactions (1:N)
--- employees -> financial_transactions (1:N)
--- employees -> orders (1:N)
--- payments -> financial_transactions (1:N)
--- payments -> orders (1:N) [nullable]
--- warehouse_transactions -> orders (1:N) [nullable]
--- orders -> order_items (1:N) [cascade delete]
-
+-- customers (id: 1) -> payments (id: 1, customer_id: 1)
+-- employees (id: 1) -> payments (id: 1, employee_id: 1)
+-- products (id: 1) -> warehouses (id: 1, product_id: 1)
+-- products (id: 1) -> warehouse_transactions (id: 1, product_id: 1)
+-- products (id: 1) -> order_items (id: 1, product_id: 1)
+-- customers (id: 1) -> warehouse_transactions (id: 1, customer_id: 1)
+-- customers (id: 1) -> financial_transactions (id: 1, customer_id: 1)
+-- customers (id: 1) -> orders (id: 1, customer_id: 1)
+-- employees (id: 1) -> warehouse_transactions (id: 1, employee_id: 1)
+-- employees (id: 1) -> financial_transactions (id: 1, employee_id: 1)
+-- employees (id: 1) -> orders (id: 1, employee_id: 1)
+-- payments (id: 1) -> financial_transactions (id: 1, payment_id: 1)
+-- payments (id: 1) -> orders (id: 1, payment_id: 1)
+-- warehouse_transactions (id: 1) -> orders (id: 1, warehouse_transaction_id: 1)
+-- orders (id: 1) -> order_items (id: 1, order_id: 1)
