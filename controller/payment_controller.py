@@ -46,3 +46,38 @@ class PaymentController:
             return True, payment
         except Exception as e:
             return False, e
+
+    def find_by_transaction_type(self, transaction_type):
+        try:
+            service = PaymentService()
+            return True, service.find_by_transaction_type(transaction_type)
+        except Exception as e:
+            return False, e
+
+    def find_by_payment_type(self, payment_type):
+        try:
+            service = PaymentService()
+            return True, service.find_by_payment_type(payment_type)
+        except Exception as e:
+            return False, e
+
+    def find_by_date_time_range(self, start_date_time, end_date_time):
+        try:
+            service = PaymentService()
+            return True, service.find_by_date_time_range(start_date_time, end_date_time)
+        except Exception as e:
+            return False, e
+
+    def find_by_date_time_range_and_customer_id(self, start_date_time, end_date_time, customer_id):
+        try:
+            service = PaymentService()
+            return True, service.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
+        except Exception as e:
+            return False, e
+
+    def find_by_date_time_range_and_employee_id(self, start_date_time, end_date_time, employee_id):
+        try:
+            service = PaymentService()
+            return True, service.find_by_date_time_range_and_employee_id(start_date_time, end_date_time, employee_id)
+        except Exception as e:
+            return False, e
