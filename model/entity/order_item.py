@@ -1,4 +1,6 @@
+from tools.order_item_validator import *
 from model.service.product_service import ProductService
+
 # from test.product_test import product
 
 
@@ -13,6 +15,11 @@ class OrderItem:
         self.discount = discount
         self.description = description
 
+    def validate(self):
+        quantity_validator(self.quantity)
+        price_validator(self.price)
+        discount_validator(self.discount)
+        description_validator(self.description)
 
     def __repr__(self):
         return f"{self.__dict__}"
