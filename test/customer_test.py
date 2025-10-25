@@ -15,17 +15,27 @@ service.save(customer3)
 
 #print(service.find_by_firstname_and_lastname("reza", "rezayi"))
 
-#test passed
-#customer_service.save(customer)
+#test did not passed
+#print(service.save(customer3))
 
-#test passed
-#customer_service.update(customer)
+#test  did not passed
+#print(service.update(customer))
 
-#test passed
-#customer_service.delete(1)
+#test  did not passed
+#print(service.delete(1))
 
-#test passed
-#print(customer_service.find_all())
+#test did not passed
+#print(service.find_all())
 
-#test passed
+#test did not passed
 #print(customer_service.find_by_id(10))
+   
+   
+#test did not passed
+#print(service.find_by_firstname_and_lastname("reza", "rezayi"))  
+   
+   
+#test did not passed
+#print(service.find_by_phone_number("0912663434"))  
+     
+  
