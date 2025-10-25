@@ -1,4 +1,3 @@
-
 from view import *
 
 

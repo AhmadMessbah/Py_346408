@@ -9,8 +9,6 @@ from view.component.table import Table
 from PIL import Image, ImageTk
 
 
-from view.component.lable_with_entry import LabelWithEntry
-
 # Group A
 from view.customer_view import CustomerView
 from view.employee_view import EmployeeView
@@ -21,11 +19,12 @@ from view.payment_view import PaymentView
 from view.bank_view import BankView
 from view.financial_transaction_view import FinancialTransactionView
 
-# Group D
-from view.order_view import OrderView
-from view.order_item_view import OrderItemView
-
 # Group C
 from view.warehouse_view import WarehouseView
 from view.warehouse_transaction_view import WarehouseTransactionView
 from view.delivery_view import DeliveryView
+
+
+# Group D
+from view.order_view import OrderView
+from view.order_item_view import OrderItemView

@@ -1,4 +1,6 @@
 from model import Bank, BankService
+from tools.logging import Logger
+
 
 class BankController:
     def save(self, name, account, balance, description):

@@ -1,6 +1,6 @@
-from model.entity.financial_transaction import FinancialTransaction
-from model.service.financial_transaction_service import FinancialTransactionService
-from view.financial_transaction_view import *
+from model import FinancialTransaction
+from model import FinancialTransactionService
+
 
 financial_transaction1=FinancialTransaction(1,"cash",10,10,50000,"20/10/1404",14)
 service = FinancialTransactionService()

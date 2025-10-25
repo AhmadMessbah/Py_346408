@@ -1,5 +1,5 @@
-from model.entity.warehouse_transaction import WarehouseTransaction
-from model.service.warehouse_service import WarehouseService
+from model import WarehouseTransaction
+from model import WarehouseService
 
 warehouse_transaction = WarehouseTransaction(1,12,3,"output",None,122,455)
 service = WarehouseService()

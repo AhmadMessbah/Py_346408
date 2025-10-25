@@ -1,7 +1,5 @@
 import sqlite3
 from model import WarehouseTransaction
-from test.warehouse_transaction_test import warehouse_transaction
-
 
 class WarehouseTransactionRepository:
     def connect(self):

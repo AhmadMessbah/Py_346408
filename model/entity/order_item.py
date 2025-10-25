@@ -1,5 +1,5 @@
 from tools.order_item_validator import *
-from model.service.product_service import ProductService
+# from model import ProductService
 
 # from test.product_test import product
 
@@ -24,15 +24,17 @@ class OrderItem:
     def __repr__(self):
         return f"{self.__dict__}"
 
-    def to_tuple(self):
-        product_service = ProductService()
-        product = product_service.find_by_id(self.product_id)[0]
+    # def to_tuple(self):
+    #     product_service = ProductService()
+    #     product = product_service.find_by_id(self.product_id)[0]
+    #
+    #     return tuple((
+    #         self.id,
+    #         self.order_id,
+    #         product.name + " " + product.brand,
+    #         self.quantity,
+    #         self.price,
+    #         self.discount,
+    #         self.description))
 
-        return tuple((
-            self.id,
-            self.order_id,
-            product.name + " " + product.brand,
-            self.quantity,
-            self.price,
-            self.discount,
-            self.description))
+    # todo : error
