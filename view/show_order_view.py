@@ -25,3 +25,5 @@ class ShowOderView:
 
             self.window.mainloop()
 
+        def select_from_table(self, selected_order):
+            pass
