@@ -13,7 +13,7 @@ class OrderItemView:
         self.window.geometry("900x380")
 
         self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
-        self.order_id = LabelWithEntry(self.window, "Order Id", 20, 60, data_type=IntVar)
+        self.order_id = LabelWithEntry(self.window, "Order Item", 20, 60, data_type=IntVar)
         self.product_id = LabelWithEntry(self.window, "Product Id", 20, 100, data_type=IntVar)
         self.quantity = LabelWithEntry(self.window, "Quantity", 20, 140, data_type=IntVar)
         self.price = LabelWithEntry(self.window, "Price", 20, 180, data_type=IntVar)

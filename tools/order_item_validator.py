@@ -5,6 +5,11 @@ def quantity_validator(quantity):
         raise ValueError("Invalid quantity !!!")
     else:
         return quantity
+def customer_validator(customer):
+    if not (type(customer) == str and re.match(r"^[a-zA-Z]{5,20}$", customer)):
+        raise ValueError(f"{customer} is not a valid name for customer")
+    else:
+        return customer
 
 def price_validator(price):
     if not (type(price) == int or type(price) == float) or price <= 0:
