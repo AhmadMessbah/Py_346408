@@ -1,5 +1,4 @@
-from model import Delivery
-from service import DeliveryService
+from model import Delivery, DeliveryService
 from tools.logging import Logger
 
 

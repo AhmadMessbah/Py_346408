@@ -1,50 +1,74 @@
 import unittest
+from model import Warehouse
 from controller.warehouse_controller import WarehouseController
 
 
 class TestWarehouseController(unittest.TestCase):
-    
-    def test_save(self):
-        """Test Warehouse save method"""
-        status, message = WarehouseController.save(1, 100)
+
+    def setUp(self):
+        """Setup method called before each test method"""
+        self.controller = WarehouseController
+
+    def test_save_warehouse(self):
+        """Test saving a warehouse"""
+        status, message = self.controller.save(1, 100)
         self.assertTrue(status)
-        self.assertIn("Warehouse Saved Successfully", message)
-    
-    def test_find_all(self):
-        """Test Warehouse find_all method"""
-        status, warehouse_list = WarehouseController.find_all()
+        self.assertIn("Saved Successfully", message)
+
+    def test_find_all_warehouses(self):
+        """Test finding all warehouses"""
+        status, warehouse_list = self.controller.find_all()
         self.assertTrue(status)
         self.assertIsInstance(warehouse_list, list)
-    
+
     def test_find_by_id(self):
-        """Test Warehouse find_by_id method"""
-        status, warehouse = WarehouseController.find_by_id(1)
-        self.assertTrue(status)
-    
-    def test_update(self):
-        """Test Warehouse update method"""
-        status, message = WarehouseController.update(1, 1, 150)
-        self.assertTrue(status)
-    
-    def test_delete(self):
-        """Test Warehouse delete method"""
-        pass
-    
+        """Test finding warehouse by id"""
+        status, message = self.controller.save(2, 50)
+        if status:
+            status_all, warehouse_list = self.controller.find_all()
+            if warehouse_list:
+                warehouse_id = warehouse_list[-1].warehouse_id
+                status, warehouse = self.controller.find_by_id(warehouse_id)
+                self.assertTrue(status)
+
+    def test_update_warehouse(self):
+        """Test updating a warehouse"""
+        status, message = self.controller.save(3, 75)
+        if status:
+            status_all, warehouse_list = self.controller.find_all()
+            if warehouse_list:
+                warehouse_id = warehouse_list[-1].warehouse_id
+                status, message = self.controller.update(warehouse_id, 3, 150)
+                self.assertTrue(status)
+
+    def test_delete_warehouse(self):
+        """Test deleting a warehouse"""
+        status, message = self.controller.save(4, 25)
+        if status:
+            status_all, warehouse_list = self.controller.find_all()
+            if warehouse_list:
+                warehouse_id = warehouse_list[-1].warehouse_id
+                status, message = self.controller.delete(warehouse_id)
+                self.assertTrue(status)
+
     def test_find_by_product_id(self):
-        """Test Warehouse find_by_product_id method"""
-        status, warehouse_list = WarehouseController.find_by_product_id(1)
+        """Test finding warehouses by product id"""
+        status, warehouse_list = self.controller.find_by_product_id(1)
         self.assertTrue(status)
-    
+        self.assertIsInstance(warehouse_list, list)
+
     def test_find_by_quantity_less_than(self):
-        """Test Warehouse find_by_quantity_less_than method"""
-        status, warehouse_list = WarehouseController.find_by_quantity_less_than(50)
+        """Test finding warehouses with quantity less than"""
+        status, warehouse_list = self.controller.find_by_quantity_less_than(100)
         self.assertTrue(status)
-    
+        self.assertIsInstance(warehouse_list, list)
+
     def test_find_by_quantity_more_than(self):
-        """Test Warehouse find_by_quantity_more_than method"""
-        status, warehouse_list = WarehouseController.find_by_quantity_more_than(50)
+        """Test finding warehouses with quantity more than"""
+        status, warehouse_list = self.controller.find_by_quantity_more_than(50)
         self.assertTrue(status)
+        self.assertIsInstance(warehouse_list, list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,4 @@
-from model import Employee
-from service import EmployeeService
+from model import Employee, EmployeeService
 from tools.logging import Logger
 
 

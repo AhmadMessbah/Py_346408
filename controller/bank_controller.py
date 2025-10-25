@@ -1,5 +1,4 @@
-from model import Bank
-from service import BankService
+from model import Bank, BankService
 from tools.logging import Logger
 
 

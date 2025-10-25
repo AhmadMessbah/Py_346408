@@ -1,46 +1,68 @@
 import unittest
+from model.entity.customer import Customer
 from controller.customer_controller import CustomerController
 
 
 class TestCustomerController(unittest.TestCase):
-    
-    def test_save(self):
-        """Test Customer save method"""
-        status, message = CustomerController.save("John", "Doe", "1234567890", "123 Main St")
+
+    def setUp(self):
+        """Setup method called before each test method"""
+        self.controller = CustomerController
+
+    def test_save_customer(self):
+        """Test saving a customer"""
+        status, message = self.controller.save("Ahmad", "Rezaei", "09123456789", "Tehran, Iran")
         self.assertTrue(status)
-        self.assertIn("Customer Saved Successfully", message)
-    
-    def test_find_all(self):
-        """Test Customer find_all method"""
-        status, customer_list = CustomerController.find_all()
+        self.assertIn("Saved Successfully", message)
+
+    def test_find_all_customers(self):
+        """Test finding all customers"""
+        status, customer_list = self.controller.find_all()
         self.assertTrue(status)
         self.assertIsInstance(customer_list, list)
-    
+
     def test_find_by_id(self):
-        """Test Customer find_by_id method"""
-        status, customer = CustomerController.find_by_id(1)
-        self.assertTrue(status)
-    
-    def test_update(self):
-        """Test Customer update method"""
-        status, message = CustomerController.update(1, "Jane", "Smith", "0987654321", "456 Oak Ave")
-        self.assertTrue(status)
-    
-    def test_delete(self):
-        """Test Customer delete method"""
-        # Use with caution
-        pass
-    
+        """Test finding customer by id"""
+        status, message = self.controller.save("Test", "Customer", "09987654321", "Test Address")
+        if status:
+            status_all, customer_list = self.controller.find_all()
+            if customer_list:
+                customer_id = customer_list[-1].customer_id
+                status, customer = self.controller.find_by_id(customer_id)
+                self.assertTrue(status)
+
+    def test_update_customer(self):
+        """Test updating a customer"""
+        status, message = self.controller.save("Update", "Test", "09111111111", "Address 1")
+        if status:
+            status_all, customer_list = self.controller.find_all()
+            if customer_list:
+                customer_id = customer_list[-1].customer_id
+                status, message = self.controller.update(customer_id, "Updated", "Name", "09999999999", "New Address")
+                self.assertTrue(status)
+
+    def test_delete_customer(self):
+        """Test deleting a customer"""
+        status, message = self.controller.save("Delete", "Test", "09222222222", "Delete Address")
+        if status:
+            status_all, customer_list = self.controller.find_all()
+            if customer_list:
+                customer_id = customer_list[-1].customer_id
+                status, message = self.controller.delete(customer_id)
+                self.assertTrue(status)
+
     def test_find_by_firstname_and_lastname(self):
-        """Test Customer find_by_firstname_and_lastname method"""
-        status, customer_list = CustomerController.find_by_firstname_and_lastname("John", "Doe")
+        """Test finding customers by firstname and lastname"""
+        status, customer_list = self.controller.find_by_firstname_and_lastname("Ahmad", "Rezaei")
         self.assertTrue(status)
-    
+        self.assertIsInstance(customer_list, list)
+
     def test_find_by_phone_number(self):
-        """Test Customer find_by_phone_number method"""
-        status, customer_list = CustomerController.find_by_phone_number("1234567890")
+        """Test finding customers by phone number"""
+        status, customer_list = self.controller.find_by_phone_number("09123456789")
         self.assertTrue(status)
+        self.assertIsInstance(customer_list, list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

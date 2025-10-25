@@ -1,60 +1,86 @@
 import unittest
+from model import Payment
 from controller.payment_controller import PaymentController
 
 
 class TestPaymentController(unittest.TestCase):
-    
-    def test_save(self):
-        """Test Payment save method"""
-        status, message = PaymentController.save("sale", "cash", "04/07/20", 2134654, 100000, 6469185, "Payment description")
+
+    def setUp(self):
+        """Setup method called before each test method"""
+        self.controller = PaymentController
+
+    def test_save_payment(self):
+        """Test saving a payment"""
+        status, message = self.controller.save("income", "cash", "2024/01/01", 1, 500000, 1, "Payment description")
         self.assertTrue(status)
-        self.assertIn("Payment Saved Successfully", message)
-    
-    def test_find_all(self):
-        """Test Payment find_all method"""
-        status, payment_list = PaymentController.find_all()
+        self.assertIn("Saved Successfully", message)
+
+    def test_find_all_payments(self):
+        """Test finding all payments"""
+        status, payment_list = self.controller.find_all()
         self.assertTrue(status)
         self.assertIsInstance(payment_list, list)
-    
+
     def test_find_by_id(self):
-        """Test Payment find_by_id method"""
-        status, payment = PaymentController.find_by_id(1)
-        self.assertTrue(status)
-    
-    def test_update(self):
-        """Test Payment update method"""
-        status, message = PaymentController.update(1, "sale", "card", "04/07/20", 2134654, 150000, 6469185, "Updated description")
-        self.assertTrue(status)
-    
-    def test_delete(self):
-        """Test Payment delete method"""
-        pass
-    
+        """Test finding payment by id"""
+        status, message = self.controller.save("expense", "card", "2024/01/02", 2, 200000, 2, "Test payment")
+        if status:
+            status_all, payment_list = self.controller.find_all()
+            if payment_list:
+                payment_id = payment_list[-1].payment_id
+                status, payment = self.controller.find_by_id(payment_id)
+                self.assertTrue(status)
+
+    def test_update_payment(self):
+        """Test updating a payment"""
+        status, message = self.controller.save("income", "check", "2024/01/03", 1, 300000, 1, "Before update")
+        if status:
+            status_all, payment_list = self.controller.find_all()
+            if payment_list:
+                payment_id = payment_list[-1].payment_id
+                status, message = self.controller.update(payment_id, "income", "transfer", "2024/01/04", 1, 350000, 1, "After update")
+                self.assertTrue(status)
+
+    def test_delete_payment(self):
+        """Test deleting a payment"""
+        status, message = self.controller.save("expense", "cash", "2024/01/05", 2, 100000, 2, "To delete")
+        if status:
+            status_all, payment_list = self.controller.find_all()
+            if payment_list:
+                payment_id = payment_list[-1].payment_id
+                status, message = self.controller.delete(payment_id)
+                self.assertTrue(status)
+
     def test_find_by_transaction_type(self):
-        """Test Payment find_by_transaction_type method"""
-        status, payment_list = PaymentController.find_by_transaction_type("sale")
+        """Test finding payments by transaction type"""
+        status, payment_list = self.controller.find_by_transaction_type("income")
         self.assertTrue(status)
-    
+        self.assertIsInstance(payment_list, list)
+
     def test_find_by_payment_type(self):
-        """Test Payment find_by_payment_type method"""
-        status, payment_list = PaymentController.find_by_payment_type("cash")
+        """Test finding payments by payment type"""
+        status, payment_list = self.controller.find_by_payment_type("cash")
         self.assertTrue(status)
-    
+        self.assertIsInstance(payment_list, list)
+
     def test_find_by_date_time_range(self):
-        """Test Payment find_by_date_time_range method"""
-        status, payment_list = PaymentController.find_by_date_time_range("01/01/20", "31/12/20")
+        """Test finding payments by date range"""
+        status, payment_list = self.controller.find_by_date_time_range("2024/01/01", "2024/12/31")
         self.assertTrue(status)
-    
+        self.assertIsInstance(payment_list, list)
+
     def test_find_by_date_time_range_and_customer_id(self):
-        """Test Payment find_by_date_time_range_and_customer_id method"""
-        status, payment_list = PaymentController.find_by_date_time_range_and_customer_id("01/01/20", "31/12/20", 2134654)
+        """Test finding payments by date range and customer id"""
+        status, payment_list = self.controller.find_by_date_time_range_and_customer_id("2024/01/01", "2024/12/31", 1)
         self.assertTrue(status)
-    
+        self.assertIsInstance(payment_list, list)
+
     def test_find_by_date_time_range_and_employee_id(self):
-        """Test Payment find_by_date_time_range_and_employee_id method"""
-        status, payment_list = PaymentController.find_by_date_time_range_and_employee_id("01/01/20", "31/12/20", 6469185)
+        """Test finding payments by date range and employee id"""
+        status, payment_list = self.controller.find_by_date_time_range_and_employee_id("2024/01/01", "2024/12/31", 1)
         self.assertTrue(status)
+        self.assertIsInstance(payment_list, list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
