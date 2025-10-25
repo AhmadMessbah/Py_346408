@@ -1,22 +1,18 @@
 -- ============================================
 -- DATABASE SCHEMA FOR SELLING SYSTEM
--- Based on Entity definitions with proper nullable fields
+-- Exact match with Model __init__ parameters
 -- ============================================
 
--- ============================================
--- BASE ENTITIES (No dependencies)
--- ============================================
-
--- Banks table
+-- Banks: (bank_id, name, account, balance, description)
 create table if not exists banks(
     id integer primary key autoincrement,
     name text not null,
     account text not null,
     balance integer not null,
-    description text
+    description text not null
 );
 
--- Customers table
+-- Customers: (customer_id, first_name, last_name, phone_number, address)
 create table if not exists customers(
     id integer primary key autoincrement,
     first_name text not null,
@@ -25,7 +21,7 @@ create table if not exists customers(
     address text not null
 );
 
--- Employees table
+-- Employees: (employee_id, first_name, last_name, salary, occupation, phone_number, username, password, role)
 create table if not exists employees(
     id integer primary key autoincrement,
     first_name text not null,
@@ -38,7 +34,7 @@ create table if not exists employees(
     role text not null
 );
 
--- Products table
+-- Products: (product_id, name, brand, model, serial, category, unit, expiration_date=None)
 create table if not exists products(
     id integer primary key autoincrement,
     name text not null,
@@ -50,18 +46,14 @@ create table if not exists products(
     expiration_date text
 );
 
--- Sample table (for testing)
+-- Samples: (sample_id, name, description)
 create table if not exists samples(
     id integer primary key autoincrement,
     name text not null,
-    description text
+    description text not null
 );
 
--- ============================================
--- DEPENDENT ENTITIES (With foreign keys)
--- ============================================
-
--- Warehouses table (depends on: products)
+-- Warehouses: (warehouse_id, product_id, quantity)
 create table if not exists warehouses (
     id integer primary key autoincrement,
     product_id integer not null,
@@ -69,21 +61,7 @@ create table if not exists warehouses (
     foreign key (product_id) references products(id)
 );
 
--- Payments table (depends on: customers, employees)
-create table if not exists payments(
-    id integer primary key autoincrement,
-    transaction_type text not null,
-    payment_type text not null,
-    date_time text not null,
-    customer_id integer not null,
-    total_amount integer not null,
-    employee_id integer not null,
-    description text,
-    foreign key (customer_id) references customers(id),
-    foreign key (employee_id) references employees(id)
-);
-
--- Warehouse Transactions table (depends on: products, customers, employees)
+-- Warehouse Transactions: (warehouse_transaction_id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id)
 create table if not exists warehouse_transactions (
     id integer primary key autoincrement,
     product_id integer not null,
@@ -97,7 +75,21 @@ create table if not exists warehouse_transactions (
     foreign key (employee_id) references employees(id)
 );
 
--- Financial Transactions table (depends on: customers, employees, payments)
+-- Payments: (payment_id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description)
+create table if not exists payments(
+    id integer primary key autoincrement,
+    transaction_type text not null,
+    payment_type text not null,
+    date_time text not null,
+    customer_id integer not null,
+    total_amount integer not null,
+    employee_id integer not null,
+    description text not null,
+    foreign key (customer_id) references customers(id),
+    foreign key (employee_id) references employees(id)
+);
+
+-- Financial Transactions: (financial_transaction_id, transaction_type, customer_id, employee_id, amount, date_time, payment_id, description="")
 create table if not exists financial_transactions(
     id integer primary key autoincrement,
     transaction_type text not null,
@@ -112,8 +104,7 @@ create table if not exists financial_transactions(
     foreign key (payment_id) references payments(id)
 );
 
--- Orders table (depends on: customers, employees, payments, warehouse_transactions)
--- tax, total_discount, total_amount are nullable based on entity definition
+-- Orders: (order_id, order_type, customer_id, employee_id, date_time, payment_id, warehouse_transaction_id, tax=None, total_discount=None, total_amount=None)
 create table if not exists orders (
     id integer primary key autoincrement,
     order_type text not null,
@@ -131,12 +122,10 @@ create table if not exists orders (
     foreign key (warehouse_transaction_id) references warehouse_transactions(id)
 );
 
--- Order Items table (depends on: orders, products)
--- discount and description are nullable based on entity definition
+-- Order Items: (order_item_id, order_id, product_id, quantity, price, discount=None, description=None)
 create table if not exists order_items (
     id integer primary key autoincrement,
     order_id integer not null,
-    customer text not null,
     product_id integer not null,
     quantity integer not null,
     price integer not null,
@@ -146,27 +135,11 @@ create table if not exists order_items (
     foreign key (product_id) references products(id)
 );
 
--- Deliveries table (standalone)
+-- Deliveries: (delivery_id, first_name, last_name, address, description)
 create table if not exists deliveries(
     id integer primary key autoincrement,
     first_name text not null,
     last_name text not null,
     address text not null,
-    description text
+    description text not null
 );
-
--- ============================================
--- TABLE CREATION ORDER (Reflecting dependencies)
--- ============================================
--- 1. banks
--- 2. customers
--- 3. employees
--- 4. products
--- 5. samples
--- 6. warehouses (requires products)
--- 7. payments (requires customers, employees)
--- 8. warehouse_transactions (requires products, customers, employees)
--- 9. financial_transactions (requires customers, employees, payments)
--- 10. orders (requires customers, employees, payments, warehouse_transactions)
--- 11. order_items (requires orders, products)
--- 12. deliveries

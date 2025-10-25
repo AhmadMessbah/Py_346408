@@ -1,13 +1,13 @@
 -- ============================================
 -- TEST DATA FOR SELLING SYSTEM
--- Based on Entity definitions with proper nullable fields
+-- Exact match with Model __init__ parameters
 -- ============================================
 
 -- ============================================
 -- BASE ENTITIES - Multiple records
 -- ============================================
 
--- Banks (ID: 1-5)
+-- Banks (bank_id, name, account, balance, description) - all not null
 insert or ignore into banks (id, name, account, balance, description) values 
 (1, 'Melli Bank', 'checking', 5000000, 'Main checking account'),
 (2, 'Saderat Bank', 'saving', 8000000, 'Savings account'),
@@ -15,7 +15,7 @@ insert or ignore into banks (id, name, account, balance, description) values
 (4, 'Mellat Bank', 'checking', 6000000, 'Business checking'),
 (5, 'Tejarat Bank', 'saving', 4000000, 'Personal savings');
 
--- Customers (ID: 1-10)
+-- Customers (customer_id, first_name, last_name, phone_number, address) - all not null
 insert or ignore into customers (id, first_name, last_name, phone_number, address) values 
 (1, 'Ahmad', 'Rezaei', '09123456789', 'Tehran_Street1_123'),
 (2, 'Reza', 'Mohammadi', '09123456790', 'Isfahan_Avenue2_456'),
@@ -28,7 +28,7 @@ insert or ignore into customers (id, first_name, last_name, phone_number, addres
 (9, 'Amir', 'Karimi', '09123456797', 'Rasht_Lane9_567'),
 (10, 'Mohsen', 'Zarei', '09123456798', 'Yazd_Boulevard10_890');
 
--- Employees (ID: 1-6)
+-- Employees (employee_id, first_name, last_name, salary, occupation, phone_number, username, password, role) - all not null
 insert or ignore into employees (id, first_name, last_name, salary, occupation, phone_number, username, password, role) values 
 (1, 'ali', 'Mohammadi', 5000000, 'cashier', '09123456800', 'aliuser', 'pass1234', 'cashier'),
 (2, 'reza', 'Ahmadi', 6000000, 'manager', '09123456801', 'rezauser', 'pass1234', 'manager'),
@@ -37,7 +37,7 @@ insert or ignore into employees (id, first_name, last_name, salary, occupation, 
 (5, 'sina', 'Hosseini', 4700000, 'sale', '09123456804', 'sinauser', 'pass1234', 'sale'),
 (6, 'amir', 'Naderi', 5200000, 'storekeeper', '09123456805', 'amiruser', 'pass1234', 'storekeeper');
 
--- Products (ID: 1-20) - expiration_date can be NULL
+-- Products (product_id, name, brand, model, serial, category, unit, expiration_date=None) - expiration_date can be NULL
 insert or ignore into products (id, name, brand, model, serial, category, unit, expiration_date) values 
 (1, 'Laptop', 'Dell', 'XPS15', 'SN123456', 'Electronics', 'Piece', '2025/12/31'),
 (2, 'Mouse', 'Logitech', 'MX3', 'SN789012', 'Electronics', 'Piece', NULL),
@@ -60,32 +60,32 @@ insert or ignore into products (id, name, brand, model, serial, category, unit, 
 (19, 'Power Supply', 'Corsair', 'RM850x', 'SN345567', 'Electronics', 'Piece', NULL),
 (20, 'Case', 'Fractal Design', 'Meshify C', 'SN012890', 'Electronics', 'Piece', NULL);
 
--- Samples (ID: 1-5) - description can be NULL
+-- Samples (sample_id, name, description) - all not null
 insert or ignore into samples (id, name, description) values 
 (1, 'Sample 1', 'Test sample for electronics'),
 (2, 'Sample 2', 'Test sample for furniture'),
 (3, 'Sample 3', 'Test sample for clothing'),
-(4, 'Sample 4', NULL),
-(5, 'Sample 5', NULL);
+(4, 'Sample 4', 'Test sample for food'),
+(5, 'Sample 5', 'Test sample for books');
 
 -- ============================================
 -- DEPENDENT ENTITIES - Multiple records with relationships
 -- ============================================
 
--- Warehouses (ID: 1-10, depends on Products 1-20)
+-- Warehouses (warehouse_id, product_id, quantity) - all not null
 insert or ignore into warehouses (id, product_id, quantity) values 
-(1, 1, 100),  -- Laptop stock
-(2, 2, 200),  -- Mouse stock
-(3, 3, 150),  -- Keyboard stock
-(4, 4, 50),   -- Monitor stock
-(5, 5, 80),   -- Webcam stock
-(6, 6, 60),   -- Speaker stock
-(7, 7, 90),   -- Headphones stock
-(8, 8, 70),   -- Tablet stock
-(9, 9, 120),  -- Phone stock
-(10, 10, 110); -- Watch stock
+(1, 1, 100),
+(2, 2, 200),
+(3, 3, 150),
+(4, 4, 50),
+(5, 5, 80),
+(6, 6, 60),
+(7, 7, 90),
+(8, 8, 70),
+(9, 9, 120),
+(10, 10, 110);
 
--- Payments (ID: 1-15, depends on Customers 1-10, Employees 1-6) - description can be NULL
+-- Payments (payment_id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description) - all not null
 insert or ignore into payments (id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description) values 
 (1, 'income', 'cash', '2024/01/01', 1, 500000, 1, 'Initial payment from customer 1'),
 (2, 'income', 'card', '2024/01/02', 2, 750000, 2, 'Card payment from customer 2'),
@@ -103,22 +103,22 @@ insert or ignore into payments (id, transaction_type, payment_type, date_time, c
 (14, 'expense', 'transfer', '2024/01/14', 3, 250000, 3, 'Transfer payment'),
 (15, 'income', 'cash', '2024/01/15', 4, 720000, 2, 'Cash payment from customer 4');
 
--- Warehouse Transactions (ID: 1-12, depends on Products 1-10, Customers 1-10, Employees 1-6)
+-- Warehouse Transactions (warehouse_transaction_id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id) - all not null
 insert or ignore into warehouse_transactions (id, product_id, quantity, transaction_type, transaction_datetime, customer_id, employee_id) values 
-(1, 1, 10, 'output', '2024/01/01', 1, 1),   -- Customer 1 bought 10 laptops
-(2, 2, 5, 'output', '2024/01/02', 2, 2),    -- Customer 2 bought 5 mice
-(3, 3, 3, 'output', '2024/01/03', 3, 3),    -- Customer 3 bought 3 keyboards
-(4, 4, 2, 'output', '2024/01/04', 4, 1),    -- Customer 4 bought 2 monitors
-(5, 1, 20, 'input', '2024/01/05', 5, 1),   -- Customer 5 returned 20 laptops
-(6, 2, 50, 'input', '2024/01/06', 6, 6),   -- Restock: 50 mice
-(7, 5, 8, 'output', '2024/01/07', 5, 2),    -- Customer 5 bought 8 webcams
-(8, 6, 4, 'output', '2024/01/08', 6, 3),    -- Customer 6 bought 4 speakers
-(9, 7, 6, 'output', '2024/01/09', 7, 1),    -- Customer 7 bought 6 headphones
-(10, 3, 30, 'input', '2024/01/10', 4, 4),   -- Restock: 30 keyboards
-(11, 8, 12, 'output', '2024/01/11', 8, 2),  -- Customer 8 bought 12 tablets
-(12, 9, 15, 'output', '2024/01/12', 9, 5);  -- Customer 9 bought 15 phones
+(1, 1, 10, 'output', '2024/01/01', 1, 1),
+(2, 2, 5, 'output', '2024/01/02', 2, 2),
+(3, 3, 3, 'output', '2024/01/03', 3, 3),
+(4, 4, 2, 'output', '2024/01/04', 4, 1),
+(5, 1, 20, 'input', '2024/01/05', 5, 1),
+(6, 2, 50, 'input', '2024/01/06', 6, 6),
+(7, 5, 8, 'output', '2024/01/07', 5, 2),
+(8, 6, 4, 'output', '2024/01/08', 6, 3),
+(9, 7, 6, 'output', '2024/01/09', 7, 1),
+(10, 3, 30, 'input', '2024/01/10', 4, 4),
+(11, 8, 12, 'output', '2024/01/11', 8, 2),
+(12, 9, 15, 'output', '2024/01/12', 9, 5);
 
--- Financial Transactions (ID: 1-12, depends on Customers 1-10, Employees 1-6, Payments 1-15)
+-- Financial Transactions (financial_transaction_id, transaction_type, customer_id, employee_id, amount, date_time, payment_id, description="") - all not null
 insert or ignore into financial_transactions (id, transaction_type, customer_id, employee_id, amount, date_time, payment_id, description) values 
 (1, 'sale', 1, 1, 500000, '2024/01/01', 1, 'Laptop sale transaction'),
 (2, 'sale', 2, 2, 750000, '2024/01/02', 2, 'Electronics sale transaction'),
@@ -133,8 +133,7 @@ insert or ignore into financial_transactions (id, transaction_type, customer_id,
 (11, 'purchase', 7, 3, 450000, '2024/01/11', 12, 'Inventory purchase'),
 (12, 'sale', 8, 1, 450000, '2024/01/12', 13, 'Regular sale transaction');
 
--- Orders (ID: 1-15, depends on Customers 1-10, Employees 1-6, Payments 1-15, Warehouse Transactions 1-12)
--- tax, total_discount, total_amount are nullable based on entity definition
+-- Orders (order_id, order_type, customer_id, employee_id, date_time, payment_id, warehouse_transaction_id, tax=None, total_discount=None, total_amount=None)
 insert or ignore into orders (id, order_type, customer_id, employee_id, date_time, payment_id, warehouse_transaction_id, tax, total_discount, total_amount) values 
 (1, 'frooshe', 1, 1, '2024/01/01', 1, 1, 100000, 5000, 95000),
 (2, 'frooshe', 2, 2, '2024/01/02', 2, 2, 150000, 7500, 142500),
@@ -152,31 +151,30 @@ insert or ignore into orders (id, order_type, customer_id, employee_id, date_tim
 (14, 'kharid', 4, 5, '2024/01/14', 14, 2, 44000, 2200, 41800),
 (15, 'frooshe', 5, 1, '2024/01/15', 15, 3, 144000, 7200, 136800);
 
--- Order Items (ID: 1-20, depends on Orders 1-15, Products 1-20)
--- discount and description are nullable based on entity definition
-insert or ignore into order_items (id, order_id, customer, product_id, quantity, price, discount, description) values 
-(1, 1, 'Ahmad Rezaei', 1, 2, 100000, 5000, 'Laptop order'),
-(2, 1, 'Ahmad Rezaei', 2, 3, 50000, 2500, 'Mouse order'),
-(3, 2, 'Reza Mohammadi', 3, 1, 150000, 7500, 'Keyboard order'),
-(4, 2, 'Reza Mohammadi', 4, 1, 600000, 30000, 'Monitor order'),
-(5, 3, 'Mohammad Ali Akbari', 5, 2, 80000, 4000, 'Webcam order'),
-(6, 4, 'Ali Hosseini', 6, 2, 900000, 45000, 'Speaker order'),
-(7, 4, 'Ali Hosseini', 7, 1, 450000, 22500, 'Headphones order'),
-(8, 5, 'Hassan Kazemi', 8, 1, 1200000, 60000, 'Tablet order'),
-(9, 5, 'Hassan Kazemi', 9, 1, 2000000, 100000, 'Phone order'),
-(10, 6, 'Farhad Salehi', 10, 1, 1500000, 75000, 'Watch order'),
-(11, 7, 'Saeed Rahimi', 11, 1, 800000, 40000, 'Printer order'),
-(12, 8, 'Majid Naderi', 12, 1, 300000, 15000, 'Scanner order'),
-(13, 9, 'Amir Karimi', 13, 1, 900000, 45000, 'Router order'),
-(14, 10, 'Mohsen Zarei', 14, 2, 350000, 17500, 'SSD order'),
-(15, 11, 'Ahmad Rezaei', 15, 4, 150000, 7500, 'RAM order'),
-(16, 11, 'Ahmad Rezaei', 16, 1, 5000000, 250000, 'Graphics Card order'),
-(17, 12, 'Reza Mohammadi', 17, 1, 6000000, 300000, 'Motherboard order'),
-(18, 13, 'Mohammad Ali Akbari', 18, 1, 8000000, 400000, 'CPU order'),
-(19, 14, 'Ali Hosseini', 19, 1, 2000000, 100000, 'Power Supply order'),
-(20, 15, 'Hassan Kazemi', 20, 2, 150000, 7500, 'Case order');
+-- Order Items (order_item_id, order_id, product_id, quantity, price, discount=None, description=None)
+insert or ignore into order_items (id, order_id, product_id, quantity, price, discount, description) values 
+(1, 1, 1, 2, 100000, 5000, 'Laptop order'),
+(2, 1, 2, 3, 50000, 2500, 'Mouse order'),
+(3, 2, 3, 1, 150000, 7500, 'Keyboard order'),
+(4, 2, 4, 1, 600000, 30000, 'Monitor order'),
+(5, 3, 5, 2, 80000, 4000, 'Webcam order'),
+(6, 4, 6, 2, 900000, 45000, 'Speaker order'),
+(7, 4, 7, 1, 450000, 22500, 'Headphones order'),
+(8, 5, 8, 1, 1200000, 60000, 'Tablet order'),
+(9, 5, 9, 1, 2000000, 100000, 'Phone order'),
+(10, 6, 10, 1, 1500000, 75000, 'Watch order'),
+(11, 7, 11, 1, 800000, 40000, 'Printer order'),
+(12, 8, 12, 1, 300000, 15000, 'Scanner order'),
+(13, 9, 13, 1, 900000, 45000, 'Router order'),
+(14, 10, 14, 2, 350000, 17500, 'SSD order'),
+(15, 11, 15, 4, 150000, 7500, 'RAM order'),
+(16, 11, 16, 1, 5000000, 250000, 'Graphics Card order'),
+(17, 12, 17, 1, 6000000, 300000, 'Motherboard order'),
+(18, 13, 18, 1, 8000000, 400000, 'CPU order'),
+(19, 14, 19, 1, 2000000, 100000, 'Power Supply order'),
+(20, 15, 20, 2, 150000, 7500, 'Case order');
 
--- Deliveries (ID: 1-8, standalone) - description can be NULL
+-- Deliveries (delivery_id, first_name, last_name, address, description) - all not null
 insert or ignore into deliveries (id, first_name, last_name, address, description) values 
 (1, 'Reza', 'Ahmadi', 'Tehran_Street1_123', 'Standard delivery for order 1'),
 (2, 'Hassan', 'Karimi', 'Isfahan_Avenue2_456', 'Express delivery for order 2'),
@@ -186,24 +184,3 @@ insert or ignore into deliveries (id, first_name, last_name, address, descriptio
 (6, 'Mohsen', 'Zarei', 'Qom_Street6_678', 'Priority delivery for order 6'),
 (7, 'Farhad', 'Salehi', 'Ahvaz_Avenue7_901', 'Standard delivery for order 7'),
 (8, 'Saeed', 'Rahimi', 'Kerman_Road8_234', 'Express delivery for order 8');
-
--- ============================================
--- DATA SUMMARY
--- ============================================
--- Banks: 5 records (ID 1-5)
--- Customers: 10 records (ID 1-10)
--- Employees: 6 records (ID 1-6) with unique usernames
--- Products: 20 records (ID 1-20) - expiration_date nullable
--- Samples: 5 records (ID 1-5) - description nullable
--- Warehouses: 10 records (ID 1-10, linked to Products 1-10)
--- Payments: 15 records (ID 1-15, linked to Customers 1-10, Employees 1-6) - description nullable
--- Warehouse Transactions: 12 records (ID 1-12, linked to Products 1-10, Customers 1-10, Employees 1-6)
--- Orders: 15 records (ID 1-15, linked to Customers 1-10, Employees 1-6, Payments 1-15, Warehouse Transactions 1-12)
---   - tax, total_discount, total_amount are nullable
--- Order Items: 20 records (ID 1-20, linked to Orders 1-15, Products 1-20)
---   - discount, description are nullable
--- Financial Transactions: 12 records (ID 1-12, linked to Customers 1-10, Employees 1-6, Payments 1-15)
---   - description has default empty string ""
--- Deliveries: 8 records (ID 1-8) - description nullable
---
--- Total: 118 records across 13 tables

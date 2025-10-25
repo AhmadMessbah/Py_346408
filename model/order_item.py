@@ -24,7 +24,7 @@ class OrderItem:
     def to_tuple(self):
         from service import ProductService
 
-        product = ProductService.find_by_id(self.product_id)[0]
+        product = ProductService.find_by_id(self.product_id)
 
         return tuple((
             self.order_item_id,
