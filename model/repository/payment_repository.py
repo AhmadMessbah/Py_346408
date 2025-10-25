@@ -17,8 +17,9 @@ class PaymentRepository:
             "insert into payments (transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description) values (?,?,?,?,?,?,?)",
             [payment.transaction_type, payment.payment_type, payment.date_time, payment.customer_id,
              payment.total_amount, payment.employee_id, payment.description])
+        payment.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return payment
 
     def update(self, payment):
         self.connect()
@@ -46,9 +47,9 @@ class PaymentRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from payments where id=?", [id])
-        payment_list = [Payment(*payment) for payment in self.cursor.fetchall()]
+        payment = [Payment(*payment) for payment in self.cursor.fetchall()]
         self.disconnect()
-        return payment_list
+        return payment
 
     def find_by_transaction_type(self, transaction_type):
         self.connect()

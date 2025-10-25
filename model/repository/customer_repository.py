@@ -17,8 +17,9 @@ class CustomerRepository:
         self.cursor.execute(
             "insert into customers (first_name, last_name, phone_number, address) values (?,?,?,?)",
             [customer.first_name, customer.last_name, customer.phone_number, customer.address])
+        customer.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return customer
 
     def update(self, customer):
         self.connect()
@@ -45,9 +46,9 @@ class CustomerRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from customers where id=?", [id])
-        customer_list = [Customer(*customer) for customer in self.cursor.fetchall()]
+        customer = [Customer(*customer) for customer in self.cursor.fetchall()]
         self.disconnect()
-        return customer_list
+        return customer
 
     def find_by_firstname_and_lastname(self,firstname, lastname):
         self.connect()

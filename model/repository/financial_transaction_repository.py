@@ -17,8 +17,9 @@ class FinancialTransactionRepository:
             [financial_transactions.transaction_type, financial_transactions.customer_id,
             financial_transactions.employee_id, financial_transactions.amount, financial_transactions.date_time,
             financial_transactions.payment_id, financial_transactions.description])
+        financial_transactions.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return financial_transactions
 
     def update(self, financial_transactions):
         self.connect()
@@ -48,9 +49,9 @@ class FinancialTransactionRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from financial_transactions where id=?", [id])
-        financial_transaction_list = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
+        financial_transaction = [FinancialTransaction(*transaction) for transaction in self.cursor.fetchall()]
         self.disconnect()
-        return financial_transaction_list
+        return financial_transaction
 
     def find_by_transaction_type(self, transaction_type):
         self.connect()

@@ -19,8 +19,9 @@ class WarehouseTransactionRepository:
                             """, ([warehouse_transaction.product_id, warehouse_transaction.quantity,
                                    warehouse_transaction.transaction_type, warehouse_transaction.transaction_datetime,
                                    warehouse_transaction.customer_id, warehouse_transaction.employee_id]))
+        warehouse_transaction.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return warehouse_transaction
 
     def update(self, warehouse_transaction):
         self.connect()
@@ -57,10 +58,10 @@ class WarehouseTransactionRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from warehouse_transactions where id=?", [id])
-        warehouse_transaction_list = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
+        warehouse_transaction = [WarehouseTransaction(*warehouse_transaction) for warehouse_transaction in
                                       self.cursor.fetchall()]
         self.disconnect()
-        return warehouse_transaction_list
+        return warehouse_transaction
 
     def find_bye_product_id(self,product_id):
         self.connect()

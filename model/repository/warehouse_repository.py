@@ -14,8 +14,9 @@ class WarehouseRepository:
     def save(self, warehouse):
             self.connect()
             self.cursor.execute("""insert into warehouses (product_id,quantity) values (?,?)""", ([warehouse.product_id,warehouse.quantity]))
+            warehouse.id = self.cursor.lastrowid
             self.connection.commit()
-            self.disconnect()
+            return warehouse
 
     def update(self, warehouse):
             self.connect()
@@ -39,9 +40,9 @@ class WarehouseRepository:
     def find_by_id(self,id):
         self.connect()
         self.cursor.execute("select * from warehouses where id=?", [id])
-        warehouse_list = [Warehouse(*warehouse) for warehouse in self.cursor.fetchall()]
+        warehouse = [Warehouse(*warehouse) for warehouse in self.cursor.fetchall()]
         self.disconnect()
-        return warehouse_list
+        return warehouse
 
     def find_by_product_id(self,product_id):
         self.connect()

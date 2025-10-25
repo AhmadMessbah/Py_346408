@@ -17,8 +17,9 @@ class EmployeeRepository:
             "insert into employees (first_name, last_name, salary, occupation, phone_number, username, password, role) values (?,?,?,?,?,?,?,?)",
             [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
              employee.username, employee.password, employee.role])
+        employee.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return employee
 
     def update(self, employee):
         self.connect()
@@ -46,9 +47,9 @@ class EmployeeRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from employees where id=?", [id])
-        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        employee = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
-        return employee_list
+        return employee
 
     def find_by_firstname_and_lastname(self, firstname, lastname):
         self.connect()

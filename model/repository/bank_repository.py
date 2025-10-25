@@ -15,8 +15,9 @@ class BankRepository:
         self.connect()
         self.cursor.execute("insert into banks (name,account,balance,description) values (?,?,?,?)",
                             [bank.name, bank.account, bank.balance, bank.description])
+        bank.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return bank
 
     def update(self, bank):
         self.connect()
@@ -42,9 +43,9 @@ class BankRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from banks where id=?", [id])
-        bank_list = [Bank(*bank) for bank in self.cursor.fetchall()]
+        bank = [Bank(*bank) for bank in self.cursor.fetchall()]
         self.disconnect()
-        return bank_list
+        return bank
 
     def find_by_name(self, name):
         self.connect()

@@ -17,8 +17,9 @@ class OrderItemRepository:
                             " price, discount, description) values (?,?,?,?,?,?)" ,
                             [order_item.order_id, order_item.product_id, order_item.quantity,
                              order_item.price, order_item.discount, order_item.description])
+        order_item.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return order_item
 
     def update(self, order_item):
         self.connect()
@@ -45,9 +46,9 @@ class OrderItemRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from order_items where id=?", [id])
-        order_item_list = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
+        order_item = [OrderItem(*order_item) for order_item in self.cursor.fetchall()]
         self.disconnect()
-        return order_item_list
+        return order_item
 
     def find_by_order_id(self, order_id):
         self.connect()

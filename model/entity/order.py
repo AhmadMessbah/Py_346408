@@ -1,5 +1,9 @@
 from tools.order_validator import *
 
+def _get_customer_service():
+    from model.service import CustomerService
+    return CustomerService()
+
 class Order:
     def __init__(self, id, order_type, customer_id, employee_id, date_time,
                  payment_id, warehouse_transaction_id, tax=None, total_discount=None,
@@ -27,9 +31,9 @@ class Order:
 
     def to_tuple(self):
 
-        # customer_service = CustomerService()
-        # customer = customer_service.find_by_id(self.customer_id)[0]
-        #
+        customer_service = _get_customer_service()
+        customer = customer_service.find_by_id(self.customer_id)
+
         # employee_service = EmployeeService()
         # employee = employee_service.find_by_id(self.employee_id)[0]
 

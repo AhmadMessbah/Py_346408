@@ -16,8 +16,9 @@ class DeliveryRepository:
         self.cursor.execute(
                 "insert into deliveries (id, first_name, last_name, address, description) values (?,?,?,?,?)",
                 [delivery.id, delivery.first_name, delivery.last_name, delivery.address, delivery.description])
+        delivery.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return delivery
 
     def update(self, delivery):
         self.connect()
@@ -42,6 +43,6 @@ class DeliveryRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from deliveries where id=?", [id])
-        delivery_list = [Delivery(*delivery) for delivery in self.cursor.fetchall()]
+        delivery = [Delivery(*delivery) for delivery in self.cursor.fetchall()]
         self.disconnect()
-        return delivery_list
+        return delivery

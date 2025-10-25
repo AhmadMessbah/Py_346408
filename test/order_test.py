@@ -7,7 +7,7 @@ order = Order(2,"frooshe",2134654,6469185,"04/07/20",
 order_service1 = OrderService()
 
 # test passed
-order_service1.save(order)
+print(order_service1.save(order))
 
 # test passed
 #order_service1.update(order)
@@ -19,4 +19,4 @@ order_service1.save(order)
 #print(order_service1.find_all())
 
 # test passed
-#print(order_service1.find_by_id(1))
+print(order_service1.find_by_id(17))

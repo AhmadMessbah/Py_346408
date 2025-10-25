@@ -16,8 +16,9 @@ class SampleRepository:
         self.connect()
         self.cursor.execute("insert into samples (name,description) values (?,?)",
                             [sample.name, sample.description])
+        sample.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return sample
 
     def update(self, sample):
         self.connect()
@@ -44,6 +45,6 @@ class SampleRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from samples where id=?", [id])
-        sample_list = [Sample(*sample) for sample in self.cursor.fetchall()]
+        sample = [Sample(*sample) for sample in self.cursor.fetchall()]
         self.disconnect()
-        return sample_list
+        return sample

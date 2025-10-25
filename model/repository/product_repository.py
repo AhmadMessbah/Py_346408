@@ -18,8 +18,9 @@ class ProductRepository:
             "insert into products (name, brand, model, serial, category, unit, expiration_date) values (?,?,?,?,?,?,?)",
             [product.name, product.brand, product.model, product.serial, product.category, product.unit,
              product.expiration_date])
+        product.id = self.cursor.lastrowid
         self.connection.commit()
-        self.disconnect()
+        return product
 
     def update(self, product):
         self.connect()
@@ -47,9 +48,9 @@ class ProductRepository:
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from products where id=?", [id])
-        product_list = [Product(*product) for product in self.cursor.fetchall()]
+        product = [Product(*product) for product in self.cursor.fetchall()]
         self.disconnect()
-        return product_list
+        return product
 
     def find_by_name_and_brand(self, name, brand):
         self.connect()
