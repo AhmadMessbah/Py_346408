@@ -1,6 +1,5 @@
 from view import *
-
-
+from model import Session
 
 class DashboardView:
     def employee_view(self):
@@ -36,8 +35,8 @@ class DashboardView:
     def delivery_view(self):
         ui = DeliveryView()
 
-    def __init__(self, employee):
-        self.employee = employee
+    def __init__(self):
+        self.employee = Session.employee
         font = ("Arial", 18, "bold")
         width = 24
         background_color = "violet red"

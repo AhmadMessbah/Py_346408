@@ -40,3 +40,12 @@ class ProductController:
             return True, service.find_by_id(id)
         except Exception as e:
             return False, "Find By Id Error"
+
+
+
+    def find_by_name_and_brand(self, name,brand):
+        try:
+            service = ProductService()
+            return True, service.find_by_name_and_brand(name,brand)
+        except Exception as e:
+            return False, "Find By Name And Brand Error"

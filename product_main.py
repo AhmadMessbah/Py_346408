@@ -1,6 +1,6 @@
 from test import product_test
-# from view.product_view import  ProductView
-#
-#
-# ui=ProductView
+# from view import ProductView
 
+#
+#
+# ui = ProductView()

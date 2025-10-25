@@ -21,10 +21,10 @@ class ProductService:
         return self.repository.find_by_id(product_id)
 
     def find_by_name_and_brand(self,name,brand):
-        pass
+        return self.repository.find_by_name_and_brand(name,brand)
 
     def find_by_category(self,category):
-        pass
+        return self.repository.find_by_category(category)
 
     def find_by_expire_date_until(self,expire_date):
-        pass
+        return self.repository.find_by_expire_date_until(expire_date)

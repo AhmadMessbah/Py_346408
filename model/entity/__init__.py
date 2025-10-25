@@ -10,3 +10,4 @@ from model.entity.product import Product
 from model.entity.sample import Sample
 from model.entity.warehouse import Warehouse
 from model.entity.warehouse_transaction import WarehouseTransaction
+from model.entity.session import Session

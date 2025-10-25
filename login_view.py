@@ -1,5 +1,6 @@
 from view import *
 from controller import EmployeeController
+from model import Session
 
 class LoginView:
     def __init__(self):
@@ -27,7 +28,8 @@ class LoginView:
 
         if status:
             self.window.destroy()
-            DashboardView(employee)
+            Session.employee = employee
+            DashboardView()
         else:
             messagebox.showerror("Login Error", "Access Denied !!!")
 

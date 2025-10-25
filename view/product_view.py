@@ -17,14 +17,19 @@ class ProductView:
         self.serial = LabelWithEntry(self.window, "Serial", 20, 180)
         self.category = LabelWithEntry(self.window, "Category", 20, 220)
         self.unit = LabelWithEntry(self.window, "Unit", 20, 260)
-        self.expirationdate = LabelWithEntry(self.window, "ExpirationDate", 20, 300)
+        self.expiration_date = LabelWithEntry(self.window, "ExpirationDate", 20, 300)
+
+        self.search_name = LabelWithEntry(self.window, "Name", 270, 20, distance=60,
+                                          keypress_function=self.search_name_brand)
+        self.search_brand = LabelWithEntry(self.window, "Brand", 500, 20, distance=60,
+                                           keypress_function=self.search_name_brand)
 
         self.table = Table(
             self.window,
             ["Id", "Name", "Brand", "Model", "Serial", "Category", "Unit", "ExpirationDate"],
             [40, 100, 100, 60, 100, 100, 100, 100],
-            270, 20,
-            18,
+            270, 60,
+            16,
             self.select_from_table
         )
 
@@ -37,7 +42,7 @@ class ProductView:
     def save_click(self):
         status, message = self.product_controller.save(self.name.get(), self.brand.get(), self.model.get(),
                                                        self.category.get(),
-                                                       self.serial.get(), self.unit.get(), self.expirationdate.get())
+                                                       self.serial.get(), self.unit.get(), self.expiration_date.get())
         if status:
             messagebox.showinfo("Product Save", message)
             self.reset_form()
@@ -48,7 +53,7 @@ class ProductView:
         status, message = self.product_controller.update(self.id.get(), self.name.get(), self.brand.get(),
                                                          self.model.get(),
                                                          self.category.get(), self.serial.get(), self.unit.get(),
-                                                         self.expirationdate.get())
+                                                         self.expiration_date.get())
         if status:
             messagebox.showinfo("Product Update", message)
             self.reset_form()
@@ -71,7 +76,7 @@ class ProductView:
         self.category.clear()
         self.serial.clear()
         self.unit.clear()
-        self.expirationdate.clear()
+        self.expiration_date.clear()
         status, product_list = self.product_controller.find_all()
         self.table.refresh_table(product_list)
 
@@ -86,4 +91,9 @@ class ProductView:
             self.category.set(product.category)
             self.unit.set(product.unit)
             self.serial.set(product.serial)
-            self.expirationdate.set(product.expiration_date)
+            self.expiration_date.set(product.expiration_date)
+
+    def search_name_brand(self, event):
+        status, product_list = self.product_controller.find_by_name_and_brand(self.search_name, self.search_brand)
+        if status and product_list:
+            self.table.refresh_table(product_list)
