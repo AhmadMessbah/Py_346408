@@ -13,15 +13,19 @@ class OrderItemRepository:
 
     def save(self, order_item):
         self.connect()
-        self.cursor.execute("insert into order_items (order_id, product_id , quantity, price, discount, description) values (?,?,?,?,?,?)" ,
-                            [order_item.order_id, order_item.product_id, order_item.quantity, order_item.price, order_item.discount, order_item.description])
+        self.cursor.execute("insert into order_items (order_id, product_id , quantity,"
+                            " price, discount, description) values (?,?,?,?,?,?)" ,
+                            [order_item.order_id, order_item.product_id, order_item.quantity,
+                             order_item.price, order_item.discount, order_item.description])
         self.connection.commit()
         self.disconnect()
 
     def update(self, order_item):
         self.connect()
-        self.cursor.execute("update order_items set order_id=?, product_id=?, quantity=?, price=?, discount=?, description=? where id=?" ,
-                            [order_item.order_id, order_item.product_id, order_item.quantity, order_item.price, order_item.discount, order_item.description, order_item.id])
+        self.cursor.execute("update order_items set order_id=?, product_id=?, quantity=?,"
+                            " price=?, discount=?, description=? where id=?" ,
+                            [order_item.order_id, order_item.product_id, order_item.quantity,
+                             order_item.price, order_item.discount, order_item.description, order_item.id])
         self.connection.commit()
         self.disconnect()
 
