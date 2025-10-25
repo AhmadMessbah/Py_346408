@@ -1,8 +1,6 @@
 from tools.order_item_validator import *
 # from model import ProductService
 
-# from test.product_test import product
-
 
 class OrderItem:
 
@@ -36,5 +34,3 @@ class OrderItem:
     #         self.price,
     #         self.discount,
     #         self.description))
-
-    # todo : error

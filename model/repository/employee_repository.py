@@ -25,7 +25,7 @@ class EmployeeRepository:
         self.cursor.execute(
             "update employees set first_name=?, last_name=?, salary=?, occupation=?, phone_number=?, username=?, password=?, role=? where id=?",
             [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
-             employee.username, employee.password,employee.role, employee.id])
+             employee.username, employee.password, employee.role, employee.id])
         self.connection.commit()
         self.disconnect()
 
@@ -49,42 +49,35 @@ class EmployeeRepository:
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
-    
-   
-    def find_by_firstname_and_lastname(self,firstname, lastname):
+
+    def find_by_firstname_and_lastname(self, firstname, lastname):
         self.connect()
         self.cursor.execute("select * from employees where first_name=? and last_name=? ", [firstname, lastname])
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
-    
+
     def find_by_phone_number(self, phone_number):
         self.connect()
         self.cursor.execute("select * from employees where phone_number=?", [phone_number])
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
-    
-    
-    
+
     def find_by_username(self, username):
         self.connect()
         self.cursor.execute("select * from employees where username=?", [username])
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
-    
-    
-    
-    def find_by_username_and_password(self, username,password):
+
+    def find_by_username_and_password(self, username, password):
         self.connect()
-        self.cursor.execute("select * from employees where username=? and password=?", [username,password])
-        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.cursor.execute("select * from employees where username=? and password=?", [username, password])
+        employee = self.cursor.fetchone()
         self.disconnect()
-        return employee_list
-    
-    
-    
+        return Employee(*employee) if employee else None
+
     def find_by_role(self, role):
         self.connect()
         self.cursor.execute("select * from employees where role=?", [role])

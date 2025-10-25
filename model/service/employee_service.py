@@ -30,7 +30,7 @@ class EmployeeService:
         return self.repository.find_by_username(username)
 
     def find_by_username_and_password(self,username, password):
-        return self.repository.find_by_password(username,password)
+        return self.repository.find_by_username_and_password(username,password)
 
     def find_by_role(self, role):
         return self.repository.find_by_role(role)

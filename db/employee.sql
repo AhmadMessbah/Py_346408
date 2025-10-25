@@ -5,7 +5,7 @@ create table if not exists employees(
     salary integer,
     occupation text,
     phone_number text,
-    username text,
+    username text unique ,
     password text,
     role text
 );

@@ -1,6 +1,7 @@
 from view import *
 
 
+
 class DashboardView:
     def employee_view(self):
         ui = EmployeeView()
@@ -35,7 +36,8 @@ class DashboardView:
     def delivery_view(self):
         ui = DeliveryView()
 
-    def __init__(self):
+    def __init__(self, employee):
+        self.employee = employee
         font = ("Arial", 18, "bold")
         width = 24
         background_color = "violet red"
@@ -76,10 +78,10 @@ class DashboardView:
         Button(self.window, font=font, width=width, bg=background_color, fg=foreground_color, text="Delivery",
                command=self.delivery_view).place(x=80, y=180 + y_dist * 10)
 
-        Label(self.window, text="Employee : Ahmad", font=font, bg="white").place(x=80, y=850)
+        Label(self.window, text=f"Employee : {self.employee.username}", font=font, bg="white").place(x=80, y=850)
 
         self.window.mainloop()
 
 
-ui = DashboardView()
+
 

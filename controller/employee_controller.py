@@ -42,3 +42,15 @@ class EmployeeController:
             return True,service.find_by_id(id)
         except Exception as e:
             return False, e
+
+
+    def find_by_username_and_password(self, username, password):
+        try:
+            service = EmployeeService()
+            employee = service.find_by_username_and_password(username, password)
+            if employee:
+                return True, employee
+            else:
+                raise Exception("User Not Found !!!")
+        except Exception as e:
+            return False, e
