@@ -1,5 +1,5 @@
 from view import *
-from model.entity import Session
+from model import Session
 
 class DashboardView:
     def employee_view(self):

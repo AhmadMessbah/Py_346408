@@ -1,7 +1,3 @@
-from model.entity.delivery import Delivery
-from model.service.delivery_service import DeliveryService
-from model.repository.delivery_repository import DeliveryRepository
-
 # save test [passed]
 # delivery = Delivery(None, "reza", "Hosseini", "street 92", "felaaan")
 # delivery_service = DeliveryService()

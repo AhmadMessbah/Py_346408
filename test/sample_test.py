@@ -1,5 +1,5 @@
-from model.entity.sample import Sample
-from model.service.sample_service import SampleService
+from model.sample import Sample
+from service.sample_service import SampleService
 
 sample = Sample(None, "Ali", "Tozihat")
 

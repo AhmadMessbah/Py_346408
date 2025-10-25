@@ -1,5 +1,5 @@
-from model.entity.payment import Payment
-from model.service.payment_service import PaymentService
+from model.payment import Payment
+from service import PaymentService
 
 payment1 = Payment(1, "receive", "cash", "2025-02-02", 12,200,11,"daryaftshod")
 

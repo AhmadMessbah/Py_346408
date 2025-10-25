@@ -1,8 +1,3 @@
-from controller.warehouse_controller import WarehouseController
-from model.entity.warehouse import Warehouse
-from model.repository.warehouse_repository import WarehouseRepository
-from model.service.warehouse_service import WarehouseService
-
 # save test [passed]
 # warehouse = Warehouse(None, 111, 22)
 # warehouse_service = WarehouseService()

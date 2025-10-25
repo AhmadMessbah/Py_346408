@@ -1,5 +1,4 @@
-from model.entity.customer import Customer
-from model.service.customer_service import CustomerService
+from service import CustomerService
 from view.customer_view import *
 
 service = CustomerService()

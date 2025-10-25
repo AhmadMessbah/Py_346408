@@ -1,5 +1,5 @@
-from model.entity.order_item import OrderItem
-from model.service.order_item_service import OrderItemService
+from model.order_item import OrderItem
+from service import OrderItemService
 
 order_item = OrderItem(3, 33695, 2456, 55, 120000, 10, "test")
 # print(order_item)

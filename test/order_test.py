@@ -1,4 +1,4 @@
-from model.service.order_service import OrderService
+from service.order_service import OrderService
 from view.order_view import *
 
 order = Order(2,"frooshe",2134654,6469185,"04/07/20",

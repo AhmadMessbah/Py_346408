@@ -1,7 +1,3 @@
-from model.entity.bank import Bank
-from model.service.bank_service import BankService
-import unittest
-
 # class TestBank(unittest.TestCase):
 #     def test_save_and_find_by_name(self):
 #         service = BankService()

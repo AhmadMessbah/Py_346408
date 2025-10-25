@@ -1,6 +1,4 @@
-from model.entity.product import Product
-from model.service.product_service import ProductService
-from view.product_view import *
+from service.product_service import ProductService
 
 service = ProductService()
 # product1 = Product(1, "mobile", "iPhone", "13pro", "123a","electronic","12",None)

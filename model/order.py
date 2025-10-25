@@ -1,7 +1,7 @@
 from tools.order_validator import *
 
 def _get_customer_service():
-    from model.service import CustomerService
+    from service import CustomerService
     return CustomerService()
 
 class Order:
