@@ -1,18 +1,16 @@
 from model import FinancialTransaction
 from model import FinancialTransactionService
 
+service = FinancialTransactionService()
 
 financial_transaction1=FinancialTransaction(1,"cash",10,10,50000,"20/10/1404",14)
-service = FinancialTransactionService()
 
 financial_transaction2=FinancialTransaction(2,"credit",14,11,150000,"20/11/1404",15)
-service = FinancialTransactionService()
 
 financial_transaction3=FinancialTransaction(3,"internal",18,12,785000,"20/12/1404",17)
-service = FinancialTransactionService()
 
 # test passed
-# service.save(financial_transaction)
+service.save(financial_transaction1)
 
 # test passed
 # service.update(financial_transaction)
@@ -27,7 +25,7 @@ service = FinancialTransactionService()
 # print(service.find_by_id())
 
 # test
-print(service.find_by_transaction_type("internal"))
+# print(service.find_by_transaction_type("internal"))
 
 #test
 #print(service.find_by_customer_id(18))
