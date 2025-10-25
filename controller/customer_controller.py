@@ -57,7 +57,7 @@ class CustomerController:
             Logger.info(f"Customer FindById {customer_id}")
             return True, customer
         except Exception as e:
-            Logger.error(f"Customer FindById Error: {e}")
+            Logger.error(f"{e} With Id {customer_id}")
             return False, e
 
     @classmethod

@@ -56,7 +56,7 @@ class FinancialTransactionController:
             Logger.info(f"FinancialTransaction FindById {financial_transaction_id}")
             return True, financial_transaction
         except Exception as e:
-            Logger.error(f"FinancialTransaction FindById Error: {e}")
+            Logger.error(f"{e} With Id {financial_transaction_id}")
             return False, e
 
     @classmethod

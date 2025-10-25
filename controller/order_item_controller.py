@@ -56,7 +56,7 @@ class OrderItemController:
             Logger.info(f"OrderItem FindById {order_item_id}")
             return True, order_item
         except Exception as e:
-            Logger.error(f"OrderItem FindById Error: {e}")
+            Logger.error(f"{e} With Id {order_item_id}")
             return False, e
 
     @classmethod

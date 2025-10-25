@@ -1,4 +1,6 @@
-from test import order_test
+# from test import order_test
 # from view import OrderView
+from controller import OrderController
 
 # ui = OrderView()
+print(OrderController.find_by_id(1))

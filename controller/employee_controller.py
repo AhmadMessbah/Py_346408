@@ -57,7 +57,7 @@ class EmployeeController:
             Logger.info(f"Employee FindById {employee_id}")
             return True, employee
         except Exception as e:
-            Logger.error(f"Employee FindById Error: {e}")
+            Logger.error(f"{e} With Id {employee_id}")
             return False, e
 
     @classmethod

@@ -55,5 +55,5 @@ class SampleController:
             Logger.info(f"Sample FindById {sample_id}")
             return True, sample
         except Exception as e:
-            Logger.error(f"Sample FindById Error: {e}")
+            Logger.error(f"{e} With Id {sample_id}")
             return False, e

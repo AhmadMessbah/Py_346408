@@ -55,5 +55,5 @@ class DeliveryController:
             Logger.info(f"Delivery FindById {delivery_id}")
             return True, delivery
         except Exception as e:
-            Logger.error(f"Delivery FindById Error: {e}")
+            Logger.error(f"{e} With Id {delivery_id}")
             return False, e

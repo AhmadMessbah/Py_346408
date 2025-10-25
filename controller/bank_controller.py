@@ -57,7 +57,7 @@ class BankController:
             Logger.info(f"Bank FindById {bank_id}")
             return True, bank
         except Exception as e:
-            Logger.error(f"Bank FindById Error: {e}")
+            Logger.error(f"{e} With Id {bank_id}")
             return False, e
 
     @classmethod

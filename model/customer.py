@@ -10,12 +10,14 @@ class Customer:
         self.phone_number = phone_number
         self.address = address
 
-
     def validate(self):
         first_name_validator(self.first_name)
         last_name_validator(self.last_name)
         phone_number_validator(self.phone_number)
         address_validator(self.address)
+
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
 
     def __repr__(self):
         return f"{self.__dict__}"

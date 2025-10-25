@@ -54,7 +54,7 @@ class ProductController:
             Logger.info(f"Product FindById {product_id}")
             return True, product
         except Exception as e:
-            Logger.error(f"Product FindById Error: {e}")
+            Logger.error(f"{e} With Id {product_id}")
             return False, e
 
     @classmethod

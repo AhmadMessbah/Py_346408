@@ -59,7 +59,7 @@ class PaymentController:
             Logger.info(f"Payment FindById {payment_id}")
             return True, payment
         except Exception as e:
-            Logger.error(f"Payment FindById Error: {e}")
+            Logger.error(f"{e} With Id {payment_id}")
             return False, e
 
     @classmethod

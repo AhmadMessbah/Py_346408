@@ -58,7 +58,7 @@ class WarehouseTransactionController:
             Logger.info(f"WarehouseTransaction FindById {warehouse_transaction_id}")
             return True, warehouse_transaction
         except Exception as e:
-            Logger.error(f"WarehouseTransaction FindById Error: {e}")
+            Logger.error(f"{e} With Id {warehouse_transaction_id}")
             return False, e
 
     @classmethod
