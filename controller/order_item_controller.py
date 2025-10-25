@@ -10,7 +10,7 @@ class OrderItemController:
             service.save(order_item)
             return True, f"OrderItem Saved Successfully \n{order_item}"
         except Exception as e:
-            return False, f"Save Error! \n{e}"
+            return False, e
 
     def update(self, id, order_id, product_id, quantity, price, discount, description):
         try:
@@ -20,7 +20,7 @@ class OrderItemController:
             service.update(order_item)
             return True, f"OrderItem Updated Successfully \n{order_item}"
         except Exception as e:
-            return False, f"Update Error! \n{e}"
+            return False, e
 
     def delete(self, id):
         try:
@@ -28,7 +28,7 @@ class OrderItemController:
             service.delete(id)
             return True, f"OrderItem With Id {id} Deleted Successfully"
         except Exception as e:
-            return False, f"Delete Error! \n{e}"
+            return False, e
 
     def find_all(self):
         try:
@@ -36,7 +36,7 @@ class OrderItemController:
             order_item_list = service.find_all()
             return True, order_item_list
         except Exception as e:
-            return False, f"Find All Error! \n{e}"
+            return False, e
 
     def find_by_id(self, id):
         try:
@@ -44,7 +44,7 @@ class OrderItemController:
             order_item_list = service.find_by_id(id)
             return True, order_item_list
         except Exception as e:
-            return False, f"Find by Id Error! \n{e}"
+            return False, e
 
     def find_by_order_id(self, order_id):
         try:
@@ -52,7 +52,7 @@ class OrderItemController:
             order_item_list = service.find_by_order_id(order_id)
             return True, order_item_list
         except Exception as e:
-            return False, f"Find by Order Id Error! \n{e}"
+            return False, e
 
     def find_by_product_id(self, product_id):
         try:
@@ -60,7 +60,7 @@ class OrderItemController:
             order_item_list = service.find_by_product_id(product_id)
             return True, order_item_list
         except Exception as e:
-            return False, f"Find by Product Id Error! \n{e}"
+            return False, e
 
     def find_by_quantity_less_than(self, quantity):
         try:
@@ -68,4 +68,4 @@ class OrderItemController:
             order_item_list = service.find_by_quantity_less_than(quantity)
             return True, order_item_list
         except Exception as e:
-            return False, f"Find by Quantity Error! \n{e}"
+            return False, e
