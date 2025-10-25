@@ -10,7 +10,7 @@ class CustomerService:
 
     @classmethod
     def update(cls, customer):
-        customer_result = cls.customer_repository.find_by_id(customer.id)
+        customer_result = cls.customer_repository.find_by_id(customer.customer_id)
         if customer_result:
             return cls.customer_repository.update(customer)
         else:

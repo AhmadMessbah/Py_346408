@@ -10,7 +10,7 @@ class DeliveryService:
 
     @classmethod
     def update(cls, delivery):
-        delivery_result = cls.delivery_repository.find_by_id(delivery.id)
+        delivery_result = cls.delivery_repository.find_by_id(delivery.delivery_id)
         if delivery_result:
             return cls.delivery_repository.update(delivery)
         else:

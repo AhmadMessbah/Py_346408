@@ -10,7 +10,7 @@ class SampleService:
 
     @classmethod
     def update(cls, sample):
-        sample_result = cls.sample_repository.find_by_id(sample.id)
+        sample_result = cls.sample_repository.find_by_id(sample.sample_id)
         if sample_result:
             return cls.sample_repository.update(sample)
         else:

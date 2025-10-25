@@ -9,7 +9,7 @@ class ProductView:
         self.window.geometry("1000x440")
         self.window.title("product")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.product_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.name = LabelWithEntry(self.window, "Name", 20, 60)
         self.brand = LabelWithEntry(self.window, "Brand", 20, 100)
         self.model = LabelWithEntry(self.window, "Model", 20, 140)
@@ -49,7 +49,7 @@ class ProductView:
             messagebox.showerror("Product Save Error", message)
 
     def edit_click(self):
-        status, message = ProductController.update(self.id.get(), self.name.get(), self.brand.get(),
+        status, message = ProductController.update(self.product_id.get(), self.name.get(), self.brand.get(),
                                                          self.model.get(),
                                                          self.category.get(), self.serial.get(), self.unit.get(),
                                                          self.expiration_date.get())
@@ -60,7 +60,7 @@ class ProductView:
             messagebox.showerror("Product Update Error", message)
 
     def delete_click(self):
-        status, message = ProductController.delete(self.id.get())
+        status, message = ProductController.delete(self.product_id.get())
         if status:
             messagebox.showinfo("Product Delete", message)
             self.reset_form()
@@ -68,7 +68,7 @@ class ProductView:
             messagebox.showerror("Product Delete Error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.product_id.clear()
         self.name.clear()
         self.brand.clear()
         self.model.clear()
@@ -83,7 +83,7 @@ class ProductView:
 
         if selected_product:
             product = Product(*selected_product)
-            self.id.set(product.id)
+            self.product_id.set(product.product_id)
             self.name.set(product.name)
             self.brand.set(product.brand)
             self.model.set(product.model)

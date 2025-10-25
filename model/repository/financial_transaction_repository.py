@@ -20,7 +20,7 @@ class FinancialTransactionRepository:
                              financial_transactions.employee_id, financial_transactions.amount,
                              financial_transactions.date_time,
                              financial_transactions.payment_id, financial_transactions.description])
-        financial_transactions.id = self.cursor.lastrowid
+        financial_transactions.financial_transaction_id = self.cursor.lastrowid
         self.connection.commit()
         return financial_transactions
 

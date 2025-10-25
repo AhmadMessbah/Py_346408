@@ -2,8 +2,8 @@ from tools.bank_validator import *
 
 
 class Bank:
-    def __init__(self, id, name, account, balance, description):
-        self.id = id
+    def __init__(self, bank_id, name, account, balance, description):
+        self.bank_id = bank_id
         self.name = name
         self.account = account
         self.balance = balance
@@ -20,5 +20,5 @@ class Bank:
         return f"{self.__dict__}"
 
     def to_tuple(self):
-        return tuple((self.id, self.name, self.account, self.balance, self.description))
+        return tuple((self.bank_id, self.name, self.account, self.balance, self.description))
 

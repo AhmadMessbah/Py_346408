@@ -10,7 +10,7 @@ class OrderService:
 
     @classmethod
     def update(cls, order):
-        order_result = cls.order_repository.find_by_id(order.id)
+        order_result = cls.order_repository.find_by_id(order.order_id)
         if order_result:
             return cls.order_repository.update(order)
         else:

@@ -8,7 +8,7 @@ class SampleView:
         self.window.geometry("600x320")
         self.window.title("Sample")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.sample_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.name = LabelWithEntry(self.window, "Name", 20, 60)
         self.description = LabelWithEntry(self.window, "Description", 20, 100)
 
@@ -36,7 +36,7 @@ class SampleView:
             messagebox.showerror("Sample Save Error", message)
 
     def edit_click(self):
-        status, message = SampleController.update(self.id.get(), self.name.get(), self.description.get())
+        status, message = SampleController.update(self.sample_id.get(), self.name.get(), self.description.get())
         if status:
             messagebox.showinfo("Sample Updated", message)
             self.reset_form()
@@ -44,7 +44,7 @@ class SampleView:
             messagebox.showerror("Sample Update Error", message)
 
     def delete_click(self):
-        status, message = SampleController.delete(self.id.get())
+        status, message = SampleController.delete(self.sample_id.get())
         if status:
             messagebox.showinfo("Sample Deleted", message)
             self.reset_form()
@@ -52,7 +52,7 @@ class SampleView:
             messagebox.showerror("Sample Delete Error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.sample_id.clear()
         self.name.clear()
         self.description.clear()
         status, sample_list = SampleController.find_all()
@@ -63,7 +63,7 @@ class SampleView:
             status, sample = SampleController.find_by_id(selected_sample[0])
             if status:
                 sample = Sample(*selected_sample)
-                self.id.set(sample.id)
+                self.sample_id.set(sample.sample_id)
                 self.name.set(sample.name)
                 self.description.set(sample.description)
 

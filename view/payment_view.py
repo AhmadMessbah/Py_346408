@@ -10,7 +10,7 @@ class PaymentView:
         self.window.geometry("1050x450")
         self.window.title("Payment")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.payment_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.transaction_type = LabelWithEntry(self.window, "TransactType", 20, 60)
         self.payment_type = LabelWithEntry(self.window, "PaymentType", 20, 100)
         self.date_time = LabelWithEntry(self.window, "DateTime", 20, 140)
@@ -44,7 +44,7 @@ class PaymentView:
             messagebox.showerror("Payment Info Save Error", message)
 
     def edit_click(self):
-        status, message = PaymentController.update(self.id.get(), self.transaction_type.get(), self.payment_type.get(),
+        status, message = PaymentController.update(self.payment_id.get(), self.transaction_type.get(), self.payment_type.get(),
                                                          self.date_time.get(), self.customer_id.get(),
                                                          self.total_amount.get(), self.employee_id.get(),
                                                          self.description.get())
@@ -55,7 +55,7 @@ class PaymentView:
             messagebox.showerror("Payment Info Update Error", message)
 
     def delete_click(self):
-        status, message = PaymentController.delete(self.id.get())
+        status, message = PaymentController.delete(self.payment_id.get())
         if status:
             messagebox.showinfo("Payment Info Delete", message)
             self.reset_form()
@@ -63,7 +63,7 @@ class PaymentView:
             messagebox.showerror("Payment Info Delete Error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.payment_id.clear()
         self.transaction_type.clear()
         self.payment_type.clear()
         self.date_time.clear()
@@ -80,7 +80,7 @@ class PaymentView:
             status, payment = PaymentController.find_by_id(selected_payment[0])
             if status:
                 payment = Payment(*selected_payment)
-                self.id.set(payment.id)
+                self.payment_id.set(payment.payment_id)
                 self.transaction_type.set(payment.transaction_type)
                 self.payment_type.set(payment.payment_type)
                 self.date_time.set(payment.date_time)

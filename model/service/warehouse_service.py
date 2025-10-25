@@ -10,7 +10,7 @@ class WarehouseService:
 
     @classmethod
     def update(cls, warehouse):
-        warehouse_result = cls.warehouse_repository.find_by_id(warehouse.id)
+        warehouse_result = cls.warehouse_repository.find_by_id(warehouse.warehouse_id)
         if warehouse_result:
             return cls.warehouse_repository.update(warehouse)
         else:

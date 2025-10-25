@@ -8,7 +8,7 @@ class BankView:
         self.window.geometry("700x320")
         self.window.title("Bank")
 
-        self.id = LabelWithEntry(self.window, "Id", 20,20, data_type=IntVar, state="readonly")
+        self.bank_id = LabelWithEntry(self.window, "Id", 20,20, data_type=IntVar, state="readonly")
         self.bank_name= LabelWithEntry(self.window, "BankName", 20,60)
         self.account_name= LabelWithEntry(self.window, "AccountName", 20,100)
         self.balance = LabelWithEntry(self.window, "Balance", 20,140,data_type= IntVar)
@@ -37,21 +37,21 @@ class BankView:
         else:
             messagebox.showerror("Bank Save Error", message)
     def edit_click(self):
-        status, message= BankController.update(self.id.get(), self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
+        status, message= BankController.update(self.bank_id.get(), self.bank_name.get(), self.account_name.get(), self.balance.get(), self.description.get())
         if status:
             messagebox.showinfo("Bank Updated", message)
             self.reset_form()
         else:
             messagebox.showerror("Bank Update Error", message)
     def delete_click(self):
-        status, message= BankController.delete(self.id.get())
+        status, message= BankController.delete(self.bank_id.get())
         if status:
             messagebox.showinfo("Bank Deleted", message)
             self.reset_form()
         else:
             messagebox.showerror("Bank Delete Error", message)
     def reset_form(self):
-        self.id.clear()
+        self.bank_id.clear()
         self.bank_name.clear()
         self.account_name.clear()
         self.balance.clear()
@@ -64,7 +64,7 @@ class BankView:
             status, bank = BankController.find_by_id(selected_bank[0])
             if status:
                 bank = Bank(*selected_bank)
-                self.id.set(bank.id)
+                self.bank_id.set(bank.bank_id)
                 self.bank_name.set(bank.name)
                 self.account_name.set(bank.account)
                 self.balance.set(bank.balance)

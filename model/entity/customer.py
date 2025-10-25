@@ -3,8 +3,8 @@ from tools.customer_validator import first_name_validator, last_name_validator, 
 
 
 class Customer:
-    def __init__(self, id, first_name, last_name, phone_number, address):
-        self.id = id
+    def __init__(self, customer_id, first_name, last_name, phone_number, address):
+        self.customer_id = customer_id
         self.first_name = first_name
         self.last_name = last_name
         self.phone_number = phone_number
@@ -22,4 +22,4 @@ class Customer:
 
     def to_tuple(self):
         return tuple(
-            (self.id, self.first_name, self.last_name, self.phone_number, self.address))
+            (self.customer_id, self.first_name, self.last_name, self.phone_number, self.address))

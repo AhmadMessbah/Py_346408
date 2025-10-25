@@ -17,7 +17,7 @@ class CustomerRepository:
         self.cursor.execute(
             "insert into customers (first_name, last_name, phone_number, address) values (?,?,?,?)",
             [customer.first_name, customer.last_name, customer.phone_number, customer.address])
-        customer.id = self.cursor.lastrowid
+        customer.customer_id = self.cursor.lastrowid
         self.connection.commit()
         return customer
 

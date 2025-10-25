@@ -10,7 +10,7 @@ class EmployeeService:
 
     @classmethod
     def update(cls, employee):
-        employee_result = cls.employee_repository.find_by_id(employee.id)
+        employee_result = cls.employee_repository.find_by_id(employee.employee_id)
         if employee_result:
             return cls.employee_repository.update(employee)
         else:

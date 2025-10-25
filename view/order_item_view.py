@@ -9,7 +9,7 @@ class OrderItemView:
         self.window.title("Order Item")
         self.window.geometry("900x380")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.order_item_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.order_id = LabelWithEntry(self.window, "Order Item", 20, 60, data_type=IntVar)
         self.product_id = LabelWithEntry(self.window, "Product Id", 20, 100, data_type=IntVar)
         self.quantity = LabelWithEntry(self.window, "Quantity", 20, 140, data_type=IntVar)
@@ -42,7 +42,7 @@ class OrderItemView:
             messagebox.showerror("Order Item Save Error", message)
 
     def edit_click(self):
-        status, message = OrderItemController.update(self.id.get(),self.order_id.get(), self.product_id.get(), self.quantity.get(),
+        status, message = OrderItemController.update(self.order_item_id.get(),self.order_id.get(), self.product_id.get(), self.quantity.get(),
                                                           self.price.get(), self.discount.get(), self.description.get())
         if status:
             messagebox.showinfo("Order Item Update", message)
@@ -51,7 +51,7 @@ class OrderItemView:
             messagebox.showerror("Order Item Update Error", message)
 
     def delete_click(self):
-        status, message = OrderItemController.delete(self.id.get())
+        status, message = OrderItemController.delete(self.order_item_id.get())
         if status:
             messagebox.showinfo("Order Item Delete", message)
             self.reset_form()
@@ -59,7 +59,7 @@ class OrderItemView:
             messagebox.showerror("Order Item Delete Error", message)
 
     def reset_form(self):
-       self.id.clear()
+       self.order_item_id.clear()
        self.order_id.clear()
        self.product_id.clear()
        self.quantity.clear()
@@ -74,7 +74,7 @@ class OrderItemView:
             status , order_item = OrderItemController.find_by_id(selected_order_item[0])
             if status:
                 order_item = OrderItem(*selected_order_item)
-                self.id.set(order_item.id)
+                self.order_item_id.set(order_item.order_item_id)
                 self.order_id.set(order_item.order_id)
                 self.product_id.set(order_item.product_id)
                 self.quantity.set(order_item.quantity)

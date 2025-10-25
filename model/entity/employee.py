@@ -2,8 +2,8 @@ from tools.employee_validator import *
 
 
 class Employee:
-    def __init__(self, id, first_name, last_name, salary, occupation, phone_number, username, password, role):
-        self.id = id
+    def __init__(self, employee_id, first_name, last_name, salary, occupation, phone_number, username, password, role):
+        self.employee_id = employee_id
         self.first_name = first_name
         self.last_name = last_name
         self.salary = salary
@@ -30,5 +30,5 @@ class Employee:
 
     def to_tuple(self):
       return tuple(
-        (self.id, self.first_name, self.last_name, self.salary, self.occupation, self.phone_number, self.username,
+        (self.employee_id, self.first_name, self.last_name, self.salary, self.occupation, self.phone_number, self.username,
          self.password,self.role))

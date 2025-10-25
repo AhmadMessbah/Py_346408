@@ -1,6 +1,6 @@
 class Product:
-    def __init__(self, id, name, brand, model, serial, category, unit, expiration_date=None):
-        self.id = id
+    def __init__(self, product_id, name, brand, model, serial, category, unit, expiration_date=None):
+        self.product_id = product_id
         self.name = name
         self.brand = brand
         self.model = model
@@ -14,4 +14,4 @@ class Product:
 
 
     def to_tuple(self):
-        return tuple((self.id, self.name, self.brand,self.model,self.serial,self.category,self.unit,self.expiration_date))
+        return tuple((self.product_id, self.name, self.brand,self.model,self.serial,self.category,self.unit,self.expiration_date))

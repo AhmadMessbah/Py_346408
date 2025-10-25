@@ -17,7 +17,7 @@ class EmployeeRepository:
             "insert into employees (first_name, last_name, salary, occupation, phone_number, username, password, role) values (?,?,?,?,?,?,?,?)",
             [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
              employee.username, employee.password, employee.role])
-        employee.id = self.cursor.lastrowid
+        employee.employee_id = self.cursor.lastrowid
         self.connection.commit()
         return employee
 

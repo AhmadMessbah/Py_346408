@@ -5,11 +5,11 @@ def _get_customer_service():
     return CustomerService()
 
 class Order:
-    def __init__(self, id, order_type, customer_id, employee_id, date_time,
+    def __init__(self, order_id, order_type, customer_id, employee_id, date_time,
                  payment_id, warehouse_transaction_id, tax=None, total_discount=None,
                  total_amount=None):
 
-        self.id = id
+        self.order_id = order_id
         self.order_type = order_type
         self.customer_id = customer_id
         self.employee_id = employee_id
@@ -38,7 +38,7 @@ class Order:
         # employee = employee_service.find_by_id(self.employee_id)[0]
 
         return tuple((
-            self.id,
+            self.order_id,
             self.order_type,
             self.customer_id,
             self.employee_id,

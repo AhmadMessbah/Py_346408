@@ -3,6 +3,10 @@ from model import Bank
 
 
 class BankRepository:
+    def __init__(self):
+        self.cursor = None
+        self.connection = None
+
     def connect(self):
         self.connection = sqlite3.connect("./db/selling_db")
         self.cursor = self.connection.cursor()
@@ -22,15 +26,15 @@ class BankRepository:
     def update(self, bank):
         self.connect()
         self.cursor.execute("update banks set name=?,account=?, balance=?,description=? where id=?",
-                            [bank.name, bank.account, bank.balance, bank.description, bank.id])
+                            [bank.name, bank.account, bank.balance, bank.description, bank.bank_id])
         self.connection.commit()
         self.disconnect()
         return bank
 
-    def delete(self, id):
+    def delete(self, bank_id):
         self.connect()
         self.cursor.execute("delete from banks where id=?",
-                            [id])
+                            [bank_id])
         self.connection.commit()
         self.disconnect()
 
@@ -41,9 +45,9 @@ class BankRepository:
         self.disconnect()
         return bank_list
 
-    def find_by_id(self, id):
+    def find_by_id(self, bank_id):
         self.connect()
-        self.cursor.execute("select * from banks where id=?", [id])
+        self.cursor.execute("select * from banks where id=?", [bank_id])
         bank = [Bank(*bank) for bank in self.cursor.fetchall()]
         self.disconnect()
         return bank

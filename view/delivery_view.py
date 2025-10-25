@@ -9,7 +9,7 @@ class DeliveryView:
         self.window.geometry("740x320")
         self.window.title("Delivery")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.delivery_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window, "FirstName", 20, 60)
         self.last_name = LabelWithEntry(self.window, "LastName", 20, 100)
         self.address = LabelWithEntry(self.window, "Address", 20, 140)
@@ -41,7 +41,7 @@ class DeliveryView:
 
 
     def edit_click(self):
-        status, message = DeliveryController.update( self.id.get(), self.first_name.get(), self.last_name.get(),
+        status, message = DeliveryController.update( self.delivery_id.get(), self.first_name.get(), self.last_name.get(),
                                                         self.address.get(), self.description.get())
         if status:
             messagebox.showinfo("Delivery Update", message)
@@ -50,7 +50,7 @@ class DeliveryView:
             messagebox.showerror("Delivery Update Error", message)
 
     def delete_click(self):
-        status, message = DeliveryController.delete(self.id.get())
+        status, message = DeliveryController.delete(self.delivery_id.get())
         if status:
             messagebox.showinfo("Delivery Delete", message)
             self.reset_form()
@@ -59,7 +59,7 @@ class DeliveryView:
 
 
     def reset_form(self):
-        self.id.clear()
+        self.delivery_id.clear()
         self.first_name.clear()
         self.last_name.clear()
         self.address.clear()
@@ -72,7 +72,7 @@ class DeliveryView:
             status, delivery = DeliveryController.find_by_id(selected_delivery[0])
             if status:
                 delivery = Delivery(*selected_delivery)
-                self.id.set(delivery.id)
+                self.delivery_id.set(delivery.delivery_id)
                 self.first_name.set(delivery.first_name)
                 self.last_name.set(delivery.last_name)
                 self.address.set(delivery.address)

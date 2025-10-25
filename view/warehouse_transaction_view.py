@@ -9,7 +9,7 @@ class WarehouseTransactionView:
         self.window.geometry("1000x400")
         self.window.title("Warehouse Transaction")
 
-        self.id = LabelWithEntry(self.window, "Id", 30, 20, data_type=IntVar, state="readonly")
+        self.warehouse_transaction_id = LabelWithEntry(self.window, "Id", 30, 20, data_type=IntVar, state="readonly")
         self.product_id = LabelWithEntry(self.window, "product Id", 30, 60)
         self.quantity = LabelWithEntry(self.window, "quantity", 30, 100)
 
@@ -54,7 +54,7 @@ class WarehouseTransactionView:
             messagebox.showerror("Warehouse_transaction Save Error", message)
 
     def edit_click(self):
-        status, message = WarehouseTransactionController.update(self.id.get(), self.product_id.get(),
+        status, message = WarehouseTransactionController.update(self.warehouse_transaction_id.get(), self.product_id.get(),
                                                                        self.quantity.get(), self.transaction_type.get(),
                                                                        self.transaction_datetime.get(),
                                                                        self.customer_id.get(), self.employee_id.get())
@@ -65,7 +65,7 @@ class WarehouseTransactionView:
             messagebox.showerror("Warehouse_transaction Update Error", message)
 
     def delete_click(self):
-        status, message = WarehouseTransactionController.delete(self.id.get())
+        status, message = WarehouseTransactionController.delete(self.warehouse_transaction_id.get())
         if status:
             messagebox.showinfo("Warehouse_transaction Delete", message)
             self.reset_form()
@@ -73,7 +73,7 @@ class WarehouseTransactionView:
             messagebox.showerror("Warehouse_transaction Delete Error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.warehouse_transaction_id.clear()
         self.product_id.clear()
         self.quantity.clear()
         self.transaction_type.set("get")
@@ -89,7 +89,7 @@ class WarehouseTransactionView:
                 selected_warehouse_transaction[0])
             if status:
                 warehouse_transaction = WarehouseTransaction(*selected_warehouse_transaction)
-                self.id.set(warehouse_transaction.id)
+                self.warehouse_transaction_id.set(warehouse_transaction.warehouse_transaction_id)
                 self.product_id.set(warehouse_transaction.product_id)
                 self.quantity.set(warehouse_transaction.quantity)
                 self.transaction_type.set(warehouse_transaction.transaction_type)

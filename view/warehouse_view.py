@@ -9,7 +9,7 @@ class WarehouseView:
         self.window.geometry("530x310")
         self.window.title("warehouse view")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.warehouse_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.product_id = LabelWithEntry(self.window, "Product_Id", 20, 60, data_type=IntVar)
         self.quantity = LabelWithEntry(self.window, "Quantity", 20, 100, data_type=IntVar)
 
@@ -37,7 +37,7 @@ class WarehouseView:
             messagebox.showerror("Warehouse Save Error", message)
 
     def edit_click(self):
-        status, message = WarehouseController.update(self.id.get(), self.product_id.get(), self.quantity.get())
+        status, message = WarehouseController.update(self.warehouse_id.get(), self.product_id.get(), self.quantity.get())
         if status:
             messagebox.showinfo("Warehouse Update", message)
             self.reset_form()
@@ -45,7 +45,7 @@ class WarehouseView:
             messagebox.showerror("Warehouse Update Error", message)
 
     def delete_click(self):
-        status, message = WarehouseController.delete(self.id.get())
+        status, message = WarehouseController.delete(self.warehouse_id.get())
         if status:
             messagebox.showinfo("Warehouse Delete", message)
             self.reset_form()
@@ -53,7 +53,7 @@ class WarehouseView:
             messagebox.showerror("Warehouse Delete Error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.warehouse_id.clear()
         self.product_id.clear()
         self.quantity.clear()
         status, warehouse_list = WarehouseController.find_all()
@@ -64,6 +64,6 @@ class WarehouseView:
             status, warehouse = WarehouseController.find_by_id(selected_warehouse[0])
             if status:
                 warehouse = Warehouse(*selected_warehouse)
-                self.id.set(warehouse.id)
+                self.warehouse_id.set(warehouse.warehouse_id)
                 self.product_id.set(warehouse.product_id)
                 self.quantity.set(warehouse.quantity)

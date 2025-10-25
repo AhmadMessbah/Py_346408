@@ -10,7 +10,7 @@ class FinancialTransactionService:
 
     @classmethod
     def update(cls, financial_transaction):
-        financial_transaction_result = cls.financial_transaction_repository.find_by_id(financial_transaction.id)
+        financial_transaction_result = cls.financial_transaction_repository.find_by_id(financial_transaction.financial_transaction_id)
         if financial_transaction_result:
             return cls.financial_transaction_repository.update(financial_transaction)
         else:

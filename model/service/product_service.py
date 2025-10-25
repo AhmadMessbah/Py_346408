@@ -10,7 +10,7 @@ class ProductService:
 
     @classmethod
     def update(cls, product):
-        product_result = cls.product_repository.find_by_id(product.id)
+        product_result = cls.product_repository.find_by_id(product.product_id)
         if product_result:
             return cls.product_repository.update(product)
         else:

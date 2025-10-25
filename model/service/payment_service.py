@@ -10,7 +10,7 @@ class PaymentService:
 
     @classmethod
     def update(cls, payment):
-        payment_result = cls.payment_repository.find_by_id(payment.id)
+        payment_result = cls.payment_repository.find_by_id(payment.payment_id)
         if payment_result:
             return cls.payment_repository.update(payment)
         else:

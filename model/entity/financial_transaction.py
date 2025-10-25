@@ -2,8 +2,8 @@ from tools.financial_transaction_validator import *
 
 
 class FinancialTransaction:
-    def __init__(self,id,transaction_type, customer_id , employee_id, amount, date_time,payment_id,description = ""):
-        self.id = id
+    def __init__(self, financial_transaction_id, transaction_type, customer_id , employee_id, amount, date_time, payment_id, description = ""):
+        self.financial_transaction_id = financial_transaction_id
         self.transaction_type = transaction_type        # فروش / خرید / هزینه / حقوق
         self.customer_id = customer_id
         self.employee_id = employee_id
@@ -25,4 +25,4 @@ class FinancialTransaction:
         return f"{self.__dict__}"
 
     def to_tuple(self):
-        return tuple((self.id,self.transaction_type,self.customer_id,self.employee_id,self.amount,self.date_time,self.payment_id,self.description))
+        return tuple((self.financial_transaction_id,self.transaction_type,self.customer_id,self.employee_id,self.amount,self.date_time,self.payment_id,self.description))

@@ -12,7 +12,7 @@ class OrderView:
         self.window.title("Order")
         self.window.geometry("1310x525")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.order_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.customer_id = LabelWithEntry(self.window, "Customer Id", 20, 60, data_type=IntVar)
         self.employee_id = LabelWithEntry(self.window, "Employee Id", 20, 100, data_type=IntVar)
         self.date_time = LabelWithEntry(self.window, "Date & Time", 20, 140)
@@ -67,7 +67,7 @@ class OrderView:
             messagebox.showerror("Order Save Error", message)
 
     def edit_click(self):
-        status, message = OrderController.update(self.id.get(), self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
+        status, message = OrderController.update(self.order_id.get(), self.order_type.get(), self.customer_id.get(), self.employee_id.get(),
                                                        self.date_time.get(), self.payment_id.get(), self.warehouse_transaction_id.get(),
                                                        self.tax.get(), self.total_discount.get(), self.total_amount.get())
         if status:
@@ -77,7 +77,7 @@ class OrderView:
             messagebox.showerror("Order Update Error", message)
 
     def delete_click(self):
-        status, message = OrderController.delete(self.id.get())
+        status, message = OrderController.delete(self.order_id.get())
         if status:
             messagebox.showinfo("Order Delete", message)
             self.reset_form()
@@ -88,7 +88,7 @@ class OrderView:
         ui = ShowOderView()
 
     def reset_form(self):
-        self.id.clear()
+        self.order_id.clear()
         self.customer_id.clear()
         self.employee_id.clear()
         self.date_time.clear()
@@ -106,7 +106,7 @@ class OrderView:
             status, order = OrderController.find_by_id(selected_order[0])
             if status:
                 order = Order(*selected_order)
-                self.id.set(order.id)
+                self.order_id.set(order.order_id)
                 self.order_type.set(order.order_type)
                 self.customer_id.set(order.customer_id)
                 self.employee_id.set(order.employee_id)

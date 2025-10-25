@@ -10,7 +10,7 @@ class CustomerView:
         self.window.geometry("740x310")
         self.window.title("Customer")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
+        self.customer_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window, "FirstName", 20, 60)
         self.last_name = LabelWithEntry(self.window, "LastName", 20, 100)
         self.phone_number = LabelWithEntry(self.window, "PhoneNumber", 20, 140, data_type=IntVar)
@@ -41,7 +41,7 @@ class CustomerView:
             messagebox.showerror("Customer Save Error", message)
 
     def edit_click(self):
-        status, message = CustomerController.update(self.id.get(), self.first_name.get(), self.last_name.get(),
+        status, message = CustomerController.update(self.customer_id.get(), self.first_name.get(), self.last_name.get(),
                                                           self.phone_number.get(), self.address.get())
         if status:
             messagebox.showinfo("Customer Update", message)
@@ -50,7 +50,7 @@ class CustomerView:
             messagebox.showerror("Customer Update Error", message)
 
     def delete_click(self):
-        status, message = CustomerController.delete(self.id.get())
+        status, message = CustomerController.delete(self.customer_id.get())
         if status:
             messagebox.showinfo("Customer Delete", message)
             self.reset_form()
@@ -58,7 +58,7 @@ class CustomerView:
             messagebox.showerror("Customer Delete Error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.customer_id.clear()
         self.first_name.clear()
         self.last_name.clear()
         self.phone_number.clear()
@@ -71,7 +71,7 @@ class CustomerView:
             status, customer = CustomerController.find_by_id(selected_customer[0])
             if status:
                 customer = Customer(*selected_customer)
-                self.id.set(customer.id)
+                self.customer_id.set(customer.customer_id)
                 self.first_name.set(customer.first_name)
                 self.last_name.set(customer.last_name)
                 self.phone_number.set(customer.phone_number)

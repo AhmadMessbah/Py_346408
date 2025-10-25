@@ -19,7 +19,7 @@ class WarehouseTransactionRepository:
                             """, ([warehouse_transaction.product_id, warehouse_transaction.quantity,
                                    warehouse_transaction.transaction_type, warehouse_transaction.transaction_datetime,
                                    warehouse_transaction.customer_id, warehouse_transaction.employee_id]))
-        warehouse_transaction.id = self.cursor.lastrowid
+        warehouse_transaction.warehouse_transaction_id = self.cursor.lastrowid
         self.connection.commit()
         return warehouse_transaction
 

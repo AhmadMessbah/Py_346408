@@ -18,7 +18,7 @@ class ProductRepository:
             "insert into products (name, brand, model, serial, category, unit, expiration_date) values (?,?,?,?,?,?,?)",
             [product.name, product.brand, product.model, product.serial, product.category, product.unit,
              product.expiration_date])
-        product.id = self.cursor.lastrowid
+        product.product_id = self.cursor.lastrowid
         self.connection.commit()
         return product
 

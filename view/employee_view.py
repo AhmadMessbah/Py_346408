@@ -8,7 +8,7 @@ class EmployeeView:
         self.window.title("Employee")
         self.window.geometry("1060x440")
         
-        self.id = LabelWithEntry(self.window,"Id",20,20, data_type=IntVar, state="readonly")
+        self.employee_id = LabelWithEntry(self.window,"Id",20,20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window,"FirstName",20,60)
         self.last_name = LabelWithEntry(self.window,"LastName",20,100)
         self.salary = LabelWithEntry(self.window,"Salary",20,140,data_type=IntVar)
@@ -44,7 +44,7 @@ class EmployeeView:
 
 
     def edit_click(self):
-        status, message = EmployeeController.update(self.id.get(), self.first_name.get(), self.last_name.get(), self.salary.get(),
+        status, message = EmployeeController.update(self.employee_id.get(), self.first_name.get(), self.last_name.get(), self.salary.get(),
                                                         self.occupation.get(), self.phone_number.get(), self.username.get(),self.password.get(),self.role.get())
         if status:
             messagebox.showinfo("Employee update", message)
@@ -53,7 +53,7 @@ class EmployeeView:
             messagebox.showerror("Employee update Error", message)
 
     def delete_click(self):
-        status, message = EmployeeController.delete(self.id.get())
+        status, message = EmployeeController.delete(self.employee_id.get())
         if status:
             messagebox.showinfo("Employee Delete", message)
             self.reset_form()
@@ -61,7 +61,7 @@ class EmployeeView:
             messagebox.showerror("Employee Delete Error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.employee_id.clear()
         self.first_name.clear()
         self.last_name.clear()
         self.salary.clear()
@@ -79,7 +79,7 @@ class EmployeeView:
                    status,employee=EmployeeController.find_by_id(selected_employee[0])
                    if status:
                     employee = Employee(*selected_employee)
-                    self.id.set(employee.id)
+                    self.employee_id.set(employee.employee_id)
                     self.first_name.set(employee.first_name)
                     self.last_name.set(employee.last_name)
                     self.salary.set(employee.salary)

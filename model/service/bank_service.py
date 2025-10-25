@@ -10,7 +10,7 @@ class BankService:
 
     @classmethod
     def update(cls, bank):
-        bank_result = cls.bank_repository.find_by_id(bank.id)
+        bank_result = cls.bank_repository.find_by_id(bank.bank_id)
         if bank_result:
             return cls.bank_repository.update(bank)
         else:

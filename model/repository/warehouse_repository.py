@@ -14,7 +14,7 @@ class WarehouseRepository:
     def save(self, warehouse):
             self.connect()
             self.cursor.execute("""insert into warehouses (product_id,quantity) values (?,?)""", ([warehouse.product_id,warehouse.quantity]))
-            warehouse.id = self.cursor.lastrowid
+            warehouse.warehouse_id = self.cursor.lastrowid
             self.connection.commit()
             return warehouse
 

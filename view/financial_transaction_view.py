@@ -13,7 +13,7 @@ class FinancialTransactionView:
         self.window.geometry("1000x400")
         self.window.title("Financial transaction")
 
-        self.id = LabelWithEntry(self.window, "Id", 20, 20, state="readonly")
+        self.financial_transaction_id = LabelWithEntry(self.window, "Id", 20, 20, state="readonly")
         self.transaction_type = LabelWithEntry(self.window, "Type", 20, 60)
         self.customer_id = LabelWithEntry(self.window, "CustomerId", 20, 100)
         self.employee_id = LabelWithEntry(self.window, "EmployeeId", 20, 140)
@@ -50,7 +50,7 @@ class FinancialTransactionView:
             messagebox.showerror("Financial_Transaction", message)
 
     def edit_click(self):
-        status, message = FinancialTransactionController.update(self.id.get(), self.transaction_type.get(),
+        status, message = FinancialTransactionController.update(self.financial_transaction_id.get(), self.transaction_type.get(),
                                                                        self.customer_id.get(), self.employee_id.get(),
                                                                        self.amount.get(), self.date_time.get(),
                                                                        self.payment_id.get(), self.description.get())
@@ -61,7 +61,7 @@ class FinancialTransactionView:
             messagebox.showerror("Financial_Transaction update error", message)
 
     def delete_click(self):
-        status, message = FinancialTransactionController.delete(self.id.get())
+        status, message = FinancialTransactionController.delete(self.financial_transaction_id.get())
         if status:
             messagebox.showinfo("Financial_Transaction update", message)
             self.reset_form()
@@ -69,7 +69,7 @@ class FinancialTransactionView:
             messagebox.showerror("Financial_Transaction update error", message)
 
     def reset_form(self):
-        self.id.clear()
+        self.financial_transaction_id.clear()
         self.transaction_type.clear()
         self.customer_id.clear()
         self.employee_id.clear()
@@ -85,7 +85,7 @@ class FinancialTransactionView:
     def select_from_table(self, selected_financial_transaction):
         if selected_financial_transaction:
             financial_transaction = FinancialTransaction(*selected_financial_transaction)
-            self.id.set(financial_transaction.id)
+            self.financial_transaction_id.set(financial_transaction.financial_transaction_id)
             self.transaction_type.set(financial_transaction.transaction_type)
             self.customer_id.set(financial_transaction.customer_id)
             self.employee_id.set(financial_transaction.employee_id)

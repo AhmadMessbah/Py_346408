@@ -4,8 +4,8 @@ from tools.order_item_validator import *
 
 class OrderItem:
 
-    def __init__(self, id, order_id, product_id, quantity, price, discount=None, description=None):
-        self.id = id
+    def __init__(self, order_item_id, order_id, product_id, quantity, price, discount=None, description=None):
+        self.order_item_id = order_item_id
         self.order_id = order_id
         self.product_id = product_id
         self.quantity = quantity
@@ -27,7 +27,7 @@ class OrderItem:
         # product = product_service.find_by_id(self.product_id)[0]
 
         return tuple((
-            self.id,
+            self.order_item_id,
             self.order_id,
             self.product_id,
             self.quantity,

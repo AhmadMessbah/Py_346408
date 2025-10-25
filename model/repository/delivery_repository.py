@@ -16,7 +16,7 @@ class DeliveryRepository:
         self.cursor.execute(
                 "insert into deliveries (id, first_name, last_name, address, description) values (?,?,?,?,?)",
                 [delivery.id, delivery.first_name, delivery.last_name, delivery.address, delivery.description])
-        delivery.id = self.cursor.lastrowid
+        delivery.delivery_id = self.cursor.lastrowid
         self.connection.commit()
         return delivery
 
