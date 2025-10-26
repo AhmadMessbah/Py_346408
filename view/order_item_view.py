@@ -94,19 +94,19 @@ class OrderItemView:
         if status and order_item_list:
             self.table.refresh_table(order_item_list)
         else:
-            self.table.clear_table()
+            self.reset_form()
 
     def search_by_product_id(self):
         status, order_item_list = OrderItemController.find_by_product_id(self.search_product_id.get())
         if status and order_item_list:
             self.table.refresh_table(order_item_list)
         else:
-            self.table.clear_table()
+            self.reset_form()
 
     def search_by_quantity(self):
         status, order_item_list = OrderItemController.find_by_quantity_less_than(self.search_quantity.get())
         if status and order_item_list:
             self.table.refresh_table(order_item_list)
         else:
-            self.table.clear_table()
+            self.reset_form()
 
