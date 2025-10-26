@@ -22,15 +22,15 @@ class OrderItem:
         return f"{self.__dict__}"
 
     def to_tuple(self):
-        # from service import ProductService
+        from service import ProductService
 
-        # product = ProductService.find_by_id(self.product_id)
+        product = ProductService.find_by_id(self.product_id)
 
         return tuple((
             self.order_item_id,
             self.order_id,
-            #product.name    ,
-            self.product_id,
+            product.name+" "+product.brand+" "+f"({self.product_id})",
+            # self.product_id,
             self.quantity,
             self.price,
             self.discount,
