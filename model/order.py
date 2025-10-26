@@ -26,16 +26,18 @@ class Order:
         return f"{self.__dict__}"
 
     def to_tuple(self):
-        from service import CustomerService, EmployeeService
+        # from service import CustomerService, EmployeeService
 
-        customer = CustomerService.find_by_id(self.customer_id)
-        employee = EmployeeService.find_by_id(self.employee_id)
+        # customer = CustomerService.find_by_id(self.customer_id)
+        # employee = EmployeeService.find_by_id(self.employee_id)
 
         return tuple((
             self.order_id,
             self.order_type,
-            customer.full_name(),
-            employee.full_name(),
+            # customer.full_name(),
+            # employee.full_name(),
+            self.customer_id,
+            self.employee_id,
             self.date_time,
             self.payment_id,
             self.warehouse_transaction_id,
