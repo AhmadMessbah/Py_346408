@@ -7,7 +7,7 @@ class OrderItemView:
     def __init__(self):
         self.window = Tk()
         self.window.title("Order Item")
-        self.window.geometry("900x380")
+        self.window.geometry("950x350")
 
         self.order_item_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.order_id = LabelWithEntry(self.window, "Order Id", 20, 60, data_type=IntVar)
@@ -21,10 +21,12 @@ class OrderItemView:
                                               on_keypress_function=self.search_by_order_id)
         self.search_product_id = LabelWithEntry(self.window, "Product Id", 500, 20, data_type=IntVar, distance=70,
                                                 on_keypress_function=self.search_by_product_id)
+        self.search_quantity = LabelWithEntry(self.window, "Quantity<?", 710, 20, data_type=IntVar, distance=70,
+                                                on_keypress_function=self.search_by_quantity)
 
         self.table = Table(self.window,
                            ["Id", "Order Id", "Product", "Quantity", "Price", "Discount", "Description"],
-                           [40, 60, 120, 60, 90, 60, 140]
+                           [40, 60, 140, 60, 100, 60, 145]
                            , 300 ,60 ,
                            12 ,
                            self.select_from_table
@@ -96,6 +98,13 @@ class OrderItemView:
 
     def search_by_product_id(self):
         status, order_item_list = OrderItemController.find_by_product_id(self.search_product_id.get())
+        if status and order_item_list:
+            self.table.refresh_table(order_item_list)
+        else:
+            self.reset_form()
+
+    def search_by_quantity(self):
+        status, order_item_list = OrderItemController.find_by_quantity_less_than(self.search_quantity.get())
         if status and order_item_list:
             self.table.refresh_table(order_item_list)
         else:

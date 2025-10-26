@@ -4,13 +4,12 @@ from model import Order
 from controller import OrderController
 from view.show_order_view import ShowOderView
 
-
 class OrderView:
     def __init__(self):
 
         self.window = Tk()
         self.window.title("Order")
-        self.window.geometry("1310x525")
+        self.window.geometry("1360x535")
 
         self.order_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.customer_id = LabelWithEntry(self.window, "Customer Id", 20, 60, data_type=IntVar)
@@ -33,13 +32,31 @@ class OrderView:
             state="readonly")
         self.order_type.place(x=110, y=390)
 
+        self.search_customer_id = LabelWithEntry(self.window, "Customer Id", 280, 20, data_type=IntVar, distance=75,
+                                                 on_keypress_function=self.search_by_customer_id)
+        self.search_employee_id = LabelWithEntry(self.window, "Employee Id", 500, 20, data_type=IntVar, distance=75,
+                                                 on_keypress_function=self.search_by_employee_id)
+        self.search_start_date_time = LabelWithEntry(self.window, "Start Date", 720, 20, distance=60,
+                                                 on_keypress_function=self.search_by_date_time_range)
+        self.search_end_date_time = LabelWithEntry(self.window, "End Date", 920, 20, distance=55,
+                                                 on_keypress_function=self.search_by_date_time_range)
+
+        Label(self.window, text="Order Type").place(x=1120, y=20)
+        self.search_order_type = Combobox(
+            self.window,
+            values=["", "Basket", "Sell", "Buy"],
+            width=17,
+            state="readonly")
+        self.search_order_type.bind("<<ComboboxSelected>>", self.search_by_order_type)
+        self.search_order_type.place(x=1195, y=20)
+
         # Table
         self.table = Table(
             self.window,
             ["Id", "Order Type", "Customer", "Employee", "Date & Time", "Payment Id", "Ware Trans Id", "Tax", "Total Discount", "Total Amount"],
-            [40, 90, 120, 120, 140, 90, 90, 90, 90, 120],
-            280, 20,
-            23,
+            [40, 90, 140, 140, 150, 90, 90, 90, 90, 120],
+            280, 60,
+            21,
             self.select_from_table
         )
 
@@ -116,3 +133,33 @@ class OrderView:
                 self.tax.set(order.tax)
                 self.total_discount.set(order.total_discount)
                 self.total_amount.set(order.total_amount)
+
+    def search_by_customer_id(self):
+        status, order_list = OrderController.find_by_customer_id(self.search_customer_id.get())
+        if status and order_list:
+            self.table.refresh_table(order_list)
+        else:
+            self.reset_form()
+
+    def search_by_employee_id(self):
+        status, order_list = OrderController.find_by_employee_id(self.search_employee_id.get())
+        if status and order_list:
+            self.table.refresh_table(order_list)
+        else:
+            self.reset_form()
+
+    def search_by_date_time_range(self):
+        status, order_list = OrderController.find_by_date_time_range(self.search_start_date_time.get(), self.search_end_date_time.get())
+        if status and order_list:
+            self.table.refresh_table(order_list)
+        else:
+            self.reset_form()
+
+    def search_by_order_type(self, event):
+        status, order_list = OrderController.find_by_order_type(self.search_order_type.get())
+        if status and order_list:
+            self.table.refresh_table(order_list)
+        else:
+            self.reset_form()
+
+
