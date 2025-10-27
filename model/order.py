@@ -42,3 +42,4 @@ class Order:
             self.tax,
             self.total_discount,
             self.total_amount))
+

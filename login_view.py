@@ -18,9 +18,6 @@ class LoginView:
         self.username = LabelWithEntry(self.window,"Username",30,270)
         self.password = LabelWithEntry(self.window,"Password",30,310)
 
-        self.username.set("aliuser")
-        self.password.set("pass1234")
-
         Button(self.window, text="Login", width=8,font=("Arial", 14), command=self.login).place(x=50, y=380, width=200,height=70)
 
         self.window.mainloop()
