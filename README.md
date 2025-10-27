@@ -1,151 +1,150 @@
-# 🏪 Store Management System
+# 🏪 سیستم مدیریت فروشگاه
 
-A comprehensive desktop application for managing retail store operations, built with Python and Tkinter using the MVC (Model-View-Controller) architecture pattern.
+یک برنامه دسکتاپ جامع برای مدیریت عملیات فروشگاه خرده‌فروشی، ساخته شده با Python و Tkinter با استفاده از الگوی معماری MVC (Model-View-Controller).
 
-## 📋 Table of Contents
+## 📋 فهرست مطالب
 
-- [Features](#features)
-- [Architecture](#architecture)
-- [Technology Stack](#technology-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Modules](#modules)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
+- [ویژگی‌ها](#ویژگی‌ها)
+- [معماری](#معماری)
+- [تکنولوژی‌های استفاده شده](#تکنولوژی‌های-استفاده-شده)
+- [نصب](#نصب)
+- [استفاده](#استفاده)
+- [ساختار پروژه](#ساختار-پروژه)
+- [ماژول‌ها](#ماژول‌ها)
+- [مشارکت](#مشارکت)
+- [مجوز](#مجوز)
 
-## ✨ Features
+## ✨ ویژگی‌ها
 
-### Core Functionality
-- 👥 **Customer Management** - Complete CRUD operations for customer records
-- 👨‍💼 **Employee Management** - Employee management with role-based access
-- 📦 **Product Management** - Product catalog with categories, brands, and inventory
-- 🛒 **Order Management** - Order processing and tracking
-- 💳 **Payment Processing** - Payment handling and transaction recording
-- 📍 **Delivery Management** - Delivery tracking and management
-- 🏭 **Warehouse Management** - Inventory control and stock management
-- 💰 **Financial Tracking** - Financial transactions and reporting
-- 🏦 **Bank Account Management** - Multiple bank account management
+### عملکردهای اصلی
+- 👥 **مدیریت مشتری** - عملیات کامل CRUD برای ثبت رکوردهای مشتری
+- 👨‍💼 **مدیریت کارمند** - مدیریت کارمندان با دسترسی مبتنی بر نقش
+- 📦 **مدیریت محصول** - کاتالوگ محصولات با دسته‌بندی، برند و موجودی
+- 🛒 **مدیریت سفارش** - پردازش و ردیابی سفارشات
+- 💳 **پردازش پرداخت** - مدیریت پرداخت و ثبت تراکنش‌ها
+- 📍 **مدیریت تحویل** - ردیابی و مدیریت تحویل
+- 🏭 **مدیریت انبار** - کنترل موجودی و مدیریت موجودی
+- 💰 **ردیابی مالی** - تراکنش‌ها و گزارش‌دهی مالی
+- 🏦 **مدیریت حساب بانکی** - مدیریت چندین حساب بانکی
 
-### User Interface
-- 🎨 Modern and intuitive GUI built with Tkinter
-- 📊 Data tables with vertical scrollbars
-- 🔍 Advanced search and filtering capabilities
-- ✨ Consistent button layouts and user experience
-- 🔄 Select and Refresh functionality across all views
+### رابط کاربری
+- 🎨 رابط کاربری گرافیکی مدرن و بصری ساخته شده با Tkinter
+- 📊 جداول داده با اسکرول‌بار عمودی
+- 🔍 قابلیت‌های جستجو و فیلتر پیشرفته
+- ✨ چیدمان دکمه‌های یکنواخت و تجربه کاربری یکپارچه
+- 🔄 عملکرد Select و Refresh در تمام نمایش‌ها
 
-### Data Management
-- ✅ Input validation for all fields
-- 💾 SQLite database for data persistence
-- 🔒 Secure user authentication
-- 📝 Comprehensive logging system
+### مدیریت داده
+- ✅ اعتبارسنجی ورودی برای تمام فیلدها
+- 💾 پایگاه داده SQLite برای ذخیره‌سازی داده
+- 🔒 احراز هویت امن کاربر
+- 📝 سیستم لاگ‌گیری جامع
 
-## 🏗️ Architecture
+## 🏗️ معماری
 
-This project follows the **MVC (Model-View-Controller)** architectural pattern:
+این پروژه از الگوی معماری **MVC (Model-View-Controller)** پیروی می‌کند:
 
 ```
 ┌─────────────┐
-│    View     │  User Interface Layer
+│    View     │  لایه رابط کاربری
 └──────┬──────┘
        │
        ↓
 ┌─────────────┐
-│ Controller  │  Business Logic Layer
+│ Controller  │  لایه منطق کسب و کار
 └──────┬──────┘
        │
        ↓
 ┌─────────────┐
-│  Repository │  Data Access Layer
+│  Repository │  لایه دسترسی به داده
 └──────┬──────┘
        │
        ↓
 ┌─────────────┐
-│  Database   │  SQLite Database
+│  Database   │  پایگاه داده SQLite
 └─────────────┘
 ```
 
-## 🛠️ Technology Stack
+## 🛠️ تکنولوژی‌های استفاده شده
 
-- **Language:** Python 3.x
-- **GUI Framework:** Tkinter
-- **Database:** SQLite
-- **Architecture:** MVC Pattern
-- **Testing:** Built-in unittest module
+- **زبان:** Python 3.x
+- **چارچوب رابط کاربری:** Tkinter
+- **پایگاه داده:** SQLite
+- **معماری:** الگوی MVC
+- **تست:** ماژول unittest داخلی
 
-## 📦 Installation
+## 📦 نصب
 
-### Prerequisites
-- Python 3.7 or higher
-- pip (Python package manager)
+### پیش‌نیازها
+- Python 3.7 یا بالاتر
+- pip (مدیر بسته Python)
 
-### Setup Steps
+### مراحل راه‌اندازی
 
-1. **Clone the repository**
+1. **کلون کردن مخزن**
    ```bash
    git clone https://github.com/yourusername/StoreAppPython.git
    cd StoreAppPython
    ```
 
-2. **Install dependencies** (if any)
+2. **نصب وابستگی‌ها** (در صورت وجود)
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Initialize the database**
+3. **راه‌اندازی پایگاه داده**
    ```bash
-   # The database will be created automatically on first run
-   # Or run the SQL script manually:
+   # پایگاه داده به صورت خودکار در اولین اجرا ایجاد می‌شود
+   # یا می‌توانید اسکریپت SQL را به صورت دستی اجرا کنید:
    sqlite3 db/selling_db < db/database_tables.sql
    ```
 
-4. **Run the application**
+4. **اجرای برنامه**
    ```bash
    python app.py
    ```
 
-## 🚀 Usage
+## 🚀 استفاده
 
-### Starting the Application
+### شروع برنامه
 
 ```bash
 python app.py
 ```
 
-The application will start with the login screen. Use your employee credentials to log in.
+برنامه با صفحه ورود شروع می‌شود. از اطلاعات کارمندی خود برای ورود استفاده کنید.
 
-### Main Modules
+### ماژول‌های اصلی
 
-Each module can be accessed independently by running:
+هر ماژول را می‌توان به صورت مستقل با اجرای دستورات زیر دسترسی داشت:
 
 ```bash
-python customer_main.py      # Customer Management
-python employee_main.py      # Employee Management
-python product_main.py       # Product Management
-python order_main.py         # Order Management
-python payment_main.py       # Payment Management
-python warehouse_main.py     # Warehouse Management
-python bank_main.py          # Bank Management
+python customer_main.py      # مدیریت مشتری
+python employee_main.py      # مدیریت کارمند
+python product_main.py       # مدیریت محصول
+python order_main.py         # مدیریت سفارش
+python payment_main.py       # مدیریت پرداخت
+python warehouse_main.py     # مدیریت انبار
+python bank_main.py          # مدیریت بانک
 ```
 
-### Basic Operations
+### عملیات اصلی
 
-1. **Select** - Click on a row in the table to select and view details
-2. **Refresh** - Refresh the table to show latest data
-3. **Save** - Add a new record
-4. **Edit** - Update the selected record
-5. **Delete** - Remove the selected record
+1. **انتخاب** - کلیک روی یک ردیف در جدول برای انتخاب و مشاهده جزئیات
+2. **تازه‌سازی** - تازه‌سازی جدول برای نمایش آخرین داده‌ها
+3. **ذخیره** - افزودن رکورد جدید
+4. **ویرایش** - به‌روزرسانی رکورد انتخاب شده
+5. **حذف** - حذف رکورد انتخاب شده
 
-## 📁 Project Structure
+## 📁 ساختار پروژه
 
 ```
 StoreAppPython/
 │
-├── app.py                 # Main application entry point
-├── login_view.py         # Login and authentication
+├── app.py                 # نقطه ورود اصلی برنامه
+├── login_view.py         # ورود و احراز هویت
 │
-├── model/                # Data models
+├── model/                # مدل‌های داده
 │   ├── customer.py
 │   ├── employee.py
 │   ├── product.py
@@ -153,100 +152,99 @@ StoreAppPython/
 │   ├── payment.py
 │   └── ...
 │
-├── view/                 # User interface
+├── view/                 # رابط کاربری
 │   ├── customer_view.py
 │   ├── employee_view.py
 │   ├── product_view.py
-│   ├── component/        # Reusable UI components
+│   ├── component/        # کامپوننت‌های قابل استفاده مجدد UI
 │   │   ├── table.py
 │   │   └── lable_with_entry.py
 │   └── ...
 │
-├── controller/           # Business logic
+├── controller/           # منطق کسب و کار
 │   ├── customer_controller.py
 │   ├── employee_controller.py
 │   └── ...
 │
-├── service/              # Service layer
+├── service/              # لایه سرویس
 │   ├── customer_service.py
 │   └── ...
 │
-├── repository/           # Data access
+├── repository/           # دسترسی به داده
 │   ├── customer_repository.py
 │   └── ...
 │
-├── tools/                # Utilities
+├── tools/                # ابزارها
 │   ├── validators/
 │   └── logging.py
 │
-├── test/                 # Unit tests
+├── test/                 # تست‌های واحد
 │   ├── customer_test.py
 │   └── ...
 │
-└── db/                   # Database
+└── db/                   # پایگاه داده
     ├── database_tables.sql
     └── selling_db
 ```
 
-## 📚 Modules
+## 📚 ماژول‌ها
 
-### Entities
-- **Customer** - Customer information and contact details
-- **Employee** - Employee management with roles and authentication
-- **Product** - Product catalog with categories and inventory
-- **Order** - Sales orders and transactions
-- **OrderItem** - Order line items
-- **Payment** - Payment records and methods
-- **Delivery** - Delivery tracking
-- **Warehouse** - Warehouse locations
-- **WarehouseTransaction** - Stock movements
-- **FinancialTransaction** - Financial records
-- **Bank** - Bank account management
-- **Sample** - Sample product management
+### موجودیت‌ها
+- **Customer** - اطلاعات و جزئیات تماس مشتری
+- **Employee** - مدیریت کارمند با نقش‌ها و احراز هویت
+- **Product** - کاتالوگ محصولات با دسته‌بندی و موجودی
+- **Order** - سفارشات فروش و تراکنش‌ها
+- **OrderItem** - آیتم‌های خط سفارش
+- **Payment** - سوابق و روش‌های پرداخت
+- **Delivery** - ردیابی تحویل
+- **Warehouse** - مکان‌های انبار
+- **WarehouseTransaction** - جابجایی‌های موجودی
+- **FinancialTransaction** - سوابق مالی
+- **Bank** - مدیریت حساب بانکی
+- **Sample** - مدیریت محصول نمونه
 
-### User Interface Components
+### کامپوننت‌های رابط کاربری
 
-#### Table Component
-- Custom table widget with Treeview
-- Vertical scrollbar support
-- Row selection functionality
-- Data refresh capability
+#### کامپوننت Table
+- ویجت جدول سفارشی با Treeview
+- پشتیبانی از اسکرول‌بار عمودی
+- عملکرد انتخاب ردیف
+- قابلیت تازه‌سازی داده
 
-#### LabelWithEntry Component
-- Reusable input component
-- Label and entry field combination
-- Support for different data types
-- Validation support
+#### کامپوننت LabelWithEntry
+- کامپوننت ورودی قابل استفاده مجدد
+- ترکیب برچسب و فیلد ورودی
+- پشتیبانی از انواع داده‌های مختلف
+- پشتیبانی از اعتبارسنجی
 
-## 👥 Contributing
+## 👥 مشارکت
 
-We welcome contributions! Please follow these steps:
+ما از مشارکت‌ها استقبال می‌کنیم! لطفاً این مراحل را دنبال کنید:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. مخزن را Fork کنید
+2. یک شاخه ویژگی ایجاد کنید (`git checkout -b feature/AmazingFeature`)
+3. تغییرات خود را commit کنید (`git commit -m 'Add some AmazingFeature'`)
+4. به شاخه push کنید (`git push origin feature/AmazingFeature`)
+5. یک Pull Request باز کنید
 
-### Code Style
-- Follow PEP 8 Python style guide
-- Add comments for complex logic
-- Write unit tests for new features
-- Keep the MVC pattern consistent
+### سبک کد
+- پیروی از راهنمای سبک PEP 8 برای Python
+- افزودن توضیحات برای منطق پیچیده
+- نوشتن تست‌های واحد برای ویژگی‌های جدید
+- حفظ یکنواختی الگوی MVC
 
-## 📄 License
+## 📄 مجوز
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+این پروژه تحت مجوز MIT منتشر شده است - برای جزئیات به فایل LICENSE مراجعه کنید.
 
-## 🙏 Acknowledgments
+## 🙏 قدردانی
 
-Special thanks to all contributors who have made this project possible. See [CONTRIBUTION_REPORT.md](CONTRIBUTION_REPORT.md) for detailed contributor information.
+از تمام مشارکت‌کنندگانی که این پروژه را ممکن کرده‌اند، سپاسگزاری ویژه داریم. برای اطلاعات جزئی‌تر مشارکت‌کنندگان به [CONTRIBUTION_REPORT.md](CONTRIBUTION_REPORT.md) مراجعه کنید.
 
-## 📞 Support
+## 📞 پشتیبانی
 
-For support, please open an issue in the GitHub repository or contact the development team.
+برای پشتیبانی، لطفاً یک issue در مخزن GitHub باز کنید یا با تیم توسعه تماس بگیرید.
 
 ---
 
-**Made with ❤️ by the Store Management Team**
-
+**ساخته شده با ❤️ توسط تیم مدیریت فروشگاه**
