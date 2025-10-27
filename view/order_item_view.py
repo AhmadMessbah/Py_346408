@@ -1,6 +1,6 @@
 from view import *
 
-from model import OrderItem
+from model import OrderItem, Session
 from controller import OrderItemController
 
 class OrderItemView:
@@ -32,9 +32,11 @@ class OrderItemView:
                            self.select_from_table
                            )
 
+        Button(self.window, text="Select OrderItem", width=19, command=self.select_order_item).place(x=20, y=260)
+        Button(self.window, text="Refresh", width=7, command=self.refresh).place(x=180, y=260)
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=300)
-        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=97, y=300)
-        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=175, y=300)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=300)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=300)
 
         self.reset_form()
         self.window.mainloop()
@@ -109,4 +111,13 @@ class OrderItemView:
             self.table.refresh_table(order_item_list)
         else:
             self.reset_form()
+
+    def select_order_item(self):
+        if self.order_item_id.get():
+            status, Session.order_item = OrderItemController.find_by_id(self.order_item_id.get())
+        else:
+            messagebox.showerror("Select", "Select Order Item")
+
+    def refresh(self):
+        pass
 

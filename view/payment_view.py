@@ -2,7 +2,7 @@ from view.customer_view import CustomerView
 from view.employee_view import EmployeeView
 from view import *
 
-from model import Payment
+from model import Payment, Session
 from controller import PaymentController
 
 
@@ -28,9 +28,11 @@ class PaymentView:
             18,
             self.select_from_table
         )
-        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=400)
-        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=400)
-        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=400)
+        Button(self.window, text="Select Payment", width=19, command=self.select_payment).place(x=20, y=340)
+        Button(self.window, text="Refresh", width=7, command=self.refresh).place(x=180, y=340)
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=380)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=380)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=380)
         self.reset_form()
         self.window.mainloop()
 
@@ -90,3 +92,12 @@ class PaymentView:
                 self.total_amount.set(payment.total_amount)
                 self.employee_id.set(payment.employee_id)
                 self.description.set(payment.description)
+
+    def select_payment(self):
+        if self.payment_id.get():
+            status, Session.payment = PaymentController.find_by_id(self.payment_id.get())
+        else:
+            messagebox.showerror("Select", "Select Payment")
+
+    def refresh(self):
+        pass

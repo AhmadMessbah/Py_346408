@@ -1,5 +1,5 @@
 from view import *
-from model import Bank
+from model import Bank, Session
 from controller import BankController
 
 class BankView:
@@ -23,8 +23,10 @@ class BankView:
             self.select_from_table
         )
 
-        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20,y=260)
-        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100,y=260)
+        Button(self.window, text="Select Bank", width=19, command=self.select_bank).place(x=20, y=220)
+        Button(self.window, text="Refresh", width=7, command=self.refresh).place(x=180, y=220)
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=260)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=260)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=260)
         self.reset_form()
         self.window.mainloop()
@@ -69,6 +71,15 @@ class BankView:
                 self.account_name.set(bank.account)
                 self.balance.set(bank.balance)
                 self.description.set(bank.description)
+
+    def select_bank(self):
+        if self.bank_id.get():
+            status, Session.bank = BankController.find_by_id(self.bank_id.get())
+        else:
+            messagebox.showerror("Select", "Select Bank")
+
+    def refresh(self):
+        pass
 
 
 

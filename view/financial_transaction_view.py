@@ -2,6 +2,7 @@ from controller.financial_transaction_controller import FinancialTransactionCont
 from view import *
 
 from model.financial_transaction import FinancialTransaction
+from model import Session
 
 
 class FinancialTransactionView:
@@ -29,9 +30,11 @@ class FinancialTransactionView:
         )
 
 
-        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=340)
-        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=340)
-        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=340)
+        Button(self.window, text="Select Transaction", width=19, command=self.select_transaction).place(x=20, y=315)
+        Button(self.window, text="Refresh", width=7, command=self.refresh).place(x=180, y=315)
+        Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=355)
+        Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=355)
+        Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=355)
         self.reset_form()
         self.window.mainloop()
 
@@ -90,3 +93,12 @@ class FinancialTransactionView:
             self.date_time.set(financial_transaction.date_time)
             self.payment_id.set(financial_transaction.payment_id)
             self.description.set(financial_transaction.description)
+
+    def select_transaction(self):
+        if self.financial_transaction_id.get():
+            status, Session.financial_transaction = FinancialTransactionController.find_by_id(self.financial_transaction_id.get())
+        else:
+            messagebox.showerror("Select", "Select Financial Transaction")
+
+    def refresh(self):
+        pass

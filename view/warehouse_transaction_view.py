@@ -1,5 +1,5 @@
 from view import *
-from model import WarehouseTransaction
+from model import WarehouseTransaction, Session
 from controller import WarehouseTransactionController
 
 
@@ -36,6 +36,8 @@ class WarehouseTransactionView:
             self.select_from_table
         )
 
+        Button(self.window, text="Select Transaction", width=19, command=self.select_transaction).place(x=20, y=260)
+        Button(self.window, text="Refresh", width=7, command=self.refresh).place(x=180, y=260)
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=300)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=300)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=300)
@@ -96,3 +98,12 @@ class WarehouseTransactionView:
                 self.transaction_datetime.set(warehouse_transaction.transaction_datetime)
                 self.customer_id.set(warehouse_transaction.customer_id)
                 self.employee_id.set(warehouse_transaction.employee_id)
+
+    def select_transaction(self):
+        if self.warehouse_transaction_id.get():
+            status, Session.warehouse_transaction = WarehouseTransactionController.find_by_id(self.warehouse_transaction_id.get())
+        else:
+            messagebox.showerror("Select", "Select Warehouse Transaction")
+
+    def refresh(self):
+        pass

@@ -1,5 +1,5 @@
 from view import *
-from model import Product
+from model import Product, Session
 from controller import ProductController
 
 
@@ -32,6 +32,8 @@ class ProductView:
             self.select_from_table
         )
 
+        Button(self.window, text="Select Product", width=19, command=self.select_product).place(x=20, y=340)
+        Button(self.window, text="Refresh", width=7, command=self.refresh).place(x=180, y=340)
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=380)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=380)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=380)
@@ -96,3 +98,12 @@ class ProductView:
         status, product_list = ProductController.find_by_name_and_brand(self.search_name.get(), self.search_brand.get())
         if status and product_list:
             self.table.refresh_table(product_list)
+
+    def select_product(self):
+        if self.product_id.get():
+            status, Session.product = ProductController.find_by_id(self.product_id.get())
+        else:
+            messagebox.showerror("Select", "Select Product")
+
+    def refresh(self):
+        pass
