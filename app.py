@@ -1,4 +1,4 @@
 from login_view import LoginView,DashboardView, OrderView
 
-ui = OrderView()
-# ui= DashboardView()
+# ui = OrderView()
+ui= DashboardView()

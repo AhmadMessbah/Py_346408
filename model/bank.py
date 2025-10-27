@@ -9,7 +9,6 @@ class Bank:
         self.balance = balance
         self.description = description
 
-
     def validate(self):
         name_validator(self.name)
         account_validator(self.account)
@@ -21,4 +20,3 @@ class Bank:
 
     def to_tuple(self):
         return tuple((self.bank_id, self.name, self.account, self.balance, self.description))
-
