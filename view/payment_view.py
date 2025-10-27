@@ -1,3 +1,5 @@
+from view.customer_view import CustomerView
+from view.employee_view import EmployeeView
 from view import *
 
 from model import Payment
@@ -14,9 +16,9 @@ class PaymentView:
         self.transaction_type = LabelWithEntry(self.window, "TransactType", 20, 60)
         self.payment_type = LabelWithEntry(self.window, "PaymentType", 20, 100)
         self.date_time = LabelWithEntry(self.window, "DateTime", 20, 140)
-        self.customer_id = LabelWithEntry(self.window, "CustomerId", 20, 180, data_type=IntVar)
+        self.customer_id = LabelWithEntry(self.window, "Customer", 20, 180, data_type=IntVar, state="readonly",on_keypress_function=lambda : CustomerView())
         self.total_amount = LabelWithEntry(self.window, "TotalAmount", 20, 220, data_type=IntVar)
-        self.employee_id = LabelWithEntry(self.window, "EmployeeId", 20, 260, data_type=IntVar)
+        self.employee_id = LabelWithEntry(self.window, "Employee", 20, 260, data_type=IntVar, state="readonly", on_keypress_function=lambda : EmployeeView())
         self.description = LabelWithEntry(self.window, "Description", 20, 300)
         self.table = Table(
             self.window,

@@ -1,5 +1,6 @@
 class Session:
     employee = None
+    customer = None
     order = None
     order_items = []
     payment = None

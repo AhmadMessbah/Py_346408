@@ -1,6 +1,6 @@
 from view import *
 
-from model import Customer
+from model import Customer, Session
 from controller import CustomerController
 
 
@@ -13,7 +13,7 @@ class CustomerView:
         self.customer_id = LabelWithEntry(self.window, "Id", 20, 20, data_type=IntVar, state="readonly")
         self.first_name = LabelWithEntry(self.window, "FirstName", 20, 60)
         self.last_name = LabelWithEntry(self.window, "LastName", 20, 100)
-        self.phone_number = LabelWithEntry(self.window, "PhoneNumber", 20, 140, data_type=IntVar)
+        self.phone_number = LabelWithEntry(self.window, "PhoneNumber", 20, 140)
         self.address = LabelWithEntry(self.window, "Address", 20, 180)
 
         self.table = Table(
@@ -25,6 +25,8 @@ class CustomerView:
             self.select_from_table
         )
 
+        Button(self.window, text="Select Customer", width=19, command=self.select_customer).place(x=20, y=220)
+        Button(self.window, text="Refresh", width=7, command=self.refresh).place(x=180, y=220)
         Button(self.window, text="Save", width=7, command=self.save_click).place(x=20, y=260)
         Button(self.window, text="Edit", width=7, command=self.edit_click).place(x=100, y=260)
         Button(self.window, text="Delete", width=7, command=self.delete_click).place(x=180, y=260)
@@ -76,3 +78,12 @@ class CustomerView:
                 self.last_name.set(customer.last_name)
                 self.phone_number.set(customer.phone_number)
                 self.address.set(customer.address)
+
+    def select_customer(self):
+        if self.customer_id.get():
+            status, Session.customer = CustomerController.find_by_id(self.customer_id.get())
+        else:
+            messagebox.showerror("Select","Select Customer")
+
+    def refresh(self):
+        pass
