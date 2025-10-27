@@ -16,40 +16,40 @@ Based on Git commit history analysis:
 | 3 | taranom | 57 | 11.0% | 88/100 |
 | 4 | MelikaArshad | 55 | 10.6% | 85/100 |
 | 5 | Ali Zabihian | 50 | 9.7% | 83/100 |
-| 6 | parsaT79 / parsa irani | 53 | 10.3% | 80/100 |
+| 6 | parsaT79 | 47 | 9.1% | 80/100 |
 | 7 | fatemehahang | 38 | 7.3% | 78/100 |
-| 8 | Parisa-Namvar / pnamv | 63 | 12.2% | 75/100 |
-| 9 | yasmin nazari | 27 | 5.2% | 68/100 |
-| 10 | Zhoubin / zhoubin911 | 21 | 4.1% | 65/100 |
-| 11 | HIGH COMP | 19 | 3.7% | 62/100 |
-| 12 | baharehshirzad | 18 | 3.5% | 60/100 |
-| 13 | Asus | 13 | 2.5% | 55/100 |
-| 14 | Student | 13 | 2.5% | 52/100 |
-| 15 | hajjamroj-max | 12 | 2.3% | 50/100 |
-| 16 | f.mehri / Fatemeh-Mehri | 12 | 2.3% | 40/100 |
-| 17 | Lion | 10 | 1.9% | 48/100 |
-| 18 | Melissa-Rh24 | 10 | 1.9% | 45/100 |
-| 19 | anisashokrian | 8 | 1.5% | 42/100 |
-| 20 | PC | 6 | 1.2% | 35/100 |
-| 21 | arminyarmohammadi | 6 | 1.2% | 32/100 |
-| 22 | mhdsnb | 5 | 1.0% | 38/100 |
-| 23 | sababaradaran97 | 5 | 1.0% | 35/100 |
-| 24 | sina | 3 | 0.6% | 28/100 |
-| 25 | AidinImn / aidin imani | 4 | 0.8% | 25/100 |
-| 26 | Foroogh | 2 | 0.4% | 22/100 |
-| 27 | ariana gholampour | 1 | 0.2% | 15/100 |
-| 28 | mohadese | 1 | 0.2% | 12/100 |
+| 8 | Parisa-Namvar | 35 | 6.8% | 75/100 |
+| 9 | pnamv | 28 | 5.4% | 72/100 |
+| 10 | yasmin nazari | 27 | 5.2% | 68/100 |
+| 11 | Zhoubin | 20 | 3.9% | 65/100 |
+| 12 | HIGH COMP | 19 | 3.7% | 62/100 |
+| 13 | baharehshirzad | 18 | 3.5% | 60/100 |
+| 14 | Asus | 13 | 2.5% | 55/100 |
+| 15 | Student | 13 | 2.5% | 52/100 |
+| 16 | hajjamroj-max | 12 | 2.3% | 50/100 |
+| 17 | f.mehri | 8 | 1.5% | 40/100 |
+| 18 | Lion | 10 | 1.9% | 48/100 |
+| 19 | Melissa-Rh24 | 10 | 1.9% | 45/100 |
+| 20 | anisashokrian | 8 | 1.5% | 42/100 |
+| 21 | PC | 6 | 1.2% | 35/100 |
+| 22 | arminyarmohammadi | 6 | 1.2% | 32/100 |
+| 23 | parsa irani | 6 | 1.2% | 30/100 |
+| 24 | mhdsnb | 5 | 1.0% | 38/100 |
+| 25 | sababaradaran97 | 5 | 1.0% | 35/100 |
+| 26 | Fatemeh-Mehri | 4 | 0.8% | 32/100 |
+| 27 | sina | 3 | 0.6% | 28/100 |
+| 28 | AidinImn | 2 | 0.4% | 25/100 |
+| 29 | Foroogh | 2 | 0.4% | 22/100 |
+| 30 | aidin imani | 2 | 0.4% | 20/100 |
+| 31 | ariana gholampour | 1 | 0.2% | 15/100 |
+| 32 | mohadese | 1 | 0.2% | 12/100 |
+| 33 | zhoubin911 | 1 | 0.2% | 10/100 |
 
-**Total Contributors:** 28 developers  
+**Total Contributors:** 33 developers  
 **Total Commits:** 516 commits
 
-**Note:** Names have been consolidated where multiple GitHub aliases were identified for the same contributor:
-- Ahmad / AhmadMessbah / Messbah.A (104 commits combined)
-- Parisa-Namvar / pnamv (63 commits combined)
-- parsaT79 / parsa irani (53 commits combined)
-- Zhoubin / zhoubin911 (21 commits combined)
-- f.mehri / Fatemeh-Mehri (12 commits combined)
-- AidinImn / aidin imani (4 commits combined)
+**Note:** Only verified alias consolidation:
+- Ahmad / AhmadMessbah / Messbah.A (104 commits combined - confirmed as same person)
 
 ### Impact Score Explanation
 
