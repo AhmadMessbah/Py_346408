@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import * #
 
 class LabelWithEntry:
     def __init__(self, master, label_text, x, y, distance=90, data_type=StringVar, state="normal",on_keypress_function=None):

@@ -1,4 +1,4 @@
-from model import Customer
+from model import Customer #
 from service import CustomerService
 from tools.logging import Logger
 
@@ -13,8 +13,8 @@ class CustomerController:
             Logger.info(f"Customer {customer} saved")
             return True, f"Customer Saved Successfully"
         except Exception as e:
-            Logger.error(f"Customer Save Error: {e}")
-            return False, e
+            Logger.error(f"Customer Save Error:  {str(e)}")
+            return False, str(e)
 
     @classmethod
     def update(cls, customer_id, first_name, last_name, phone_number, address):

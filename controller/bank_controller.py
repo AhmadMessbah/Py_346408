@@ -4,8 +4,8 @@ from tools import Logger
 
 
 class BankController:
-    @classmethod
-    def save(cls, name, account, balance, description):
+    @staticmethod
+    def save(name, account, balance, description):
         try:
             bank = Bank(None, name, account, balance, description)
             bank.validate()
@@ -16,8 +16,8 @@ class BankController:
             Logger.error(f"Bank Saved Error: {e}")
             return False, e
 
-    @classmethod
-    def update(cls, bank_id, name, account, balance, description):
+    @staticmethod
+    def update(bank_id, name, account, balance, description):
         try:
             bank = Bank(bank_id, name, account, balance, description)
             bank.validate()
@@ -28,8 +28,8 @@ class BankController:
             Logger.error(f"Bank Updated Error: {e}")
             return False, e
 
-    @classmethod
-    def delete(cls, bank_id):
+    @staticmethod
+    def delete(bank_id):
         try:
             bank = BankService.delete(bank_id)
             Logger.info(f"Bank {bank} deleted")
@@ -38,7 +38,7 @@ class BankController:
             Logger.error(f"Bank Delete Error: {e}")
             return False, e
 
-    @classmethod
+    @staticmethod
     def find_all(cls):
         try:
             bank_list = BankService.find_all()
@@ -48,8 +48,8 @@ class BankController:
             Logger.error(f"Bank FindAll Error: {e}")
             return False, e
 
-    @classmethod
-    def find_by_id(cls, bank_id):
+    @staticmethod
+    def find_by_id(bank_id):
         try:
             bank = BankService.find_by_id(bank_id)
             Logger.info(f"Bank FindById {bank_id}")
@@ -58,8 +58,8 @@ class BankController:
             Logger.error(f"{e} With Id {bank_id}")
             return False, e
 
-    @classmethod
-    def find_by_name(cls, name):
+    @staticmethod
+    def find_by_name(name):
         try:
             bank_list = BankService.find_by_name(name)
             Logger.info(f"Bank FindByName {name}")
@@ -68,8 +68,8 @@ class BankController:
             Logger.error(f"Bank FindByName Error: {e}")
             return False, e
 
-    @classmethod
-    def find_by_account(cls, account):
+    @staticmethod
+    def find_by_account(account):
         try:
             bank_list = BankService.find_by_account(account)
             Logger.info(f"Bank FindByAccount {account}")

@@ -1,12 +1,12 @@
-from datetime import datetime
+from datetime import datetime #
 from persiantools.jdatetime import JalaliDateTime
 
 
-def datetime_validator(date_time):
-    if not JalaliDateTime.strptime(date_time, "%Y-%m-%d %H:%M"):
-        raise ValueError("Invalid date time format !!!")
+def year_validator(year):
+    if not JalaliDateTime.strptime(year, "%Y"):
+        raise ValueError("Invalid year format !!!")
     else:
-        return date_time
+        return year
 
 def tax_validator(tax):
     if  not 0<=tax<=100:
@@ -25,3 +25,9 @@ def total_amount_validator(total_amount):
         raise ValueError("Invalid total amount !!!")
     else:
         return total_amount
+
+def isbn_validator(isbn):
+    if  not isbn>=0:
+        raise ValueError("Invalid isbn amount !!!")
+    else:
+        return isbn

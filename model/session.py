@@ -1,7 +1,7 @@
-class Session:
+class Session:#
     employee = None
     customer = None
-    order = None
+    book = None
     order_items = []
     payment = None
 

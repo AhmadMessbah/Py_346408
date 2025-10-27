@@ -1,10 +1,10 @@
-import sqlite3
+import sqlite3 #
 from model import Employee
 
 
 class EmployeeRepository:
     def connect(self):
-        self.connection = sqlite3.connect("./db/selling_db")
+        self.connection = sqlite3.connect("./db/books_db")
         self.cursor = self.connection.cursor()
 
     def disconnect(self):
@@ -26,7 +26,7 @@ class EmployeeRepository:
         self.cursor.execute(
             "update employees set first_name=?, last_name=?, salary=?, occupation=?, phone_number=?, username=?, password=?, role=? where id=?",
             [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
-             employee.username, employee.password, employee.role, employee.id])
+             employee.username, employee.password, employee.role, employee.employee_id])
         self.connection.commit()
         self.disconnect()
         return employee
@@ -88,3 +88,114 @@ class EmployeeRepository:
         employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
         self.disconnect()
         return employee_list
+"""import sqlite3
+from model import Employee
+
+
+class EmployeeRepository:
+    def connect(self):
+        self.connection = sqlite3.connect("./db/selling_db")
+        self.cursor = self.connection.cursor()
+
+    def disconnect(self):
+        self.cursor.close()
+        self.connection.close()
+
+    def save(self, employee):
+        self.connect()
+        self.cursor.execute(
+            "insert into employees (first_name, last_name, salary, occupation, phone_number, username, password, role) values (?, ?, ?, ?, ?, ?, ?, ?)",
+            [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
+             employee.username, employee.password, employee.role])
+        employee.employee_id = self.cursor.lastrowid
+        self.connection.commit()
+        self.disconnect()
+        return employee
+
+    def update(self, employee):
+        self.connect()
+        self.cursor.execute(
+            "update employees set first_name=?, last_name=?, salary=?, occupation=?, phone_number=?, username=?, password=?, role=? where id=?",
+            [employee.first_name, employee.last_name, employee.salary, employee.occupation, employee.phone_number,
+             employee.username, employee.password, employee.role, employee.employee_id])
+        self.connection.commit()
+        self.disconnect()
+        return employee
+
+    def delete(self, id):
+        self.connect()
+        self.cursor.execute("delete from employees where id=?", [id])
+        self.connection.commit()
+        self.disconnect()
+
+    def find_all(self):
+        self.connect()
+        self.cursor.execute("select * from employees")
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.disconnect()
+        return employee_list
+
+    def find_by_id(self, employee_id):
+        self.connect()
+        self.cursor.execute("select * from employees where id=?", [employee_id])
+        employee = self.cursor.fetchone()
+        self.disconnect()
+        if employee:
+            return Employee(*employee)
+        return None
+
+    def find_by_username_and_password(self, username, password):
+        self.connect()
+        self.cursor.execute("select * from employees where username=? and password=?", [username, password])
+        employee = self.cursor.fetchone()
+        self.disconnect()
+        if employee:
+            return Employee(*employee)
+        return None
+
+    def find_by_role(self, role):
+        self.connect()
+        self.cursor.execute("select * from employees where role=?", [role])
+        employee_list = [Employee(*employee) for employee in self.cursor.fetchall()]
+        self.disconnect()
+        return employee_list
+
+
+def initialize_database():
+    import os
+
+    db_dir = "./db"
+    if not os.path.exists(db_dir):
+        os.makedirs(db_dir)
+
+    books_db = "./db/books_db"
+    create_table_sql = 
+    CREATE TABLE IF NOT EXISTS employees (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        first_name TEXT,
+        last_name TEXT,
+        salary INTEGER,
+        occupation TEXT,
+        phone_number TEXT,
+        username TEXT,
+        password TEXT,
+        role TEXT
+    );
+    
+
+    conn = None
+    try:
+        conn = sqlite3.connect(books_db)
+        cursor = conn.cursor()
+        cursor.execute(create_table_sql)
+        conn.commit()
+        print(f"Database '{books_db}' and table 'employees' created successfully.")
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if conn:
+            conn.close()
+
+
+if __name__ == "__main__":
+    initialize_database()"""
