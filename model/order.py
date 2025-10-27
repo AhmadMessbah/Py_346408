@@ -34,8 +34,10 @@ class Order:
         return tuple((
             self.order_id,
             self.order_type,
-            customer.full_name(),
-            employee.full_name(),
+            customer.full_name()+" "+f"({self.customer_id})",
+            employee.full_name()+" "+f"({self.employee_id})",
+            # self.customer_id,
+            # self.employee_id,
             self.date_time,
             self.payment_id,
             self.warehouse_transaction_id,
