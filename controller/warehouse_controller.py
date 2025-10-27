@@ -4,14 +4,13 @@ from tools.logging import Logger
 
 
 class WarehouseController:
-    warehouse_service = WarehouseService()
 
     @classmethod
     def save(cls, product_id, quantity):
         try:
             warehouse = Warehouse(None, product_id, quantity)
             warehouse.validate()
-            warehouse = cls.warehouse_service.save(warehouse)
+            warehouse = WarehouseService.save(warehouse)
             Logger.info(f"Warehouse {warehouse} saved")
             return True, f"Warehouse Saved Successfully"
         except Exception as e:
@@ -23,7 +22,7 @@ class WarehouseController:
         try:
             warehouse = Warehouse(warehouse_id, product_id, quantity)
             warehouse.validate()
-            warehouse = cls.warehouse_service.update(warehouse)
+            warehouse = WarehouseService.update(warehouse)
             Logger.info(f"Warehouse {warehouse} updated")
             return True, "Warehouse Updated Successfully"
         except Exception as e:
@@ -33,7 +32,7 @@ class WarehouseController:
     @classmethod
     def delete(cls, warehouse_id):
         try:
-            warehouse = cls.warehouse_service.delete(warehouse_id)
+            warehouse = WarehouseService.delete(warehouse_id)
             Logger.info(f"Warehouse {warehouse} deleted")
             return True, f"Warehouse Deleted Successfully"
         except Exception as e:
@@ -43,7 +42,7 @@ class WarehouseController:
     @classmethod
     def find_all(cls):
         try:
-            warehouse_list = cls.warehouse_service.find_all()
+            warehouse_list = WarehouseService.find_all()
             Logger.info("Warehouse FindAll")
             return True, warehouse_list
         except Exception as e:
@@ -53,7 +52,7 @@ class WarehouseController:
     @classmethod
     def find_by_id(cls, warehouse_id):
         try:
-            warehouse = cls.warehouse_service.find_by_id(warehouse_id)
+            warehouse = WarehouseService.find_by_id(warehouse_id)
             Logger.info(f"Warehouse FindById {warehouse_id}")
             return True, warehouse
         except Exception as e:
@@ -63,7 +62,7 @@ class WarehouseController:
     @classmethod
     def find_by_product_id(cls, product_id):
         try:
-            warehouse_list = cls.warehouse_service.find_by_product_id(product_id)
+            warehouse_list = WarehouseService.find_by_product_id(product_id)
             Logger.info(f"Warehouse FindByProductId {product_id}")
             return True, warehouse_list
         except Exception as e:
@@ -73,7 +72,7 @@ class WarehouseController:
     @classmethod
     def find_by_quantity_less_than(cls, quantity):
         try:
-            warehouse_list = cls.warehouse_service.find_by_quantity_less_than(quantity)
+            warehouse_list = WarehouseService.find_by_quantity_less_than(quantity)
             Logger.info(f"Warehouse FindByQuantityLessThan {quantity}")
             return True, warehouse_list
         except Exception as e:
@@ -83,7 +82,7 @@ class WarehouseController:
     @classmethod
     def find_by_quantity_more_than(cls, quantity):
         try:
-            warehouse_list = cls.warehouse_service.find_by_quantity_more_than(quantity)
+            warehouse_list = WarehouseService.find_by_quantity_more_than(quantity)
             Logger.info(f"Warehouse FindByQuantityMoreThan {quantity}")
             return True, warehouse_list
         except Exception as e:

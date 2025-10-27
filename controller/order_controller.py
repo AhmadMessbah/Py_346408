@@ -4,8 +4,6 @@ from tools.logging import Logger
 
 
 class OrderController:
-    order_service = OrderService()
-
     @classmethod
     def save(cls, order_type, customer_id, employee_id, date_time,
              payment_id, warehouse_transaction_id, tax, total_discount,
@@ -15,7 +13,7 @@ class OrderController:
                           payment_id, warehouse_transaction_id, tax, total_discount,
                           total_amount)
             order.validate()
-            order = cls.order_service.save(order)
+            order = OrderService.save(order)
             Logger.info(f"Order {order} saved")
             return True, f"Order Saved Successfully"
         except Exception as e:
@@ -31,7 +29,7 @@ class OrderController:
                          payment_id, warehouse_transaction_id, tax, total_discount,
                          total_amount)
             order.validate()
-            order = cls.order_service.update(order)
+            order = OrderService.update(order)
             Logger.info(f"Order {order} updated")
             return True, "Order Updated Successfully"
         except Exception as e:
@@ -41,7 +39,7 @@ class OrderController:
     @classmethod
     def delete(cls, order_id):
         try:
-            order = cls.order_service.delete(order_id)
+            order = OrderService.delete(order_id)
             Logger.info(f"Order {order} deleted")
             return True, f"Order Deleted Successfully"
         except Exception as e:
@@ -51,7 +49,7 @@ class OrderController:
     @classmethod
     def find_all(cls):
         try:
-            order_list = cls.order_service.find_all()
+            order_list = OrderService.find_all()
             Logger.info("Order FindAll")
             return True, order_list
         except Exception as e:
@@ -61,7 +59,7 @@ class OrderController:
     @classmethod
     def find_by_id(cls, order_id):
         try:
-            order = cls.order_service.find_by_id(order_id)
+            order = OrderService.find_by_id(order_id)
             Logger.info(f"Order FindById {order_id}")
             return True, order
         except Exception as e:
@@ -71,7 +69,7 @@ class OrderController:
     @classmethod
     def find_by_order_type(cls, order_type):
         try:
-            order_list = cls.order_service.find_by_order_type(order_type)
+            order_list = OrderService.find_by_order_type(order_type)
             Logger.info(f"Order FindByOrderType {order_type}")
             return True, order_list
         except Exception as e:
@@ -81,7 +79,7 @@ class OrderController:
     @classmethod
     def find_by_customer_id(cls, customer_id):
         try:
-            order_list = cls.order_service.find_by_customer_id(customer_id)
+            order_list = OrderService.find_by_customer_id(customer_id)
             Logger.info(f"Order FindByCustomerId {customer_id}")
             return True, order_list
         except Exception as e:
@@ -91,7 +89,7 @@ class OrderController:
     @classmethod
     def find_by_employee_id(cls, employee_id):
         try:
-            order_list = cls.order_service.find_by_employee_id(employee_id)
+            order_list = OrderService.find_by_employee_id(employee_id)
             Logger.info(f"Order FindByEmployeeId {employee_id}")
             return True, order_list
         except Exception as e:
@@ -101,7 +99,7 @@ class OrderController:
     @classmethod
     def find_by_date_time_range(cls, start_date_time, end_date_time):
         try:
-            order_list = cls.order_service.find_by_date_time_range(start_date_time, end_date_time)
+            order_list = OrderService.find_by_date_time_range(start_date_time, end_date_time)
             Logger.info(f"Order FindByDateTimeRange {start_date_time} to {end_date_time}")
             return True, order_list
         except Exception as e:
@@ -111,7 +109,7 @@ class OrderController:
     @classmethod
     def find_by_date_time_range_and_customer_id(cls, start_date_time, end_date_time, customer_id):
         try:
-            order_list = cls.order_service.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
+            order_list = OrderService.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
             Logger.info(f"Order FindByDateTimeRangeAndCustomerId {start_date_time} to {end_date_time}, customer: {customer_id}")
             return True, order_list
         except Exception as e:

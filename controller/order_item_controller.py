@@ -4,14 +4,13 @@ from tools.logging import Logger
 
 
 class OrderItemController:
-    order_item_service = OrderItemService()
 
     @classmethod
     def save(cls, order_id, product_id, quantity, price, discount, description):
         try:
             order_item = OrderItem(None, order_id, product_id, quantity, price, discount, description)
             order_item.validate()
-            order_item = cls.order_item_service.save(order_item)
+            order_item = OrderItemService.save(order_item)
             Logger.info(f"OrderItem {order_item} saved")
             return True, f"OrderItem Saved Successfully"
         except Exception as e:
@@ -23,7 +22,7 @@ class OrderItemController:
         try:
             order_item = OrderItem(order_item_id, order_id, product_id, quantity, price, discount, description)
             order_item.validate()
-            order_item = cls.order_item_service.update(order_item)
+            order_item = OrderItemService.update(order_item)
             Logger.info(f"OrderItem {order_item} updated")
             return True, "OrderItem Updated Successfully"
         except Exception as e:
@@ -33,7 +32,7 @@ class OrderItemController:
     @classmethod
     def delete(cls, order_item_id):
         try:
-            order_item = cls.order_item_service.delete(order_item_id)
+            order_item = OrderItemService.delete(order_item_id)
             Logger.info(f"OrderItem {order_item} deleted")
             return True, f"OrderItem Deleted Successfully"
         except Exception as e:
@@ -43,7 +42,7 @@ class OrderItemController:
     @classmethod
     def find_all(cls):
         try:
-            order_item_list = cls.order_item_service.find_all()
+            order_item_list = OrderItemService.find_all()
             Logger.info("OrderItem FindAll")
             return True, order_item_list
         except Exception as e:
@@ -53,7 +52,7 @@ class OrderItemController:
     @classmethod
     def find_by_id(cls, order_item_id):
         try:
-            order_item = cls.order_item_service.find_by_id(order_item_id)
+            order_item = OrderItemService.find_by_id(order_item_id)
             Logger.info(f"OrderItem FindById {order_item_id}")
             return True, order_item
         except Exception as e:
@@ -63,7 +62,7 @@ class OrderItemController:
     @classmethod
     def find_by_order_id(cls, order_id):
         try:
-            order_item_list = cls.order_item_service.find_by_order_id(order_id)
+            order_item_list = OrderItemService.find_by_order_id(order_id)
             Logger.info(f"OrderItem FindByOrderId {order_id}")
             return True, order_item_list
         except Exception as e:
@@ -73,7 +72,7 @@ class OrderItemController:
     @classmethod
     def find_by_product_id(cls, product_id):
         try:
-            order_item_list = cls.order_item_service.find_by_product_id(product_id)
+            order_item_list = OrderItemService.find_by_product_id(product_id)
             Logger.info(f"OrderItem FindByProductId {product_id}")
             return True, order_item_list
         except Exception as e:
@@ -83,7 +82,7 @@ class OrderItemController:
     @classmethod
     def find_by_quantity_less_than(cls, quantity):
         try:
-            order_item_list = cls.order_item_service.find_by_quantity_less_than(quantity)
+            order_item_list = OrderItemService.find_by_quantity_less_than(quantity)
             Logger.info(f"OrderItem FindByQuantityLessThan {quantity}")
             return True, order_item_list
         except Exception as e:

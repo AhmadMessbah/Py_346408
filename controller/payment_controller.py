@@ -4,15 +4,13 @@ from tools.logging import Logger
 
 
 class PaymentController:
-    payment_service = PaymentService()
-
     @classmethod
     def save(cls, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id, description):
         try:
             payment = Payment(None, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id,
                               description)
             payment.validate()
-            payment = cls.payment_service.save(payment)
+            payment = PaymentService.save(payment)
             Logger.info(f"Payment {payment} saved")
             return True, f"Payment Saved Successfully"
         except Exception as e:
@@ -26,7 +24,7 @@ class PaymentController:
             payment = Payment(payment_id, transaction_type, payment_type, date_time, customer_id, total_amount, employee_id,
                               description)
             payment.validate()
-            payment = cls.payment_service.update(payment)
+            payment = PaymentService.update(payment)
             Logger.info(f"Payment {payment} updated")
             return True, "Payment Updated Successfully"
         except Exception as e:
@@ -36,7 +34,7 @@ class PaymentController:
     @classmethod
     def delete(cls, payment_id):
         try:
-            payment = cls.payment_service.delete(payment_id)
+            payment = PaymentService.delete(payment_id)
             Logger.info(f"Payment {payment} deleted")
             return True, f"Payment Deleted Successfully"
         except Exception as e:
@@ -46,7 +44,7 @@ class PaymentController:
     @classmethod
     def find_all(cls):
         try:
-            payment_list = cls.payment_service.find_all()
+            payment_list = PaymentService.find_all()
             Logger.info("Payment FindAll")
             return True, payment_list
         except Exception as e:
@@ -56,7 +54,7 @@ class PaymentController:
     @classmethod
     def find_by_id(cls, payment_id):
         try:
-            payment = cls.payment_service.find_by_id(payment_id)
+            payment = PaymentService.find_by_id(payment_id)
             Logger.info(f"Payment FindById {payment_id}")
             return True, payment
         except Exception as e:
@@ -66,7 +64,7 @@ class PaymentController:
     @classmethod
     def find_by_transaction_type(cls, transaction_type):
         try:
-            payment_list = cls.payment_service.find_by_transaction_type(transaction_type)
+            payment_list = PaymentService.find_by_transaction_type(transaction_type)
             Logger.info(f"Payment FindByTransactionType {transaction_type}")
             return True, payment_list
         except Exception as e:
@@ -76,7 +74,7 @@ class PaymentController:
     @classmethod
     def find_by_payment_type(cls, payment_type):
         try:
-            payment_list = cls.payment_service.find_by_payment_type(payment_type)
+            payment_list = PaymentService.find_by_payment_type(payment_type)
             Logger.info(f"Payment FindByPaymentType {payment_type}")
             return True, payment_list
         except Exception as e:
@@ -86,7 +84,7 @@ class PaymentController:
     @classmethod
     def find_by_date_time_range(cls, start_date_time, end_date_time):
         try:
-            payment_list = cls.payment_service.find_by_date_time_range(start_date_time, end_date_time)
+            payment_list = PaymentService.find_by_date_time_range(start_date_time, end_date_time)
             Logger.info(f"Payment FindByDateTimeRange {start_date_time} to {end_date_time}")
             return True, payment_list
         except Exception as e:
@@ -96,7 +94,7 @@ class PaymentController:
     @classmethod
     def find_by_date_time_range_and_customer_id(cls, start_date_time, end_date_time, customer_id):
         try:
-            payment_list = cls.payment_service.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
+            payment_list = PaymentService.find_by_date_time_range_and_customer_id(start_date_time, end_date_time, customer_id)
             Logger.info(f"Payment FindByDateTimeRangeAndCustomerId {start_date_time} to {end_date_time}, customer: {customer_id}")
             return True, payment_list
         except Exception as e:
@@ -106,7 +104,7 @@ class PaymentController:
     @classmethod
     def find_by_date_time_range_and_employee_id(cls, start_date_time, end_date_time, employee_id):
         try:
-            payment_list = cls.payment_service.find_by_date_time_range_and_employee_id(start_date_time, end_date_time, employee_id)
+            payment_list = PaymentService.find_by_date_time_range_and_employee_id(start_date_time, end_date_time, employee_id)
             Logger.info(f"Payment FindByDateTimeRangeAndEmployeeId {start_date_time} to {end_date_time}, employee: {employee_id}")
             return True, payment_list
         except Exception as e:
