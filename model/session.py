@@ -1,5 +1,9 @@
 class Session:
     employee = None
     order = None
-    order_items = None
+    order_items = []
     payment = None
+
+    @classmethod
+    def add_order_item(cls, order_item):
+        cls.order_items.append(order_item)
