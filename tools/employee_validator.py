@@ -1,4 +1,4 @@
-import re #
+import re
 
 
 def first_name_validator(first_name):

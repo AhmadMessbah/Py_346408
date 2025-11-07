@@ -1,4 +1,4 @@
-import re #
+import re
 
 def first_name_validator(first_name):
     if not (type(first_name) == str and re.match(r"^[a-zA-Z\s]{3,30}$", first_name)):

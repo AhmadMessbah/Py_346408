@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import logging #
+import logging
 import sys
 
 class Logger:

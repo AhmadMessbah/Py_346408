@@ -1,4 +1,4 @@
-import unittest #
+import unittest
 from model import Customer
 from controller import CustomerController
 

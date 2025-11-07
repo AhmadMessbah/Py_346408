@@ -1,4 +1,4 @@
-from tools.book_validator import * #
+from tools.book_validator import *
 from service import CustomerService, EmployeeService
 
 

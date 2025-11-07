@@ -1,4 +1,4 @@
-from tkinter import * #
+from tkinter import *
 from PIL import ImageTk, Image
 from model import Session
 from view.customer_view import CustomerView

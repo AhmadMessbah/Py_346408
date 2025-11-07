@@ -1,4 +1,4 @@
-from model import Book #
+from model import Book
 from service import BookService
 from tools.logging import Logger
 

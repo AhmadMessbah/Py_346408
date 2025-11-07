@@ -1,4 +1,4 @@
-from tools.book_validator import * #
+from tools.book_validator import *
 
 class Book:
     def __init__(self, book_id, title, customer_id, employee_id, year,

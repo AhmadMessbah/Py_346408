@@ -1,4 +1,4 @@
-from tools.employee_validator import * #
+from tools.employee_validator import *
 
 
 class Employee:

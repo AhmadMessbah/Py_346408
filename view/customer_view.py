@@ -1,4 +1,4 @@
-from view import * #
+from view import *
 
 from model import Customer, Session
 from controller import CustomerController

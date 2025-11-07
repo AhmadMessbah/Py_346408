@@ -1,3 +1,3 @@
-from view.show_order_view import ShowOderView #
+from view.show_order_view import ShowOderView
 
 ui = ShowOderView()
